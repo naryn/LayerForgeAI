@@ -1,0 +1,143 @@
+{
+  "milestone": "M0",
+  "status": "blocked",
+  "m1Allowed": false,
+  "updatedAt": "2026-10-20T21:10:00+08:00",
+  "developmentOrder": {
+    "decidedAt": "2026-10-20",
+    "decision": "Build the web application and UI to a usable state before returning to Photoshop integration verification.",
+    "uiDevelopmentAuthorized": true,
+    "photoshopGateDeferred": true,
+    "m0ConclusionUnchanged": true,
+    "note": "This ordering override does not mark M0 passed; browser evidence is not Photoshop compatibility evidence."
+  },
+  "patchyCommit": "d1ff95235e00af296868d4253e03391ca002ee9d",
+  "host": {
+    "os": "macOS 27.0.1",
+    "architecture": "arm64",
+    "photoshopInstalled": false
+  },
+  "verified": {
+    "requiredDocumentsRead": true,
+    "sourceEntrypointsAudited": true,
+    "licenseNoticesAudited": true,
+    "browserProtocolVersion": 1,
+    "unitAndStaticTestsPassed": 12,
+    "integrationPatchApplies": true,
+    "macosWasmCore": {
+      "configured": true,
+      "built": true,
+      "ctest": "1/1 passed",
+      "executed": 1299,
+      "passed": 1192,
+      "failed": 0,
+      "skipped": 107,
+      "seconds": 20.6,
+      "log": "artifacts/m0/logs/macos-wasm-core-tests-verbose.txt"
+    },
+    "macosWasmRelease": {
+      "configured": true,
+      "built": true,
+      "wasmBytes": 87709513,
+      "dataBytes": 77155674,
+      "bridgeCompiled": true,
+      "bridgeWarnings": 0,
+      "upstreamWarnings": 2,
+      "log": "artifacts/m0/logs/macos-wasm-release-build.txt"
+    },
+    "cppBridgeCompiled": true,
+    "realPsdRoundTrip": {
+      "result": "passed",
+      "fixture": "vendor/Patchy/test-fixtures/psd/photoshop-clip-base-effects.psd",
+      "fixtureOrigin": "upstream Patchy test fixture; not distributed with the application",
+      "layers": 29,
+      "clippedLayers": 14,
+      "sourceSha256": "ac492156547a772ba120f1d3a0d1b0164836d719100eb51e54c2a3c8f12ae66a",
+      "outputPsdSha256": "cf6cb55011599824370e159ab6c7e81f24666551155b2d963b1576215ea84f5a",
+      "rgbaSha256": "b22584a6cfae011f3875ebeb4c126126550f10c668bcc2aeb86995d450fd18c4",
+      "dimensions": { "width": 360, "height": 100 },
+      "renamed": "Background [M0]",
+      "reopenedDocumentIdChanged": true,
+      "sourceSha256Unchanged": true,
+      "durationSeconds": 4.0,
+      "evidenceDir": "artifacts/m0/browser-20261020-06",
+      "earlierRuns": [
+        "artifacts/m0/browser-20261020-05",
+        "artifacts/m0/browser-20261020-03"
+      ]
+    },
+    "protocolBoundaryChecks": {
+      "result": "passed",
+      "count": 8,
+      "checks": [
+        "missingPrecondition",
+        "stalePrecondition",
+        "invalidPreviewPath",
+        "invalidOpenPath",
+        "unknownOperation",
+        "previewOverwrite",
+        "psdOverwrite",
+        "stateUnchanged"
+      ],
+      "evidenceDir": "artifacts/m0/browser-20261020-06"
+    },
+    "ciScriptRerun": {
+      "result": "passed",
+      "script": "ci/macos-wasm-m0.sh",
+      "ctestSeconds": 20.63,
+      "e2eSeconds": 4.0,
+      "evidenceDir": "artifacts/m0/browser-20261020-06",
+      "logDir": "artifacts/m0/logs/macos-20261020-191428"
+    },
+    "syntheticLayerStress": {
+      "result": "passed",
+      "fixture": "tests/fixtures/m0-synthetic-125-layers.psd",
+      "layers": 130,
+      "sourceSha256": "79ef4bf26b432d6f66a88c637c2e369409ed12a0e453b50fd337de86acc8305c",
+      "outputPsdSha256": "396473e3618c58dfafe82826705319efef415cb120c3b9994fe4e7bd2c9b0f72",
+      "rgbaSha256": "e07486f069dd4192703bce127dd24798a53d15fd81377d782de5cf028900eeac",
+      "dimensions": { "width": 1024, "height": 768 },
+      "renamed": "section_01 [M0]",
+      "reopenedDocumentIdChanged": true,
+      "sourceSha256Unchanged": true,
+      "durationSeconds": 25.0,
+      "evidenceDir": "artifacts/m0/browser-20261020-02",
+      "log": "artifacts/m0/logs/macos-wasm-e2e-02.txt"
+    },
+    "independentPsdParse": {
+      "realPsd": {
+        "layers": 29,
+        "clippedLayers": 14,
+        "renamedLayerPresent": true
+      },
+      "syntheticPsd": {
+        "width": 1024,
+        "height": 768,
+        "nonRootLayers": 130,
+        "groups": 5,
+        "renamedLayerPresent": true
+      }
+    },
+    "browserEvidenceVerifier": [
+      "artifacts/m0/browser-20261020-06/browser-evidence-verification.json",
+      "artifacts/m0/browser-20261020-05/browser-evidence-verification.json",
+      "artifacts/m0/browser-20261020-03/browser-evidence-verification.json",
+      "artifacts/m0/browser-20261020-02/browser-evidence-verification.json"
+    ]
+  },
+  "acceptanceGates": {
+    "cppCompiled": true,
+    "wasmBuilt": true,
+    "realPsdRoundTrip": true,
+    "syntheticPsdRoundTrip": true,
+    "protocolBoundaryChecks": true,
+    "beforeAfterPixelsEqual": true,
+    "photoshopWarningFreeOpen": false
+  },
+  "remainingP0": [
+    "Photoshop 2026 warning-free open with dialogs visible"
+  ],
+  "m1Prerequisites": [
+    "A 100+ layer approved real-design PSD/PSB (M1 browsing and AI validation input)"
+  ]
+}

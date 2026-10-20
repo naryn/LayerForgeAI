@@ -1,0 +1,9 @@
+
+> test:e2e
+> playwright test --config playwright.config.mjs
+
+
+Running 1 test using 1 worker
+
+[1/1] tests/e2e/m0-roundtrip.spec.mjs:34:1 › rename, save a copy, reopen, verify, and preserve rendered pixels
+  1 passed (3.6s)

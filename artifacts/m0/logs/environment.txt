@@ -1,0 +1,26 @@
+Captured: 2026-10-20, Asia/Shanghai
+Working directory: /Volumes/StudioData/code/gpt/LayerForgeAI
+
+$ uname -a
+Darwin 192.168.2.25 27.0.0 Darwin Kernel Version 27.0.0: Tue Aug 11 21:06:40 PDT 2026; root:xnu-13432.1.9~1/RELEASE_ARM64_T6050 arm64
+
+$ sw_vers
+ProductName:    macOS
+ProductVersion: 27.0.1
+BuildVersion:   26A434
+
+$ command -v cmake ninja node python3 pwsh emcc qmake
+cmake: not found
+ninja: not found
+node: /opt/homebrew/bin/node
+python3: /usr/bin/python3
+pwsh: not found
+emcc: not found
+qmake: not found
+
+$ node --version
+v26.11.1
+
+$ python3 --version
+Python 3.9.6
+

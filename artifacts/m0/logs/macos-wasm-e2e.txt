@@ -1,0 +1,32 @@
+
+> test:e2e
+> playwright test --config playwright.config.mjs
+
+
+Running 1 test using 1 worker
+
+[1/1] tests/e2e/m0-roundtrip.spec.mjs:34:1 › rename, save a copy, reopen, verify, and preserve rendered pixels
+  1) tests/e2e/m0-roundtrip.spec.mjs:34:1 › rename, save a copy, reopen, verify, and preserve rendered pixels 
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: 3
+    Received: 4
+
+    Call Log:
+    - Timeout 120000ms exceeded while waiting on the predicate
+
+      65 |   const result = await page.evaluate(() => window.__patchyM0Harness.run());
+      66 |
+    > 67 |   await expect.poll(() => downloadPromises.length).toBe(3);
+         |                                                    ^
+      68 |   await Promise.all(downloadPromises);
+      69 |   const beforePath = path.join(artifactDir, "m0-before.png");
+      70 |   const afterPath = path.join(artifactDir, "m0-after.png");
+        at /Volumes/StudioData/code/gpt/LayerForgeAI/poc/patchy-bridge/tests/e2e/m0-roundtrip.spec.mjs:67:52
+
+    Error Context: test-results/m0-roundtrip-rename-save-a-e3b57-nd-preserve-rendered-pixels/error-context.md
+
+
+  1 failed
+    tests/e2e/m0-roundtrip.spec.mjs:34:1 › rename, save a copy, reopen, verify, and preserve rendered pixels 

@@ -1,0 +1,14 @@
+{
+  "name": "patchy-m0-browser-bridge",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test tests/*.test.mjs",
+    "test:e2e": "playwright test --config playwright.config.mjs",
+    "verify:evidence": "node scripts/verify-evidence.mjs",
+    "verify:browser-evidence": "node scripts/verify-browser-evidence.mjs"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.64.1"
+  }
+}

@@ -1,0 +1,12 @@
+-- Automatic selection disabled: wasm-core has no page to run onnxruntime-web
+-- Disabling AVX2 optimization.
+-- Disabling AVX2 optimization.
+-- Performing Test HAS_COMPILE_FLAG
+-- Performing Test HAS_COMPILE_FLAG - Failed
+-- Disabling SSE41 optimization.
+-- Disabling SSE41 optimization.
+-- Performing Test HAS_COMPILE_FLAG
+-- Performing Test HAS_COMPILE_FLAG - Failed
+-- Configuring done (0.5s)
+-- Generating done (0.0s)
+-- Build files have been written to: /Volumes/StudioData/code/gpt/LayerForgeAI/vendor/Patchy/build/wasm-core

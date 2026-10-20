@@ -1,0 +1,1015 @@
+[1/688] Building CXX object CMakeFiles/patchy_core.dir/src/core/brush_dynamics.cpp.o
+[2/688] Building CXX object CMakeFiles/patchy_core.dir/src/core/brush_tip.cpp.o
+[3/688] Building CXX object CMakeFiles/patchy_core.dir/src/core/paint_mode.cpp.o
+[4/688] Building CXX object CMakeFiles/patchy_core.dir/src/core/ink_space.cpp.o
+[5/688] Building CXX object CMakeFiles/patchy_core.dir/src/core/contour_presets.cpp.o
+[6/688] Building CXX object CMakeFiles/patchy_core.dir/src/core/blend_math_deep.cpp.o
+[7/688] Building CXX object CMakeFiles/patchy_core.dir/src/core/gradient_presets.cpp.o
+[8/688] Building CXX object CMakeFiles/patchy_core.dir/src/core/adjustment_deep.cpp.o
+[9/688] Building CXX object CMakeFiles/patchy_core.dir/src/core/blend_math.cpp.o
+[10/688] Building CXX object CMakeFiles/patchy_core.dir/src/core/adjustment_layer.cpp.o
+[11/688] Building CXX object CMakeFiles/patchy_core.dir/src/core/document_channel.cpp.o
+[12/688] Building CXX object CMakeFiles/patchy_core.dir/src/core/environment.cpp.o
+[13/688] Building CXX object CMakeFiles/patchy_core.dir/src/core/document_depth.cpp.o
+[14/688] Building CXX object CMakeFiles/patchy_core.dir/src/support/atomic_file_write.cpp.o
+[15/688] Building CXX object CMakeFiles/patchy_core.dir/src/core/document_memory.cpp.o
+[16/688] Building CXX object CMakeFiles/patchy_core.dir/src/core/stroke_patch.cpp.o
+[17/688] Building CXX object CMakeFiles/patchy_core.dir/src/core/document.cpp.o
+[18/688] Building CXX object CMakeFiles/patchy_core.dir/src/support/startup_trace.cpp.o
+[19/688] Building CXX object CMakeFiles/patchy_core.dir/src/core/document_recovery_store.cpp.o
+[20/688] Building CXX object CMakeFiles/patchy_core.dir/src/core/resample.cpp.o
+[21/688] Building CXX object CMakeFiles/patchy_core.dir/src/core/document_path.cpp.o
+[22/688] Building CXX object CMakeFiles/patchy_core.dir/src/core/heal_membrane.cpp.o
+[23/688] Building CXX object CMakeFiles/patchy_core.dir/src/core/layer_alignment.cpp.o
+[24/688] Building CXX object CMakeFiles/patchy_core.dir/src/core/document_geometry.cpp.o
+[25/688] Building CXX object CMakeFiles/patchy_core.dir/src/core/artboard.cpp.o
+[26/688] Building CXX object CMakeFiles/patchy_core.dir/src/core/layer_metadata.cpp.o
+[27/688] Building CXX object CMakeFiles/patchy_core.dir/src/core/liquify.cpp.o
+[28/688] Building CXX object CMakeFiles/patchy_core.dir/src/core/magnetic_lasso.cpp.o
+[29/688] Building CXX object CMakeFiles/patchy_core.dir/src/core/layer.cpp.o
+[30/688] Building CXX object CMakeFiles/patchy_core.dir/src/core/mask_outline.cpp.o
+[31/688] Building CXX object CMakeFiles/patchy_core.dir/src/core/layer_tree.cpp.o
+[32/688] Building CXX object CMakeFiles/patchy_core.dir/src/core/palette_presets.cpp.o
+[33/688] Building CXX object CMakeFiles/patchy_core.dir/src/core/path_fit.cpp.o
+[34/688] Building CXX object CMakeFiles/patchy_core.dir/src/core/path_simplify.cpp.o
+[35/688] Building CXX object CMakeFiles/patchy_core.dir/src/core/pattern_presets.cpp.o
+[36/688] Building CXX object CMakeFiles/patchy_core.dir/src/core/layer_render_utils.cpp.o
+[37/688] Building CXX object CMakeFiles/patchy_core.dir/src/core/pixel_buffer.cpp.o
+[38/688] Building CXX object CMakeFiles/patchy_core.dir/src/core/shape_combine.cpp.o
+[39/688] Building CXX object CMakeFiles/patchy_core.dir/src/core/pattern_resource.cpp.o
+[40/688] Building CXX object CMakeFiles/patchy_core.dir/src/core/palette.cpp.o
+[41/688] Building CXX object CMakeFiles/patchy_core.dir/src/core/image_trace.cpp.o
+[42/688] Building CXX object CMakeFiles/patchy_core.dir/src/core/rect_utils.cpp.o
+[43/688] Building CXX object CMakeFiles/patchy_core.dir/src/core/pixel_depth.cpp.o
+[44/688] Building CXX object CMakeFiles/patchy_core.dir/src/core/quick_select.cpp.o
+[45/688] Building CXX object CMakeFiles/patchy_core.dir/src/core/stroke_stabilizer.cpp.o
+[46/688] Building CXX object CMakeFiles/patchy_core.dir/src/core/spot_heal.cpp.o
+[47/688] Building CXX object CMakeFiles/patchy_core.dir/src/core/photo_divide.cpp.o
+[48/688] Building CXX object CMakeFiles/patchy_core.dir/src/core/smart_filter_effects.cpp.o
+[49/688] Building CXX object CMakeFiles/patchy_core.dir/src/core/pixel_tools.cpp.o
+[50/688] Building CXX object CMakeFiles/patchy_core.dir/src/core/smart_object.cpp.o
+[51/688] Building CXX object CMakeFiles/patchy_core.dir/src/core/style_contour.cpp.o
+[52/688] Building CXX object CMakeFiles/patchy_core.dir/src/core/exemplar_inpaint.cpp.o
+[53/688] Building CXX object CMakeFiles/patchy_core.dir/src/core/text_warp.cpp.o
+[54/688] Building C object CMakeFiles/patchy_lcms2.dir/src/color/lcms2/cmsalpha.c.o
+[55/688] Building C object CMakeFiles/patchy_lcms2.dir/src/color/lcms2/cmscam02.c.o
+[56/688] Building CXX object CMakeFiles/patchy_core.dir/src/core/worker_budget.cpp.o
+[57/688] Building CXX object CMakeFiles/patchy_core.dir/src/core/vector_live_shapes.cpp.o
+[58/688] Building C object CMakeFiles/patchy_lcms2.dir/src/color/lcms2/cmserr.c.o
+[59/688] Building C object CMakeFiles/patchy_lcms2.dir/src/color/lcms2/cmscnvrt.c.o
+[60/688] Building C object CMakeFiles/patchy_lcms2.dir/src/color/lcms2/cmsgamma.c.o
+[61/688] Building C object CMakeFiles/patchy_lcms2.dir/src/color/lcms2/cmsgmt.c.o
+[62/688] Building C object CMakeFiles/patchy_lcms2.dir/src/color/lcms2/cmshalf.c.o
+[63/688] Building C object CMakeFiles/patchy_lcms2.dir/src/color/lcms2/cmscgats.c.o
+[64/688] Building C object CMakeFiles/patchy_lcms2.dir/src/color/lcms2/cmsio1.c.o
+[65/688] Building CXX object CMakeFiles/patchy_core.dir/src/core/vector_shape.cpp.o
+[66/688] Building C object CMakeFiles/patchy_lcms2.dir/src/color/lcms2/cmsintrp.c.o
+[67/688] Building CXX object CMakeFiles/patchy_core.dir/src/core/style_presets.cpp.o
+[68/688] Building C object CMakeFiles/patchy_lcms2.dir/src/color/lcms2/cmsio0.c.o
+[69/688] Building C object CMakeFiles/patchy_lcms2.dir/src/color/lcms2/cmsmd5.c.o
+[70/688] Building C object CMakeFiles/patchy_lcms2.dir/src/color/lcms2/cmslut.c.o
+[71/688] Building C object CMakeFiles/patchy_lcms2.dir/src/color/lcms2/cmsmtrx.c.o
+[72/688] Building CXX object CMakeFiles/patchy_core.dir/src/core/warp_mesh.cpp.o
+[73/688] Building C object CMakeFiles/patchy_lcms2.dir/src/color/lcms2/cmspcs.c.o
+[74/688] Building C object CMakeFiles/patchy_lcms2.dir/src/color/lcms2/cmsnamed.c.o
+[75/688] Building C object CMakeFiles/patchy_lcms2.dir/src/color/lcms2/cmsplugin.c.o
+[76/688] Building C object CMakeFiles/patchy_lcms2.dir/src/color/lcms2/cmsps2.c.o
+[77/688] Building C object CMakeFiles/patchy_lcms2.dir/src/color/lcms2/cmsopt.c.o
+[78/688] Building C object CMakeFiles/patchy_lcms2.dir/src/color/lcms2/cmssamp.c.o
+[79/688] Building C object CMakeFiles/patchy_lcms2.dir/src/color/lcms2/cmssm.c.o
+[80/688] Building C object CMakeFiles/patchy_lcms2.dir/src/color/lcms2/cmswtpnt.c.o
+[81/688] Building C object CMakeFiles/patchy_lcms2.dir/src/color/lcms2/cmsvirt.c.o
+[82/688] Building C object CMakeFiles/patchy_lcms2.dir/src/color/lcms2/cmspack.c.o
+[83/688] Building C object src/formats/libwebp/CMakeFiles/sharpyuv.dir/sharpyuv/sharpyuv_sse2.c.o
+[84/688] Building C object src/formats/libwebp/CMakeFiles/sharpyuv.dir/sharpyuv/sharpyuv_neon.c.o
+[85/688] Building C object CMakeFiles/patchy_lcms2.dir/src/color/lcms2/cmsxform.c.o
+[86/688] Building C object src/formats/libwebp/CMakeFiles/sharpyuv.dir/sharpyuv/sharpyuv_cpu.c.o
+[87/688] Building C object src/formats/libwebp/CMakeFiles/sharpyuv.dir/sharpyuv/sharpyuv_csp.c.o
+[88/688] Building C object src/formats/libwebp/CMakeFiles/sharpyuv.dir/sharpyuv/sharpyuv_dsp.c.o
+[89/688] Building C object src/formats/libwebp/CMakeFiles/sharpyuv.dir/sharpyuv/sharpyuv_gamma.c.o
+[90/688] Building C object CMakeFiles/patchy_lcms2.dir/src/color/lcms2/cmstypes.c.o
+[91/688] Building C object src/formats/libwebp/CMakeFiles/sharpyuv.dir/sharpyuv/sharpyuv.c.o
+[92/688] Building CXX object CMakeFiles/patchy_core.dir/src/core/vector_raster.cpp.o
+[93/688] Linking C static library src/formats/libwebp/libsharpyuv.a
+[94/688] Linking C static library libpatchy_lcms2.a
+[95/688] Building CXX object CMakeFiles/patchy_render.dir/src/render/tile_cache.cpp.o
+[96/688] Building C object src/formats/libwebp/CMakeFiles/webpdecode.dir/src/dec/alpha_dec.c.o
+[97/688] Building C object src/formats/libwebp/CMakeFiles/webpdecode.dir/src/dec/buffer_dec.c.o
+[98/688] Building C object src/formats/libwebp/CMakeFiles/webpdecode.dir/src/dec/frame_dec.c.o
+[99/688] Building C object src/formats/libwebp/CMakeFiles/webpdecode.dir/src/dec/idec_dec.c.o
+[100/688] Building C object src/formats/libwebp/CMakeFiles/webpdecode.dir/src/dec/io_dec.c.o
+[101/688] Building C object src/formats/libwebp/CMakeFiles/webpdecode.dir/src/dec/quant_dec.c.o
+[102/688] Building C object src/formats/libwebp/CMakeFiles/webpdecode.dir/src/dec/tree_dec.c.o
+[103/688] Building CXX object CMakeFiles/patchy_render.dir/src/render/layer_style_mask_ops.cpp.o
+[104/688] Building C object src/formats/libwebp/CMakeFiles/webpdecode.dir/src/dec/vp8_dec.c.o
+[105/688] Building CXX object CMakeFiles/patchy_color.dir/src/color/color_management.cpp.o
+[106/688] Building CXX object CMakeFiles/patchy_core.dir/src/core/vector_compound.cpp.o
+[107/688] Building C object src/formats/libwebp/CMakeFiles/webpdecode.dir/src/dec/vp8l_dec.c.o
+[108/688] Building C object src/formats/libwebp/CMakeFiles/webpencode.dir/src/enc/alpha_enc.c.o
+[109/688] Building C object src/formats/libwebp/CMakeFiles/webpdecode.dir/src/dec/webp_dec.c.o
+[110/688] Building C object src/formats/libwebp/CMakeFiles/webpencode.dir/src/enc/analysis_enc.c.o
+[111/688] Linking CXX static library libpatchy_core.a
+[112/688] Building C object src/formats/libwebp/CMakeFiles/webpencode.dir/src/enc/config_enc.c.o
+[113/688] Building C object src/formats/libwebp/CMakeFiles/webpencode.dir/src/enc/backward_references_cost_enc.c.o
+[114/688] Building C object src/formats/libwebp/CMakeFiles/webpencode.dir/src/enc/cost_enc.c.o
+[115/688] Building C object src/formats/libwebp/CMakeFiles/webpencode.dir/src/enc/filter_enc.c.o
+[116/688] Linking CXX static library libpatchy_color.a
+[117/688] Building C object src/formats/libwebp/CMakeFiles/webpencode.dir/src/enc/backward_references_enc.c.o
+[118/688] Building C object src/formats/libwebp/CMakeFiles/webpencode.dir/src/enc/near_lossless_enc.c.o
+[119/688] Building C object src/formats/libwebp/CMakeFiles/webpencode.dir/src/enc/frame_enc.c.o
+[120/688] Building C object src/formats/libwebp/CMakeFiles/webpencode.dir/src/enc/iterator_enc.c.o
+[121/688] Building C object src/formats/libwebp/CMakeFiles/webpencode.dir/src/enc/picture_enc.c.o
+[122/688] Building C object src/formats/libwebp/CMakeFiles/webpencode.dir/src/enc/histogram_enc.c.o
+[123/688] Building C object src/formats/libwebp/CMakeFiles/webpencode.dir/src/enc/picture_csp_enc.c.o
+[124/688] Building C object src/formats/libwebp/CMakeFiles/webpencode.dir/src/enc/picture_psnr_enc.c.o
+[125/688] Building C object src/formats/libwebp/CMakeFiles/webpencode.dir/src/enc/picture_rescale_enc.c.o
+[126/688] Building C object src/formats/libwebp/CMakeFiles/webpencode.dir/src/enc/picture_tools_enc.c.o
+[127/688] Building C object src/formats/libwebp/CMakeFiles/webpencode.dir/src/enc/tree_enc.c.o
+[128/688] Building C object src/formats/libwebp/CMakeFiles/webpencode.dir/src/enc/syntax_enc.c.o
+[129/688] Building C object src/formats/libwebp/CMakeFiles/webpencode.dir/src/enc/predictor_enc.c.o
+[130/688] Building C object src/formats/libwebp/CMakeFiles/webpencode.dir/src/enc/quant_enc.c.o
+[131/688] Building C object src/formats/libwebp/CMakeFiles/webpencode.dir/src/enc/token_enc.c.o
+[132/688] Building C object src/formats/libwebp/CMakeFiles/webpdsp.dir/src/dsp/cpu.c.o
+[133/688] Building C object src/formats/libwebp/CMakeFiles/webpencode.dir/src/enc/webp_enc.c.o
+[134/688] Building C object src/formats/libwebp/CMakeFiles/webpdsp.dir/src/dsp/dec_clip_tables.c.o
+[135/688] Building C object src/formats/libwebp/CMakeFiles/webpdsp.dir/src/dsp/alpha_processing.c.o
+[136/688] Building C object src/formats/libwebp/CMakeFiles/webpdsp.dir/src/dsp/dec.c.o
+[137/688] Building C object src/formats/libwebp/CMakeFiles/webpencode.dir/src/enc/vp8l_enc.c.o
+[138/688] Building C object src/formats/libwebp/CMakeFiles/webpdsp.dir/src/dsp/filters.c.o
+[139/688] Building C object src/formats/libwebp/CMakeFiles/webpdsp.dir/src/dsp/rescaler.c.o
+[140/688] Building C object src/formats/libwebp/CMakeFiles/webpdsp.dir/src/dsp/lossless.c.o
+[141/688] Building C object src/formats/libwebp/CMakeFiles/webpdsp.dir/src/dsp/lossless_avx2.c.o
+[142/688] Building C object src/formats/libwebp/CMakeFiles/webpdsp.dir/src/dsp/upsampling.c.o
+[143/688] Building C object src/formats/libwebp/CMakeFiles/webpdsp.dir/src/dsp/yuv.c.o
+[144/688] Building C object src/formats/libwebp/CMakeFiles/webpdsp.dir/src/dsp/alpha_processing_sse41.c.o
+[145/688] Building C object src/formats/libwebp/CMakeFiles/webpdsp.dir/src/dsp/dec_sse41.c.o
+[146/688] Building C object src/formats/libwebp/CMakeFiles/webpdsp.dir/src/dsp/lossless_sse41.c.o
+[147/688] Building C object src/formats/libwebp/CMakeFiles/webpdsp.dir/src/dsp/upsampling_sse41.c.o
+[148/688] Building C object src/formats/libwebp/CMakeFiles/webpdsp.dir/src/dsp/yuv_sse41.c.o
+[149/688] Building C object src/formats/libwebp/CMakeFiles/webpdsp.dir/src/dsp/alpha_processing_sse2.c.o
+[150/688] Building C object src/formats/libwebp/CMakeFiles/webpdsp.dir/src/dsp/dec_sse2.c.o
+[151/688] Building C object src/formats/libwebp/CMakeFiles/webpdsp.dir/src/dsp/filters_sse2.c.o
+[152/688] Building C object src/formats/libwebp/CMakeFiles/webpdsp.dir/src/dsp/lossless_sse2.c.o
+[153/688] Building C object src/formats/libwebp/CMakeFiles/webpdsp.dir/src/dsp/rescaler_sse2.c.o
+[154/688] Building C object src/formats/libwebp/CMakeFiles/webpdsp.dir/src/dsp/upsampling_sse2.c.o
+[155/688] Building C object src/formats/libwebp/CMakeFiles/webpdsp.dir/src/dsp/yuv_sse2.c.o
+[156/688] Building C object src/formats/libwebp/CMakeFiles/webpdsp.dir/src/dsp/alpha_processing_neon.c.o
+[157/688] Building C object src/formats/libwebp/CMakeFiles/webpdsp.dir/src/dsp/dec_neon.c.o
+[158/688] Building C object src/formats/libwebp/CMakeFiles/webpdsp.dir/src/dsp/filters_neon.c.o
+[159/688] Building C object src/formats/libwebp/CMakeFiles/webpdsp.dir/src/dsp/lossless_neon.c.o
+[160/688] Building C object src/formats/libwebp/CMakeFiles/webpdsp.dir/src/dsp/upsampling_neon.c.o
+[161/688] Building C object src/formats/libwebp/CMakeFiles/webpdsp.dir/src/dsp/rescaler_neon.c.o
+[162/688] Building C object src/formats/libwebp/CMakeFiles/webpdsp.dir/src/dsp/yuv_neon.c.o
+[163/688] Building C object src/formats/libwebp/CMakeFiles/webpdsp.dir/src/dsp/dec_msa.c.o
+[164/688] Building C object src/formats/libwebp/CMakeFiles/webpdsp.dir/src/dsp/filters_msa.c.o
+[165/688] Building C object src/formats/libwebp/CMakeFiles/webpdsp.dir/src/dsp/lossless_msa.c.o
+[166/688] Building C object src/formats/libwebp/CMakeFiles/webpdsp.dir/src/dsp/upsampling_msa.c.o
+[167/688] Building C object src/formats/libwebp/CMakeFiles/webpdsp.dir/src/dsp/rescaler_msa.c.o
+[168/688] Building C object src/formats/libwebp/CMakeFiles/webpdsp.dir/src/dsp/dec_mips32.c.o
+[169/688] Building C object src/formats/libwebp/CMakeFiles/webpdsp.dir/src/dsp/rescaler_mips32.c.o
+[170/688] Building C object src/formats/libwebp/CMakeFiles/webpdsp.dir/src/dsp/yuv_mips32.c.o
+[171/688] Building C object src/formats/libwebp/CMakeFiles/webpdsp.dir/src/dsp/alpha_processing_mips_dsp_r2.c.o
+[172/688] Building C object src/formats/libwebp/CMakeFiles/webpdsp.dir/src/dsp/filters_mips_dsp_r2.c.o
+[173/688] Building C object src/formats/libwebp/CMakeFiles/webpdsp.dir/src/dsp/dec_mips_dsp_r2.c.o
+[174/688] Building C object src/formats/libwebp/CMakeFiles/webpdsp.dir/src/dsp/lossless_mips_dsp_r2.c.o
+[175/688] Building C object src/formats/libwebp/CMakeFiles/webpdsp.dir/src/dsp/rescaler_mips_dsp_r2.c.o
+[176/688] Building C object src/formats/libwebp/CMakeFiles/webpdsp.dir/src/dsp/upsampling_mips_dsp_r2.c.o
+[177/688] Building C object src/formats/libwebp/CMakeFiles/webpdsp.dir/src/dsp/yuv_mips_dsp_r2.c.o
+[178/688] Building C object src/formats/libwebp/CMakeFiles/webpdsp.dir/src/dsp/cost.c.o
+[179/688] Building C object src/formats/libwebp/CMakeFiles/webpdsp.dir/src/dsp/ssim.c.o
+[180/688] Building C object src/formats/libwebp/CMakeFiles/webpdsp.dir/src/dsp/lossless_enc.c.o
+[181/688] Building C object src/formats/libwebp/CMakeFiles/webpdsp.dir/src/dsp/enc_sse2.c.o
+[182/688] Building C object src/formats/libwebp/CMakeFiles/webpdsp.dir/src/dsp/cost_sse2.c.o
+[183/688] Building C object src/formats/libwebp/CMakeFiles/webpdsp.dir/src/dsp/enc.c.o
+[184/688] Building C object src/formats/libwebp/CMakeFiles/webpdsp.dir/src/dsp/lossless_enc_sse2.c.o
+[185/688] Building C object src/formats/libwebp/CMakeFiles/webpdsp.dir/src/dsp/ssim_sse2.c.o
+[186/688] Building C object src/formats/libwebp/CMakeFiles/webpdsp.dir/src/dsp/enc_sse41.c.o
+[187/688] Building C object src/formats/libwebp/CMakeFiles/webpdsp.dir/src/dsp/lossless_enc_avx2.c.o
+[188/688] Building C object src/formats/libwebp/CMakeFiles/webpdsp.dir/src/dsp/lossless_enc_sse41.c.o
+[189/688] Building C object src/formats/libwebp/CMakeFiles/webpdsp.dir/src/dsp/cost_neon.c.o
+[190/688] Building C object src/formats/libwebp/CMakeFiles/webpdsp.dir/src/dsp/enc_neon.c.o
+[191/688] Building C object src/formats/libwebp/CMakeFiles/webpdsp.dir/src/dsp/enc_msa.c.o
+[192/688] Building C object src/formats/libwebp/CMakeFiles/webpdsp.dir/src/dsp/lossless_enc_neon.c.o
+[193/688] Building C object src/formats/libwebp/CMakeFiles/webpdsp.dir/src/dsp/lossless_enc_msa.c.o
+[194/688] Building C object src/formats/libwebp/CMakeFiles/webpdsp.dir/src/dsp/cost_mips32.c.o
+[195/688] Building C object src/formats/libwebp/CMakeFiles/webpdsp.dir/src/dsp/enc_mips32.c.o
+[196/688] Building C object src/formats/libwebp/CMakeFiles/webpdsp.dir/src/dsp/lossless_enc_mips32.c.o
+[197/688] Building CXX object CMakeFiles/patchy_render.dir/src/render/native_cmyk.cpp.o
+[198/688] Building C object src/formats/libwebp/CMakeFiles/webpdsp.dir/src/dsp/cost_mips_dsp_r2.c.o
+[199/688] Building C object src/formats/libwebp/CMakeFiles/webpdsp.dir/src/dsp/enc_mips_dsp_r2.c.o
+[200/688] Building C object src/formats/libwebp/CMakeFiles/webpdsp.dir/src/dsp/lossless_enc_mips_dsp_r2.c.o
+[201/688] Building C object src/formats/libwebp/CMakeFiles/webputils.dir/src/utils/bit_reader_utils.c.o
+[202/688] Building C object src/formats/libwebp/CMakeFiles/webputils.dir/src/utils/color_cache_utils.c.o
+[203/688] Building C object src/formats/libwebp/CMakeFiles/webputils.dir/src/utils/filters_utils.c.o
+[204/688] Building C object src/formats/libwebp/CMakeFiles/webputils.dir/src/utils/huffman_utils.c.o
+[205/688] Building C object src/formats/libwebp/CMakeFiles/webputils.dir/src/utils/quant_levels_dec_utils.c.o
+[206/688] Building C object src/formats/libwebp/CMakeFiles/webputils.dir/src/utils/palette.c.o
+[207/688] Building C object src/formats/libwebp/CMakeFiles/webputils.dir/src/utils/rescaler_utils.c.o
+[208/688] Building C object src/formats/libwebp/CMakeFiles/webputils.dir/src/utils/random_utils.c.o
+[209/688] Building C object src/formats/libwebp/CMakeFiles/webputils.dir/src/utils/thread_utils.c.o
+[210/688] Building C object src/formats/libwebp/CMakeFiles/webputils.dir/src/utils/utils.c.o
+[211/688] Building C object src/formats/libwebp/CMakeFiles/webputils.dir/src/utils/bit_writer_utils.c.o
+[212/688] Building C object src/formats/libwebp/CMakeFiles/webputils.dir/src/utils/quant_levels_utils.c.o
+[213/688] Building C object src/formats/libwebp/CMakeFiles/webputils.dir/src/utils/huffman_encode_utils.c.o
+[214/688] Building CXX object CMakeFiles/patchy_libraw.dir/src/formats/libraw/src/decoders/canon_600.cpp.o
+[215/688] Building CXX object CMakeFiles/patchy_libraw.dir/src/formats/libraw/src/decoders/dng.cpp.o
+[216/688] Building CXX object CMakeFiles/patchy_libraw.dir/src/formats/libraw/src/decoders/decoders_libraw_dcrdefs.cpp.o
+[217/688] Building CXX object CMakeFiles/patchy_libraw.dir/src/formats/libraw/src/decoders/fp_dng.cpp.o
+[218/688] Building CXX object CMakeFiles/patchy_libraw.dir/src/formats/libraw/src/decoders/decoders_libraw.cpp.o
+[219/688] Building CXX object CMakeFiles/patchy_libraw.dir/src/formats/libraw/src/decoders/decoders_dcraw.cpp.o
+[220/688] Building CXX object CMakeFiles/patchy_libraw.dir/src/formats/libraw/src/decoders/crx.cpp.o
+[221/688] Building CXX object CMakeFiles/patchy_render.dir/src/render/layer_render_facade.cpp.o
+[222/688] Building CXX object CMakeFiles/patchy_libraw.dir/src/formats/libraw/src/decoders/fuji_compressed.cpp.o
+[223/688] Building CXX object CMakeFiles/patchy_libraw.dir/src/formats/libraw/src/decoders/generic.cpp.o
+[224/688] Building CXX object CMakeFiles/patchy_libraw.dir/src/formats/libraw/src/decoders/kodak_decoders.cpp.o
+[225/688] Building CXX object CMakeFiles/patchy_libraw.dir/src/formats/libraw/src/decoders/olympus14.cpp.o
+[226/688] Building CXX object CMakeFiles/patchy_libraw.dir/src/formats/libraw/src/decoders/load_mfbacks.cpp.o
+[227/688] Building CXX object CMakeFiles/patchy_libraw.dir/src/formats/libraw/src/decoders/pana8.cpp.o
+[228/688] Building CXX object CMakeFiles/patchy_libraw.dir/src/formats/libraw/src/decoders/smal.cpp.o
+[229/688] Building CXX object CMakeFiles/patchy_libraw.dir/src/formats/libraw/src/decoders/unpack.cpp.o
+[230/688] Building CXX object CMakeFiles/patchy_libraw.dir/src/formats/libraw/src/decoders/unpack_thumb.cpp.o
+[231/688] Building CXX object CMakeFiles/patchy_libraw.dir/src/formats/libraw/src/decoders/sonycc.cpp.o
+[232/688] Building CXX object CMakeFiles/patchy_render.dir/src/render/native_duotone.cpp.o
+[233/688] Building CXX object CMakeFiles/patchy_libraw.dir/src/formats/libraw/src/demosaic/ahd_demosaic.cpp.o
+[234/688] Building CXX object CMakeFiles/patchy_libraw.dir/src/formats/libraw/src/decompressors/losslessjpeg.cpp.o
+[235/688] Building CXX object CMakeFiles/patchy_libraw.dir/src/formats/libraw/src/demosaic/aahd_demosaic.cpp.o
+[236/688] Building CXX object CMakeFiles/patchy_libraw.dir/src/formats/libraw/src/demosaic/dcb_demosaic.cpp.o
+[237/688] Building CXX object CMakeFiles/patchy_libraw.dir/src/formats/libraw/src/demosaic/dht_demosaic.cpp.o
+[238/688] Building CXX object CMakeFiles/patchy_libraw.dir/src/formats/libraw/src/integration/dngsdk_glue.cpp.o
+[239/688] Building CXX object CMakeFiles/patchy_libraw.dir/src/formats/libraw/src/demosaic/misc_demosaic.cpp.o
+[240/688] Building CXX object CMakeFiles/patchy_libraw.dir/src/formats/libraw/src/integration/rawspeed_glue.cpp.o
+[241/688] Building CXX object CMakeFiles/patchy_libraw.dir/src/formats/libraw/src/libraw_c_api.cpp.o
+[242/688] Building CXX object CMakeFiles/patchy_libraw.dir/src/formats/libraw/src/demosaic/xtrans_demosaic.cpp.o
+[243/688] Building CXX object CMakeFiles/patchy_libraw.dir/src/formats/libraw/src/metadata/adobepano.cpp.o
+[244/688] Building CXX object CMakeFiles/patchy_libraw.dir/src/formats/libraw/src/libraw_datastream.cpp.o
+[245/688] Building CXX object CMakeFiles/patchy_libraw.dir/src/formats/libraw/src/metadata/ciff.cpp.o
+[246/688] Building CXX object CMakeFiles/patchy_libraw.dir/src/formats/libraw/src/metadata/canon.cpp.o
+[247/688] Building CXX object CMakeFiles/patchy_libraw.dir/src/formats/libraw/src/metadata/epson.cpp.o
+[248/688] Building CXX object CMakeFiles/patchy_libraw.dir/src/formats/libraw/src/metadata/cr3_parser.cpp.o
+[249/688] Building CXX object CMakeFiles/patchy_libraw.dir/src/formats/libraw/src/metadata/exif_gps.cpp.o
+[250/688] Building CXX object CMakeFiles/patchy_libraw.dir/src/formats/libraw/src/metadata/hasselblad_model.cpp.o
+[251/688] Building CXX object CMakeFiles/patchy_libraw.dir/src/formats/libraw/src/metadata/identify_tools.cpp.o
+[252/688] Building CXX object CMakeFiles/patchy_libraw.dir/src/formats/libraw/src/metadata/fuji.cpp.o
+[253/688] Building CXX object CMakeFiles/patchy_libraw.dir/src/formats/libraw/src/metadata/identify.cpp.o
+[254/688] Building CXX object CMakeFiles/patchy_libraw.dir/src/formats/libraw/src/metadata/kodak.cpp.o
+[255/688] Building CXX object CMakeFiles/patchy_libraw.dir/src/formats/libraw/src/metadata/leica.cpp.o
+[256/688] Building CXX object CMakeFiles/patchy_libraw.dir/src/formats/libraw/src/metadata/makernotes.cpp.o
+[257/688] Building CXX object CMakeFiles/patchy_libraw.dir/src/formats/libraw/src/metadata/mediumformat.cpp.o
+[258/688] Building CXX object CMakeFiles/patchy_libraw.dir/src/formats/libraw/src/metadata/minolta.cpp.o
+[259/688] Building CXX object CMakeFiles/patchy_libraw.dir/src/formats/libraw/src/metadata/misc_parsers.cpp.o
+[260/688] Building CXX object CMakeFiles/patchy_libraw.dir/src/formats/libraw/src/metadata/nikon.cpp.o
+[261/688] Building CXX object CMakeFiles/patchy_libraw.dir/src/formats/libraw/src/metadata/normalize_model.cpp.o
+[262/688] Building CXX object CMakeFiles/patchy_libraw.dir/src/formats/libraw/src/metadata/olympus.cpp.o
+[263/688] Building CXX object CMakeFiles/patchy_libraw.dir/src/formats/libraw/src/metadata/p1.cpp.o
+[264/688] Building CXX object CMakeFiles/patchy_libraw.dir/src/formats/libraw/src/metadata/pentax.cpp.o
+[265/688] Building CXX object CMakeFiles/patchy_libraw.dir/src/formats/libraw/src/metadata/samsung.cpp.o
+[266/688] Building CXX object CMakeFiles/patchy_libraw.dir/src/formats/libraw/src/metadata/sony.cpp.o
+[267/688] Building CXX object CMakeFiles/patchy_libraw.dir/src/formats/libraw/src/postprocessing/aspect_ratio.cpp.o
+[268/688] Building CXX object CMakeFiles/patchy_libraw.dir/src/formats/libraw/src/postprocessing/mem_image.cpp.o
+[269/688] Building CXX object CMakeFiles/patchy_libraw.dir/src/formats/libraw/src/postprocessing/dcraw_process.cpp.o
+[270/688] Building CXX object CMakeFiles/patchy_libraw.dir/src/formats/libraw/src/metadata/tiff.cpp.o
+[271/688] Building CXX object CMakeFiles/patchy_libraw.dir/src/formats/libraw/src/postprocessing/postprocessing_utils.cpp.o
+[272/688] Building CXX object CMakeFiles/patchy_libraw.dir/src/formats/libraw/src/postprocessing/postprocessing_aux.cpp.o
+[273/688] Building CXX object CMakeFiles/patchy_libraw.dir/src/formats/libraw/src/postprocessing/postprocessing_utils_dcrdefs.cpp.o
+[274/688] Building CXX object CMakeFiles/patchy_libraw.dir/src/formats/libraw/src/preprocessing/ext_preprocess.cpp.o
+[275/688] Building CXX object CMakeFiles/patchy_libraw.dir/src/formats/libraw/src/preprocessing/subtract_black.cpp.o
+[276/688] Building CXX object CMakeFiles/patchy_libraw.dir/src/formats/libraw/src/preprocessing/raw2image.cpp.o
+[277/688] Building CXX object CMakeFiles/patchy_libraw.dir/src/formats/libraw/src/tables/cameralist.cpp.o
+[278/688] Building CXX object CMakeFiles/patchy_libraw.dir/src/formats/libraw/src/tables/colorconst.cpp.o
+[279/688] Building CXX object CMakeFiles/patchy_libraw.dir/src/formats/libraw/src/tables/wblists.cpp.o
+[280/688] Building CXX object CMakeFiles/patchy_libraw.dir/src/formats/libraw/src/tables/colordata.cpp.o
+[281/688] Building CXX object CMakeFiles/patchy_libraw.dir/src/formats/libraw/src/utils/curves.cpp.o
+[282/688] Building CXX object CMakeFiles/patchy_libraw.dir/src/formats/libraw/src/utils/decoder_info.cpp.o
+[283/688] Building CXX object CMakeFiles/patchy_libraw.dir/src/formats/libraw/src/utils/init_close_utils.cpp.o
+[284/688] Building CXX object CMakeFiles/patchy_libraw.dir/src/formats/libraw/src/utils/phaseone_processing.cpp.o
+[285/688] Building CXX object CMakeFiles/patchy_libraw.dir/src/formats/libraw/src/utils/open.cpp.o
+[286/688] Building CXX object CMakeFiles/patchy_libraw.dir/src/formats/libraw/src/utils/read_utils.cpp.o
+[287/688] Building CXX object CMakeFiles/patchy_libraw.dir/src/formats/libraw/src/utils/thumb_utils.cpp.o
+[288/688] Building CXX object CMakeFiles/patchy_libraw.dir/src/formats/libraw/src/x3f/x3f_parse_process.cpp.o
+[289/688] Building CXX object CMakeFiles/patchy_libraw.dir/src/formats/libraw/src/x3f/x3f_utils_patched.cpp.o
+[290/688] Building CXX object CMakeFiles/patchy_libraw.dir/src/formats/libraw/src/utils/utils_dcraw.cpp.o
+[291/688] Building CXX object CMakeFiles/patchy_libraw.dir/src/formats/libraw/src/write/apply_profile.cpp.o
+[292/688] Building CXX object CMakeFiles/patchy_libraw.dir/src/formats/libraw/src/utils/utils_libraw.cpp.o
+[293/688] Building CXX object CMakeFiles/patchy_libraw.dir/src/formats/libraw/src/write/file_write.cpp.o
+[294/688] Building CXX object CMakeFiles/patchy_libraw.dir/src/formats/libraw/src/write/tiff_writer.cpp.o
+[295/688] Building C object CMakeFiles/patchy_psd.dir/src/formats/miniz/miniz.c.o
+[296/688] Building CXX object CMakeFiles/patchy_psd.dir/src/formats/acv_curves_io.cpp.o
+[297/688] Building CXX object CMakeFiles/patchy_psd.dir/src/psd/psd_binary.cpp.o
+[298/688] Building CXX object CMakeFiles/patchy_psd.dir/src/psd/abr_reader.cpp.o
+[299/688] Building CXX object CMakeFiles/patchy_psd.dir/src/psd/pat_reader.cpp.o
+[300/688] Building CXX object CMakeFiles/patchy_psd.dir/src/psd/psd_artboard.cpp.o
+[301/688] Building CXX object CMakeFiles/patchy_psd.dir/src/psd/asl_io.cpp.o
+[302/688] Building CXX object CMakeFiles/patchy_psd.dir/src/psd/psd_adjustments.cpp.o
+[303/688] Building CXX object CMakeFiles/patchy_psd.dir/src/psd/grd_io.cpp.o
+[304/688] Building CXX object CMakeFiles/patchy_psd.dir/src/psd/engine_data.cpp.o
+[305/688] Building CXX object CMakeFiles/patchy_psd.dir/src/psd/psd_descriptor.cpp.o
+[306/688] Building CXX object CMakeFiles/patchy_psd.dir/src/psd/psd_channel_data.cpp.o
+[307/688] Building CXX object CMakeFiles/patchy_psd.dir/src/psd/psd_filter_effects.cpp.o
+[308/688] Building CXX object CMakeFiles/patchy_psd.dir/src/psd/psd_io_common.cpp.o
+[309/688] Building CXX object CMakeFiles/patchy_psd.dir/src/psd/psd_patterns.cpp.o
+[310/688] Building CXX object CMakeFiles/patchy_render.dir/src/render/compositor.cpp.o
+[311/688] Building CXX object CMakeFiles/patchy_psd.dir/src/psd/psd_little_endian.cpp.o
+[312/688] Linking CXX static library libpatchy_render.a
+[313/688] Building CXX object CMakeFiles/patchy_psd.dir/src/psd/psd_text_engine_template.cpp.o
+[314/688] Building CXX object CMakeFiles/patchy_psd.dir/src/psd/psd_layer_records.cpp.o
+[315/688] Building CXX object CMakeFiles/patchy_psd.dir/src/psd/psd_layer_styles.cpp.o
+[316/688] Building CXX object CMakeFiles/patchy_psd.dir/src/psd/psd_text_engine_block.cpp.o
+[317/688] Building CXX object CMakeFiles/patchy_psd.dir/src/psd/psd_text_legacy.cpp.o
+[318/688] Building CXX object CMakeFiles/patchy_psd.dir/src/psd/psd_image_resources.cpp.o
+[319/688] Building CXX object CMakeFiles/patchy_psd.dir/src/psd/psd_smart_objects.cpp.o
+[320/688] Building CXX object CMakeFiles/patchy_filters.dir/src/filters/auto_levels_math.cpp.o
+[321/688] Building CXX object CMakeFiles/patchy_filters.dir/src/filters/builtin_filters.cpp.o
+[322/688] Building CXX object CMakeFiles/patchy_psd.dir/src/psd/psd_text_read.cpp.o
+[323/688] Building CXX object CMakeFiles/patchy_psd.dir/src/psd/psd_tiff.cpp.o
+[324/688] Building CXX object CMakeFiles/patchy_filters.dir/src/filters/filter_kernels.cpp.o
+[325/688] Building CXX object CMakeFiles/patchy_psd.dir/src/psd/psd_text_write.cpp.o
+[326/688] Building CXX object CMakeFiles/patchy_filters.dir/src/filters/deep_filters.cpp.o
+[327/688] Building CXX object CMakeFiles/patchy_filters.dir/src/filters/filter_registry.cpp.o
+[328/688] Building CXX object CMakeFiles/patchy_psd.dir/src/psd/psd_vector.cpp.o
+[329/688] Building CXX object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/lib/jxl/alpha.cc.o
+[330/688] Building CXX object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/lib/jxl/ac_strategy.cc.o
+[331/688] Building CXX object CMakeFiles/patchy_filters.dir/src/filters/smart_filter_recipe_mapping.cpp.o
+[332/688] Building CXX object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/lib/jxl/ans_common.cc.o
+[333/688] Building CXX object CMakeFiles/patchy_psd.dir/src/psd/psd_document_io.cpp.o
+[334/688] Building CXX object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/lib/jxl/dct_scales.cc.o
+[335/688] Building CXX object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/lib/jxl/chroma_from_luma.cc.o
+[336/688] Building CXX object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/lib/jxl/blending.cc.o
+[337/688] Building CXX object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/lib/jxl/coeff_order.cc.o
+[338/688] Building CXX object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/lib/jxl/convolve_slow.cc.o
+[339/688] Building CXX object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/lib/jxl/convolve_symmetric5.cc.o
+[340/688] Building CXX object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/lib/jxl/dec_bit_reader.cc.o
+[341/688] Building CXX object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/lib/jxl/color_encoding_internal.cc.o
+[342/688] Building CXX object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/lib/jxl/compressed_dc.cc.o
+[343/688] Building CXX object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/lib/jxl/dec_ans.cc.o
+[344/688] Building CXX object CMakeFiles/patchy_filters.dir/src/filters/filter_engine.cpp.o
+[345/688] Building CXX object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/lib/jxl/dec_context_map.cc.o
+[346/688] Building CXX object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/lib/jxl/dec_huffman.cc.o
+[347/688] Building CXX object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/lib/jxl/dec_group_border.cc.o
+[348/688] Building CXX object CMakeFiles/patchy_filters.dir/src/filters/smart_filter_renderer.cpp.o
+[349/688] Building CXX object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/lib/jxl/dec_cache.cc.o
+[350/688] Building CXX object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/lib/jxl/dec_external_image.cc.o
+[351/688] Building CXX object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/lib/jxl/dec_noise.cc.o
+[352/688] Building CXX object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/lib/jxl/dec_modular.cc.o
+[353/688] Building CXX object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/lib/jxl/dec_xyb.cc.o
+[354/688] Building CXX object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/lib/jxl/entropy_coder.cc.o
+[355/688] Building CXX object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/lib/jxl/dec_frame.cc.o
+[356/688] Building CXX object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/lib/jxl/dec_patch_dictionary.cc.o
+[357/688] Building CXX object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/lib/jxl/fields.cc.o
+[358/688] Building CXX object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/lib/jxl/epf.cc.o
+[359/688] Building CXX object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/lib/jxl/huffman_table.cc.o
+[360/688] Building CXX object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/lib/jxl/headers.cc.o
+[361/688] Building CXX object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/lib/jxl/icc_codec_common.cc.o
+[362/688] Building CXX object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/lib/jxl/image.cc.o
+[363/688] Building CXX object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/lib/jxl/icc_codec.cc.o
+[364/688] Building CXX object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/lib/jxl/dec_group.cc.o
+[365/688] Building CXX object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/lib/jxl/frame_header.cc.o
+[366/688] Building CXX object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/lib/jxl/loop_filter.cc.o
+[367/688] Building CXX object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/lib/jxl/image_bundle.cc.o
+[368/688] Building CXX object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/lib/jxl/memory_manager_internal.cc.o
+[369/688] Building CXX object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/lib/jxl/image_ops.cc.o
+[370/688] Building CXX object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/lib/jxl/image_metadata.cc.o
+[371/688] Building CXX object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/lib/jxl/luminance.cc.o
+[372/688] Building CXX object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/lib/jxl/modular/encoding/dec_ma.cc.o
+[373/688] Building CXX object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/lib/jxl/modular/modular_image.cc.o
+[374/688] Building CXX object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/lib/jxl/modular/transform/squeeze_params.cc.o
+[375/688] Building CXX object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/lib/jxl/decode.cc.o
+[376/688] Building CXX object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/lib/jxl/opsin_params.cc.o
+[377/688] Building CXX object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/lib/jxl/modular/transform/transform.cc.o
+[378/688] Building CXX object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/lib/jxl/modular/transform/rct.cc.o
+[379/688] Building CXX object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/lib/jxl/modular/transform/palette.cc.o
+[380/688] Building CXX object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/lib/jxl/modular/encoding/encoding.cc.o
+[381/688] Building CXX object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/lib/jxl/modular/transform/squeeze.cc.o
+[382/688] Building CXX object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/lib/jxl/passes_state.cc.o
+[383/688] Building CXX object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/lib/jxl/quantizer.cc.o
+[384/688] Building CXX object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/lib/jxl/render_pipeline/render_pipeline_stage.cc.o
+[385/688] Building CXX object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/lib/jxl/render_pipeline/render_pipeline.cc.o
+[386/688] Building CXX object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/lib/jxl/render_pipeline/stage_chroma_upsampling.cc.o
+[387/688] Building CXX object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/lib/jxl/render_pipeline/simple_render_pipeline.cc.o
+[388/688] Building CXX object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/lib/jxl/quant_weights.cc.o
+[389/688] Building CXX object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/lib/jxl/render_pipeline/low_memory_render_pipeline.cc.o
+[390/688] Building CXX object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/lib/jxl/render_pipeline/stage_cms.cc.o
+[391/688] Building CXX object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/lib/jxl/render_pipeline/stage_blending.cc.o
+[392/688] Building CXX object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/lib/jxl/render_pipeline/stage_gaborish.cc.o
+[393/688] Building CXX object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/lib/jxl/render_pipeline/stage_from_linear.cc.o
+[394/688] Building CXX object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/lib/jxl/render_pipeline/stage_spot.cc.o
+[395/688] Building CXX object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/lib/jxl/render_pipeline/stage_noise.cc.o
+[396/688] Building CXX object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/lib/jxl/render_pipeline/stage_epf.cc.o
+[397/688] Building CXX object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/lib/jxl/render_pipeline/stage_splines.cc.o
+[398/688] Building CXX object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/lib/jxl/render_pipeline/stage_patches.cc.o
+[399/688] Building CXX object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/lib/jxl/box_content_decoder.cc.o
+[400/688] Building CXX object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/lib/jxl/render_pipeline/stage_to_linear.cc.o
+[401/688] Building CXX object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/lib/jxl/render_pipeline/stage_upsampling.cc.o
+[402/688] Building CXX object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/lib/jxl/render_pipeline/stage_tone_mapping.cc.o
+[403/688] Building CXX object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/lib/jxl/simd_util.cc.o
+[404/688] Building CXX object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/lib/jxl/render_pipeline/stage_xyb.cc.o
+[405/688] Building CXX object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/lib/jxl/toc.cc.o
+[406/688] Building CXX object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/lib/jxl/render_pipeline/stage_ycbcr.cc.o
+[407/688] Building CXX object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/lib/jxl/jpeg/dec_jpeg_data.cc.o
+[408/688] Building CXX object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/lib/jxl/splines.cc.o
+[409/688] Building CXX object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/lib/jxl/decode_to_jpeg.cc.o
+[410/688] Building CXX object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/lib/jxl/jpeg/jpeg_data.cc.o
+[411/688] Building CXX object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/lib/jxl/render_pipeline/stage_write.cc.o
+[412/688] Building CXX object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/lib/jxl/enc_aux_out.cc.o
+[413/688] Building CXX object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/lib/jxl/enc_bit_writer.cc.o
+[414/688] Building CXX object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/lib/jxl/jpeg/dec_jpeg_data_writer.cc.o
+[415/688] Building CXX object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/lib/jxl/butteraugli/butteraugli.cc.o
+[416/688] Building CXX object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/lib/jxl/enc_butteraugli_comparator.cc.o
+[417/688] Building CXX object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/lib/jxl/enc_ans.cc.o
+[418/688] Building CXX object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/lib/jxl/enc_adaptive_quantization.cc.o
+[419/688] Building CXX object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/lib/jxl/enc_ac_strategy.cc.o
+[420/688] Building CXX object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/lib/jxl/enc_coeff_order.cc.o
+[421/688] Building CXX object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/lib/jxl/enc_cluster.cc.o
+[422/688] Building CXX object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/lib/jxl/enc_cache.cc.o
+[423/688] Building CXX object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/lib/jxl/enc_context_map.cc.o
+[424/688] Building CXX object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/lib/jxl/enc_comparator.cc.o
+[425/688] Building CXX object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/lib/jxl/enc_chroma_from_luma.cc.o
+[426/688] Building CXX object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/lib/jxl/enc_debug_image.cc.o
+[427/688] Building CXX object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/lib/jxl/enc_dot_dictionary.cc.o
+[428/688] Building CXX object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/lib/jxl/enc_entropy_coder.cc.o
+[429/688] Building CXX object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/lib/jxl/enc_ans_simd.cc.o
+[430/688] Building CXX object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/lib/jxl/enc_external_image.cc.o
+[431/688] Building CXX object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/lib/jxl/enc_convolve_separable5.cc.o
+[432/688] Building CXX object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/lib/jxl/enc_fields.cc.o
+[433/688] Building CXX object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/lib/jxl/enc_detect_dots.cc.o
+[434/688] Building CXX object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/lib/jxl/enc_gaborish.cc.o
+[435/688] Building CXX object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/lib/jxl/enc_huffman.cc.o
+[436/688] Building CXX object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/lib/jxl/enc_huffman_tree.cc.o
+[437/688] Building CXX object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/lib/jxl/enc_linalg.cc.o
+[438/688] Building CXX object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/lib/jxl/enc_image_bundle.cc.o
+[439/688] Building CXX object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/lib/jxl/enc_icc_codec.cc.o
+[440/688] Building CXX object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/lib/jxl/enc_lz77.cc.o
+[441/688] Building CXX object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/lib/jxl/enc_noise.cc.o
+[442/688] Building CXX object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/lib/jxl/enc_modular_simd.cc.o
+[443/688] Building CXX object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/lib/jxl/enc_photon_noise.cc.o
+[444/688] Building CXX object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/lib/jxl/enc_heuristics.cc.o
+[445/688] Building CXX object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/lib/jxl/enc_group.cc.o
+[446/688] Building CXX object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/lib/jxl/enc_progressive_split.cc.o
+[447/688] Building CXX object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/lib/jxl/enc_fast_lossless.cc.o
+[448/688] Building CXX object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/lib/jxl/enc_splines.cc.o
+[449/688] Building CXX object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/lib/jxl/enc_toc.cc.o
+[450/688] Building CXX object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/lib/jxl/enc_quant_weights.cc.o
+[451/688] Building CXX object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/lib/jxl/enc_frame.cc.o
+[452/688] Building CXX object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/lib/jxl/enc_xyb.cc.o
+[453/688] Building CXX object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/lib/jxl/enc_modular.cc.o
+[454/688] Building CXX object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/lib/jxl/jpeg/enc_jpeg_huffman_decode.cc.o
+[455/688] Building CXX object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/lib/jxl/enc_transforms.cc.o
+[456/688] Building CXX object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/lib/jxl/jpeg/enc_jpeg_data.cc.o
+[457/688] Building CXX object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/lib/jxl/enc_patch_dictionary.cc.o
+[458/688] Building CXX object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/lib/jxl/modular/encoding/enc_debug_tree.cc.o
+[459/688] Building CXX object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/lib/jxl/jpeg/enc_jpeg_data_reader.cc.o
+[460/688] Building CXX object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/lib/jxl/modular/transform/enc_squeeze.cc.o
+[461/688] Building CXX object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/lib/jxl/modular/transform/enc_rct.cc.o
+[462/688] Building CXX object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/lib/jxl/modular/transform/enc_transform.cc.o
+[463/688] Building CXX object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/lib/threads/thread_parallel_runner.cc.o
+[464/688] Building CXX object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/lib/threads/resizable_parallel_runner.cc.o
+[465/688] Building CXX object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/third_party/highway/hwy/abort.cc.o
+[466/688] Building CXX object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/lib/jxl/modular/encoding/enc_encoding.cc.o
+[467/688] Building CXX object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/lib/threads/thread_parallel_runner_internal.cc.o
+[468/688] Building CXX object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/third_party/highway/hwy/aligned_allocator.cc.o
+[469/688] Building CXX object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/lib/jxl/encode.cc.o
+[470/688] Building CXX object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/lib/jxl/modular/encoding/enc_ma.cc.o
+[471/688] Building CXX object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/third_party/highway/hwy/print.cc.o
+[472/688] Building C object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/third_party/brotli/c/common/constants.c.o
+[473/688] Building CXX object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/third_party/highway/hwy/per_target.cc.o
+[474/688] Building C object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/third_party/brotli/c/common/context.c.o
+[475/688] Building C object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/third_party/brotli/c/common/platform.c.o
+[476/688] Building C object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/third_party/brotli/c/common/dictionary.c.o
+[477/688] Building C object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/third_party/brotli/c/common/shared_dictionary.c.o
+[478/688] Building C object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/third_party/brotli/c/dec/bit_reader.c.o
+[479/688] Building C object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/third_party/brotli/c/common/transform.c.o
+[480/688] Building C object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/third_party/brotli/c/dec/huffman.c.o
+[481/688] Building CXX object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/lib/jxl/cms/jxl_cms.cc.o
+[482/688] Building C object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/third_party/brotli/c/dec/prefix.c.o
+[483/688] Building C object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/third_party/brotli/c/dec/static_init.c.o
+[484/688] Building C object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/third_party/brotli/c/dec/state.c.o
+[485/688] Building CXX object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/third_party/highway/hwy/targets.cc.o
+[486/688] Building CXX object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/third_party/highway/hwy/nanobenchmark.cc.o
+[487/688] Building CXX object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/lib/jxl/modular/transform/enc_palette.cc.o
+[488/688] Building C object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/third_party/brotli/c/enc/bit_cost.c.o
+[489/688] Building C object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/third_party/brotli/c/dec/decode.c.o
+[490/688] Building CXX object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/third_party/highway/hwy/timer.cc.o
+[491/688] Building C object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/third_party/brotli/c/enc/brotli_bit_stream.c.o
+[492/688] Building C object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/third_party/brotli/c/enc/command.c.o
+[493/688] Building C object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/third_party/brotli/c/enc/compound_dictionary.c.o
+[494/688] Building C object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/third_party/brotli/c/enc/cluster.c.o
+[495/688] Building C object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/third_party/brotli/c/enc/backward_references_hq.c.o
+[496/688] Building C object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/third_party/brotli/c/enc/dictionary_hash.c.o
+[497/688] Building C object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/third_party/brotli/c/enc/block_splitter.c.o
+[498/688] Building C object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/third_party/brotli/c/enc/encoder_dict.c.o
+[499/688] Building C object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/third_party/brotli/c/enc/fast_log.c.o
+[500/688] Building C object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/third_party/brotli/c/enc/entropy_encode.c.o
+[501/688] Building C object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/third_party/brotli/c/enc/histogram.c.o
+[502/688] Building C object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/third_party/brotli/c/enc/compress_fragment.c.o
+[503/688] Building C object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/third_party/brotli/c/enc/memory.c.o
+[504/688] Building C object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/third_party/brotli/c/enc/literal_cost.c.o
+[505/688] Building C object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/third_party/brotli/c/enc/compress_fragment_two_pass.c.o
+[506/688] Building C object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/third_party/brotli/c/enc/static_init.c.o
+[507/688] Building C object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/third_party/brotli/c/enc/encode.c.o
+[508/688] Building C object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/third_party/brotli/c/enc/static_dict.c.o
+[509/688] Building C object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/third_party/brotli/c/enc/utf8_util.c.o
+[510/688] Building C object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/third_party/brotli/c/enc/metablock.c.o
+[511/688] Building C object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/third_party/brotli/c/enc/static_dict_lut.c.o
+[512/688] Building C object CMakeFiles/patchy_openjpeg.dir/src/formats/openjpeg/bio.c.o
+[513/688] Building C object CMakeFiles/patchy_openjpeg.dir/src/formats/openjpeg/cio.c.o
+[514/688] Building C object CMakeFiles/patchy_openjpeg.dir/src/formats/openjpeg/event.c.o
+[515/688] Building C object CMakeFiles/patchy_openjpeg.dir/src/formats/openjpeg/function_list.c.o
+[516/688] Building C object CMakeFiles/patchy_openjpeg.dir/src/formats/openjpeg/image.c.o
+[517/688] Building C object CMakeFiles/patchy_openjpeg.dir/src/formats/openjpeg/invert.c.o
+[518/688] Building CXX object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/third_party/skcms/skcms.cc.o
+[519/688] Building C object CMakeFiles/patchy_openjpeg.dir/src/formats/openjpeg/mct.c.o
+[520/688] Building C object CMakeFiles/patchy_openjpeg.dir/src/formats/openjpeg/ht_dec.c.o
+[521/688] Building CXX object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/third_party/skcms/src/skcms_TransformBaseline.cc.o
+[522/688] Building C object CMakeFiles/patchy_openjpeg.dir/src/formats/openjpeg/mqc.c.o
+[523/688] Building C object CMakeFiles/patchy_openjpeg.dir/src/formats/openjpeg/openjpeg.c.o
+[524/688] Building C object CMakeFiles/patchy_openjpeg.dir/src/formats/openjpeg/jp2.c.o
+[525/688] Building C object CMakeFiles/patchy_openjpeg.dir/src/formats/openjpeg/opj_clock.c.o
+[526/688] Building C object CMakeFiles/patchy_openjpeg.dir/src/formats/openjpeg/opj_malloc.c.o
+[527/688] Building C object CMakeFiles/patchy_openjpeg.dir/src/formats/openjpeg/dwt.c.o
+[528/688] Building C object CMakeFiles/patchy_openjpeg.dir/src/formats/openjpeg/sparse_array.c.o
+[529/688] Building C object CMakeFiles/patchy_openjpeg.dir/src/formats/openjpeg/tgt.c.o
+[530/688] Building C object CMakeFiles/patchy_openjpeg.dir/src/formats/openjpeg/pi.c.o
+[531/688] Building C object CMakeFiles/patchy_openjpeg.dir/src/formats/openjpeg/thread.c.o
+[532/688] Linking C static library src/formats/libwebp/libwebp.a
+[533/688] Building C object CMakeFiles/patchy_openjpeg.dir/src/formats/openjpeg/t2.c.o
+[534/688] Building C object src/formats/libwebp/CMakeFiles/webpdemux.dir/src/demux/anim_decode.c.o
+[535/688] Building C object CMakeFiles/patchy_openjpeg.dir/src/formats/openjpeg/tcd.c.o
+[536/688] Building C object src/formats/libwebp/CMakeFiles/webpdemux.dir/src/demux/demux.c.o
+[537/688] Building C object src/formats/libwebp/CMakeFiles/libwebpmux.dir/src/mux/muxedit.c.o
+[538/688] Building C object CMakeFiles/patchy_openjpeg.dir/src/formats/openjpeg/j2k.c.o
+[539/688] Building C object src/formats/libwebp/CMakeFiles/libwebpmux.dir/src/mux/muxinternal.c.o
+[540/688] Building C object src/formats/libwebp/CMakeFiles/libwebpmux.dir/src/mux/muxread.c.o
+[541/688] Building C object src/formats/libwebp/CMakeFiles/libwebpmux.dir/src/mux/anim_encode.c.o
+[542/688] Linking CXX static library libpatchy_libraw.a
+[543/688] Building C object CMakeFiles/patchy_jxl.dir/src/formats/libjxl/third_party/brotli/c/enc/backward_references.c.o
+[544/688] Linking CXX static library libpatchy_psd.a
+[545/688] Linking CXX static library libpatchy_filters.a
+[546/688] Linking CXX static library libpatchy_jxl.a
+[547/688] Building CXX object CMakeFiles/patchy_ai.dir/src/ai/ai_selection_math.cpp.o
+[548/688] Building CXX object CMakeFiles/patchy_gmic.dir/src/filters/gmic/gmic_engine_stub.cpp.o
+[549/688] Building CXX object CMakeFiles/patchy_ai.dir/src/ai/segmentation_engine_stub.cpp.o
+[550/688] Building CXX object CMakeFiles/patchy_ai.dir/src/ai/segmentation_engine_common.cpp.o
+[551/688] Building CXX object CMakeFiles/patchy_plugins.dir/src/plugins/plugin_host.cpp.o
+[552/688] Building CXX object CMakeFiles/patchy_plugins.dir/src/plugins/legacy_photoshop_adapter.cpp.o
+[553/688] Building CXX object CMakeFiles/patchy_formats.dir/src/formats/animation_timing.cpp.o
+[554/688] Building CXX object CMakeFiles/patchy_plugins.dir/src/plugins/pipl.cpp.o
+[555/688] Building C object CMakeFiles/patchy_openjpeg.dir/src/formats/openjpeg/t1.c.o
+[556/688] Building CXX object CMakeFiles/patchy_gmic.dir/src/filters/gmic/gmic_catalog.cpp.o
+[557/688] Building CXX object CMakeFiles/patchy_formats.dir/src/formats/webp_animation_io.cpp.o
+[558/688] Linking C static library libpatchy_openjpeg.a
+[559/688] Building CXX object CMakeFiles/patchy_formats.dir/src/formats/af_container.cpp.o
+[560/688] Building CXX object CMakeFiles/patchy_formats.dir/src/formats/af_text.cpp.o
+[561/688] Building CXX object CMakeFiles/patchy_formats.dir/src/formats/af_tree.cpp.o
+[562/688] Building CXX object CMakeFiles/patchy_formats.dir/src/formats/font_zip.cpp.o
+[563/688] Building CXX object CMakeFiles/patchy_formats.dir/src/formats/af_raster.cpp.o
+[564/688] Building CXX object CMakeFiles/patchy_formats.dir/src/formats/af_vector.cpp.o
+[565/688] Building CXX object CMakeFiles/patchy_formats.dir/src/formats/format_file_io.cpp.o
+[566/688] Building CXX object CMakeFiles/patchy_formats.dir/src/formats/image_density_probe.cpp.o
+[567/688] Building CXX object CMakeFiles/patchy_formats.dir/src/formats/heif_document_io.cpp.o
+[568/688] Building CXX object CMakeFiles/patchy_formats.dir/src/formats/gif_document_io.cpp.o
+[569/688] Building CXX object CMakeFiles/patchy_formats.dir/src/formats/aseprite_document_io.cpp.o
+[570/688] Building CXX object CMakeFiles/patchy_formats.dir/src/formats/af_document_io.cpp.o
+[571/688] Building CXX object CMakeFiles/patchy_formats.dir/src/formats/image_open_diagnosis.cpp.o
+[572/688] Building CXX object CMakeFiles/patchy_formats.dir/src/formats/ico_document_io.cpp.o
+[573/688] Building CXX object CMakeFiles/patchy_formats.dir/src/formats/ilbm_document_io.cpp.o
+[574/688] Building CXX object CMakeFiles/patchy_formats.dir/src/formats/jp2_document_io.cpp.o
+[575/688] Building CXX object CMakeFiles/patchy_formats.dir/src/formats/hdr_document_io.cpp.o
+[576/688] Building CXX object CMakeFiles/patchy_formats.dir/src/formats/avif_document_io.cpp.o
+/Volumes/StudioData/code/gpt/LayerForgeAI/vendor/Patchy/src/formats/avif_document_io.cpp:39:13: warning: unused function 'default_frame_name' [-Wunused-function]
+   39 | std::string default_frame_name(int index, std::uint32_t delay_ms) {
+      |             ^~~~~~~~~~~~~~~~~~
+1 warning generated.
+[577/688] Building CXX object CMakeFiles/patchy_formats.dir/src/formats/jxl_document_io.cpp.o
+[578/688] Building CXX object CMakeFiles/patchy_formats.dir/src/formats/jxr_document_io.cpp.o
+[579/688] Building CXX object CMakeFiles/patchy_formats.dir/src/formats/metadata/exif_tags.cpp.o
+[580/688] Building CXX object CMakeFiles/patchy_formats.dir/src/formats/format_registry.cpp.o
+[581/688] Building CXX object CMakeFiles/patchy_formats.dir/src/formats/metadata/jumbf.cpp.o
+[582/688] Building CXX object CMakeFiles/patchy_formats.dir/src/formats/metadata/iptc_iim.cpp.o
+[583/688] Building CXX object CMakeFiles/patchy_formats.dir/src/formats/exr_document_io.cpp.o
+[584/688] Building CXX object CMakeFiles/patchy_formats.dir/src/formats/metadata/metadata_edit.cpp.o
+[585/688] Building CXX object CMakeFiles/patchy_formats.dir/src/formats/metadata/tiff_ifd.cpp.o
+[586/688] Building CXX object CMakeFiles/patchy_formats.dir/src/formats/metadata/metadata_view.cpp.o
+[587/688] Building CXX object CMakeFiles/patchy_formats.dir/src/formats/metadata/metadata_inject.cpp.o
+[588/688] Building CXX object CMakeFiles/patchy_formats.dir/src/formats/metadata/xmp.cpp.o
+[589/688] Building CXX object CMakeFiles/patchy_formats.dir/src/formats/palette_io.cpp.o
+[590/688] Building CXX object CMakeFiles/patchy_formats.dir/src/formats/pcx_document_io.cpp.o
+[591/688] Building CXX object CMakeFiles/patchy_formats.dir/src/formats/metadata/metadata_containers.cpp.o
+[592/688] Building CXX object CMakeFiles/patchy_formats.dir/src/formats/pdf_crypt.cpp.o
+[593/688] Building CXX object CMakeFiles/patchy_formats.dir/src/formats/pdf_png_writer.cpp.o
+[594/688] Building CXX object CMakeFiles/patchy_formats.dir/src/formats/pdf_image_writer.cpp.o
+[595/688] Building CXX object CMakeFiles/patchy_formats.dir/src/formats/pdf_filters.cpp.o
+[596/688] Building CXX object CMakeFiles/patchy_formats.dir/src/formats/pdf_content.cpp.o
+[597/688] Building CXX object CMakeFiles/patchy_formats.dir/src/formats/pdf_file.cpp.o
+[598/688] Building CXX object CMakeFiles/patchy_formats.dir/src/formats/pdf_fonts.cpp.o
+[599/688] Building CXX object CMakeFiles/patchy_formats.dir/src/formats/pdf_function.cpp.o
+[600/688] Building CXX object CMakeFiles/patchy_formats.dir/src/formats/pdf_document_io.cpp.o
+[601/688] Building CXX object CMakeFiles/patchy_formats.dir/src/formats/pdf_syntax.cpp.o
+[602/688] Building CXX object CMakeFiles/patchy_formats.dir/src/formats/raw_white_balance.cpp.o
+[603/688] Building CXX object CMakeFiles/patchy_formats.dir/src/formats/raw_tone.cpp.o
+[604/688] Building CXX object CMakeFiles/patchy_formats.dir/src/formats/pdf_text_merge.cpp.o
+[605/688] Building CXX object CMakeFiles/patchy_formats.dir/src/formats/raw_document_io.cpp.o
+[606/688] Building CXX object CMakeFiles/patchy_formats.dir/src/formats/svg_xml.cpp.o
+[607/688] Building CXX object CMakeFiles/patchy_formats.dir/src/formats/rttex_document_io.cpp.o
+[608/688] Building CXX object CMakeFiles/patchy_formats.dir/src/formats/tga_document_io.cpp.o
+[609/688] Building C object CMakeFiles/patchy_formats.dir/src/formats/stb/stb_dxt_impl.c.o
+[610/688] Building CXX object CMakeFiles/patchy_formats.dir/src/formats/vector_fill_rule.cpp.o
+[611/688] Building C object CMakeFiles/patchy_formats.dir/src/formats/bcdec/bcdec_impl.c.o
+[612/688] Building CXX object CMakeFiles/patchy_formats.dir/src/formats/vector_export_plan.cpp.o
+[613/688] Building C object CMakeFiles/patchy_formats.dir/src/formats/stb/stb_image_impl.c.o
+[614/688] Building CXX object CMakeFiles/patchy_formats.dir/src/formats/document_flatten.cpp.o
+[615/688] Linking C static library src/formats/libwebp/libwebpdemux.a
+[616/688] Building CXX object CMakeFiles/patchy_formats.dir/src/formats/dds_document_io.cpp.o
+[617/688] Linking C static library src/formats/libwebp/libwebpmux.a
+[618/688] Linking CXX static library libpatchy_ai.a
+[619/688] Linking CXX static library libpatchy_plugins.a
+[620/688] Building C object CMakeFiles/patchy_formats.dir/src/formats/bc7enc/bc7enc.c.o
+[621/688] Linking CXX static library libpatchy_gmic.a
+[622/688] Building CXX object CMakeFiles/patchy_formats.dir/src/formats/svg_document_write.cpp.o
+[623/688] Building C object CMakeFiles/patchy_formats.dir/src/formats/zstd/zstddeclib.c.o
+[624/688] Building CXX object CMakeFiles/patchy_core_tests.dir/tests/core/smart_filter_descriptors_test_support.cpp.o
+In file included from /Volumes/StudioData/code/gpt/LayerForgeAI/vendor/Patchy/tests/core/smart_filter_descriptors_test_support.cpp:3:
+/Volumes/StudioData/code/gpt/LayerForgeAI/vendor/Patchy/tests/test_harness.hpp:213:8: warning: private field 'stopping_' is not used [-Wunused-private-field]
+  213 |   bool stopping_ = false;
+      |        ^
+1 warning generated.
+[625/688] Building CXX object CMakeFiles/patchy_core_tests.dir/tests/core/main.cpp.o
+In file included from /Volumes/StudioData/code/gpt/LayerForgeAI/vendor/Patchy/tests/core/main.cpp:1:
+In file included from /Volumes/StudioData/code/gpt/LayerForgeAI/vendor/Patchy/tests/core/test_groups.hpp:7:
+/Volumes/StudioData/code/gpt/LayerForgeAI/vendor/Patchy/tests/test_harness.hpp:213:8: warning: private field 'stopping_' is not used [-Wunused-private-field]
+  213 |   bool stopping_ = false;
+      |        ^
+1 warning generated.
+[626/688] Building CXX object CMakeFiles/patchy_core_tests.dir/tests/core/psd_test_support.cpp.o
+In file included from /Volumes/StudioData/code/gpt/LayerForgeAI/vendor/Patchy/tests/core/psd_test_support.cpp:3:
+/Volumes/StudioData/code/gpt/LayerForgeAI/vendor/Patchy/tests/test_harness.hpp:213:8: warning: private field 'stopping_' is not used [-Wunused-private-field]
+  213 |   bool stopping_ = false;
+      |        ^
+1 warning generated.
+[627/688] Building CXX object CMakeFiles/patchy_core_tests.dir/tests/core/core_test_support.cpp.o
+In file included from /Volumes/StudioData/code/gpt/LayerForgeAI/vendor/Patchy/tests/core/core_test_support.cpp:5:
+/Volumes/StudioData/code/gpt/LayerForgeAI/vendor/Patchy/tests/test_harness.hpp:213:8: warning: private field 'stopping_' is not used [-Wunused-private-field]
+  213 |   bool stopping_ = false;
+      |        ^
+1 warning generated.
+[628/688] Building CXX object CMakeFiles/patchy_formats.dir/src/formats/svg_document_read.cpp.o
+[629/688] Building CXX object CMakeFiles/patchy_core_tests.dir/tests/core/af_tests.cpp.o
+In file included from /Volumes/StudioData/code/gpt/LayerForgeAI/vendor/Patchy/tests/core/af_tests.cpp:24:
+/Volumes/StudioData/code/gpt/LayerForgeAI/vendor/Patchy/tests/test_harness.hpp:213:8: warning: private field 'stopping_' is not used [-Wunused-private-field]
+  213 |   bool stopping_ = false;
+      |        ^
+1 warning generated.
+[630/688] Building CXX object CMakeFiles/patchy_core_tests.dir/tests/core/composite_corpus_tests.cpp.o
+In file included from /Volumes/StudioData/code/gpt/LayerForgeAI/vendor/Patchy/tests/core/composite_corpus_tests.cpp:43:
+In file included from /Volumes/StudioData/code/gpt/LayerForgeAI/vendor/Patchy/tests/core/core_test_support.hpp:6:
+/Volumes/StudioData/code/gpt/LayerForgeAI/vendor/Patchy/tests/test_harness.hpp:213:8: warning: private field 'stopping_' is not used [-Wunused-private-field]
+  213 |   bool stopping_ = false;
+      |        ^
+1 warning generated.
+[631/688] Building CXX object CMakeFiles/patchy_core_tests.dir/tests/core/brush_engine_tests.cpp.o
+In file included from /Volumes/StudioData/code/gpt/LayerForgeAI/vendor/Patchy/tests/core/brush_engine_tests.cpp:13:
+/Volumes/StudioData/code/gpt/LayerForgeAI/vendor/Patchy/tests/test_harness.hpp:213:8: warning: private field 'stopping_' is not used [-Wunused-private-field]
+  213 |   bool stopping_ = false;
+      |        ^
+1 warning generated.
+[632/688] Building CXX object CMakeFiles/patchy_core_tests.dir/tests/core/adjustments_curves_tests.cpp.o
+In file included from /Volumes/StudioData/code/gpt/LayerForgeAI/vendor/Patchy/tests/core/adjustments_curves_tests.cpp:19:
+/Volumes/StudioData/code/gpt/LayerForgeAI/vendor/Patchy/tests/test_harness.hpp:213:8: warning: private field 'stopping_' is not used [-Wunused-private-field]
+  213 |   bool stopping_ = false;
+      |        ^
+1 warning generated.
+[633/688] Building CXX object CMakeFiles/patchy_core_tests.dir/tests/core/deep_filter_tests.cpp.o
+In file included from /Volumes/StudioData/code/gpt/LayerForgeAI/vendor/Patchy/tests/core/deep_filter_tests.cpp:9:
+/Volumes/StudioData/code/gpt/LayerForgeAI/vendor/Patchy/tests/test_harness.hpp:213:8: warning: private field 'stopping_' is not used [-Wunused-private-field]
+  213 |   bool stopping_ = false;
+      |        ^
+1 warning generated.
+[634/688] Building CXX object CMakeFiles/patchy_core_tests.dir/tests/core/compositor_layer_styles_tests.cpp.o
+In file included from /Volumes/StudioData/code/gpt/LayerForgeAI/vendor/Patchy/tests/core/compositor_layer_styles_tests.cpp:16:
+/Volumes/StudioData/code/gpt/LayerForgeAI/vendor/Patchy/tests/test_harness.hpp:213:8: warning: private field 'stopping_' is not used [-Wunused-private-field]
+  213 |   bool stopping_ = false;
+      |        ^
+1 warning generated.
+[635/688] Building CXX object CMakeFiles/patchy_core_tests.dir/tests/core/deep_compositor_tests.cpp.o
+In file included from /Volumes/StudioData/code/gpt/LayerForgeAI/vendor/Patchy/tests/core/deep_compositor_tests.cpp:14:
+/Volumes/StudioData/code/gpt/LayerForgeAI/vendor/Patchy/tests/test_harness.hpp:213:8: warning: private field 'stopping_' is not used [-Wunused-private-field]
+  213 |   bool stopping_ = false;
+      |        ^
+1 warning generated.
+[636/688] Building CXX object CMakeFiles/patchy_core_tests.dir/tests/core/document_model_tests.cpp.o
+In file included from /Volumes/StudioData/code/gpt/LayerForgeAI/vendor/Patchy/tests/core/document_model_tests.cpp:11:
+/Volumes/StudioData/code/gpt/LayerForgeAI/vendor/Patchy/tests/test_harness.hpp:213:8: warning: private field 'stopping_' is not used [-Wunused-private-field]
+  213 |   bool stopping_ = false;
+      |        ^
+1 warning generated.
+[637/688] Building CXX object CMakeFiles/patchy_core_tests.dir/tests/core/flat_formats_bmp_tests.cpp.o
+In file included from /Volumes/StudioData/code/gpt/LayerForgeAI/vendor/Patchy/tests/core/flat_formats_bmp_tests.cpp:15:
+/Volumes/StudioData/code/gpt/LayerForgeAI/vendor/Patchy/tests/test_harness.hpp:213:8: warning: private field 'stopping_' is not used [-Wunused-private-field]
+  213 |   bool stopping_ = false;
+      |        ^
+1 warning generated.
+[638/688] Building CXX object CMakeFiles/patchy_formats.dir/src/formats/bmp_document_io.cpp.o
+[639/688] Building CXX object CMakeFiles/patchy_core_tests.dir/tests/core/compositor_blend_if_tests.cpp.o
+In file included from /Volumes/StudioData/code/gpt/LayerForgeAI/vendor/Patchy/tests/core/compositor_blend_if_tests.cpp:20:
+/Volumes/StudioData/code/gpt/LayerForgeAI/vendor/Patchy/tests/test_harness.hpp:213:8: warning: private field 'stopping_' is not used [-Wunused-private-field]
+  213 |   bool stopping_ = false;
+      |        ^
+1 warning generated.
+[640/688] Linking CXX static library libpatchy_formats.a
+[641/688] Building CXX object CMakeFiles/patchy_core_tests.dir/tests/core/unicode_path_tests.cpp.o
+In file included from /Volumes/StudioData/code/gpt/LayerForgeAI/vendor/Patchy/tests/core/unicode_path_tests.cpp:45:
+In file included from /Volumes/StudioData/code/gpt/LayerForgeAI/vendor/Patchy/tests/core/core_test_support.hpp:6:
+/Volumes/StudioData/code/gpt/LayerForgeAI/vendor/Patchy/tests/test_harness.hpp:213:8: warning: private field 'stopping_' is not used [-Wunused-private-field]
+  213 |   bool stopping_ = false;
+      |        ^
+1 warning generated.
+[642/688] Building CXX object CMakeFiles/patchy_core_tests.dir/tests/core/atomic_write_recovery_tests.cpp.o
+In file included from /Volumes/StudioData/code/gpt/LayerForgeAI/vendor/Patchy/tests/core/atomic_write_recovery_tests.cpp:35:
+In file included from /Volumes/StudioData/code/gpt/LayerForgeAI/vendor/Patchy/tests/core/core_test_support.hpp:6:
+/Volumes/StudioData/code/gpt/LayerForgeAI/vendor/Patchy/tests/test_harness.hpp:213:8: warning: private field 'stopping_' is not used [-Wunused-private-field]
+  213 |   bool stopping_ = false;
+      |        ^
+1 warning generated.
+[643/688] Building CXX object CMakeFiles/patchy_core_tests.dir/tests/core/font_zip_tests.cpp.o
+In file included from /Volumes/StudioData/code/gpt/LayerForgeAI/vendor/Patchy/tests/core/font_zip_tests.cpp:3:
+/Volumes/StudioData/code/gpt/LayerForgeAI/vendor/Patchy/tests/test_harness.hpp:213:8: warning: private field 'stopping_' is not used [-Wunused-private-field]
+  213 |   bool stopping_ = false;
+      |        ^
+1 warning generated.
+[644/688] Building CXX object CMakeFiles/patchy_core_tests.dir/tests/core/image_trace_tests.cpp.o
+In file included from /Volumes/StudioData/code/gpt/LayerForgeAI/vendor/Patchy/tests/core/image_trace_tests.cpp:5:
+/Volumes/StudioData/code/gpt/LayerForgeAI/vendor/Patchy/tests/test_harness.hpp:213:8: warning: private field 'stopping_' is not used [-Wunused-private-field]
+  213 |   bool stopping_ = false;
+      |        ^
+1 warning generated.
+[645/688] Building CXX object CMakeFiles/patchy_core_tests.dir/tests/core/layer_alignment_tests.cpp.o
+In file included from /Volumes/StudioData/code/gpt/LayerForgeAI/vendor/Patchy/tests/core/layer_alignment_tests.cpp:6:
+In file included from /Volumes/StudioData/code/gpt/LayerForgeAI/vendor/Patchy/tests/core/test_groups.hpp:7:
+/Volumes/StudioData/code/gpt/LayerForgeAI/vendor/Patchy/tests/test_harness.hpp:213:8: warning: private field 'stopping_' is not used [-Wunused-private-field]
+  213 |   bool stopping_ = false;
+      |        ^
+1 warning generated.
+[646/688] Building CXX object CMakeFiles/patchy_core_tests.dir/tests/core/pipl_tests.cpp.o
+In file included from /Volumes/StudioData/code/gpt/LayerForgeAI/vendor/Patchy/tests/core/pipl_tests.cpp:27:
+In file included from /Volumes/StudioData/code/gpt/LayerForgeAI/vendor/Patchy/tests/core/core_test_support.hpp:6:
+/Volumes/StudioData/code/gpt/LayerForgeAI/vendor/Patchy/tests/test_harness.hpp:213:8: warning: private field 'stopping_' is not used [-Wunused-private-field]
+  213 |   bool stopping_ = false;
+      |        ^
+1 warning generated.
+[647/688] Building CXX object CMakeFiles/patchy_core_tests.dir/tests/core/flat_formats_misc_tests.cpp.o
+In file included from /Volumes/StudioData/code/gpt/LayerForgeAI/vendor/Patchy/tests/core/flat_formats_misc_tests.cpp:25:
+/Volumes/StudioData/code/gpt/LayerForgeAI/vendor/Patchy/tests/test_harness.hpp:213:8: warning: private field 'stopping_' is not used [-Wunused-private-field]
+  213 |   bool stopping_ = false;
+      |        ^
+1 warning generated.
+[648/688] Building CXX object CMakeFiles/patchy_core_tests.dir/tests/core/gradients_interior_effects_tests.cpp.o
+In file included from /Volumes/StudioData/code/gpt/LayerForgeAI/vendor/Patchy/tests/core/gradients_interior_effects_tests.cpp:18:
+/Volumes/StudioData/code/gpt/LayerForgeAI/vendor/Patchy/tests/test_harness.hpp:213:8: warning: private field 'stopping_' is not used [-Wunused-private-field]
+  213 |   bool stopping_ = false;
+      |        ^
+1 warning generated.
+[649/688] Building CXX object CMakeFiles/patchy_core_tests.dir/tests/core/layer_metadata_tests.cpp.o
+In file included from /Volumes/StudioData/code/gpt/LayerForgeAI/vendor/Patchy/tests/core/layer_metadata_tests.cpp:8:
+/Volumes/StudioData/code/gpt/LayerForgeAI/vendor/Patchy/tests/test_harness.hpp:213:8: warning: private field 'stopping_' is not used [-Wunused-private-field]
+  213 |   bool stopping_ = false;
+      |        ^
+1 warning generated.
+[650/688] Building CXX object CMakeFiles/patchy_core_tests.dir/tests/core/infra_selection_tests.cpp.o
+In file included from /Volumes/StudioData/code/gpt/LayerForgeAI/vendor/Patchy/tests/core/infra_selection_tests.cpp:14:
+/Volumes/StudioData/code/gpt/LayerForgeAI/vendor/Patchy/tests/test_harness.hpp:213:8: warning: private field 'stopping_' is not used [-Wunused-private-field]
+  213 |   bool stopping_ = false;
+      |        ^
+1 warning generated.
+[651/688] Building CXX object CMakeFiles/patchy_core_tests.dir/tests/core/document_ops_filters_tests.cpp.o
+In file included from /Volumes/StudioData/code/gpt/LayerForgeAI/vendor/Patchy/tests/core/document_ops_filters_tests.cpp:9:
+/Volumes/StudioData/code/gpt/LayerForgeAI/vendor/Patchy/tests/test_harness.hpp:213:8: warning: private field 'stopping_' is not used [-Wunused-private-field]
+  213 |   bool stopping_ = false;
+      |        ^
+1 warning generated.
+[652/688] Building CXX object CMakeFiles/patchy_core_tests.dir/tests/core/photo_divide_tests.cpp.o
+In file included from /Volumes/StudioData/code/gpt/LayerForgeAI/vendor/Patchy/tests/core/photo_divide_tests.cpp:3:
+/Volumes/StudioData/code/gpt/LayerForgeAI/vendor/Patchy/tests/test_harness.hpp:213:8: warning: private field 'stopping_' is not used [-Wunused-private-field]
+  213 |   bool stopping_ = false;
+      |        ^
+1 warning generated.
+[653/688] Building CXX object CMakeFiles/patchy_core_tests.dir/tests/core/palette_tests.cpp.o
+In file included from /Volumes/StudioData/code/gpt/LayerForgeAI/vendor/Patchy/tests/core/palette_tests.cpp:18:
+/Volumes/StudioData/code/gpt/LayerForgeAI/vendor/Patchy/tests/test_harness.hpp:213:8: warning: private field 'stopping_' is not used [-Wunused-private-field]
+  213 |   bool stopping_ = false;
+      |        ^
+1 warning generated.
+[654/688] Building CXX object CMakeFiles/patchy_core_tests.dir/tests/core/pat_asl_abr_tests.cpp.o
+In file included from /Volumes/StudioData/code/gpt/LayerForgeAI/vendor/Patchy/tests/core/pat_asl_abr_tests.cpp:21:
+/Volumes/StudioData/code/gpt/LayerForgeAI/vendor/Patchy/tests/test_harness.hpp:213:8: warning: private field 'stopping_' is not used [-Wunused-private-field]
+  213 |   bool stopping_ = false;
+      |        ^
+1 warning generated.
+[655/688] Building CXX object CMakeFiles/patchy_core_tests.dir/tests/core/file_info_metadata_tests.cpp.o
+In file included from /Volumes/StudioData/code/gpt/LayerForgeAI/vendor/Patchy/tests/core/file_info_metadata_tests.cpp:18:
+In file included from /Volumes/StudioData/code/gpt/LayerForgeAI/vendor/Patchy/tests/core/test_groups.hpp:7:
+/Volumes/StudioData/code/gpt/LayerForgeAI/vendor/Patchy/tests/test_harness.hpp:213:8: warning: private field 'stopping_' is not used [-Wunused-private-field]
+  213 |   bool stopping_ = false;
+      |        ^
+1 warning generated.
+[656/688] Building CXX object CMakeFiles/patchy_core_tests.dir/tests/core/pixel_tools_tests.cpp.o
+In file included from /Volumes/StudioData/code/gpt/LayerForgeAI/vendor/Patchy/tests/core/pixel_tools_tests.cpp:6:
+/Volumes/StudioData/code/gpt/LayerForgeAI/vendor/Patchy/tests/test_harness.hpp:213:8: warning: private field 'stopping_' is not used [-Wunused-private-field]
+  213 |   bool stopping_ = false;
+      |        ^
+1 warning generated.
+[657/688] Building CXX object CMakeFiles/patchy_core_tests.dir/tests/core/pattern_styles_fixtures_tests.cpp.o
+In file included from /Volumes/StudioData/code/gpt/LayerForgeAI/vendor/Patchy/tests/core/pattern_styles_fixtures_tests.cpp:22:
+/Volumes/StudioData/code/gpt/LayerForgeAI/vendor/Patchy/tests/test_harness.hpp:213:8: warning: private field 'stopping_' is not used [-Wunused-private-field]
+  213 |   bool stopping_ = false;
+      |        ^
+1 warning generated.
+[658/688] Building CXX object CMakeFiles/patchy_core_tests.dir/tests/core/pixel_depth_tests.cpp.o
+In file included from /Volumes/StudioData/code/gpt/LayerForgeAI/vendor/Patchy/tests/core/pixel_depth_tests.cpp:12:
+/Volumes/StudioData/code/gpt/LayerForgeAI/vendor/Patchy/tests/test_harness.hpp:213:8: warning: private field 'stopping_' is not used [-Wunused-private-field]
+  213 |   bool stopping_ = false;
+      |        ^
+1 warning generated.
+[659/688] Building CXX object CMakeFiles/patchy_core_tests.dir/tests/core/psd_structure_tests.cpp.o
+In file included from /Volumes/StudioData/code/gpt/LayerForgeAI/vendor/Patchy/tests/core/psd_structure_tests.cpp:18:
+/Volumes/StudioData/code/gpt/LayerForgeAI/vendor/Patchy/tests/test_harness.hpp:213:8: warning: private field 'stopping_' is not used [-Wunused-private-field]
+  213 |   bool stopping_ = false;
+      |        ^
+1 warning generated.
+[660/688] Building CXX object CMakeFiles/patchy_core_tests.dir/tests/core/psd_cmyk_proof_tests.cpp.o
+In file included from /Volumes/StudioData/code/gpt/LayerForgeAI/vendor/Patchy/tests/core/psd_cmyk_proof_tests.cpp:17:
+In file included from /Volumes/StudioData/code/gpt/LayerForgeAI/vendor/Patchy/tests/core/core_test_support.hpp:6:
+/Volumes/StudioData/code/gpt/LayerForgeAI/vendor/Patchy/tests/test_harness.hpp:213:8: warning: private field 'stopping_' is not used [-Wunused-private-field]
+  213 |   bool stopping_ = false;
+      |        ^
+1 warning generated.
+[661/688] Building CXX object CMakeFiles/patchy_core_tests.dir/tests/core/psd_deep_io_tests.cpp.o
+In file included from /Volumes/StudioData/code/gpt/LayerForgeAI/vendor/Patchy/tests/core/psd_deep_io_tests.cpp:40:
+In file included from /Volumes/StudioData/code/gpt/LayerForgeAI/vendor/Patchy/tests/core/core_test_support.hpp:6:
+/Volumes/StudioData/code/gpt/LayerForgeAI/vendor/Patchy/tests/test_harness.hpp:213:8: warning: private field 'stopping_' is not used [-Wunused-private-field]
+  213 |   bool stopping_ = false;
+      |        ^
+1 warning generated.
+[662/688] Building CXX object CMakeFiles/patchy_core_tests.dir/tests/core/text_engine_block_tests.cpp.o
+In file included from /Volumes/StudioData/code/gpt/LayerForgeAI/vendor/Patchy/tests/core/text_engine_block_tests.cpp:8:
+/Volumes/StudioData/code/gpt/LayerForgeAI/vendor/Patchy/tests/test_harness.hpp:213:8: warning: private field 'stopping_' is not used [-Wunused-private-field]
+  213 |   bool stopping_ = false;
+      |        ^
+1 warning generated.
+[663/688] Building CXX object CMakeFiles/patchy_core_tests.dir/tests/core/psd_legacy_text_tests.cpp.o
+In file included from /Volumes/StudioData/code/gpt/LayerForgeAI/vendor/Patchy/tests/core/psd_legacy_text_tests.cpp:8:
+/Volumes/StudioData/code/gpt/LayerForgeAI/vendor/Patchy/tests/test_harness.hpp:213:8: warning: private field 'stopping_' is not used [-Wunused-private-field]
+  213 |   bool stopping_ = false;
+      |        ^
+1 warning generated.
+[664/688] Building CXX object CMakeFiles/patchy_core_tests.dir/tests/core/jxr_tests.cpp.o
+In file included from /Volumes/StudioData/code/gpt/LayerForgeAI/vendor/Patchy/tests/core/jxr_tests.cpp:26:
+In file included from /Volumes/StudioData/code/gpt/LayerForgeAI/vendor/Patchy/tests/core/core_test_support.hpp:6:
+/Volumes/StudioData/code/gpt/LayerForgeAI/vendor/Patchy/tests/test_harness.hpp:213:8: warning: private field 'stopping_' is not used [-Wunused-private-field]
+  213 |   bool stopping_ = false;
+      |        ^
+1 warning generated.
+[665/688] Building CXX object CMakeFiles/patchy_core_tests.dir/tests/core/psd_core_io_tests.cpp.o
+In file included from /Volumes/StudioData/code/gpt/LayerForgeAI/vendor/Patchy/tests/core/psd_core_io_tests.cpp:22:
+/Volumes/StudioData/code/gpt/LayerForgeAI/vendor/Patchy/tests/test_harness.hpp:213:8: warning: private field 'stopping_' is not used [-Wunused-private-field]
+  213 |   bool stopping_ = false;
+      |        ^
+1 warning generated.
+[666/688] Building CXX object CMakeFiles/patchy_core_tests.dir/tests/core/rttex_tests.cpp.o
+In file included from /Volumes/StudioData/code/gpt/LayerForgeAI/vendor/Patchy/tests/core/rttex_tests.cpp:30:
+In file included from /Volumes/StudioData/code/gpt/LayerForgeAI/vendor/Patchy/tests/core/core_test_support.hpp:6:
+/Volumes/StudioData/code/gpt/LayerForgeAI/vendor/Patchy/tests/test_harness.hpp:213:8: warning: private field 'stopping_' is not used [-Wunused-private-field]
+  213 |   bool stopping_ = false;
+      |        ^
+1 warning generated.
+[667/688] Building CXX object CMakeFiles/patchy_core_tests.dir/tests/core/smart_filter_descriptors_tests.cpp.o
+In file included from /Volumes/StudioData/code/gpt/LayerForgeAI/vendor/Patchy/tests/core/smart_filter_descriptors_tests.cpp:10:
+In file included from /Volumes/StudioData/code/gpt/LayerForgeAI/vendor/Patchy/tests/core/test_groups.hpp:7:
+/Volumes/StudioData/code/gpt/LayerForgeAI/vendor/Patchy/tests/test_harness.hpp:213:8: warning: private field 'stopping_' is not used [-Wunused-private-field]
+  213 |   bool stopping_ = false;
+      |        ^
+1 warning generated.
+[668/688] Building CXX object CMakeFiles/patchy_core_tests.dir/tests/core/jxl_tests.cpp.o
+In file included from /Volumes/StudioData/code/gpt/LayerForgeAI/vendor/Patchy/tests/core/jxl_tests.cpp:30:
+In file included from /Volumes/StudioData/code/gpt/LayerForgeAI/vendor/Patchy/tests/core/core_test_support.hpp:6:
+/Volumes/StudioData/code/gpt/LayerForgeAI/vendor/Patchy/tests/test_harness.hpp:213:8: warning: private field 'stopping_' is not used [-Wunused-private-field]
+  213 |   bool stopping_ = false;
+      |        ^
+1 warning generated.
+[669/688] Building CXX object CMakeFiles/patchy_core_tests.dir/tests/core/psd_writer_stability_tests.cpp.o
+In file included from /Volumes/StudioData/code/gpt/LayerForgeAI/vendor/Patchy/tests/core/psd_writer_stability_tests.cpp:20:
+/Volumes/StudioData/code/gpt/LayerForgeAI/vendor/Patchy/tests/test_harness.hpp:213:8: warning: private field 'stopping_' is not used [-Wunused-private-field]
+  213 |   bool stopping_ = false;
+      |        ^
+1 warning generated.
+[670/688] Building CXX object CMakeFiles/patchy_core_tests.dir/tests/core/psd_text_tests.cpp.o
+In file included from /Volumes/StudioData/code/gpt/LayerForgeAI/vendor/Patchy/tests/core/psd_text_tests.cpp:17:
+/Volumes/StudioData/code/gpt/LayerForgeAI/vendor/Patchy/tests/test_harness.hpp:213:8: warning: private field 'stopping_' is not used [-Wunused-private-field]
+  213 |   bool stopping_ = false;
+      |        ^
+1 warning generated.
+[671/688] Building CXX object CMakeFiles/patchy_core_tests.dir/tests/core/dds_tests.cpp.o
+In file included from /Volumes/StudioData/code/gpt/LayerForgeAI/vendor/Patchy/tests/core/dds_tests.cpp:35:
+In file included from /Volumes/StudioData/code/gpt/LayerForgeAI/vendor/Patchy/tests/core/core_test_support.hpp:6:
+/Volumes/StudioData/code/gpt/LayerForgeAI/vendor/Patchy/tests/test_harness.hpp:213:8: warning: private field 'stopping_' is not used [-Wunused-private-field]
+  213 |   bool stopping_ = false;
+      |        ^
+1 warning generated.
+[672/688] Building CXX object CMakeFiles/patchy_core_tests.dir/tests/core/psd_vector_fixtures_tests.cpp.o
+In file included from /Volumes/StudioData/code/gpt/LayerForgeAI/vendor/Patchy/tests/core/psd_vector_fixtures_tests.cpp:52:
+In file included from /Volumes/StudioData/code/gpt/LayerForgeAI/vendor/Patchy/tests/core/core_test_support.hpp:6:
+/Volumes/StudioData/code/gpt/LayerForgeAI/vendor/Patchy/tests/test_harness.hpp:213:8: warning: private field 'stopping_' is not used [-Wunused-private-field]
+  213 |   bool stopping_ = false;
+      |        ^
+1 warning generated.
+[673/688] Building CXX object CMakeFiles/patchy_core_tests.dir/tests/core/raw_heif_tests.cpp.o
+In file included from /Volumes/StudioData/code/gpt/LayerForgeAI/vendor/Patchy/tests/core/raw_heif_tests.cpp:8:
+/Volumes/StudioData/code/gpt/LayerForgeAI/vendor/Patchy/tests/test_harness.hpp:213:8: warning: private field 'stopping_' is not used [-Wunused-private-field]
+  213 |   bool stopping_ = false;
+      |        ^
+1 warning generated.
+[674/688] Building CXX object CMakeFiles/patchy_core_tests.dir/tests/core/smart_filter_descriptors_tests_canonical.cpp.o
+In file included from /Volumes/StudioData/code/gpt/LayerForgeAI/vendor/Patchy/tests/core/smart_filter_descriptors_tests_canonical.cpp:17:
+/Volumes/StudioData/code/gpt/LayerForgeAI/vendor/Patchy/tests/test_harness.hpp:213:8: warning: private field 'stopping_' is not used [-Wunused-private-field]
+  213 |   bool stopping_ = false;
+      |        ^
+1 warning generated.
+[675/688] Building CXX object CMakeFiles/patchy_core_tests.dir/tests/core/smart_filter_pixels_tests.cpp.o
+In file included from /Volumes/StudioData/code/gpt/LayerForgeAI/vendor/Patchy/tests/core/smart_filter_pixels_tests.cpp:13:
+/Volumes/StudioData/code/gpt/LayerForgeAI/vendor/Patchy/tests/test_harness.hpp:213:8: warning: private field 'stopping_' is not used [-Wunused-private-field]
+  213 |   bool stopping_ = false;
+      |        ^
+1 warning generated.
+[676/688] Building CXX object CMakeFiles/patchy_core_tests.dir/tests/core/stroke_mask_effects_tests.cpp.o
+In file included from /Volumes/StudioData/code/gpt/LayerForgeAI/vendor/Patchy/tests/core/stroke_mask_effects_tests.cpp:14:
+/Volumes/StudioData/code/gpt/LayerForgeAI/vendor/Patchy/tests/test_harness.hpp:213:8: warning: private field 'stopping_' is not used [-Wunused-private-field]
+  213 |   bool stopping_ = false;
+      |        ^
+1 warning generated.
+[677/688] Building CXX object CMakeFiles/patchy_core_tests.dir/tests/core/smart_objects_warp_tests.cpp.o
+In file included from /Volumes/StudioData/code/gpt/LayerForgeAI/vendor/Patchy/tests/core/smart_objects_warp_tests.cpp:20:
+/Volumes/StudioData/code/gpt/LayerForgeAI/vendor/Patchy/tests/test_harness.hpp:213:8: warning: private field 'stopping_' is not used [-Wunused-private-field]
+  213 |   bool stopping_ = false;
+      |        ^
+1 warning generated.
+[678/688] Building CXX object CMakeFiles/patchy_core_tests.dir/tests/core/vector_shape_tests.cpp.o
+In file included from /Volumes/StudioData/code/gpt/LayerForgeAI/vendor/Patchy/tests/core/vector_shape_tests.cpp:10:
+/Volumes/StudioData/code/gpt/LayerForgeAI/vendor/Patchy/tests/test_harness.hpp:213:8: warning: private field 'stopping_' is not used [-Wunused-private-field]
+  213 |   bool stopping_ = false;
+      |        ^
+1 warning generated.
+[679/688] Building CXX object CMakeFiles/patchy_core_tests.dir/tests/core/artboard_tests.cpp.o
+In file included from /Volumes/StudioData/code/gpt/LayerForgeAI/vendor/Patchy/tests/core/artboard_tests.cpp:12:
+/Volumes/StudioData/code/gpt/LayerForgeAI/vendor/Patchy/tests/test_harness.hpp:213:8: warning: private field 'stopping_' is not used [-Wunused-private-field]
+  213 |   bool stopping_ = false;
+      |        ^
+1 warning generated.
+[680/688] Building CXX object CMakeFiles/patchy_core_tests.dir/tests/core/translation_marker_tests.cpp.o
+In file included from /Volumes/StudioData/code/gpt/LayerForgeAI/vendor/Patchy/tests/core/translation_marker_tests.cpp:7:
+/Volumes/StudioData/code/gpt/LayerForgeAI/vendor/Patchy/tests/test_harness.hpp:213:8: warning: private field 'stopping_' is not used [-Wunused-private-field]
+  213 |   bool stopping_ = false;
+      |        ^
+1 warning generated.
+[681/688] Building CXX object CMakeFiles/patchy_core_tests.dir/tests/core/svg_tests.cpp.o
+In file included from /Volumes/StudioData/code/gpt/LayerForgeAI/vendor/Patchy/tests/core/svg_tests.cpp:11:
+/Volumes/StudioData/code/gpt/LayerForgeAI/vendor/Patchy/tests/test_harness.hpp:213:8: warning: private field 'stopping_' is not used [-Wunused-private-field]
+  213 |   bool stopping_ = false;
+      |        ^
+1 warning generated.
+[682/688] Building CXX object CMakeFiles/patchy_core_tests.dir/tests/core/smart_filter_descriptors_tests_fixtures.cpp.o
+In file included from /Volumes/StudioData/code/gpt/LayerForgeAI/vendor/Patchy/tests/core/smart_filter_descriptors_tests_fixtures.cpp:16:
+/Volumes/StudioData/code/gpt/LayerForgeAI/vendor/Patchy/tests/test_harness.hpp:213:8: warning: private field 'stopping_' is not used [-Wunused-private-field]
+  213 |   bool stopping_ = false;
+      |        ^
+1 warning generated.
+[683/688] Building CXX object CMakeFiles/patchy_core_tests.dir/tests/core/ai_selection_tests.cpp.o
+In file included from /Volumes/StudioData/code/gpt/LayerForgeAI/vendor/Patchy/tests/core/ai_selection_tests.cpp:10:
+/Volumes/StudioData/code/gpt/LayerForgeAI/vendor/Patchy/tests/test_harness.hpp:213:8: warning: private field 'stopping_' is not used [-Wunused-private-field]
+  213 |   bool stopping_ = false;
+      |        ^
+1 warning generated.
+[684/688] Building CXX object CMakeFiles/patchy_core_tests.dir/tests/core/vector_raster_tests.cpp.o
+In file included from /Volumes/StudioData/code/gpt/LayerForgeAI/vendor/Patchy/tests/core/vector_raster_tests.cpp:36:
+In file included from /Volumes/StudioData/code/gpt/LayerForgeAI/vendor/Patchy/tests/core/core_test_support.hpp:6:
+/Volumes/StudioData/code/gpt/LayerForgeAI/vendor/Patchy/tests/test_harness.hpp:213:8: warning: private field 'stopping_' is not used [-Wunused-private-field]
+  213 |   bool stopping_ = false;
+      |        ^
+1 warning generated.
+[685/688] Building CXX object CMakeFiles/patchy_core_tests.dir/tests/core/pdf_tests.cpp.o
+In file included from /Volumes/StudioData/code/gpt/LayerForgeAI/vendor/Patchy/tests/core/pdf_tests.cpp:17:
+/Volumes/StudioData/code/gpt/LayerForgeAI/vendor/Patchy/tests/test_harness.hpp:213:8: warning: private field 'stopping_' is not used [-Wunused-private-field]
+  213 |   bool stopping_ = false;
+      |        ^
+1 warning generated.
+[686/688] Building CXX object CMakeFiles/patchy_core_tests.dir/tests/core/gmic_tests.cpp.o
+In file included from /Volumes/StudioData/code/gpt/LayerForgeAI/vendor/Patchy/tests/core/gmic_tests.cpp:27:
+In file included from /Volumes/StudioData/code/gpt/LayerForgeAI/vendor/Patchy/tests/core/core_test_support.hpp:6:
+/Volumes/StudioData/code/gpt/LayerForgeAI/vendor/Patchy/tests/test_harness.hpp:213:8: warning: private field 'stopping_' is not used [-Wunused-private-field]
+  213 |   bool stopping_ = false;
+      |        ^
+1 warning generated.
+[687/688] Building CXX object CMakeFiles/patchy_core_tests.dir/tests/core/tiff_layers_tests.cpp.o
+In file included from /Volumes/StudioData/code/gpt/LayerForgeAI/vendor/Patchy/tests/core/tiff_layers_tests.cpp:11:
+In file included from /Volumes/StudioData/code/gpt/LayerForgeAI/vendor/Patchy/tests/core/core_test_support.hpp:6:
+/Volumes/StudioData/code/gpt/LayerForgeAI/vendor/Patchy/tests/test_harness.hpp:213:8: warning: private field 'stopping_' is not used [-Wunused-private-field]
+  213 |   bool stopping_ = false;
+      |        ^
+1 warning generated.
+[688/688] Linking CXX executable patchy_core_tests.js

@@ -1,0 +1,48 @@
+Captured: 2026-10-20 19:18, Asia/Shanghai
+
+Browser round trip: PASSED (macOS wasm-release build)
+Protocol boundary checks: 8/8 PASSED in the real browser
+CI script rerun: PASSED (ci/macos-wasm-m0.sh, relative paths)
+Photoshop warning-visible open: NOT RUN (Photoshop is not installed on this host)
+M0 status: blocked, m1Allowed=false
+
+Latest evidence (CI script, includes protocol checks):
+  artifacts/m0/browser-20261020-06/
+  fixture: vendor/Patchy/test-fixtures/psd/photoshop-clip-base-effects.psd (29 layers, 14 clipped)
+  ctest 1/1 in 20.63 s; E2E 1 passed in 4.0 s; independent verifier ok
+  exact 3 downloads, renamed layer reopened, before/after RGBA SHA-256 equal
+  logs: artifacts/m0/logs/macos-20261020-191428/
+  same source/output/RGBA hashes as browser-20261020-05 and -03
+
+130-layer synthetic stress evidence:
+  artifacts/m0/browser-20261020-02/
+
+Independent browser verification:
+  artifacts/m0/browser-20261020-06/browser-evidence-verification.json
+  artifacts/m0/browser-20261020-05/browser-evidence-verification.json
+  artifacts/m0/browser-20261020-03/browser-evidence-verification.json
+  artifacts/m0/browser-20261020-02/browser-evidence-verification.json
+  all record photoshopVerified=false and m0Accepted=false.
+
+Protocol checks covered missing/stale preconditions, escaped output paths,
+non-staged input paths, unknown operations, preview/PSD overwrite refusal, and
+an unchanged automation fingerprint after every rejected request. They exposed
+a bridge bug where run_source() returning false for a script error was reported
+as BUSY; the bridge now checks run_active() before starting and returns
+SCRIPT_ERROR through the normal completion path.
+
+CI script findings fixed during the rerun:
+- relative input paths were embedded into a separate build directory; all
+  inputs/outputs are now resolved to absolute paths.
+- Qt's WASM toolchain requires EMSDK/EM_CONFIG; the script now exports them and
+  checks that .emscripten exists.
+
+Still required before M0 can pass:
+- Photoshop 2026 opens browser-20261020-06/m0-normalized.psd with warnings
+  visible and reports CLEAN.
+- A 100+ layer approved real-design PSD/PSB is an M1 input, not yet provided.
+
+The full evidence verifier (scripts/verify-evidence.mjs) additionally requires
+photoshop-open-check.log with exactly one CLEAN line, rechecks the 8 protocol
+boundary checks, and writes evidence-verification.json. A negative run without
+the Photoshop log was rejected with a clear error and wrote no acceptance file.

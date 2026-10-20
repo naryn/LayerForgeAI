@@ -1,0 +1,58 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -1467,10 +1467,12 @@
+     if(EMSCRIPTEN)
+       target_sources(patchy_ui PRIVATE
+         src/ui/print_dialog_wasm.cpp
+         src/ui/clipboard_wasm.hpp
+         src/ui/clipboard_wasm.cpp
+         src/ui/dialog_utils_wasm.hpp
+         src/ui/dialog_utils_wasm.cpp
++        src/ui/web_bridge_wasm.hpp
++        src/ui/web_bridge_wasm.cpp
+         src/ui/user_fonts_wasm.hpp
+         src/ui/user_fonts_wasm.cpp
+         src/ui/wasm_event_guard.hpp
+diff --git a/src/ui/main_window.cpp b/src/ui/main_window.cpp
+--- a/src/ui/main_window.cpp
++++ b/src/ui/main_window.cpp
+@@ -148,5 +148,6 @@
+ #ifdef Q_OS_WASM
+ #include "ui/dialog_utils_wasm.hpp"
++#include "ui/web_bridge_wasm.hpp"
+ #include "ui/wasm_event_guard.hpp"
+ #include "ui/wasm_memory_telemetry.hpp"
+ #endif
+@@ -4309,4 +4310,7 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
+   wasm_files::install_web_drop_target([this](const QString& path) { handle_web_file_drop(path); });
++  // DOM/Promise callbacks only write page-side JSON. This QObject polls from
++  // Qt's event loop and owns the restricted PSD Normalize Studio bridge.
++  new WebBridgeWasm(*this);
+   // 1 Hz publisher of globalThis.patchyMemStats, inert unless the page opts
+   // in with PATCHY_MEM_STATS/PATCHY_MEM_LOG; the timer only fires once the
+   // event loop runs, so installing this early is safe.
+
+diff --git a/scripts/release/build-wasm.bat b/scripts/release/build-wasm.bat
+--- a/scripts/release/build-wasm.bat
++++ b/scripts/release/build-wasm.bat
+@@ -94,6 +94,8 @@ rem answers with a precompressed (br/gzip) variant.
+ rem answers with a precompressed (br/gzip) variant.
+ for %%S in ("%SITE_DIR%\patchy.wasm") do set "PATCHY_WASM_SIZE=%%~zS"
+ copy /Y "%REPO%\NOTICE-THIRD-PARTY.md" "%SITE_DIR%\NOTICE-THIRD-PARTY.md" >nul || goto fail
+ copy /Y "%REPO%\src\formats\libheif\COPYING" "%SITE_DIR%\libheif-COPYING.txt" >nul || goto fail
++copy /Y "%REPO%\scripts\wasm\m0\patchy-bridge.js" "%SITE_DIR%\patchy-bridge.js" >nul || goto fail
++copy /Y "%REPO%\scripts\wasm\m0\m0-harness.js" "%SITE_DIR%\m0-harness.js" >nul || goto fail
+ 
+ rem Configure the shell template; it is staged as both patchy.html and an
+diff --git a/packaging/web/patchy.html.in b/packaging/web/patchy.html.in
+--- a/packaging/web/patchy.html.in
++++ b/packaging/web/patchy.html.in
+@@ -381,5 +381,6 @@
+         }
+       }
+     </script>
++    <script type="module" src="m0-harness.js?v=__PATCHY_CACHE_TAG__"></script>
+   </body>
+ </html>
+

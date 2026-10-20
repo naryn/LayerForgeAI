@@ -1,0 +1,26 @@
+
+> test:e2e
+> playwright test --config playwright.config.mjs
+
+
+Running 1 test using 1 worker
+
+[1/1] tests/e2e/m0-roundtrip.spec.mjs:34:1 › rename, save a copy, reopen, verify, and preserve rendered pixels
+  1) tests/e2e/m0-roundtrip.spec.mjs:34:1 › rename, save a copy, reopen, verify, and preserve rendered pixels 
+
+    Error: page.evaluate: Error: renderPreview: expected SCRIPT_ERROR, got BUSY: Patchy script engine is busy
+        at expectBridgeError (http://127.0.0.1:8973/m0-harness.js:34:15)
+        at async runProtocolChecks (http://127.0.0.1:8973/m0-harness.js:70:31)
+        at async Object.run (http://127.0.0.1:8973/m0-harness.js:152:28)
+        at async <anonymous>:396:30
+        at expectBridgeError (http://127.0.0.1:8973/m0-harness.js:34:15)
+        at async runProtocolChecks (http://127.0.0.1:8973/m0-harness.js:70:31)
+        at async Object.run (http://127.0.0.1:8973/m0-harness.js:152:28)
+        at async <anonymous>:396:30
+        at /Volumes/StudioData/code/gpt/LayerForgeAI/poc/patchy-bridge/tests/e2e/m0-roundtrip.spec.mjs:67:29
+
+    Error Context: test-results/m0-roundtrip-rename-save-a-e3b57-nd-preserve-rendered-pixels/error-context.md
+
+
+  1 failed
+    tests/e2e/m0-roundtrip.spec.mjs:34:1 › rename, save a copy, reopen, verify, and preserve rendered pixels 

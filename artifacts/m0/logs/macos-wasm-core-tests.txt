@@ -1,0 +1,7 @@
+Test project /Volumes/StudioData/code/gpt/LayerForgeAI/vendor/Patchy/build/wasm-core
+    Start 1: patchy_core_tests
+1/1 Test #1: patchy_core_tests ................   Passed   20.63 sec
+
+100% tests passed out of 1
+
+Total Test time (real) =  20.63 sec

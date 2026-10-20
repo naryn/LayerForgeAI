@@ -1,0 +1,22 @@
+# macOS
+.DS_Store
+
+# Local toolchain and third-party source trees
+.tools/
+vendor/
+node_modules/
+aqtinstall.log
+
+# Build and test outputs
+build/
+dist/
+test-results/
+playwright-report/
+playwright/.cache/
+*.tsbuildinfo
+
+# Large local evidence and synthetic fixtures
+tests/fixtures/*.psd
+artifacts/**/*.psd
+artifacts/**/*.png
+artifacts/**/playwright-trace.zip

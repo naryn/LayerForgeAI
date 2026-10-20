@@ -1,0 +1,30 @@
+Captured: 2026-10-20, Asia/Shanghai
+
+$ cd poc/patchy-bridge
+$ npm test
+
+> test
+> node --test tests/*.test.mjs
+
+PASS request only enqueues JSON and resolves from the response queue
+PASS file staging Promise continuation enqueues instead of entering WASM
+PASS an error response rejects the matching request
+PASS precondition is serialized without invoking WASM
+PASS AbortSignal marks plain JS cancellation state and never calls WASM
+PASS timeout marks cancellation for the Qt poller
+PASS one client does not consume another client's response
+PASS response protocol mismatch is rejected
+PASS oversized payload is rejected before it reaches the page queue
+PASS browser callbacks contain no direct WASM entry call
+PASS native adapter is timer-polled and exposes only the M0 whitelist
+PASS integration patch wires only the wasm target and MainWindow timer owner
+
+tests 12
+pass 12
+fail 0
+
+Note: durations are intentionally omitted because they are not acceptance
+criteria. These are JS unit/static contract tests only; they are not a Patchy
+WASM E2E result. `git apply --check` also passed for `integration.patch` against
+the pinned Patchy commit.
+

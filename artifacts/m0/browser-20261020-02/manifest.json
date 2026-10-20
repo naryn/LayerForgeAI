@@ -1,0 +1,70 @@
+{
+  "patchyCommit": "d1ff95235e00af296868d4253e03391ca002ee9d",
+  "result": {
+    "protocolVersion": 1,
+    "sourceFile": "m0-synthetic-125-layers.psd",
+    "sourceDocumentId": "1",
+    "sourceLayerId": "1",
+    "originalName": "section_01",
+    "renamed": "section_01 [M0]",
+    "reopenedDocumentId": "2",
+    "reopenedLayerId": "1",
+    "before": {
+      "documentId": "1",
+      "height": 768,
+      "offscreen": false,
+      "path": "/saved/m0-before.png",
+      "rect": {
+        "height": 768,
+        "width": 1024,
+        "x": 0,
+        "y": 0
+      },
+      "scaleX": 1,
+      "scaleY": 1,
+      "width": 1024
+    },
+    "after": {
+      "documentId": "2",
+      "height": 768,
+      "offscreen": false,
+      "path": "/saved/m0-after.png",
+      "rect": {
+        "height": 768,
+        "width": 1024,
+        "x": 0,
+        "y": 0
+      },
+      "scaleX": 1,
+      "scaleY": 1,
+      "width": 1024
+    },
+    "finalRevision": "0",
+    "finalFingerprint": "fc7a01e299c7eea21d6229349855cc1d53b72d147af69800a1118031d1bd9804"
+  },
+  "source": {
+    "path": "/Volumes/StudioData/code/gpt/LayerForgeAI/tests/fixtures/m0-synthetic-125-layers.psd",
+    "sha256": "79ef4bf26b432d6f66a88c637c2e369409ed12a0e453b50fd337de86acc8305c"
+  },
+  "output": {
+    "psd": {
+      "path": "/Volumes/StudioData/code/gpt/LayerForgeAI/artifacts/m0/browser-20261020-02/m0-normalized.psd",
+      "sha256": "396473e3618c58dfafe82826705319efef415cb120c3b9994fe4e7bd2c9b0f72"
+    },
+    "before": {
+      "path": "/Volumes/StudioData/code/gpt/LayerForgeAI/artifacts/m0/browser-20261020-02/m0-before.png",
+      "sha256": "c8ff7717c610b1783df9222d823210637f64a8ba2a361a42ea7be33dd5ca66ac",
+      "width": 1024,
+      "height": 768,
+      "rgbaSha256": "e07486f069dd4192703bce127dd24798a53d15fd81377d782de5cf028900eeac"
+    },
+    "after": {
+      "path": "/Volumes/StudioData/code/gpt/LayerForgeAI/artifacts/m0/browser-20261020-02/m0-after.png",
+      "sha256": "c8ff7717c610b1783df9222d823210637f64a8ba2a361a42ea7be33dd5ca66ac",
+      "width": 1024,
+      "height": 768,
+      "rgbaSha256": "e07486f069dd4192703bce127dd24798a53d15fd81377d782de5cf028900eeac"
+    }
+  },
+  "crossOriginIsolated": true
+}

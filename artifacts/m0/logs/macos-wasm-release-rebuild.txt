@@ -1,0 +1,9 @@
+[0/2] Re-checking globbed directories...
+[1/9] Stamping changed build inputs
+[2/9] Automatic MOC and UIC for target patchy_ui
+[3/8] Checking translation source freshness and every language catalog
+Translations verified (all): 6001 messages, 11 languages
+[4/8] Building CXX object CMakeFiles/patchy_ui.dir/src/ui/build_info.cpp.o
+[5/8] Building CXX object CMakeFiles/patchy_ui.dir/src/ui/web_bridge_wasm.cpp.o
+[6/8] Linking CXX static library libpatchy_ui.a
+[7/8] Linking CXX executable patchy.js

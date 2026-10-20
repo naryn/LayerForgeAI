@@ -1,0 +1,17 @@
+Captured: 2026-10-20, Asia/Shanghai
+Patchy commit: d1ff95235e00af296868d4253e03391ca002ee9d
+
+$ pwsh -File scripts/wasm/setup-emsdk.ps1
+zsh:1: command not found: pwsh
+exit: 127
+
+$ cmake --preset wasm-release
+zsh:1: command not found: cmake
+exit: 127
+
+Result: NOT BUILT. These failures are recorded as failures, not as a successful
+configure/build. Even after installing generic tools, the pinned upstream
+wasm-release preset points QT_HOST_PATH at the Windows msvc2022_64 host kit and
+the setup scripts invoke Windows .bat/.exe paths, so the official route still
+requires a matching Windows build host or a separately engineered macOS port.
+

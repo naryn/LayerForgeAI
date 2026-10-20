@@ -1,0 +1,18 @@
+{
+  "ok": true,
+  "scope": "macos-wasm-browser",
+  "verifiedAt": "2026-10-20T10:53:39.884Z",
+  "patchyCommit": "d1ff95235e00af296868d4253e03391ca002ee9d",
+  "protocolVersion": 1,
+  "sourcePath": "/Volumes/StudioData/code/gpt/LayerForgeAI/tests/fixtures/m0-synthetic-125-layers.psd",
+  "sourceSha256": "79ef4bf26b432d6f66a88c637c2e369409ed12a0e453b50fd337de86acc8305c",
+  "outputPsdSha256": "396473e3618c58dfafe82826705319efef415cb120c3b9994fe4e7bd2c9b0f72",
+  "rgbaSha256": "e07486f069dd4192703bce127dd24798a53d15fd81377d782de5cf028900eeac",
+  "dimensions": {
+    "width": 1024,
+    "height": 768
+  },
+  "photoshopVerified": false,
+  "m0Accepted": false,
+  "note": "Photoshop warning-free open remains unverified; M0 is not passed."
+}

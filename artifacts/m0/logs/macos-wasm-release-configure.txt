@@ -1,0 +1,85 @@
+-- Automatic selection disabled: onnxruntime-web 1.30.0 not found (run scripts/setup-ai-deps -Web)
+
+=== Summary of compiled codecs ===
+libde265 HEVC decoder                 : - disabled
+FFMPEG HEVC decoder (HW acc)          : - disabled
+WebCodecs HEVC decoder (experimental) : + built-in
+x265 HEVC encoder                     : - disabled
+Kvazaar HEVC encoder                  : - disabled
+AOM AV1 decoder                       : - disabled
+AOM AV1 encoder                       : - disabled
+Dav1d AV1 decoder                     : - disabled
+SVT AV1 encoder                       : - disabled
+Rav1e AV1 encoder                     : - disabled
+JPEG decoder                          : - disabled
+JPEG encoder                          : - disabled
+x264 AVC encoder                      : - disabled
+OpenH264 decoder                      : - disabled
+OpenJPEG J2K decoder                  : - disabled
+OpenJPEG J2K encoder                  : - disabled
+OpenJPH HT-J2K encoder                : - disabled
+uvg266 VVC encoder                    : - disabled
+vvenc VVC encoder                     : - disabled
+vvdec VVC decoder                     : - disabled
+
+=== Supported formats ===
+format        decoding   encoding
+AVC             NO         NO 
+AVIF            NO         NO 
+HEIC            YES        NO 
+JPEG            NO         NO 
+JPEG2000        NO         NO 
+JPEG2000-HT     NO         NO 
+Uncompressed    NO         NO 
+VVC             NO         NO 
+
+libsharpyuv: disabled
+-- Could NOT find TIFF (missing: TIFF_LIBRARY TIFF_INCLUDE_DIR) 
+-- Could NOT find JPEG (missing: JPEG_LIBRARY JPEG_INCLUDE_DIR) 
+-- Could NOT find ZLIB (missing: ZLIB_LIBRARY ZLIB_INCLUDE_DIR) 
+-- Could NOT find PNG (missing: PNG_LIBRARY PNG_PNG_INCLUDE_DIR) 
+-- Could NOT find WEBP (missing: WEBP_INCLUDE_DIR WEBP_LIBRARY WEBPMUX_INCLUDE_DIR WEBPMUX_LIBRARY) 
+
+=== Active input formats for heif-enc ===
+JPEG: ------ (libjpeg not found)
+PNG:  ------ (libpng not found)
+WEBP:  ------ (libwebp not found)
+TIFF: ------ (libtiff not found)
+
+Not compiling 'x265' backend
+Not compiling 'libde265' backend
+Not compiling 'dav1d' backend
+Not compiling 'aomdec' backend
+Not compiling 'aomenc' backend
+Not compiling 'svtenc' backend
+Not compiling 'rav1e' backend
+Not compiling 'jpegdec' backend
+Not compiling 'jpegenc' backend
+Not compiling 'j2kdec' backend
+Not compiling 'j2kenc' backend
+Not compiling 'kvazaar' backend
+Not compiling 'ffmpegdec' backend
+Not compiling 'jphenc' backend
+Not compiling 'uvg266' backend
+Not compiling 'vvdec' backend
+Not compiling 'vvenc' backend
+Not compiling 'x264' backend
+Not compiling 'openh264dec' backend
+Not compiling 'libsharpyuv'
+-- Disabling AVX2 optimization.
+-- Disabling AVX2 optimization.
+-- Performing Test HAS_COMPILE_FLAG
+-- Performing Test HAS_COMPILE_FLAG - Failed
+-- Disabling SSE41 optimization.
+-- Disabling SSE41 optimization.
+-- Performing Test HAS_COMPILE_FLAG
+-- Performing Test HAS_COMPILE_FLAG - Failed
+-- Using Qt bundled ZLIB.
+-- Using Qt bundled PCRE2.
+-- Using Qt bundled PNG.
+-- Using Qt bundled Harfbuzz.
+-- Using Qt bundled Freetype.
+-- Using Qt bundled Jpeg.
+-- Configuring done (1.0s)
+-- Generating done (0.2s)
+-- Build files have been written to: /Volumes/StudioData/code/gpt/LayerForgeAI/vendor/Patchy/build/wasm-release

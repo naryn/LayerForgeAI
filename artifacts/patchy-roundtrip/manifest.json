@@ -1,0 +1,47 @@
+{
+  "engine": "patchy-wasm",
+  "fixture": {
+    "name": "patchy-group-merge.psd",
+    "sha256": "42947acdaeefe6aad4fd9be3298841c7570787b8d929e609e10945cc63711609",
+    "width": 160,
+    "height": 100
+  },
+  "output": {
+    "psd": {
+      "path": "B:\\src\\LayerForgeAI\\artifacts\\patchy-roundtrip\\patchy-编组合并-20261021-141005-normalized.psd",
+      "sha256": "32370739675fcdf9dbb7be8674593db71813e7f05cdd65f0ce59d4e878331e21"
+    },
+    "before": {
+      "path": "B:\\src\\LayerForgeAI\\artifacts\\patchy-roundtrip\\patchy-preview-20261021060958-5hhm.png",
+      "width": 160,
+      "height": 100,
+      "rgbaSha256": "ca3355942edcda4327eb426745a1494a2320807259cde36732982520649cac53"
+    },
+    "grouped": {
+      "path": "B:\\src\\LayerForgeAI\\artifacts\\patchy-roundtrip\\patchy-preview-20261021061001-kin5.png",
+      "width": 160,
+      "height": 100,
+      "rgbaSha256": "ca3355942edcda4327eb426745a1494a2320807259cde36732982520649cac53"
+    },
+    "merged": {
+      "path": "B:\\src\\LayerForgeAI\\artifacts\\patchy-roundtrip\\patchy-preview-20261021061004-23ol.png",
+      "width": 160,
+      "height": 100,
+      "rgbaSha256": "ca3355942edcda4327eb426745a1494a2320807259cde36732982520649cac53"
+    },
+    "reopened": {
+      "path": "B:\\src\\LayerForgeAI\\artifacts\\patchy-roundtrip\\patchy-preview-20261021061007-tv8i.png",
+      "width": 160,
+      "height": 100,
+      "rgbaSha256": "ca3355942edcda4327eb426745a1494a2320807259cde36732982520649cac53"
+    }
+  },
+  "pixelsMatch": true,
+  "pixelDiff": {
+    "differingPixels": 0,
+    "ratio": "0.000%"
+  },
+  "photoshopVerified": false,
+  "m0Accepted": false,
+  "note": "Real Patchy WASM bridge evidence on a synthetic PSD. Photoshop warning-free open remains unverified."
+}

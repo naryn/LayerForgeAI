@@ -12,6 +12,10 @@ Photoshop 相关验证。该决定只调整开发顺序，不改变 M0 的未通
 before/after PNG 的独立像素比较。**只剩 Photoshop 无警告打开这一项 P0
 未验证**，因此 M0 仍未通过。
 
+> **M1 进展（2026-10-20）**：负责人授权的 Web 工作台初版已在 `apps/web` 完成，
+> 详见 [PROGRESS.md](PROGRESS.md)。该工作不使用 Photoshop 证据，也未改变本报告的
+> M0 结论、`artifacts/m0/status.json` 或门禁语义。
+
 ## 1. 固定源码与审计范围
 
 - 上游：`https://github.com/SethRobinson/Patchy`
@@ -152,7 +156,7 @@ cmake --build vendor/Patchy/build/wasm-release
 - `poc/patchy-bridge/web/M0BridgeProbe.vue`：最小 Vue 3 调用链。
 - `poc/patchy-bridge/patchy/web_bridge_wasm.hpp/.cpp`：Patchy 侧 `QTimer` 轮询与白名单操作草案。
 - `poc/patchy-bridge/patchy/integration.patch`：针对固定提交的 CMake/MainWindow 精确接线。
-- `poc/patchy-bridge/PROTOCOL.md`：协议 v1、白名单、前置条件与稳定错误码。
+- `poc/patchy-bridge/PROTOCOL.md`：协议 v2、白名单、前置条件、撤销与预览像素对比、稳定错误码。
 - `poc/patchy-bridge/tests/*.test.mjs`：队列、取消、多客户端、协议和静态接线门禁。
 - `poc/patchy-bridge/web/m0-harness.js`：仅在 `?m0=1` 启用的浏览器验收入口。
 - `poc/patchy-bridge/tests/e2e/m0-roundtrip.spec.mjs`：真实下载、保存重开、原件哈希和 PNG RGBA 像素比较。
@@ -380,9 +384,10 @@ verifier 以 `M0 evidence invalid: photoshop-open-check.log is missing or empty`
 2026-10-20 用户明确要求：**先把界面和整体应用开发到可用，再对接 Photoshop
 相关验证**。因此后续工作按以下顺序执行，但 M0 的结论与门禁语义保持不变：
 
-1. 先构建 Vue 3 + TypeScript + Vite 工作台：项目列表、PSD 导入、Patchy
-   iframe 集成、图层树展示、双向选中、重命名/保存/重开、审核/对比/导出。
-   这部分复用已验证的桥接协议，不重复实现桥接入口。
+1. ~~先构建 Vue 3 + TypeScript + Vite 工作台~~ **初版已完成**（`apps/web`）：
+   项目列表、PSD 导入、图层树、属性/重命名、命名计划、保存重开、历史与 IR
+   草稿；Patchy iframe 传输层已实现，但尚未用真实 Patchy 构建回归，双向选中
+   仍待 `selectLayer`。详见 [PROGRESS.md](PROGRESS.md)。
 2. 在上述 UI 工作流可运行后，再回到 M0 剩余项：在装有 Photoshop 2026 的
    交互式主机上，用 `ci/photoshop-m0-check.ps1` 以警告可见方式打开
    `artifacts/m0/browser-20261020-06/m0-normalized.psd`；任何 repair、

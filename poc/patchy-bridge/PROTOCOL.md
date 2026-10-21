@@ -1,4 +1,4 @@
-# M0 browser bridge protocol v1
+# M0 browser bridge protocol v2
 
 The transport is two page-owned arrays and one cancellation object:
 
@@ -16,7 +16,7 @@ WASM export.
 
 ```json
 {
-  "protocolVersion": 1,
+  "protocolVersion": 2,
   "requestId": "client-id-4",
   "clientId": "client-id",
   "operation": "renameLayer",
@@ -33,15 +33,75 @@ WASM export.
 }
 ```
 
-`renameLayer` and `saveAsAndReopen` require the precondition. A mismatch returns
-`STALE_DOCUMENT`; the browser must refresh state and ask the user or regenerate
-its plan rather than retrying a mutation blindly.
+`renameLayer`, `groupLayers`, `mergeLayers`, `undo`, and `saveAsAndReopen`
+require the precondition. A mismatch returns `STALE_DOCUMENT`; the browser must
+refresh state and ask the user or regenerate its plan rather than retrying a
+mutation blindly.
+
+`undo` restores the document's previous history entry and returns
+`{documentId}`. The browser must call `getState` afterwards; revisions and layer
+IDs may change. One engine script (one group or merge) is one undo entry.
+
+`comparePreview` decodes two existing `/saved/*.png` previews inside Patchy and
+returns aggregate pixel differences without transferring image data:
+
+```json
+{
+  "operation": "comparePreview",
+  "payload": {
+    "beforePath": "/saved/before-abc.png",
+    "afterPath": "/saved/after-abc.png"
+  }
+}
+```
+
+The result is `{sameSize, width, height, totalPixels, differingPixels, ratio,
+maxDelta, bounds, sizes}`. It is a raw RGBA comparison of the two renders, not
+a PSD binary or Photoshop comparison.
+
+`groupLayers` accepts two or more unique layer IDs that share one parent and
+returns the new group:
+
+```json
+{
+  "operation": "groupLayers",
+  "payload": {
+    "documentId": "21",
+    "layerIds": ["144", "145"],
+    "name": "hero/cta"
+  },
+  "precondition": { "documentId": "21", "revision": "38", "fingerprint": "sha256-from-getState" }
+}
+```
+
+It maps directly to Patchy's `document.groupLayers(layers, name)`; artboards are
+rejected and the group is inserted at the first selected layer's index.
+
+`mergeLayers` accepts one or more unique sibling layer IDs and an optional name:
+
+```json
+{
+  "operation": "mergeLayers",
+  "payload": {
+    "documentId": "21",
+    "layerIds": ["180"],
+    "name": "badge-merged"
+  },
+  "precondition": { "documentId": "21", "revision": "38", "fingerprint": "sha256-from-getState" }
+}
+```
+
+It calls Patchy's `document.mergeLayers(layers, { keepVectors: false,
+withinGroups: false, separateVectorTypes: false })`, so a selected group is
+released and its contents are raster-merged. The surviving result layer is
+renamed when a name is supplied. Merging is destructive in the current document
+buffer; the browser must still save and reopen to persist anything.
 
 ## Response
 
 ```json
 {
-  "protocolVersion": 1,
+  "protocolVersion": 2,
   "requestId": "client-id-4",
   "clientId": "client-id",
   "ok": false,
@@ -60,7 +120,11 @@ its plan rather than retrying a mutation blindly.
 | `getState` | no | Recursive Patchy automation state plus fingerprint. |
 | `openDocument` | no | Open only a Patchy-staged `/opened/` file. |
 | `renderPreview` | no | Write only `/saved/*.png`; optional browser download. |
+| `comparePreview` | no | Compare two existing `/saved/*.png` previews and return aggregate RGBA differences. |
 | `renameLayer` | yes | Rename exactly one document/layer ID. |
+| `groupLayers` | yes | Group two or more same-sibling layer IDs under a new group. |
+| `mergeLayers` | yes | Raster-merge selected sibling layers or a group's contents into one layer. |
+| `undo` | yes | Restore the previous document history entry. |
 | `saveAsAndReopen` | yes | Save only a new `/saved/*.psd` or `.psb`, close it, and reopen the copy. Patchy's save path already offers the browser download, so the bridge does not download it a second time. |
 
 There is intentionally no arbitrary `executeScript`, filesystem path, or raw
@@ -87,9 +151,11 @@ successful round trip produces exactly one PSD transfer.
 - `CANCELLED`
 - Browser-only: `TIMEOUT`, `DISPOSED`, `REQUEST_FAILED`
 
-## Still outside v1 M0
+## Still outside v2
 
 Large JSON streaming, persisted recovery across a full tab crash, multi-request
-transactions, and bulk rename are intentionally deferred until the single-layer
-round trip passes the Windows browser and Photoshop gates.
+transactions, bulk rename, per-layer/group isolated rendering, and visibility
+operations remain deferred. `undo` is a single history step, not a transaction
+rollback for a whole cleanup batch. The operations remain additive under
+`protocolVersion: 2`; a failed Photoshop gate does not promote `m1Allowed`.
 

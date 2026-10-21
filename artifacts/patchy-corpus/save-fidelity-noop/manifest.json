@@ -1,0 +1,92 @@
+{
+  "engine": "patchy-wasm",
+  "source": {
+    "fileName": "Payment1_D.psd",
+    "path": "B:\\迅雷下载\\北欧1019\\mobile\\Payment1_D.psd",
+    "sha256": "5b5ad045039e373caa644e59b7b790692b7505369e86098ec5ede2de8037a819",
+    "unchanged": true
+  },
+  "timingMs": {
+    "import": 38241,
+    "saveAndReopen": 36914
+  },
+  "renderDeterministic": true,
+  "renderNoise": {
+    "sameSize": true,
+    "width": 467,
+    "height": 1024,
+    "totalPixels": 478208,
+    "differingPixels": 0,
+    "ratio": 0,
+    "maxDelta": 0,
+    "bounds": null
+  },
+  "output": {
+    "psd": {
+      "path": "B:\\src\\LayerForgeAI\\artifacts\\patchy-corpus\\save-fidelity-noop\\saved.psd",
+      "sha256": "cedc590620705f38b07486b44233110d18ebabf584f722aceeb051220f350920"
+    },
+    "before": {
+      "path": "B:\\src\\LayerForgeAI\\artifacts\\patchy-corpus\\save-fidelity-noop\\before-a.png",
+      "width": 467,
+      "height": 1024,
+      "rgbaSha256": "d7f6397938fa0fcf44794199b96fb42e6d90ce48dcbdb99a75f6061e7a45164d"
+    },
+    "reopened": {
+      "path": "B:\\src\\LayerForgeAI\\artifacts\\patchy-corpus\\save-fidelity-noop\\reopened.png",
+      "width": 467,
+      "height": 1024,
+      "rgbaSha256": "9c9a47114bcd778fe0d19b6372c795e00857494613ec1a595e8ca36137f6e752"
+    }
+  },
+  "rootsBefore": [
+    "2",
+    "Layer 1",
+    "Rectangle 5 copy 4",
+    "Pay Now",
+    "agree",
+    "25,000",
+    " 28,000 ",
+    "Total Cost IQD",
+    "Promo Code",
+    "Payment Method",
+    "Selected",
+    "Payment Method",
+    "-s-Close"
+  ],
+  "rootsAfter": [
+    "2",
+    "Layer 1",
+    "Rectangle 5 copy 4",
+    "Pay Now",
+    "agree",
+    "25,000",
+    " 28,000 ",
+    "Total Cost IQD",
+    "Promo Code",
+    "Payment Method",
+    "Selected",
+    "Payment Method",
+    "-s-Close"
+  ],
+  "rootsMatch": true,
+  "saveDiff": {
+    "sameSize": true,
+    "width": 467,
+    "height": 1024,
+    "totalPixels": 478208,
+    "differingPixels": 5725,
+    "ratio": 0.011971777971092078,
+    "maxDelta": 236,
+    "bounds": {
+      "x": 0,
+      "y": 223,
+      "width": 466,
+      "height": 710
+    }
+  },
+  "pixelsMatch": false,
+  "photoshopVerified": false,
+  "m0Accepted": false,
+  "note": "No-edit save fidelity on a production PSD. Isolates Patchy save/reopen from group/merge edits."
+}

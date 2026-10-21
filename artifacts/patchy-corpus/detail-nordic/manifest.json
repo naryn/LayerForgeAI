@@ -1,0 +1,151 @@
+{
+  "engine": "patchy-wasm",
+  "source": {
+    "fileName": "Detial_D_0708.psd",
+    "path": "B:\\迅雷下载\\北欧1019\\mobile\\Detial_D_0708.psd",
+    "size": 28319902,
+    "sha256": "a39cb5959c6d259544b8d4498f3e35ec65eb223877c2fe000fb4649f7af140ee",
+    "unchanged": true
+  },
+  "timingMs": {
+    "import": 32665,
+    "cleanup": 480,
+    "group": 2433,
+    "merge": 3607,
+    "saveAndReopen": 34749
+  },
+  "memory": {
+    "afterLoad": {
+      "usedBytes": 197132288,
+      "peakUsedBytes": 202375168,
+      "heapBytes": 268435456,
+      "historyBytes": 0,
+      "limitBytes": 4293918720
+    },
+    "afterEdits": {
+      "usedBytes": 197132288,
+      "peakUsedBytes": 202375168,
+      "heapBytes": 322174976,
+      "historyBytes": 0,
+      "limitBytes": 4293918720
+    },
+    "afterSave": {
+      "usedBytes": 200278016,
+      "peakUsedBytes": 223346688,
+      "heapBytes": 463994880,
+      "historyBytes": 0,
+      "limitBytes": 4293918720
+    }
+  },
+  "cleanup": {
+    "afterCleanup": {
+      "renames": 31,
+      "findings": 8,
+      "groups": 1,
+      "merges": 8,
+      "slices": 0
+    },
+    "afterEdits": {
+      "renames": 26,
+      "findings": 3,
+      "groups": 0,
+      "merges": 7,
+      "slices": 0
+    },
+    "groupOutcome": "applied",
+    "mergeOutcome": "applied"
+  },
+  "output": {
+    "psd": {
+      "path": "B:\\src\\LayerForgeAI\\artifacts\\patchy-corpus\\detail-nordic\\saved.psd",
+      "sha256": "aab23334c485b3426ca971bb69c034399649a5691bee89d928087c2a91e0742c",
+      "roots": 8
+    },
+    "before": {
+      "path": "B:\\src\\LayerForgeAI\\artifacts\\patchy-corpus\\detail-nordic\\before.png",
+      "width": 467,
+      "height": 1024,
+      "rgbaSha256": "f59377f5b86ee69c1a6f2efce81f4bff453f7cee8a04543a60e2bd2c2d9698ec"
+    },
+    "grouped": {
+      "path": "B:\\src\\LayerForgeAI\\artifacts\\patchy-corpus\\detail-nordic\\grouped.png",
+      "width": 467,
+      "height": 1024,
+      "rgbaSha256": "f59377f5b86ee69c1a6f2efce81f4bff453f7cee8a04543a60e2bd2c2d9698ec"
+    },
+    "merged": {
+      "path": "B:\\src\\LayerForgeAI\\artifacts\\patchy-corpus\\detail-nordic\\merged.png",
+      "width": 467,
+      "height": 1024,
+      "rgbaSha256": "42d823a1d623b94c4a1497a889381a3adfe61a8f1bd694b14a107c6c6df05ee1"
+    },
+    "reopened": {
+      "path": "B:\\src\\LayerForgeAI\\artifacts\\patchy-corpus\\detail-nordic\\reopened.png",
+      "width": 467,
+      "height": 1024,
+      "rgbaSha256": "ae4472aca6e532f61938221814b0dd44f623ac960c3ece3134114358271c3517"
+    }
+  },
+  "diffs": {
+    "group": {
+      "sameSize": true,
+      "width": 467,
+      "height": 1024,
+      "totalPixels": 478208,
+      "differingPixels": 0,
+      "ratio": 0,
+      "maxDelta": 0,
+      "bounds": null
+    },
+    "merge": {
+      "sameSize": true,
+      "width": 467,
+      "height": 1024,
+      "totalPixels": 478208,
+      "differingPixels": 10,
+      "ratio": 0.000020911402569593146,
+      "maxDelta": 1,
+      "bounds": {
+        "x": 33,
+        "y": 713,
+        "width": 20,
+        "height": 20
+      }
+    },
+    "saveAndReopen": {
+      "sameSize": true,
+      "width": 467,
+      "height": 1024,
+      "totalPixels": 478208,
+      "differingPixels": 4599,
+      "ratio": 0.009617154041755888,
+      "maxDelta": 236,
+      "bounds": {
+        "x": 0,
+        "y": 223,
+        "width": 462,
+        "height": 767
+      }
+    }
+  },
+  "uiPixelDiff": {
+    "differingPixels": 4599,
+    "ratio": "0.962%"
+  },
+  "pixelsMatch": false,
+  "applied": [
+    "已合并：card-merged",
+    "已编组：section"
+  ],
+  "warnings": [
+    {
+      "level": "dot dot--warn",
+      "message": "保存前后预览存在像素差异",
+      "detail": "差异 4599/478208（0.962%）最大通道差 236 · 区域 462×767 · 对比对象是预览 PNG，不是 PSD 二进制或 Photoshop 渲染"
+    }
+  ],
+  "problems": [],
+  "photoshopVerified": false,
+  "m0Accepted": false,
+  "note": "Real Patchy WASM import/cleanup/group/merge/save evidence on a production PSD. Photoshop warning-free open remains unverified."
+}

@@ -12,7 +12,7 @@ test("browser callbacks contain no direct WASM entry call", () => {
   assert.match(browserSource, /__patchyM0Cancelled\[requestId\] = true/);
 });
 
-test("native adapter is timer-polled and exposes only the M0 whitelist", () => {
+test("native adapter is timer-polled and exposes only the bridge whitelist", () => {
   assert.match(nativeSource, /QTimer::timeout/);
   assert.doesNotMatch(nativeSource, /EMSCRIPTEN_KEEPALIVE|emscripten_bind/);
   assert.match(nativeSource, /Refusing to overwrite PSD/);
@@ -20,8 +20,12 @@ test("native adapter is timer-polled and exposes only the M0 whitelist", () => {
   const operationChecks = [...nativeSource.matchAll(/operation == QStringLiteral\("([^"]+)"\)/g)]
     .map((match) => match[1]);
   assert.deepEqual([...new Set(operationChecks)].sort(), [
-    "getState", "openDocument", "renameLayer", "renderPreview", "saveAsAndReopen",
+    "comparePreview", "getState", "groupLayers", "mergeLayers", "openDocument",
+    "renameLayer", "renderPreview", "saveAsAndReopen", "undo",
   ]);
+  assert.match(nativeSource, /kProtocolVersion = 2/);
+  assert.match(nativeSource, /if\(!d\.undo\(\)\)/);
+  assert.match(nativeSource, /compareSavedPreviews\(/);
 });
 
 test("integration patch wires only the wasm target and MainWindow timer owner", () => {

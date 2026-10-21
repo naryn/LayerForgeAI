@@ -1,0 +1,35 @@
+{
+  "name": "@layerforge/web",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc -b && vite build",
+    "preview": "vite preview",
+    "typecheck": "vue-tsc -b && vue-tsc -p tsconfig.test.json",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:e2e": "playwright test",
+    "stage:patchy": "node scripts/stage-patchy.mjs"
+  },
+  "dependencies": {
+    "ag-psd": "^31.0.3",
+    "fflate": "^0.8.3",
+    "pinia": "^3.0.4",
+    "vue": "^3.5.44",
+    "vue-router": "^4.6.4"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.64.1",
+    "@types/node": "^26.6.5",
+    "@vitejs/plugin-vue": "^6.0.10",
+    "@vue/test-utils": "^2.5.1",
+    "fake-indexeddb": "^6.2.6",
+    "happy-dom": "^20.14.6",
+    "typescript": "~5.9.3",
+    "vite": "^7.3.7",
+    "vitest": "^5.0.5",
+    "vue-tsc": "^3.3.13"
+  }
+}

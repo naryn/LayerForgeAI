@@ -1,0 +1,156 @@
+{
+  "engine": "patchy-wasm",
+  "source": {
+    "fileName": "Payment1_D.psd",
+    "path": "B:\\迅雷下载\\北欧1019\\mobile\\Payment1_D.psd",
+    "size": 21354939,
+    "sha256": "5b5ad045039e373caa644e59b7b790692b7505369e86098ec5ede2de8037a819",
+    "unchanged": true
+  },
+  "timingMs": {
+    "import": 42191,
+    "cleanup": 563,
+    "group": 2133,
+    "merge": 3430,
+    "saveAndReopen": 39608
+  },
+  "memory": {
+    "afterLoad": {
+      "usedBytes": 141557760,
+      "peakUsedBytes": 180355072,
+      "heapBytes": 268435456,
+      "historyBytes": 0,
+      "limitBytes": 4293918720
+    },
+    "afterEdits": {
+      "usedBytes": 154140672,
+      "peakUsedBytes": 180355072,
+      "heapBytes": 268435456,
+      "historyBytes": 0,
+      "limitBytes": 4293918720
+    },
+    "afterSave": {
+      "usedBytes": 155189248,
+      "peakUsedBytes": 185597952,
+      "heapBytes": 386662400,
+      "historyBytes": 0,
+      "limitBytes": 4293918720
+    }
+  },
+  "cleanup": {
+    "afterCleanup": {
+      "renames": 26,
+      "findings": 6,
+      "groups": 1,
+      "merges": 7,
+      "slices": 0
+    },
+    "afterEdits": {
+      "renames": 23,
+      "findings": 5,
+      "groups": 0,
+      "merges": 6,
+      "slices": 0
+    },
+    "groupOutcome": "applied",
+    "mergeOutcome": "applied"
+  },
+  "output": {
+    "psd": {
+      "path": "B:\\src\\LayerForgeAI\\artifacts\\patchy-corpus\\payment1-nordic\\saved.psd",
+      "sha256": "a49e1932e4bee49cc9f29c5c06c1a9baffb9a5b6d5da22b4e3c44f62e2d61fd5",
+      "roots": 9
+    },
+    "before": {
+      "path": "B:\\src\\LayerForgeAI\\artifacts\\patchy-corpus\\payment1-nordic\\before.png",
+      "width": 467,
+      "height": 1024,
+      "rgbaSha256": "d7f6397938fa0fcf44794199b96fb42e6d90ce48dcbdb99a75f6061e7a45164d"
+    },
+    "grouped": {
+      "path": "B:\\src\\LayerForgeAI\\artifacts\\patchy-corpus\\payment1-nordic\\grouped.png",
+      "width": 467,
+      "height": 1024,
+      "rgbaSha256": "93b0b501c79d441f33c203af649c419ad16443758dc11fea99f58a793638973b"
+    },
+    "merged": {
+      "path": "B:\\src\\LayerForgeAI\\artifacts\\patchy-corpus\\payment1-nordic\\merged.png",
+      "width": 467,
+      "height": 1024,
+      "rgbaSha256": "6da9cbb8993704093dc471578a2f8466ac48ba94131ca74c50ed5bb02a5f35b5"
+    },
+    "reopened": {
+      "path": "B:\\src\\LayerForgeAI\\artifacts\\patchy-corpus\\payment1-nordic\\reopened.png",
+      "width": 467,
+      "height": 1024,
+      "rgbaSha256": "59c09c5142e8094da813a43bfe7f1a464fafbd41650bbae8ba453194c52dfbd0"
+    }
+  },
+  "diffs": {
+    "group": {
+      "sameSize": true,
+      "width": 467,
+      "height": 1024,
+      "totalPixels": 478208,
+      "differingPixels": 1024,
+      "ratio": 0.0021413276231263384,
+      "maxDelta": 20,
+      "bounds": {
+        "x": 28,
+        "y": 830,
+        "width": 414,
+        "height": 16
+      }
+    },
+    "merge": {
+      "sameSize": true,
+      "width": 467,
+      "height": 1024,
+      "totalPixels": 478208,
+      "differingPixels": 20,
+      "ratio": 0.00004182280513918629,
+      "maxDelta": 1,
+      "bounds": {
+        "x": 40,
+        "y": 479,
+        "width": 35,
+        "height": 36
+      }
+    },
+    "saveAndReopen": {
+      "sameSize": true,
+      "width": 467,
+      "height": 1024,
+      "totalPixels": 478208,
+      "differingPixels": 5544,
+      "ratio": 0.011593281584582442,
+      "maxDelta": 236,
+      "bounds": {
+        "x": 0,
+        "y": 223,
+        "width": 466,
+        "height": 710
+      }
+    }
+  },
+  "uiPixelDiff": {
+    "differingPixels": 5544,
+    "ratio": "1.159%"
+  },
+  "pixelsMatch": false,
+  "applied": [
+    "已合并：icon-button-merged",
+    "已编组：card"
+  ],
+  "warnings": [
+    {
+      "level": "dot dot--warn",
+      "message": "保存前后预览存在像素差异",
+      "detail": "差异 5544/478208（1.159%）最大通道差 236 · 区域 466×710 · 对比对象是预览 PNG，不是 PSD 二进制或 Photoshop 渲染"
+    }
+  ],
+  "problems": [],
+  "photoshopVerified": false,
+  "m0Accepted": false,
+  "note": "Real Patchy WASM import/cleanup/group/merge/save evidence on a production PSD. Photoshop warning-free open remains unverified."
+}

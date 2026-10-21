@@ -1,0 +1,21 @@
+{
+  "method": "composite-crops-and-decode-verification",
+  "width": 1242,
+  "height": 2718,
+  "totalPixels": 3375756,
+  "coveredPixels": 767127,
+  "coverageRatio": 0.22724598578807237,
+  "verifiedAssets": 40,
+  "mismatchedAssets": 0,
+  "verifiedMergedAssets": 10,
+  "mismatchedMergedAssets": 0,
+  "maxChannelDelta": 0,
+  "tolerance": 2,
+  "notes": [
+    "覆盖率按切图边界并集面积计算；它不是像素级保真证明。",
+    "每个 1x PNG 都经过解码并与源合成图裁切区域逐像素比较；容差为 2。",
+    "重叠切图在页面重建中按面积从大到小叠加。",
+    "合并素材是候选区域的合成裁剪，不参与页面重建覆盖率，也不代表 PSD 已合并。",
+    "编组/合并写入尚未执行；当前桥接协议没有这些操作。"
+  ]
+}

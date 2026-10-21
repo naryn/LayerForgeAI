@@ -1,0 +1,20 @@
+{
+  "name": "layerforgeai",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "apps/web"
+  ],
+  "scripts": {
+    "dev": "npm run dev -w @layerforge/web",
+    "build": "npm run build -w @layerforge/web",
+    "preview": "npm run preview -w @layerforge/web",
+    "typecheck": "npm run typecheck -w @layerforge/web",
+    "test": "npm run test -w @layerforge/web",
+    "test:e2e": "npm run test:e2e -w @layerforge/web",
+    "stage:patchy": "npm run stage:patchy -w @layerforge/web"
+  },
+  "engines": {
+    "node": ">=22.12"
+  }
+}

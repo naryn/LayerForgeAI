@@ -1,0 +1,4 @@
+[debug] [vite] connecting...
+[debug] [vite] connected.
+[warning] Case insensitive sorting unsupported in the posix collation implementation
+

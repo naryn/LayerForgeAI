@@ -8,16 +8,20 @@
 
 #include <QJsonArray>
 #include <QJsonDocument>
+#include <QJsonObject>
 #include <QJsonValue>
 #include <QDir>
+#include <QImage>
+#include <QSet>
 
+#include <algorithm>
 #include <emscripten/val.h>
 
 namespace patchy::ui {
 
 namespace {
 
-constexpr int kProtocolVersion = 1;
+constexpr int kProtocolVersion = 2;
 
 QString jsLiteral(const QJsonValue& value) {
   QJsonArray wrapper;
@@ -47,6 +51,97 @@ bool stagedOpenPath(const QString& path) {
   if (parts.size() == 3) parts[1].toULongLong(&transferNumber);
   return QDir::cleanPath(path) == path && parts.size() == 3 &&
          parts[0] == QStringLiteral("opened") && transferNumber && !parts[2].isEmpty();
+}
+
+QImage loadPreviewRgba(const QString& path) {
+  const QImage image(path);
+  if (image.isNull()) return {};
+  return image.format() == QImage::Format_RGBA8888 ? image
+                                                   : image.convertToFormat(QImage::Format_RGBA8888);
+}
+
+// Compares two bridge-rendered preview PNGs without sending pixel data through
+// the JSON queue. Raw RGBA is compared, matching the E2E evidence digests.
+bool compareSavedPreviews(const QString& beforePath, const QString& afterPath,
+                          QJsonObject* result, QString* errorCode, QString* errorMessage) {
+  if (!savedPngPath(beforePath) || !savedPngPath(afterPath)) {
+    *errorCode = QStringLiteral("INVALID_REQUEST");
+    *errorMessage = QStringLiteral("comparePreview requires two /saved/*.png paths");
+    return false;
+  }
+  if (beforePath == afterPath) {
+    *errorCode = QStringLiteral("INVALID_REQUEST");
+    *errorMessage = QStringLiteral("comparePreview requires two different preview paths");
+    return false;
+  }
+  const auto before = loadPreviewRgba(beforePath);
+  const auto after = loadPreviewRgba(afterPath);
+  if (before.isNull() || after.isNull()) {
+    *errorCode = QStringLiteral("INVALID_REQUEST");
+    *errorMessage = QStringLiteral("One of the preview files is missing or not a PNG");
+    return false;
+  }
+  QJsonObject sizes{{QStringLiteral("beforeWidth"), before.width()},
+                    {QStringLiteral("beforeHeight"), before.height()},
+                    {QStringLiteral("afterWidth"), after.width()},
+                    {QStringLiteral("afterHeight"), after.height()}};
+  if (before.size() != after.size()) {
+    *result = QJsonObject{{QStringLiteral("sameSize"), false},
+                          {QStringLiteral("width"), before.width()},
+                          {QStringLiteral("height"), before.height()},
+                          {QStringLiteral("totalPixels"), 0},
+                          {QStringLiteral("differingPixels"), 0},
+                          {QStringLiteral("ratio"), 0.0},
+                          {QStringLiteral("maxDelta"), 0},
+                          {QStringLiteral("bounds"), QJsonValue(QJsonValue::Null)},
+                          {QStringLiteral("sizes"), sizes}};
+    return true;
+  }
+  const auto width = before.width();
+  const auto height = before.height();
+  qint64 differing = 0;
+  int maxDelta = 0;
+  int minX = width;
+  int minY = height;
+  int maxX = -1;
+  int maxY = -1;
+  for (int y = 0; y < height; ++y) {
+    const auto* rowBefore = before.constScanLine(y);
+    const auto* rowAfter = after.constScanLine(y);
+    for (int x = 0; x < width; ++x) {
+      int delta = 0;
+      for (int channel = 0; channel < 4; ++channel) {
+        const auto index = static_cast<qsizetype>(x) * 4 + channel;
+        delta = std::max(delta, qAbs(static_cast<int>(rowBefore[index]) -
+                                     static_cast<int>(rowAfter[index])));
+      }
+      if (delta == 0) continue;
+      ++differing;
+      maxDelta = std::max(maxDelta, delta);
+      minX = std::min(minX, x);
+      minY = std::min(minY, y);
+      maxX = std::max(maxX, x);
+      maxY = std::max(maxY, y);
+    }
+  }
+  const auto total = static_cast<qint64>(width) * height;
+  QJsonObject bounds;
+  if (differing > 0 && maxX >= 0 && maxY >= 0) {
+    bounds = QJsonObject{{QStringLiteral("x"), minX},
+                         {QStringLiteral("y"), minY},
+                         {QStringLiteral("width"), maxX - minX + 1},
+                         {QStringLiteral("height"), maxY - minY + 1}};
+  }
+  *result = QJsonObject{{QStringLiteral("sameSize"), true},
+                        {QStringLiteral("width"), width},
+                        {QStringLiteral("height"), height},
+                        {QStringLiteral("totalPixels"), total},
+                        {QStringLiteral("differingPixels"), differing},
+                        {QStringLiteral("ratio"), total > 0 ? static_cast<double>(differing) / total : 0.0},
+                        {QStringLiteral("maxDelta"), maxDelta},
+                        {QStringLiteral("bounds"), differing > 0 ? QJsonValue(bounds) : QJsonValue(QJsonValue::Null)},
+                        {QStringLiteral("sizes"), sizes}};
+  return true;
 }
 
 }  // namespace
@@ -106,6 +201,20 @@ void WebBridgeWasm::dispatch(const QJsonObject& request) {
     publish(id, clientId, true,
             QJsonObject{{QStringLiteral("state"), host_.automation_state()},
                         {QStringLiteral("fingerprint"), host_.automation_fingerprint()}});
+    return;
+  }
+
+  if (operation == QStringLiteral("comparePreview")) {
+    QJsonObject result;
+    QString compareErrorCode;
+    QString compareErrorMessage;
+    if (compareSavedPreviews(payload.value(QStringLiteral("beforePath")).toString(),
+                             payload.value(QStringLiteral("afterPath")).toString(),
+                             &result, &compareErrorCode, &compareErrorMessage)) {
+      publish(id, clientId, true, result);
+    } else {
+      publish(id, clientId, false, {}, compareErrorCode, compareErrorMessage);
+    }
     return;
   }
 
@@ -173,6 +282,9 @@ bool WebBridgeWasm::validatePrecondition(const QString& operation,
                                          QString* errorCode,
                                          QString* errorMessage) const {
   if (operation != QStringLiteral("renameLayer") &&
+      operation != QStringLiteral("groupLayers") &&
+      operation != QStringLiteral("mergeLayers") &&
+      operation != QStringLiteral("undo") &&
       operation != QStringLiteral("saveAsAndReopen")) {
     return true;
   }
@@ -251,6 +363,59 @@ QString WebBridgeWasm::scriptFor(const QString& operation, const QJsonObject& pa
         "const d=app.getDocument(%1);const l=d.getLayer(%2);l.name=%3;"
         "patchy.setResult({documentId:d.id,layerId:l.id,name:l.name});")
         .arg(jsLiteral(documentId), jsLiteral(layerId), jsLiteral(name));
+  }
+  if (operation == QStringLiteral("groupLayers") ||
+      operation == QStringLiteral("mergeLayers")) {
+    const auto name = payload.value(QStringLiteral("name")).toString();
+    const auto minimum = operation == QStringLiteral("groupLayers") ? 2 : 1;
+    if (!name.isEmpty() && name.toUtf8().size() > 4096) {
+      *error = QStringLiteral("Layer name must be at most 4096 UTF-8 bytes");
+      return {};
+    }
+    QJsonArray ids;
+    QSet<QString> seen;
+    for (const auto& value : payload.value(QStringLiteral("layerIds")).toArray()) {
+      const auto id = value.toString();
+      if (id.isEmpty() || seen.contains(id)) {
+        *error = QStringLiteral("layerIds must be unique non-empty layer ids");
+        return {};
+      }
+      seen.insert(id);
+      ids.append(id);
+    }
+    if (ids.size() < minimum) {
+      *error = operation == QStringLiteral("groupLayers")
+          ? QStringLiteral("groupLayers needs at least two layer ids")
+          : QStringLiteral("mergeLayers needs at least one layer id");
+      return {};
+    }
+    if (operation == QStringLiteral("groupLayers")) {
+      return QStringLiteral(
+          "const d=app.getDocument(%1);const ls=%2.map(function(id){return d.getLayer(id)});"
+          "const g=d.groupLayers(ls,%3);"
+          "patchy.setResult({documentId:d.id,groupId:g.id,name:g.name,"
+          "layerIds:g.children.map(function(l){return l.id})});")
+          .arg(jsLiteral(documentId), jsLiteral(ids), jsLiteral(name));
+    }
+    const auto rename = name.isEmpty()
+        ? QString()
+        : QStringLiteral("r.name=%1;").arg(jsLiteral(name));
+    return QStringLiteral(
+        "const d=app.getDocument(%1);const ls=%2.map(function(id){return d.getLayer(id)});"
+        "const out=d.mergeLayers(ls,{keepVectors:false,withinGroups:false,"
+        "separateVectorTypes:false});"
+        "if(!out||!out.length)throw new Error('mergeLayers returned no layers');"
+        "const r=out[0];%3"
+        "patchy.setResult({documentId:d.id,layerId:r.id,name:r.name,"
+        "layerIds:out.map(function(l){return l.id})});")
+        .arg(jsLiteral(documentId), jsLiteral(ids), rename);
+  }
+  if (operation == QStringLiteral("undo")) {
+    return QStringLiteral(
+        "const d=app.getDocument(%1);"
+        "if(!d.undo())throw new Error('No document state to undo');"
+        "patchy.setResult({documentId:d.id});")
+        .arg(jsLiteral(documentId));
   }
   if (operation == QStringLiteral("renderPreview")) {
     const auto path = payload.value(QStringLiteral("path")).toString();

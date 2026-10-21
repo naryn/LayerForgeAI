@@ -20,3 +20,9 @@ tests/fixtures/*.psd
 artifacts/**/*.psd
 artifacts/**/*.png
 artifacts/**/playwright-trace.zip
+
+# Staged Patchy WASM build (npm run stage:patchy)
+apps/web/public/patchy/
+
+# Local real-file asset pack evidence
+artifacts/**/*.zip

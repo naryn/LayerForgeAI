@@ -1,0 +1,2505 @@
+{
+  "schema": "layerforge.asset-pack",
+  "schemaVersion": "0.3.0",
+  "generatedAt": "2026-10-21T06:32:01.394Z",
+  "status": {
+    "validated": false,
+    "pixels": "generated-local-composite-crops",
+    "note": "PNG assets were cropped from the PSD composite locally. Not a Patchy/Photoshop-verified release."
+  },
+  "project": {
+    "id": "prj_76e6ecdc-529e-4e2a-bf5a-f4192b29783e",
+    "name": "real-Payment1_D"
+  },
+  "source": {
+    "fileName": "Payment1_D.psd",
+    "sha256": "5b5ad045039e373caa644e59b7b790692b7505369e86098ec5ede2de8037a819",
+    "width": 1242,
+    "height": 2718,
+    "depth": 8,
+    "colorMode": "RGB"
+  },
+  "document": {
+    "engine": "demo",
+    "documentId": "demo-doc-1",
+    "revision": "0"
+  },
+  "analysis": {
+    "nodes": 63,
+    "slices": 40,
+    "groups": 2,
+    "merges": 10,
+    "mergedAssets": 10,
+    "renames": 43
+  },
+  "logicalGroups": [
+    {
+      "id": "group:root:2+5+6+7+11",
+      "parentPath": null,
+      "parentName": null,
+      "memberPaths": [
+        "2",
+        "5",
+        "6",
+        "7",
+        "11"
+      ],
+      "memberNames": [
+        "Rectangle 5 copy 4",
+        "25,000",
+        "28,000",
+        "Total Cost IQD",
+        "Payment Method"
+      ],
+      "bounds": {
+        "x": -1,
+        "y": 752,
+        "width": 1244,
+        "height": 1967
+      },
+      "layout": {
+        "direction": "stack",
+        "gap": null,
+        "align": "mixed"
+      },
+      "suggestedName": "card",
+      "reason": "5 个同级图层边界相邻且未编组；结构角色：卡片（带背景的 5 元素容器）"
+    },
+    {
+      "id": "group:12:12/2+12/3",
+      "parentPath": "12",
+      "parentName": "-s-Close",
+      "memberPaths": [
+        "12/2",
+        "12/3"
+      ],
+      "memberNames": [
+        "Shape 1",
+        "Shape 1 copy"
+      ],
+      "bounds": {
+        "x": 1096,
+        "y": 623,
+        "width": 52,
+        "height": 52
+      },
+      "layout": {
+        "direction": "stack",
+        "gap": null,
+        "align": "center"
+      },
+      "suggestedName": "icon-button",
+      "reason": "2 个同级图层边界相邻且未编组；结构角色：图标按钮（无文本方形控件组 52×52）"
+    }
+  ],
+  "mergeCandidates": [
+    {
+      "id": "merge:10",
+      "path": "10",
+      "parentPath": null,
+      "name": "Selected",
+      "suggestedName": "component-merged",
+      "kind": "component",
+      "memberPaths": [
+        "10/0",
+        "10/1",
+        "10/2"
+      ],
+      "memberNames": [
+        "VIP",
+        "-s-villable",
+        "Selected"
+      ],
+      "bounds": {
+        "x": 63,
+        "y": 961,
+        "width": 168,
+        "height": 133
+      },
+      "layout": {
+        "direction": "stack",
+        "gap": null,
+        "align": "mixed"
+      },
+      "areaRatio": 0.007,
+      "reason": "3 个可见子图层集中在 168×133 区域（占画布 0.7%），子层包含文本且边界紧凑；建议合并为单层素材"
+    },
+    {
+      "id": "merge:12",
+      "path": "12",
+      "parentPath": null,
+      "name": "-s-Close",
+      "suggestedName": "icon-button-merged",
+      "kind": "component",
+      "memberPaths": [
+        "12/1",
+        "12/2",
+        "12/3"
+      ],
+      "memberNames": [
+        "Ellipse 1",
+        "Shape 1",
+        "Shape 1 copy"
+      ],
+      "bounds": {
+        "x": 1067,
+        "y": 593,
+        "width": 112,
+        "height": 113
+      },
+      "layout": {
+        "direction": "stack",
+        "gap": null,
+        "align": "center"
+      },
+      "areaRatio": 0.004,
+      "reason": "3 个可见子图层集中在 112×113 区域（占画布 0.4%），结构角色：图标按钮（无文本方形控件组 114×115）；建议合并为单层素材"
+    },
+    {
+      "id": "merge:3",
+      "path": "3",
+      "parentPath": null,
+      "name": "Pay Now",
+      "suggestedName": "button-merged",
+      "kind": "component",
+      "memberPaths": [
+        "3/0",
+        "3/1"
+      ],
+      "memberNames": [
+        "Rectangle 16 copy 2",
+        "Pay Now"
+      ],
+      "bounds": {
+        "x": 62,
+        "y": 2277,
+        "width": 1118,
+        "height": 155
+      },
+      "layout": {
+        "direction": "stack",
+        "gap": null,
+        "align": "center"
+      },
+      "areaRatio": 0.051,
+      "reason": "2 个可见子图层集中在 1118×155 区域（占画布 5.1%），结构角色：按钮（文本+背景形状，横向 1118×155）；建议合并为单层素材"
+    },
+    {
+      "id": "merge:4",
+      "path": "4",
+      "parentPath": null,
+      "name": "agree",
+      "suggestedName": "checkbox-row-merged",
+      "kind": "component",
+      "memberPaths": [
+        "4/0",
+        "4/1"
+      ],
+      "memberNames": [
+        "Rectangle 18",
+        "I have readed and agree Membership Service Agreement"
+      ],
+      "bounds": {
+        "x": 64,
+        "y": 2476,
+        "width": 1064,
+        "height": 50
+      },
+      "layout": {
+        "direction": "row",
+        "gap": 13,
+        "align": "end"
+      },
+      "areaRatio": 0.016,
+      "reason": "2 个可见子图层集中在 1064×50 区域（占画布 1.6%），结构角色：勾选行（小方形控件 50×50 与文本同行）；建议合并为单层素材"
+    },
+    {
+      "id": "merge:8",
+      "path": "8",
+      "parentPath": null,
+      "name": "Promo Code",
+      "suggestedName": "form-row-merged",
+      "kind": "component",
+      "memberPaths": [
+        "8/0",
+        "8/1",
+        "8/2",
+        "8/3"
+      ],
+      "memberNames": [
+        "Rectangle 1 copy 12",
+        "Promo Code Here",
+        "Rectangle 1 copy 13",
+        "Verify"
+      ],
+      "bounds": {
+        "x": 58,
+        "y": 1812,
+        "width": 1122,
+        "height": 131
+      },
+      "layout": {
+        "direction": "stack",
+        "gap": null,
+        "align": "mixed"
+      },
+      "areaRatio": 0.044,
+      "reason": "4 个可见子图层集中在 1122×131 区域（占画布 4.4%），结构角色：表单行（2 个文本与 2 个控件并排）；建议合并为单层素材"
+    },
+    {
+      "id": "merge:9/2",
+      "path": "9/2",
+      "parentPath": "9",
+      "name": "1",
+      "suggestedName": "button-merged",
+      "kind": "component",
+      "memberPaths": [
+        "9/2/0",
+        "9/2/1",
+        "9/2/2"
+      ],
+      "memberNames": [
+        "Rectangle 1 copy 11",
+        "-s-AsiaPay",
+        "Asia Pay"
+      ],
+      "bounds": {
+        "x": 58,
+        "y": 1245,
+        "width": 528,
+        "height": 143
+      },
+      "layout": {
+        "direction": "stack",
+        "gap": null,
+        "align": "mixed"
+      },
+      "areaRatio": 0.022,
+      "reason": "3 个可见子图层集中在 528×143 区域（占画布 2.2%），结构角色：按钮（文本+背景形状，横向 528×143）；建议合并为单层素材"
+    },
+    {
+      "id": "merge:9/3",
+      "path": "9/3",
+      "parentPath": "9",
+      "name": "2",
+      "suggestedName": "button-merged-2",
+      "kind": "component",
+      "memberPaths": [
+        "9/3/0",
+        "9/3/1",
+        "9/3/2"
+      ],
+      "memberNames": [
+        "Rectangle 1 copy 11",
+        "-s-QICard",
+        "QI Card"
+      ],
+      "bounds": {
+        "x": 652,
+        "y": 1245,
+        "width": 528,
+        "height": 143
+      },
+      "layout": {
+        "direction": "stack",
+        "gap": null,
+        "align": "mixed"
+      },
+      "areaRatio": 0.022,
+      "reason": "3 个可见子图层集中在 528×143 区域（占画布 2.2%），结构角色：按钮（文本+背景形状，横向 528×143）；建议合并为单层素材"
+    },
+    {
+      "id": "merge:9/4",
+      "path": "9/4",
+      "parentPath": "9",
+      "name": "3",
+      "suggestedName": "button-merged-3",
+      "kind": "component",
+      "memberPaths": [
+        "9/4/0",
+        "9/4/1",
+        "9/4/2"
+      ],
+      "memberNames": [
+        "Rectangle 1 copy 11",
+        "-s-ZainCash",
+        "Zain Cash"
+      ],
+      "bounds": {
+        "x": 58,
+        "y": 1419,
+        "width": 528,
+        "height": 143
+      },
+      "layout": {
+        "direction": "stack",
+        "gap": null,
+        "align": "mixed"
+      },
+      "areaRatio": 0.022,
+      "reason": "3 个可见子图层集中在 528×143 区域（占画布 2.2%），结构角色：按钮（文本+背景形状，横向 528×143）；建议合并为单层素材"
+    },
+    {
+      "id": "merge:9/5",
+      "path": "9/5",
+      "parentPath": "9",
+      "name": "4",
+      "suggestedName": "button-merged-4",
+      "kind": "component",
+      "memberPaths": [
+        "9/5/0",
+        "9/5/1",
+        "9/5/2"
+      ],
+      "memberNames": [
+        "Rectangle 1 copy 11",
+        "-s-FastPay",
+        "Fast Pay"
+      ],
+      "bounds": {
+        "x": 651,
+        "y": 1420,
+        "width": 528,
+        "height": 143
+      },
+      "layout": {
+        "direction": "stack",
+        "gap": null,
+        "align": "mixed"
+      },
+      "areaRatio": 0.022,
+      "reason": "3 个可见子图层集中在 528×143 区域（占画布 2.2%），结构角色：按钮（文本+背景形状，横向 528×143）；建议合并为单层素材"
+    },
+    {
+      "id": "merge:9/6",
+      "path": "9/6",
+      "parentPath": "9",
+      "name": "5",
+      "suggestedName": "button-merged-5",
+      "kind": "component",
+      "memberPaths": [
+        "9/6/0",
+        "9/6/1",
+        "9/6/2"
+      ],
+      "memberNames": [
+        "Rectangle 1 copy 11",
+        "-s-Areeba",
+        "Areeba"
+      ],
+      "bounds": {
+        "x": 59,
+        "y": 1594,
+        "width": 528,
+        "height": 143
+      },
+      "layout": {
+        "direction": "stack",
+        "gap": null,
+        "align": "mixed"
+      },
+      "areaRatio": 0.022,
+      "reason": "3 个可见子图层集中在 528×143 区域（占画布 2.2%），结构角色：按钮（文本+背景形状，横向 528×143）；建议合并为单层素材"
+    }
+  ],
+  "assets": [
+    {
+      "id": "asset:3",
+      "name": "Pay Now",
+      "semanticName": null,
+      "sourcePath": "3",
+      "sourceLayerId": "local-1576",
+      "kind": "group",
+      "bounds": {
+        "x": 62,
+        "y": 2277,
+        "width": 1118,
+        "height": 155
+      },
+      "outputs": [
+        {
+          "fileName": "pay-now.png",
+          "scale": 1,
+          "width": 1118,
+          "height": 155,
+          "bytes": 118734,
+          "sha256": "ac010c7e8a8bdfa899a1c5cc732c706cf3313fad5b6a213e1817b950196831e5",
+          "source": "composite-crop"
+        },
+        {
+          "fileName": "pay-now@2x.png",
+          "scale": 2,
+          "width": 2236,
+          "height": 310,
+          "bytes": 190086,
+          "sha256": "babc6c82102c7094ec14abdf7b72ce50f7eab00e4e424bbfd417eb20e48f491f",
+          "source": "composite-upscale"
+        }
+      ],
+      "verification": {
+        "checked": true,
+        "mismatched": false
+      }
+    },
+    {
+      "id": "asset:3/0",
+      "name": "Rectangle 16 copy 2",
+      "semanticName": null,
+      "sourcePath": "3/0",
+      "sourceLayerId": "local-1574",
+      "kind": "shape",
+      "bounds": {
+        "x": 62,
+        "y": 2277,
+        "width": 1118,
+        "height": 155
+      },
+      "outputs": [
+        {
+          "fileName": "rectangle-16.png",
+          "scale": 1,
+          "width": 1118,
+          "height": 155,
+          "bytes": 118734,
+          "sha256": "ac010c7e8a8bdfa899a1c5cc732c706cf3313fad5b6a213e1817b950196831e5",
+          "source": "composite-crop"
+        },
+        {
+          "fileName": "rectangle-16@2x.png",
+          "scale": 2,
+          "width": 2236,
+          "height": 310,
+          "bytes": 190086,
+          "sha256": "babc6c82102c7094ec14abdf7b72ce50f7eab00e4e424bbfd417eb20e48f491f",
+          "source": "composite-upscale"
+        }
+      ],
+      "verification": {
+        "checked": true,
+        "mismatched": false
+      }
+    },
+    {
+      "id": "asset:8",
+      "name": "Promo Code",
+      "semanticName": null,
+      "sourcePath": "8",
+      "sourceLayerId": "local-1589",
+      "kind": "group",
+      "bounds": {
+        "x": 58,
+        "y": 1812,
+        "width": 1122,
+        "height": 131
+      },
+      "outputs": [
+        {
+          "fileName": "promo-code.png",
+          "scale": 1,
+          "width": 1122,
+          "height": 131,
+          "bytes": 39219,
+          "sha256": "05fe35b802734b7a5ec10db0e6f2d7646ef0c2f5e9be491da4df97b5be90de98",
+          "source": "composite-crop"
+        },
+        {
+          "fileName": "promo-code@2x.png",
+          "scale": 2,
+          "width": 2244,
+          "height": 262,
+          "bytes": 67574,
+          "sha256": "ec3077a0e19a9b7d8018e26872386d659ac57e753bd8e9b4ce858c62330bed43",
+          "source": "composite-upscale"
+        }
+      ],
+      "verification": {
+        "checked": true,
+        "mismatched": false
+      }
+    },
+    {
+      "id": "asset:8/0",
+      "name": "Rectangle 1 copy 12",
+      "semanticName": null,
+      "sourcePath": "8/0",
+      "sourceLayerId": "local-1585",
+      "kind": "shape",
+      "bounds": {
+        "x": 58,
+        "y": 1812,
+        "width": 837,
+        "height": 131
+      },
+      "outputs": [
+        {
+          "fileName": "rectangle-1.png",
+          "scale": 1,
+          "width": 837,
+          "height": 131,
+          "bytes": 9934,
+          "sha256": "58b95e83c28acdfc0e8643856205187ef2c5bc7650d695ca87187de11593f828",
+          "source": "composite-crop"
+        },
+        {
+          "fileName": "rectangle-1@2x.png",
+          "scale": 2,
+          "width": 1674,
+          "height": 262,
+          "bytes": 20425,
+          "sha256": "664dfddaed863cbce538f40d73ab80bb057a6fa93b4014a0ee04fa8a594438f4",
+          "source": "composite-upscale"
+        }
+      ],
+      "verification": {
+        "checked": true,
+        "mismatched": false
+      }
+    },
+    {
+      "id": "asset:9/2",
+      "name": "1",
+      "semanticName": null,
+      "sourcePath": "9/2",
+      "sourceLayerId": "local-1600",
+      "kind": "group",
+      "bounds": {
+        "x": 58,
+        "y": 1245,
+        "width": 528,
+        "height": 143
+      },
+      "outputs": [
+        {
+          "fileName": "1.png",
+          "scale": 1,
+          "width": 528,
+          "height": 143,
+          "bytes": 16098,
+          "sha256": "a76b732a428abb3f456da2a1ce20fa45ea9655681f660c818a6a9f165dcf6067",
+          "source": "composite-crop"
+        },
+        {
+          "fileName": "1@2x.png",
+          "scale": 2,
+          "width": 1056,
+          "height": 286,
+          "bytes": 27861,
+          "sha256": "8b75d3e2b039b838d0b8bfb2156dddefcb60260baccb1b8a2a7dc5d10cef4978",
+          "source": "composite-upscale"
+        }
+      ],
+      "verification": {
+        "checked": true,
+        "mismatched": false
+      }
+    },
+    {
+      "id": "asset:9/2/0",
+      "name": "Rectangle 1 copy 11",
+      "semanticName": null,
+      "sourcePath": "9/2/0",
+      "sourceLayerId": "local-1594",
+      "kind": "shape",
+      "bounds": {
+        "x": 58,
+        "y": 1245,
+        "width": 528,
+        "height": 143
+      },
+      "outputs": [
+        {
+          "fileName": "rectangle-1-2.png",
+          "scale": 1,
+          "width": 528,
+          "height": 143,
+          "bytes": 16098,
+          "sha256": "a76b732a428abb3f456da2a1ce20fa45ea9655681f660c818a6a9f165dcf6067",
+          "source": "composite-crop"
+        },
+        {
+          "fileName": "rectangle-1-2@2x.png",
+          "scale": 2,
+          "width": 1056,
+          "height": 286,
+          "bytes": 27861,
+          "sha256": "8b75d3e2b039b838d0b8bfb2156dddefcb60260baccb1b8a2a7dc5d10cef4978",
+          "source": "composite-upscale"
+        }
+      ],
+      "verification": {
+        "checked": true,
+        "mismatched": false
+      }
+    },
+    {
+      "id": "asset:9/3",
+      "name": "2",
+      "semanticName": null,
+      "sourcePath": "9/3",
+      "sourceLayerId": "local-1608",
+      "kind": "group",
+      "bounds": {
+        "x": 652,
+        "y": 1245,
+        "width": 528,
+        "height": 143
+      },
+      "outputs": [
+        {
+          "fileName": "2.png",
+          "scale": 1,
+          "width": 528,
+          "height": 143,
+          "bytes": 17857,
+          "sha256": "10e4915ff87f928bb265037c87addef6c9bf3fdd9c5d656a277557d48d5c062b",
+          "source": "composite-crop"
+        },
+        {
+          "fileName": "2@2x.png",
+          "scale": 2,
+          "width": 1056,
+          "height": 286,
+          "bytes": 30063,
+          "sha256": "b45f05c5fb902757b6523b1038018193fc1faf55a53909296a6b33ec53cb7717",
+          "source": "composite-upscale"
+        }
+      ],
+      "verification": {
+        "checked": true,
+        "mismatched": false
+      }
+    },
+    {
+      "id": "asset:9/3/0",
+      "name": "Rectangle 1 copy 11",
+      "semanticName": null,
+      "sourcePath": "9/3/0",
+      "sourceLayerId": "local-1602",
+      "kind": "shape",
+      "bounds": {
+        "x": 652,
+        "y": 1245,
+        "width": 528,
+        "height": 143
+      },
+      "outputs": [
+        {
+          "fileName": "rectangle-1-3.png",
+          "scale": 1,
+          "width": 528,
+          "height": 143,
+          "bytes": 17857,
+          "sha256": "10e4915ff87f928bb265037c87addef6c9bf3fdd9c5d656a277557d48d5c062b",
+          "source": "composite-crop"
+        },
+        {
+          "fileName": "rectangle-1-3@2x.png",
+          "scale": 2,
+          "width": 1056,
+          "height": 286,
+          "bytes": 30063,
+          "sha256": "b45f05c5fb902757b6523b1038018193fc1faf55a53909296a6b33ec53cb7717",
+          "source": "composite-upscale"
+        }
+      ],
+      "verification": {
+        "checked": true,
+        "mismatched": false
+      }
+    },
+    {
+      "id": "asset:9/4",
+      "name": "3",
+      "semanticName": null,
+      "sourcePath": "9/4",
+      "sourceLayerId": "local-1616",
+      "kind": "group",
+      "bounds": {
+        "x": 58,
+        "y": 1419,
+        "width": 528,
+        "height": 143
+      },
+      "outputs": [
+        {
+          "fileName": "3.png",
+          "scale": 1,
+          "width": 528,
+          "height": 143,
+          "bytes": 15650,
+          "sha256": "3ed37b3a1f96abf1e5353597d3a3ae2fded50f0d9c54edd5b902134b4ecb8b75",
+          "source": "composite-crop"
+        },
+        {
+          "fileName": "3@2x.png",
+          "scale": 2,
+          "width": 1056,
+          "height": 286,
+          "bytes": 26881,
+          "sha256": "d402e7d1ca5c6d4577274935a986f95dee16fff19d1ac64b28d791157060c537",
+          "source": "composite-upscale"
+        }
+      ],
+      "verification": {
+        "checked": true,
+        "mismatched": false
+      }
+    },
+    {
+      "id": "asset:9/4/0",
+      "name": "Rectangle 1 copy 11",
+      "semanticName": null,
+      "sourcePath": "9/4/0",
+      "sourceLayerId": "local-1610",
+      "kind": "shape",
+      "bounds": {
+        "x": 58,
+        "y": 1419,
+        "width": 528,
+        "height": 143
+      },
+      "outputs": [
+        {
+          "fileName": "rectangle-1-4.png",
+          "scale": 1,
+          "width": 528,
+          "height": 143,
+          "bytes": 15650,
+          "sha256": "3ed37b3a1f96abf1e5353597d3a3ae2fded50f0d9c54edd5b902134b4ecb8b75",
+          "source": "composite-crop"
+        },
+        {
+          "fileName": "rectangle-1-4@2x.png",
+          "scale": 2,
+          "width": 1056,
+          "height": 286,
+          "bytes": 26881,
+          "sha256": "d402e7d1ca5c6d4577274935a986f95dee16fff19d1ac64b28d791157060c537",
+          "source": "composite-upscale"
+        }
+      ],
+      "verification": {
+        "checked": true,
+        "mismatched": false
+      }
+    },
+    {
+      "id": "asset:9/5",
+      "name": "4",
+      "semanticName": null,
+      "sourcePath": "9/5",
+      "sourceLayerId": "local-1624",
+      "kind": "group",
+      "bounds": {
+        "x": 651,
+        "y": 1420,
+        "width": 528,
+        "height": 143
+      },
+      "outputs": [
+        {
+          "fileName": "4.png",
+          "scale": 1,
+          "width": 528,
+          "height": 143,
+          "bytes": 11343,
+          "sha256": "bf87bd61dbf93ffc1ff8fde3189938979ee8388e7466eb0eed8f721f18783368",
+          "source": "composite-crop"
+        },
+        {
+          "fileName": "4@2x.png",
+          "scale": 2,
+          "width": 1056,
+          "height": 286,
+          "bytes": 21079,
+          "sha256": "2eac1724b795407e8182837737d313d916ec82a166d2df1e1243decee810b714",
+          "source": "composite-upscale"
+        }
+      ],
+      "verification": {
+        "checked": true,
+        "mismatched": false
+      }
+    },
+    {
+      "id": "asset:9/5/0",
+      "name": "Rectangle 1 copy 11",
+      "semanticName": null,
+      "sourcePath": "9/5/0",
+      "sourceLayerId": "local-1618",
+      "kind": "shape",
+      "bounds": {
+        "x": 651,
+        "y": 1420,
+        "width": 528,
+        "height": 143
+      },
+      "outputs": [
+        {
+          "fileName": "rectangle-1-5.png",
+          "scale": 1,
+          "width": 528,
+          "height": 143,
+          "bytes": 11343,
+          "sha256": "bf87bd61dbf93ffc1ff8fde3189938979ee8388e7466eb0eed8f721f18783368",
+          "source": "composite-crop"
+        },
+        {
+          "fileName": "rectangle-1-5@2x.png",
+          "scale": 2,
+          "width": 1056,
+          "height": 286,
+          "bytes": 21079,
+          "sha256": "2eac1724b795407e8182837737d313d916ec82a166d2df1e1243decee810b714",
+          "source": "composite-upscale"
+        }
+      ],
+      "verification": {
+        "checked": true,
+        "mismatched": false
+      }
+    },
+    {
+      "id": "asset:9/6",
+      "name": "5",
+      "semanticName": null,
+      "sourcePath": "9/6",
+      "sourceLayerId": "local-1632",
+      "kind": "group",
+      "bounds": {
+        "x": 59,
+        "y": 1594,
+        "width": 528,
+        "height": 143
+      },
+      "outputs": [
+        {
+          "fileName": "5.png",
+          "scale": 1,
+          "width": 528,
+          "height": 143,
+          "bytes": 17758,
+          "sha256": "f14ee6bb7e8a13ac163cacb0d7b51accbab499b8d2a58998957815797bba77df",
+          "source": "composite-crop"
+        },
+        {
+          "fileName": "5@2x.png",
+          "scale": 2,
+          "width": 1056,
+          "height": 286,
+          "bytes": 30000,
+          "sha256": "f69f6d0035f9e0779ad38062a383bfce02be7fcddf0751ef5c32034887249310",
+          "source": "composite-upscale"
+        }
+      ],
+      "verification": {
+        "checked": true,
+        "mismatched": false
+      }
+    },
+    {
+      "id": "asset:9/6/0",
+      "name": "Rectangle 1 copy 11",
+      "semanticName": null,
+      "sourcePath": "9/6/0",
+      "sourceLayerId": "local-1626",
+      "kind": "shape",
+      "bounds": {
+        "x": 59,
+        "y": 1594,
+        "width": 528,
+        "height": 143
+      },
+      "outputs": [
+        {
+          "fileName": "rectangle-1-6.png",
+          "scale": 1,
+          "width": 528,
+          "height": 143,
+          "bytes": 17758,
+          "sha256": "f14ee6bb7e8a13ac163cacb0d7b51accbab499b8d2a58998957815797bba77df",
+          "source": "composite-crop"
+        },
+        {
+          "fileName": "rectangle-1-6@2x.png",
+          "scale": 2,
+          "width": 1056,
+          "height": 286,
+          "bytes": 30000,
+          "sha256": "f69f6d0035f9e0779ad38062a383bfce02be7fcddf0751ef5c32034887249310",
+          "source": "composite-upscale"
+        }
+      ],
+      "verification": {
+        "checked": true,
+        "mismatched": false
+      }
+    },
+    {
+      "id": "asset:4",
+      "name": "agree",
+      "semanticName": null,
+      "sourcePath": "4",
+      "sourceLayerId": "local-1580",
+      "kind": "group",
+      "bounds": {
+        "x": 64,
+        "y": 2476,
+        "width": 1064,
+        "height": 50
+      },
+      "outputs": [
+        {
+          "fileName": "agree.png",
+          "scale": 1,
+          "width": 1064,
+          "height": 50,
+          "bytes": 13994,
+          "sha256": "f37eff0babbb4bc97bb6896de50965def38c8f9c15ce450182feda8fc742a37a",
+          "source": "composite-crop"
+        },
+        {
+          "fileName": "agree@2x.png",
+          "scale": 2,
+          "width": 2128,
+          "height": 100,
+          "bytes": 25334,
+          "sha256": "3313d4d3d890e9c7386b327ca8fc1c0de3cd46ac636cd394c0e77ebb8b30346b",
+          "source": "composite-upscale"
+        }
+      ],
+      "verification": {
+        "checked": true,
+        "mismatched": false
+      }
+    },
+    {
+      "id": "asset:8/2",
+      "name": "Rectangle 1 copy 13",
+      "semanticName": null,
+      "sourcePath": "8/2",
+      "sourceLayerId": "local-1587",
+      "kind": "shape",
+      "bounds": {
+        "x": 941,
+        "y": 1812,
+        "width": 239,
+        "height": 131
+      },
+      "outputs": [
+        {
+          "fileName": "rectangle-1-7.png",
+          "scale": 1,
+          "width": 239,
+          "height": 131,
+          "bytes": 25473,
+          "sha256": "a54d38a8a4efd9da3bfca83b3c5d5340d71a52f4019a68b6289c71231af65909",
+          "source": "composite-crop"
+        },
+        {
+          "fileName": "rectangle-1-7@2x.png",
+          "scale": 2,
+          "width": 478,
+          "height": 262,
+          "bytes": 40820,
+          "sha256": "51b167d2dece01c5b77655623b1933cfc51841c6425ac685163ea21a2641c784",
+          "source": "composite-upscale"
+        }
+      ],
+      "verification": {
+        "checked": true,
+        "mismatched": false
+      }
+    },
+    {
+      "id": "asset:12",
+      "name": "-s-Close",
+      "semanticName": null,
+      "sourcePath": "12",
+      "sourceLayerId": "local-1491",
+      "kind": "group",
+      "bounds": {
+        "x": 1066,
+        "y": 592,
+        "width": 114,
+        "height": 115
+      },
+      "outputs": [
+        {
+          "fileName": "s-close.png",
+          "scale": 1,
+          "width": 114,
+          "height": 115,
+          "bytes": 15786,
+          "sha256": "ebb7eb8038bba803f5d92daf91bb59952e7c3c9034d48629bb4f5cc9a35745b1",
+          "source": "composite-crop"
+        },
+        {
+          "fileName": "s-close@2x.png",
+          "scale": 2,
+          "width": 228,
+          "height": 230,
+          "bytes": 24099,
+          "sha256": "0811e4633253a9856407acc2029a786c753f33672ded35da44d864d9b43e4f3a",
+          "source": "composite-upscale"
+        }
+      ],
+      "verification": {
+        "checked": true,
+        "mismatched": false
+      }
+    },
+    {
+      "id": "asset:12/1",
+      "name": "Ellipse 1",
+      "semanticName": null,
+      "sourcePath": "12/1",
+      "sourceLayerId": "local-1488",
+      "kind": "shape",
+      "bounds": {
+        "x": 1067,
+        "y": 593,
+        "width": 112,
+        "height": 113
+      },
+      "outputs": [
+        {
+          "fileName": "ellipse-1.png",
+          "scale": 1,
+          "width": 112,
+          "height": 113,
+          "bytes": 15366,
+          "sha256": "a97c37db7072b19ad8507e918ceeaa84346f6b3b5e41ce0ecc0f8fb7e7e88ef9",
+          "source": "composite-crop"
+        },
+        {
+          "fileName": "ellipse-1@2x.png",
+          "scale": 2,
+          "width": 224,
+          "height": 226,
+          "bytes": 23360,
+          "sha256": "fa98e2ababd5a240ad528b8d4d8b383142d3a1d83a466fa2ec610f129171ab39",
+          "source": "composite-upscale"
+        }
+      ],
+      "verification": {
+        "checked": true,
+        "mismatched": false
+      }
+    },
+    {
+      "id": "asset:9/2/1",
+      "name": "-s-AsiaPay",
+      "semanticName": null,
+      "sourcePath": "9/2/1",
+      "sourceLayerId": "local-1598",
+      "kind": "group",
+      "bounds": {
+        "x": 106,
+        "y": 1272,
+        "width": 95,
+        "height": 95
+      },
+      "outputs": [
+        {
+          "fileName": "s-asiapay.png",
+          "scale": 1,
+          "width": 95,
+          "height": 95,
+          "bytes": 8712,
+          "sha256": "0c28fce134d7f32a77e4ef5eb046956684b113bfd24b860d0d9a6b33eb977fbf",
+          "source": "composite-crop"
+        },
+        {
+          "fileName": "s-asiapay@2x.png",
+          "scale": 2,
+          "width": 190,
+          "height": 190,
+          "bytes": 13505,
+          "sha256": "1ee6cc35f366dd1da87e2627fffc6ee707d6a0ec89e0cd2224b2fc77c0a7c3e0",
+          "source": "composite-upscale"
+        }
+      ],
+      "verification": {
+        "checked": true,
+        "mismatched": false
+      }
+    },
+    {
+      "id": "asset:9/2/1/0",
+      "name": "-slice-",
+      "semanticName": null,
+      "sourcePath": "9/2/1/0",
+      "sourceLayerId": "local-1596",
+      "kind": "shape",
+      "bounds": {
+        "x": 106,
+        "y": 1272,
+        "width": 95,
+        "height": 95
+      },
+      "outputs": [
+        {
+          "fileName": "slice.png",
+          "scale": 1,
+          "width": 95,
+          "height": 95,
+          "bytes": 8712,
+          "sha256": "0c28fce134d7f32a77e4ef5eb046956684b113bfd24b860d0d9a6b33eb977fbf",
+          "source": "composite-crop"
+        },
+        {
+          "fileName": "slice@2x.png",
+          "scale": 2,
+          "width": 190,
+          "height": 190,
+          "bytes": 13505,
+          "sha256": "1ee6cc35f366dd1da87e2627fffc6ee707d6a0ec89e0cd2224b2fc77c0a7c3e0",
+          "source": "composite-upscale"
+        }
+      ],
+      "verification": {
+        "checked": true,
+        "mismatched": false
+      }
+    },
+    {
+      "id": "asset:9/3/1",
+      "name": "-s-QICard",
+      "semanticName": null,
+      "sourcePath": "9/3/1",
+      "sourceLayerId": "local-1606",
+      "kind": "group",
+      "bounds": {
+        "x": 698,
+        "y": 1272,
+        "width": 95,
+        "height": 95
+      },
+      "outputs": [
+        {
+          "fileName": "s-qicard.png",
+          "scale": 1,
+          "width": 95,
+          "height": 95,
+          "bytes": 10410,
+          "sha256": "da81581eb79eb860346371a5739310b557c8f1513090e40b5a974d0bf1d5c4ad",
+          "source": "composite-crop"
+        },
+        {
+          "fileName": "s-qicard@2x.png",
+          "scale": 2,
+          "width": 190,
+          "height": 190,
+          "bytes": 15817,
+          "sha256": "47762901ac1c0a099f264b72ee545fabca6174834369fade2384e610587919e2",
+          "source": "composite-upscale"
+        }
+      ],
+      "verification": {
+        "checked": true,
+        "mismatched": false
+      }
+    },
+    {
+      "id": "asset:9/3/1/0",
+      "name": "-slice-",
+      "semanticName": null,
+      "sourcePath": "9/3/1/0",
+      "sourceLayerId": "local-1604",
+      "kind": "shape",
+      "bounds": {
+        "x": 698,
+        "y": 1272,
+        "width": 95,
+        "height": 95
+      },
+      "outputs": [
+        {
+          "fileName": "slice-2.png",
+          "scale": 1,
+          "width": 95,
+          "height": 95,
+          "bytes": 10410,
+          "sha256": "da81581eb79eb860346371a5739310b557c8f1513090e40b5a974d0bf1d5c4ad",
+          "source": "composite-crop"
+        },
+        {
+          "fileName": "slice-2@2x.png",
+          "scale": 2,
+          "width": 190,
+          "height": 190,
+          "bytes": 15817,
+          "sha256": "47762901ac1c0a099f264b72ee545fabca6174834369fade2384e610587919e2",
+          "source": "composite-upscale"
+        }
+      ],
+      "verification": {
+        "checked": true,
+        "mismatched": false
+      }
+    },
+    {
+      "id": "asset:9/4/1",
+      "name": "-s-ZainCash",
+      "semanticName": null,
+      "sourcePath": "9/4/1",
+      "sourceLayerId": "local-1614",
+      "kind": "group",
+      "bounds": {
+        "x": 105,
+        "y": 1446,
+        "width": 95,
+        "height": 95
+      },
+      "outputs": [
+        {
+          "fileName": "s-zaincash.png",
+          "scale": 1,
+          "width": 95,
+          "height": 95,
+          "bytes": 8231,
+          "sha256": "24ea9ad2f09e0a969fc26ddc1870b1abbcbcfd36207d0f3cf67c3a224ed0f619",
+          "source": "composite-crop"
+        },
+        {
+          "fileName": "s-zaincash@2x.png",
+          "scale": 2,
+          "width": 190,
+          "height": 190,
+          "bytes": 12552,
+          "sha256": "f921e565dd9c4a4e25eb2bcb36533fe11c39bc6455c6721c0b28610a52d5e286",
+          "source": "composite-upscale"
+        }
+      ],
+      "verification": {
+        "checked": true,
+        "mismatched": false
+      }
+    },
+    {
+      "id": "asset:9/4/1/0",
+      "name": "-slice-",
+      "semanticName": null,
+      "sourcePath": "9/4/1/0",
+      "sourceLayerId": "local-1612",
+      "kind": "shape",
+      "bounds": {
+        "x": 105,
+        "y": 1446,
+        "width": 95,
+        "height": 95
+      },
+      "outputs": [
+        {
+          "fileName": "slice-3.png",
+          "scale": 1,
+          "width": 95,
+          "height": 95,
+          "bytes": 8231,
+          "sha256": "24ea9ad2f09e0a969fc26ddc1870b1abbcbcfd36207d0f3cf67c3a224ed0f619",
+          "source": "composite-crop"
+        },
+        {
+          "fileName": "slice-3@2x.png",
+          "scale": 2,
+          "width": 190,
+          "height": 190,
+          "bytes": 12552,
+          "sha256": "f921e565dd9c4a4e25eb2bcb36533fe11c39bc6455c6721c0b28610a52d5e286",
+          "source": "composite-upscale"
+        }
+      ],
+      "verification": {
+        "checked": true,
+        "mismatched": false
+      }
+    },
+    {
+      "id": "asset:9/5/1",
+      "name": "-s-FastPay",
+      "semanticName": null,
+      "sourcePath": "9/5/1",
+      "sourceLayerId": "local-1622",
+      "kind": "group",
+      "bounds": {
+        "x": 698,
+        "y": 1447,
+        "width": 95,
+        "height": 95
+      },
+      "outputs": [
+        {
+          "fileName": "s-fastpay.png",
+          "scale": 1,
+          "width": 95,
+          "height": 95,
+          "bytes": 4597,
+          "sha256": "850b2c6a66fb25a1a1d0939db8c0b08c2adf84d8985adeb9b541a88b8436d467",
+          "source": "composite-crop"
+        },
+        {
+          "fileName": "s-fastpay@2x.png",
+          "scale": 2,
+          "width": 190,
+          "height": 190,
+          "bytes": 7587,
+          "sha256": "18d84b641b96387cfe554569cc59ef4a8d7820da66b1b02371dce115248c6f77",
+          "source": "composite-upscale"
+        }
+      ],
+      "verification": {
+        "checked": true,
+        "mismatched": false
+      }
+    },
+    {
+      "id": "asset:9/5/1/0",
+      "name": "-slice-",
+      "semanticName": null,
+      "sourcePath": "9/5/1/0",
+      "sourceLayerId": "local-1620",
+      "kind": "shape",
+      "bounds": {
+        "x": 698,
+        "y": 1447,
+        "width": 95,
+        "height": 95
+      },
+      "outputs": [
+        {
+          "fileName": "slice-4.png",
+          "scale": 1,
+          "width": 95,
+          "height": 95,
+          "bytes": 4597,
+          "sha256": "850b2c6a66fb25a1a1d0939db8c0b08c2adf84d8985adeb9b541a88b8436d467",
+          "source": "composite-crop"
+        },
+        {
+          "fileName": "slice-4@2x.png",
+          "scale": 2,
+          "width": 190,
+          "height": 190,
+          "bytes": 7587,
+          "sha256": "18d84b641b96387cfe554569cc59ef4a8d7820da66b1b02371dce115248c6f77",
+          "source": "composite-upscale"
+        }
+      ],
+      "verification": {
+        "checked": true,
+        "mismatched": false
+      }
+    },
+    {
+      "id": "asset:9/6/1",
+      "name": "-s-Areeba",
+      "semanticName": null,
+      "sourcePath": "9/6/1",
+      "sourceLayerId": "local-1630",
+      "kind": "group",
+      "bounds": {
+        "x": 105,
+        "y": 1618,
+        "width": 95,
+        "height": 95
+      },
+      "outputs": [
+        {
+          "fileName": "s-areeba.png",
+          "scale": 1,
+          "width": 95,
+          "height": 95,
+          "bytes": 10549,
+          "sha256": "27441d5e7b1fcc1f72e3ccdf40767f9e21dc9c9ce5b156845c2e8b874d2dc2a2",
+          "source": "composite-crop"
+        },
+        {
+          "fileName": "s-areeba@2x.png",
+          "scale": 2,
+          "width": 190,
+          "height": 190,
+          "bytes": 15807,
+          "sha256": "bd5c522b7bb339889e6635b5bb90e7fa4b82e4669e43ad1bad347b0209235df9",
+          "source": "composite-upscale"
+        }
+      ],
+      "verification": {
+        "checked": true,
+        "mismatched": false
+      }
+    },
+    {
+      "id": "asset:9/6/1/0",
+      "name": "-slice-",
+      "semanticName": null,
+      "sourcePath": "9/6/1/0",
+      "sourceLayerId": "local-1628",
+      "kind": "shape",
+      "bounds": {
+        "x": 105,
+        "y": 1618,
+        "width": 95,
+        "height": 95
+      },
+      "outputs": [
+        {
+          "fileName": "slice-5.png",
+          "scale": 1,
+          "width": 95,
+          "height": 95,
+          "bytes": 10549,
+          "sha256": "27441d5e7b1fcc1f72e3ccdf40767f9e21dc9c9ce5b156845c2e8b874d2dc2a2",
+          "source": "composite-crop"
+        },
+        {
+          "fileName": "slice-5@2x.png",
+          "scale": 2,
+          "width": 190,
+          "height": 190,
+          "bytes": 15807,
+          "sha256": "bd5c522b7bb339889e6635b5bb90e7fa4b82e4669e43ad1bad347b0209235df9",
+          "source": "composite-upscale"
+        }
+      ],
+      "verification": {
+        "checked": true,
+        "mismatched": false
+      }
+    },
+    {
+      "id": "asset:9/4/1/1",
+      "name": "ZainCash",
+      "semanticName": null,
+      "sourcePath": "9/4/1/1",
+      "sourceLayerId": "local-1613",
+      "kind": "pixel",
+      "bounds": {
+        "x": 107,
+        "y": 1449,
+        "width": 90,
+        "height": 89
+      },
+      "outputs": [
+        {
+          "fileName": "zaincash.png",
+          "scale": 1,
+          "width": 90,
+          "height": 89,
+          "bytes": 7787,
+          "sha256": "0d596288280bf0596918862c8fdc91611daa920a59a0655fdcb0419118d03f63",
+          "source": "composite-crop"
+        },
+        {
+          "fileName": "zaincash@2x.png",
+          "scale": 2,
+          "width": 180,
+          "height": 178,
+          "bytes": 10994,
+          "sha256": "3c9d0ae80f628604abeee2a99683943386b77343f8d6efcb269403e339901786",
+          "source": "composite-upscale"
+        }
+      ],
+      "verification": {
+        "checked": true,
+        "mismatched": false
+      }
+    },
+    {
+      "id": "asset:9/5/1/1",
+      "name": "FastPay",
+      "semanticName": null,
+      "sourcePath": "9/5/1/1",
+      "sourceLayerId": "local-1621",
+      "kind": "pixel",
+      "bounds": {
+        "x": 700,
+        "y": 1450,
+        "width": 90,
+        "height": 89
+      },
+      "outputs": [
+        {
+          "fileName": "fastpay.png",
+          "scale": 1,
+          "width": 90,
+          "height": 89,
+          "bytes": 4281,
+          "sha256": "bf59c38028dbbbf9797758c81f80cc343139c6d2a00289142c411120fa42ede9",
+          "source": "composite-crop"
+        },
+        {
+          "fileName": "fastpay@2x.png",
+          "scale": 2,
+          "width": 180,
+          "height": 178,
+          "bytes": 6443,
+          "sha256": "d8e7058e5334fc4a4ab0e7b1157f6a6660bf04e678967148de8fa0672b7135e9",
+          "source": "composite-upscale"
+        }
+      ],
+      "verification": {
+        "checked": true,
+        "mismatched": false
+      }
+    },
+    {
+      "id": "asset:9/6/1/1",
+      "name": "Areeba",
+      "semanticName": null,
+      "sourcePath": "9/6/1/1",
+      "sourceLayerId": "local-1629",
+      "kind": "pixel",
+      "bounds": {
+        "x": 108,
+        "y": 1621,
+        "width": 89,
+        "height": 90
+      },
+      "outputs": [
+        {
+          "fileName": "areeba.png",
+          "scale": 1,
+          "width": 89,
+          "height": 90,
+          "bytes": 10181,
+          "sha256": "86d027b97714de0795dba865261253f6c9afacb0076087e7594282dce94b5d96",
+          "source": "composite-crop"
+        },
+        {
+          "fileName": "areeba@2x.png",
+          "scale": 2,
+          "width": 178,
+          "height": 180,
+          "bytes": 14438,
+          "sha256": "33319e2935ed5b0fe85b4a998877580c54c2a682b07a597aecf2d8c9f1f571fb",
+          "source": "composite-upscale"
+        }
+      ],
+      "verification": {
+        "checked": true,
+        "mismatched": false
+      }
+    },
+    {
+      "id": "asset:9/2/1/1",
+      "name": "AsiaPay",
+      "semanticName": null,
+      "sourcePath": "9/2/1/1",
+      "sourceLayerId": "local-1597",
+      "kind": "pixel",
+      "bounds": {
+        "x": 109,
+        "y": 1275,
+        "width": 89,
+        "height": 89
+      },
+      "outputs": [
+        {
+          "fileName": "asiapay.png",
+          "scale": 1,
+          "width": 89,
+          "height": 89,
+          "bytes": 8220,
+          "sha256": "1f3cabc3fe45ce682a1bc994e3fc08c5f4ff8997b6ac6a6054079f5887cb3d1a",
+          "source": "composite-crop"
+        },
+        {
+          "fileName": "asiapay@2x.png",
+          "scale": 2,
+          "width": 178,
+          "height": 178,
+          "bytes": 11906,
+          "sha256": "67b92b40ad872b6d7cf79bd55b6b02642cbec492b19e06c44324da6ed1c2359f",
+          "source": "composite-upscale"
+        }
+      ],
+      "verification": {
+        "checked": true,
+        "mismatched": false
+      }
+    },
+    {
+      "id": "asset:9/3/1/1",
+      "name": "QICard",
+      "semanticName": null,
+      "sourcePath": "9/3/1/1",
+      "sourceLayerId": "local-1605",
+      "kind": "pixel",
+      "bounds": {
+        "x": 701,
+        "y": 1275,
+        "width": 89,
+        "height": 89
+      },
+      "outputs": [
+        {
+          "fileName": "qicard.png",
+          "scale": 1,
+          "width": 89,
+          "height": 89,
+          "bytes": 9881,
+          "sha256": "491e989a7d7a9a63d8bebf044f15e04580b86b7160953a3cca254ed7a23e1811",
+          "source": "composite-crop"
+        },
+        {
+          "fileName": "qicard@2x.png",
+          "scale": 2,
+          "width": 178,
+          "height": 178,
+          "bytes": 14171,
+          "sha256": "8f9385620e7ffcbb33dff74bafa230b794812e6c3782c8989426981436374da9",
+          "source": "composite-upscale"
+        }
+      ],
+      "verification": {
+        "checked": true,
+        "mismatched": false
+      }
+    },
+    {
+      "id": "asset:10/1",
+      "name": "-s-villable",
+      "semanticName": null,
+      "sourcePath": "10/1",
+      "sourceLayerId": "local-1640",
+      "kind": "group",
+      "bounds": {
+        "x": 63,
+        "y": 1039,
+        "width": 55,
+        "height": 55
+      },
+      "outputs": [
+        {
+          "fileName": "s-villable.png",
+          "scale": 1,
+          "width": 55,
+          "height": 55,
+          "bytes": 2100,
+          "sha256": "257362769fb87655173951c882c3767e4b510fea474e04d61ffbab5e35454042",
+          "source": "composite-crop"
+        },
+        {
+          "fileName": "s-villable@2x.png",
+          "scale": 2,
+          "width": 110,
+          "height": 110,
+          "bytes": 3540,
+          "sha256": "6a98bce1e01a1b6761605830ae0a75f38ab52107b42ad73b9b62760847a0ee67",
+          "source": "composite-upscale"
+        }
+      ],
+      "verification": {
+        "checked": true,
+        "mismatched": false
+      }
+    },
+    {
+      "id": "asset:10/1/0",
+      "name": "-slice-",
+      "semanticName": null,
+      "sourcePath": "10/1/0",
+      "sourceLayerId": "local-1637",
+      "kind": "shape",
+      "bounds": {
+        "x": 63,
+        "y": 1039,
+        "width": 55,
+        "height": 55
+      },
+      "outputs": [
+        {
+          "fileName": "slice-6.png",
+          "scale": 1,
+          "width": 55,
+          "height": 55,
+          "bytes": 2100,
+          "sha256": "257362769fb87655173951c882c3767e4b510fea474e04d61ffbab5e35454042",
+          "source": "composite-crop"
+        },
+        {
+          "fileName": "slice-6@2x.png",
+          "scale": 2,
+          "width": 110,
+          "height": 110,
+          "bytes": 3540,
+          "sha256": "6a98bce1e01a1b6761605830ae0a75f38ab52107b42ad73b9b62760847a0ee67",
+          "source": "composite-upscale"
+        }
+      ],
+      "verification": {
+        "checked": true,
+        "mismatched": false
+      }
+    },
+    {
+      "id": "asset:10/1/1",
+      "name": "Ellipse 8",
+      "semanticName": null,
+      "sourcePath": "10/1/1",
+      "sourceLayerId": "local-1638",
+      "kind": "shape",
+      "bounds": {
+        "x": 64,
+        "y": 1040,
+        "width": 53,
+        "height": 53
+      },
+      "outputs": [
+        {
+          "fileName": "ellipse-8.png",
+          "scale": 1,
+          "width": 53,
+          "height": 53,
+          "bytes": 2021,
+          "sha256": "0f0e2897eb57a22f1cf4a1b0a2cc6f2a6a7d3d32758c3691472c698b344483ab",
+          "source": "composite-crop"
+        },
+        {
+          "fileName": "ellipse-8@2x.png",
+          "scale": 2,
+          "width": 106,
+          "height": 106,
+          "bytes": 3282,
+          "sha256": "8ca4468901eb421685ecdd349540350cc33d3d36007ec3d3a94992d4afa0d80b",
+          "source": "composite-upscale"
+        }
+      ],
+      "verification": {
+        "checked": true,
+        "mismatched": false
+      }
+    },
+    {
+      "id": "asset:12/3",
+      "name": "Shape 1 copy",
+      "semanticName": null,
+      "sourcePath": "12/3",
+      "sourceLayerId": "local-1490",
+      "kind": "shape",
+      "bounds": {
+        "x": 1096,
+        "y": 623,
+        "width": 52,
+        "height": 51
+      },
+      "outputs": [
+        {
+          "fileName": "shape-1.png",
+          "scale": 1,
+          "width": 52,
+          "height": 51,
+          "bytes": 3224,
+          "sha256": "8f645107a4d9fc5d1851e238e6be0229da65ed65dbf9ebd9d5c6bb1dc415d0f2",
+          "source": "composite-crop"
+        },
+        {
+          "fileName": "shape-1@2x.png",
+          "scale": 2,
+          "width": 104,
+          "height": 102,
+          "bytes": 5411,
+          "sha256": "dbcf17cc0e982c86daf23d3a9631c0d300ee70afd5c4e4bc2800c59cfd0d3b20",
+          "source": "composite-upscale"
+        }
+      ],
+      "verification": {
+        "checked": true,
+        "mismatched": false
+      }
+    },
+    {
+      "id": "asset:12/2",
+      "name": "Shape 1",
+      "semanticName": null,
+      "sourcePath": "12/2",
+      "sourceLayerId": "local-1489",
+      "kind": "shape",
+      "bounds": {
+        "x": 1097,
+        "y": 624,
+        "width": 51,
+        "height": 51
+      },
+      "outputs": [
+        {
+          "fileName": "shape-1-2.png",
+          "scale": 1,
+          "width": 51,
+          "height": 51,
+          "bytes": 3242,
+          "sha256": "28a763fec01b9ca537817c4c410dc10a168a209326cc5806c57ca2ca830f015a",
+          "source": "composite-crop"
+        },
+        {
+          "fileName": "shape-1-2@2x.png",
+          "scale": 2,
+          "width": 102,
+          "height": 102,
+          "bytes": 5412,
+          "sha256": "dd419bd698736d047cd2c727792e4c947336c21f9ed4c447a95f67df4d839fd8",
+          "source": "composite-upscale"
+        }
+      ],
+      "verification": {
+        "checked": true,
+        "mismatched": false
+      }
+    },
+    {
+      "id": "asset:4/0",
+      "name": "Rectangle 18",
+      "semanticName": null,
+      "sourcePath": "4/0",
+      "sourceLayerId": "local-1671",
+      "kind": "shape",
+      "bounds": {
+        "x": 64,
+        "y": 2476,
+        "width": 50,
+        "height": 50
+      },
+      "outputs": [
+        {
+          "fileName": "rectangle-18.png",
+          "scale": 1,
+          "width": 50,
+          "height": 50,
+          "bytes": 1495,
+          "sha256": "73be17529e40603747ae5996d8654f3d83fe8df27f2a4093c4f840cb70f0220a",
+          "source": "composite-crop"
+        },
+        {
+          "fileName": "rectangle-18@2x.png",
+          "scale": 2,
+          "width": 100,
+          "height": 100,
+          "bytes": 2297,
+          "sha256": "70d0468523fed5b6c5b805af2322dbdbf84b783a1e02932739c399ef220bd9c7",
+          "source": "composite-upscale"
+        }
+      ],
+      "verification": {
+        "checked": true,
+        "mismatched": false
+      }
+    },
+    {
+      "id": "asset:10/1/2",
+      "name": "Shape 17",
+      "semanticName": null,
+      "sourcePath": "10/1/2",
+      "sourceLayerId": "local-1639",
+      "kind": "shape",
+      "bounds": {
+        "x": 74,
+        "y": 1053,
+        "width": 33,
+        "height": 26
+      },
+      "outputs": [
+        {
+          "fileName": "shape-17.png",
+          "scale": 1,
+          "width": 33,
+          "height": 26,
+          "bytes": 558,
+          "sha256": "1132a4c250dc659de72a0aa1db70290ffa5fe2366197bf72d8c73a7f17ada21f",
+          "source": "composite-crop"
+        },
+        {
+          "fileName": "shape-17@2x.png",
+          "scale": 2,
+          "width": 66,
+          "height": 52,
+          "bytes": 1027,
+          "sha256": "e62067a5a237432c99a32dd6eac622cb45f6a325916400c4c2389ff892ea8e87",
+          "source": "composite-upscale"
+        }
+      ],
+      "verification": {
+        "checked": true,
+        "mismatched": false
+      }
+    }
+  ],
+  "mergedAssets": [
+    {
+      "id": "merged:10",
+      "name": "Selected",
+      "suggestedName": "component-merged",
+      "sourcePath": "10",
+      "kind": "component",
+      "memberPaths": [
+        "10/0",
+        "10/1",
+        "10/2"
+      ],
+      "bounds": {
+        "x": 63,
+        "y": 961,
+        "width": 168,
+        "height": 133
+      },
+      "areaRatio": 0.007,
+      "outputs": [
+        {
+          "fileName": "component-merged.png",
+          "scale": 1,
+          "width": 168,
+          "height": 133,
+          "bytes": 6989,
+          "sha256": "2173e0229da3d820208b79694f66b3151806b979da9d7702b3514532b7e07e9e",
+          "source": "composite-crop"
+        },
+        {
+          "fileName": "component-merged@2x.png",
+          "scale": 2,
+          "width": 336,
+          "height": 266,
+          "bytes": 11775,
+          "sha256": "242dec872f62ca0657cc4167a8f7ec5596af6bd4c8a9166df4bb3265109f67b0",
+          "source": "composite-upscale"
+        }
+      ],
+      "verification": {
+        "checked": true,
+        "mismatched": false
+      }
+    },
+    {
+      "id": "merged:12",
+      "name": "-s-Close",
+      "suggestedName": "icon-button-merged",
+      "sourcePath": "12",
+      "kind": "component",
+      "memberPaths": [
+        "12/1",
+        "12/2",
+        "12/3"
+      ],
+      "bounds": {
+        "x": 1067,
+        "y": 593,
+        "width": 112,
+        "height": 113
+      },
+      "areaRatio": 0.004,
+      "outputs": [
+        {
+          "fileName": "icon-button-merged.png",
+          "scale": 1,
+          "width": 112,
+          "height": 113,
+          "bytes": 15366,
+          "sha256": "a97c37db7072b19ad8507e918ceeaa84346f6b3b5e41ce0ecc0f8fb7e7e88ef9",
+          "source": "composite-crop"
+        },
+        {
+          "fileName": "icon-button-merged@2x.png",
+          "scale": 2,
+          "width": 224,
+          "height": 226,
+          "bytes": 23360,
+          "sha256": "fa98e2ababd5a240ad528b8d4d8b383142d3a1d83a466fa2ec610f129171ab39",
+          "source": "composite-upscale"
+        }
+      ],
+      "verification": {
+        "checked": true,
+        "mismatched": false
+      }
+    },
+    {
+      "id": "merged:3",
+      "name": "Pay Now",
+      "suggestedName": "button-merged",
+      "sourcePath": "3",
+      "kind": "component",
+      "memberPaths": [
+        "3/0",
+        "3/1"
+      ],
+      "bounds": {
+        "x": 62,
+        "y": 2277,
+        "width": 1118,
+        "height": 155
+      },
+      "areaRatio": 0.051,
+      "outputs": [
+        {
+          "fileName": "button-merged.png",
+          "scale": 1,
+          "width": 1118,
+          "height": 155,
+          "bytes": 118734,
+          "sha256": "ac010c7e8a8bdfa899a1c5cc732c706cf3313fad5b6a213e1817b950196831e5",
+          "source": "composite-crop"
+        },
+        {
+          "fileName": "button-merged@2x.png",
+          "scale": 2,
+          "width": 2236,
+          "height": 310,
+          "bytes": 190086,
+          "sha256": "babc6c82102c7094ec14abdf7b72ce50f7eab00e4e424bbfd417eb20e48f491f",
+          "source": "composite-upscale"
+        }
+      ],
+      "verification": {
+        "checked": true,
+        "mismatched": false
+      }
+    },
+    {
+      "id": "merged:4",
+      "name": "agree",
+      "suggestedName": "checkbox-row-merged",
+      "sourcePath": "4",
+      "kind": "component",
+      "memberPaths": [
+        "4/0",
+        "4/1"
+      ],
+      "bounds": {
+        "x": 64,
+        "y": 2476,
+        "width": 1064,
+        "height": 50
+      },
+      "areaRatio": 0.016,
+      "outputs": [
+        {
+          "fileName": "checkbox-row-merged.png",
+          "scale": 1,
+          "width": 1064,
+          "height": 50,
+          "bytes": 13994,
+          "sha256": "f37eff0babbb4bc97bb6896de50965def38c8f9c15ce450182feda8fc742a37a",
+          "source": "composite-crop"
+        },
+        {
+          "fileName": "checkbox-row-merged@2x.png",
+          "scale": 2,
+          "width": 2128,
+          "height": 100,
+          "bytes": 25334,
+          "sha256": "3313d4d3d890e9c7386b327ca8fc1c0de3cd46ac636cd394c0e77ebb8b30346b",
+          "source": "composite-upscale"
+        }
+      ],
+      "verification": {
+        "checked": true,
+        "mismatched": false
+      }
+    },
+    {
+      "id": "merged:8",
+      "name": "Promo Code",
+      "suggestedName": "form-row-merged",
+      "sourcePath": "8",
+      "kind": "component",
+      "memberPaths": [
+        "8/0",
+        "8/1",
+        "8/2",
+        "8/3"
+      ],
+      "bounds": {
+        "x": 58,
+        "y": 1812,
+        "width": 1122,
+        "height": 131
+      },
+      "areaRatio": 0.044,
+      "outputs": [
+        {
+          "fileName": "form-row-merged.png",
+          "scale": 1,
+          "width": 1122,
+          "height": 131,
+          "bytes": 39219,
+          "sha256": "05fe35b802734b7a5ec10db0e6f2d7646ef0c2f5e9be491da4df97b5be90de98",
+          "source": "composite-crop"
+        },
+        {
+          "fileName": "form-row-merged@2x.png",
+          "scale": 2,
+          "width": 2244,
+          "height": 262,
+          "bytes": 67574,
+          "sha256": "ec3077a0e19a9b7d8018e26872386d659ac57e753bd8e9b4ce858c62330bed43",
+          "source": "composite-upscale"
+        }
+      ],
+      "verification": {
+        "checked": true,
+        "mismatched": false
+      }
+    },
+    {
+      "id": "merged:9/2",
+      "name": "1",
+      "suggestedName": "button-merged",
+      "sourcePath": "9/2",
+      "kind": "component",
+      "memberPaths": [
+        "9/2/0",
+        "9/2/1",
+        "9/2/2"
+      ],
+      "bounds": {
+        "x": 58,
+        "y": 1245,
+        "width": 528,
+        "height": 143
+      },
+      "areaRatio": 0.022,
+      "outputs": [
+        {
+          "fileName": "button-merged-2.png",
+          "scale": 1,
+          "width": 528,
+          "height": 143,
+          "bytes": 16098,
+          "sha256": "a76b732a428abb3f456da2a1ce20fa45ea9655681f660c818a6a9f165dcf6067",
+          "source": "composite-crop"
+        },
+        {
+          "fileName": "button-merged-2@2x.png",
+          "scale": 2,
+          "width": 1056,
+          "height": 286,
+          "bytes": 27861,
+          "sha256": "8b75d3e2b039b838d0b8bfb2156dddefcb60260baccb1b8a2a7dc5d10cef4978",
+          "source": "composite-upscale"
+        }
+      ],
+      "verification": {
+        "checked": true,
+        "mismatched": false
+      }
+    },
+    {
+      "id": "merged:9/3",
+      "name": "2",
+      "suggestedName": "button-merged-2",
+      "sourcePath": "9/3",
+      "kind": "component",
+      "memberPaths": [
+        "9/3/0",
+        "9/3/1",
+        "9/3/2"
+      ],
+      "bounds": {
+        "x": 652,
+        "y": 1245,
+        "width": 528,
+        "height": 143
+      },
+      "areaRatio": 0.022,
+      "outputs": [
+        {
+          "fileName": "button-merged-2-2.png",
+          "scale": 1,
+          "width": 528,
+          "height": 143,
+          "bytes": 17857,
+          "sha256": "10e4915ff87f928bb265037c87addef6c9bf3fdd9c5d656a277557d48d5c062b",
+          "source": "composite-crop"
+        },
+        {
+          "fileName": "button-merged-2-2@2x.png",
+          "scale": 2,
+          "width": 1056,
+          "height": 286,
+          "bytes": 30063,
+          "sha256": "b45f05c5fb902757b6523b1038018193fc1faf55a53909296a6b33ec53cb7717",
+          "source": "composite-upscale"
+        }
+      ],
+      "verification": {
+        "checked": true,
+        "mismatched": false
+      }
+    },
+    {
+      "id": "merged:9/4",
+      "name": "3",
+      "suggestedName": "button-merged-3",
+      "sourcePath": "9/4",
+      "kind": "component",
+      "memberPaths": [
+        "9/4/0",
+        "9/4/1",
+        "9/4/2"
+      ],
+      "bounds": {
+        "x": 58,
+        "y": 1419,
+        "width": 528,
+        "height": 143
+      },
+      "areaRatio": 0.022,
+      "outputs": [
+        {
+          "fileName": "button-merged-3.png",
+          "scale": 1,
+          "width": 528,
+          "height": 143,
+          "bytes": 15650,
+          "sha256": "3ed37b3a1f96abf1e5353597d3a3ae2fded50f0d9c54edd5b902134b4ecb8b75",
+          "source": "composite-crop"
+        },
+        {
+          "fileName": "button-merged-3@2x.png",
+          "scale": 2,
+          "width": 1056,
+          "height": 286,
+          "bytes": 26881,
+          "sha256": "d402e7d1ca5c6d4577274935a986f95dee16fff19d1ac64b28d791157060c537",
+          "source": "composite-upscale"
+        }
+      ],
+      "verification": {
+        "checked": true,
+        "mismatched": false
+      }
+    },
+    {
+      "id": "merged:9/5",
+      "name": "4",
+      "suggestedName": "button-merged-4",
+      "sourcePath": "9/5",
+      "kind": "component",
+      "memberPaths": [
+        "9/5/0",
+        "9/5/1",
+        "9/5/2"
+      ],
+      "bounds": {
+        "x": 651,
+        "y": 1420,
+        "width": 528,
+        "height": 143
+      },
+      "areaRatio": 0.022,
+      "outputs": [
+        {
+          "fileName": "button-merged-4.png",
+          "scale": 1,
+          "width": 528,
+          "height": 143,
+          "bytes": 11343,
+          "sha256": "bf87bd61dbf93ffc1ff8fde3189938979ee8388e7466eb0eed8f721f18783368",
+          "source": "composite-crop"
+        },
+        {
+          "fileName": "button-merged-4@2x.png",
+          "scale": 2,
+          "width": 1056,
+          "height": 286,
+          "bytes": 21079,
+          "sha256": "2eac1724b795407e8182837737d313d916ec82a166d2df1e1243decee810b714",
+          "source": "composite-upscale"
+        }
+      ],
+      "verification": {
+        "checked": true,
+        "mismatched": false
+      }
+    },
+    {
+      "id": "merged:9/6",
+      "name": "5",
+      "suggestedName": "button-merged-5",
+      "sourcePath": "9/6",
+      "kind": "component",
+      "memberPaths": [
+        "9/6/0",
+        "9/6/1",
+        "9/6/2"
+      ],
+      "bounds": {
+        "x": 59,
+        "y": 1594,
+        "width": 528,
+        "height": 143
+      },
+      "areaRatio": 0.022,
+      "outputs": [
+        {
+          "fileName": "button-merged-5.png",
+          "scale": 1,
+          "width": 528,
+          "height": 143,
+          "bytes": 17758,
+          "sha256": "f14ee6bb7e8a13ac163cacb0d7b51accbab499b8d2a58998957815797bba77df",
+          "source": "composite-crop"
+        },
+        {
+          "fileName": "button-merged-5@2x.png",
+          "scale": 2,
+          "width": 1056,
+          "height": 286,
+          "bytes": 30000,
+          "sha256": "f69f6d0035f9e0779ad38062a383bfce02be7fcddf0751ef5c32034887249310",
+          "source": "composite-upscale"
+        }
+      ],
+      "verification": {
+        "checked": true,
+        "mismatched": false
+      }
+    }
+  ],
+  "comparison": {
+    "method": "composite-crops-and-decode-verification",
+    "width": 1242,
+    "height": 2718,
+    "totalPixels": 3375756,
+    "coveredPixels": 767127,
+    "coverageRatio": 0.22724598578807237,
+    "verifiedAssets": 40,
+    "mismatchedAssets": 0,
+    "verifiedMergedAssets": 10,
+    "mismatchedMergedAssets": 0,
+    "maxChannelDelta": 0,
+    "tolerance": 2,
+    "notes": [
+      "覆盖率按切图边界并集面积计算；它不是像素级保真证明。",
+      "每个 1x PNG 都经过解码并与源合成图裁切区域逐像素比较；容差为 2。",
+      "重叠切图在页面重建中按面积从大到小叠加。",
+      "合并素材是候选区域的合成裁剪，不参与页面重建覆盖率，也不代表 PSD 已合并。",
+      "编组/合并写入尚未执行；当前桥接协议没有这些操作。"
+    ]
+  },
+  "limits": {
+    "byteBudget": 536870912,
+    "bytesUsed": 3287695,
+    "truncated": false,
+    "skippedAssets": 0,
+    "skippedMergedAssets": 0,
+    "skippedOutputs": 0,
+    "oversizedOutputs": 0
+  },
+  "files": [
+    "manifest.json",
+    "design-ir.json",
+    "agent-context.md",
+    "preview.html",
+    "comparison.json",
+    "README.txt",
+    "preview/original-composite.png",
+    "preview/page-reconstruction.png",
+    "assets/pay-now.png",
+    "assets/pay-now@2x.png",
+    "assets/rectangle-16.png",
+    "assets/rectangle-16@2x.png",
+    "assets/promo-code.png",
+    "assets/promo-code@2x.png",
+    "assets/rectangle-1.png",
+    "assets/rectangle-1@2x.png",
+    "assets/1.png",
+    "assets/1@2x.png",
+    "assets/rectangle-1-2.png",
+    "assets/rectangle-1-2@2x.png",
+    "assets/2.png",
+    "assets/2@2x.png",
+    "assets/rectangle-1-3.png",
+    "assets/rectangle-1-3@2x.png",
+    "assets/3.png",
+    "assets/3@2x.png",
+    "assets/rectangle-1-4.png",
+    "assets/rectangle-1-4@2x.png",
+    "assets/4.png",
+    "assets/4@2x.png",
+    "assets/rectangle-1-5.png",
+    "assets/rectangle-1-5@2x.png",
+    "assets/5.png",
+    "assets/5@2x.png",
+    "assets/rectangle-1-6.png",
+    "assets/rectangle-1-6@2x.png",
+    "assets/agree.png",
+    "assets/agree@2x.png",
+    "assets/rectangle-1-7.png",
+    "assets/rectangle-1-7@2x.png",
+    "assets/s-close.png",
+    "assets/s-close@2x.png",
+    "assets/ellipse-1.png",
+    "assets/ellipse-1@2x.png",
+    "assets/s-asiapay.png",
+    "assets/s-asiapay@2x.png",
+    "assets/slice.png",
+    "assets/slice@2x.png",
+    "assets/s-qicard.png",
+    "assets/s-qicard@2x.png",
+    "assets/slice-2.png",
+    "assets/slice-2@2x.png",
+    "assets/s-zaincash.png",
+    "assets/s-zaincash@2x.png",
+    "assets/slice-3.png",
+    "assets/slice-3@2x.png",
+    "assets/s-fastpay.png",
+    "assets/s-fastpay@2x.png",
+    "assets/slice-4.png",
+    "assets/slice-4@2x.png",
+    "assets/s-areeba.png",
+    "assets/s-areeba@2x.png",
+    "assets/slice-5.png",
+    "assets/slice-5@2x.png",
+    "assets/zaincash.png",
+    "assets/zaincash@2x.png",
+    "assets/fastpay.png",
+    "assets/fastpay@2x.png",
+    "assets/areeba.png",
+    "assets/areeba@2x.png",
+    "assets/asiapay.png",
+    "assets/asiapay@2x.png",
+    "assets/qicard.png",
+    "assets/qicard@2x.png",
+    "assets/s-villable.png",
+    "assets/s-villable@2x.png",
+    "assets/slice-6.png",
+    "assets/slice-6@2x.png",
+    "assets/ellipse-8.png",
+    "assets/ellipse-8@2x.png",
+    "assets/shape-1.png",
+    "assets/shape-1@2x.png",
+    "assets/shape-1-2.png",
+    "assets/shape-1-2@2x.png",
+    "assets/rectangle-18.png",
+    "assets/rectangle-18@2x.png",
+    "assets/shape-17.png",
+    "assets/shape-17@2x.png",
+    "merged/component-merged.png",
+    "merged/component-merged@2x.png",
+    "merged/icon-button-merged.png",
+    "merged/icon-button-merged@2x.png",
+    "merged/button-merged.png",
+    "merged/button-merged@2x.png",
+    "merged/checkbox-row-merged.png",
+    "merged/checkbox-row-merged@2x.png",
+    "merged/form-row-merged.png",
+    "merged/form-row-merged@2x.png",
+    "merged/button-merged-2.png",
+    "merged/button-merged-2@2x.png",
+    "merged/button-merged-2-2.png",
+    "merged/button-merged-2-2@2x.png",
+    "merged/button-merged-3.png",
+    "merged/button-merged-3@2x.png",
+    "merged/button-merged-4.png",
+    "merged/button-merged-4@2x.png",
+    "merged/button-merged-5.png",
+    "merged/button-merged-5@2x.png"
+  ],
+  "notes": [
+    "切图来自 PSD 扁平合成图按边界裁切；重叠区域包含下方内容，不是逐图层隔离渲染。",
+    "@2x 输出由合成图放大，不是原生 2x 渲染。",
+    "logicalGroups 与 layout 只是 Design IR 中的规则建议/启发式提示；应用内可经桥接写入文档内存，未另存重开前不改变 PSD。",
+    "mergeCandidates 只是可审核的规则建议；merged/ 中的图片是合成裁剪，不是 PSD 合并结果；应用内合并需另存重开。",
+    "本资产包未经 Patchy 或 Photoshop 验证，不能作为兼容性证据。"
+  ]
+}

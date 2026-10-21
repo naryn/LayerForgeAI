@@ -1,0 +1,120 @@
+{
+  "engine": "patchy-wasm",
+  "source": {
+    "fileName": "Store_D.psd",
+    "path": "B:\\迅雷下载\\北欧1019\\mobile\\Store_D.psd",
+    "size": 49482331,
+    "sha256": "3fb54c5cf7019470575a00e9756428bc65d0ffb0d9626f115acc6ffae8500303",
+    "unchanged": true
+  },
+  "timingMs": {
+    "import": 41226,
+    "cleanup": 693,
+    "group": null,
+    "merge": 4299,
+    "saveAndReopen": 55602
+  },
+  "memory": {
+    "afterLoad": {
+      "usedBytes": 372244480,
+      "peakUsedBytes": 374341632,
+      "heapBytes": 463994880,
+      "historyBytes": 0,
+      "limitBytes": 4293918720
+    },
+    "afterEdits": {
+      "usedBytes": 400556032,
+      "peakUsedBytes": 425721856,
+      "heapBytes": 668205056,
+      "historyBytes": 0,
+      "limitBytes": 4293918720
+    },
+    "afterSave": {
+      "usedBytes": 336592896,
+      "peakUsedBytes": 425721856,
+      "heapBytes": 801898496,
+      "historyBytes": 0,
+      "limitBytes": 4293918720
+    }
+  },
+  "cleanup": {
+    "afterCleanup": {
+      "renames": 99,
+      "findings": 50,
+      "groups": 0,
+      "merges": 13,
+      "slices": 0
+    },
+    "afterEdits": {
+      "renames": 95,
+      "findings": 50,
+      "groups": 0,
+      "merges": 10,
+      "slices": 0
+    },
+    "groupOutcome": "no-candidates",
+    "mergeOutcome": "applied"
+  },
+  "output": {
+    "psd": {
+      "path": "B:\\src\\LayerForgeAI\\artifacts\\patchy-corpus\\store-nordic\\saved.psd",
+      "sha256": "d44dad813fa85c3591dc41a68f788acbdad290e92eda63ecd81f27f18dc7b3e0",
+      "roots": 10
+    },
+    "before": {
+      "path": "B:\\src\\LayerForgeAI\\artifacts\\patchy-corpus\\store-nordic\\before.png",
+      "width": 212,
+      "height": 1024,
+      "rgbaSha256": "492a09762c8b2ddb5bbe1115d97d737a213f8f13b5013ee77e8c770759aa0afd"
+    },
+    "grouped": null,
+    "merged": {
+      "path": "B:\\src\\LayerForgeAI\\artifacts\\patchy-corpus\\store-nordic\\merged.png",
+      "width": 212,
+      "height": 1024,
+      "rgbaSha256": "492a09762c8b2ddb5bbe1115d97d737a213f8f13b5013ee77e8c770759aa0afd"
+    },
+    "reopened": {
+      "path": "B:\\src\\LayerForgeAI\\artifacts\\patchy-corpus\\store-nordic\\reopened.png",
+      "width": 212,
+      "height": 1024,
+      "rgbaSha256": "492a09762c8b2ddb5bbe1115d97d737a213f8f13b5013ee77e8c770759aa0afd"
+    }
+  },
+  "diffs": {
+    "group": null,
+    "merge": {
+      "sameSize": true,
+      "width": 212,
+      "height": 1024,
+      "totalPixels": 217088,
+      "differingPixels": 0,
+      "ratio": 0,
+      "maxDelta": 0,
+      "bounds": null
+    },
+    "saveAndReopen": {
+      "sameSize": true,
+      "width": 212,
+      "height": 1024,
+      "totalPixels": 217088,
+      "differingPixels": 0,
+      "ratio": 0,
+      "maxDelta": 0,
+      "bounds": null
+    }
+  },
+  "uiPixelDiff": {
+    "differingPixels": 0,
+    "ratio": "0.000%"
+  },
+  "pixelsMatch": true,
+  "applied": [
+    "已合并：icon-button-merged"
+  ],
+  "warnings": [],
+  "problems": [],
+  "photoshopVerified": false,
+  "m0Accepted": false,
+  "note": "Real Patchy WASM import/cleanup/group/merge/save evidence on a production PSD. Photoshop warning-free open remains unverified."
+}

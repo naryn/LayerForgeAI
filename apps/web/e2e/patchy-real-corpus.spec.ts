@@ -185,6 +185,14 @@ async function cleanupStats(page: Page): Promise<CleanupStats> {
   };
 }
 
+async function appliedCount(page: Page, marker: string): Promise<number> {
+  return page.locator(".activity-log .log-entry").evaluateAll(
+    (entries, expected) =>
+      entries.filter((entry) => entry.textContent?.includes(expected)).length,
+    `${marker}：`,
+  );
+}
+
 async function sampleMemory(page: Page): Promise<MemorySample | null> {
   const frame = page.frames().find((item) => item.url().includes("/patchy/patchy.html"));
   if (!frame) return null;
@@ -274,6 +282,7 @@ for (const { fileName, slug } of CASES) {
       timeout: 300_000,
     });
     const statsAfterCleanup = await cleanupStats(page);
+    expect(statsAfterCleanup.slices, "Patchy 路径应产出切图候选").toBeGreaterThan(0);
     const cleanupMs = Date.now() - cleanupStarted;
 
     let groupOutcome = "no-candidates";
@@ -284,13 +293,14 @@ for (const { fileName, slug } of CASES) {
     const firstGroup = page.locator(".cleanup-group").first();
     if ((await firstGroup.count()) > 0) {
       const groupStarted = Date.now();
+      const appliedGroupsBefore = await appliedCount(page, "已编组");
       await firstGroup.getByRole("button", { name: "仅编组这一组" }).click();
       await expect(page.locator(".activity-log .log-list")).toContainText("编组结束", {
         timeout: 600_000,
       });
       groupMs = Date.now() - groupStarted;
       groupOutcome =
-        (await cleanupStats(page)).groups < statsAfterCleanup.groups ? "applied" : "failed";
+        (await appliedCount(page, "已编组")) > appliedGroupsBefore ? "applied" : "failed";
       if (groupOutcome === "applied") {
         groupedPath = await download(page, () => previewButton.click(), artifactDir, "grouped");
         grouped = await pixelDigest(page, groupedPath);
@@ -306,13 +316,14 @@ for (const { fileName, slug } of CASES) {
     const firstMerge = page.locator(".cleanup-merge").first();
     if ((await firstMerge.count()) > 0) {
       const mergeStarted = Date.now();
+      const appliedMergesBefore = await appliedCount(page, "已合并");
       await firstMerge.getByRole("button", { name: "仅合并这一组" }).click();
       await expect(page.locator(".activity-log .log-list")).toContainText("合并结束", {
         timeout: 600_000,
       });
       mergeMs = Date.now() - mergeStarted;
-      const afterMerge = await cleanupStats(page);
-      mergeOutcome = afterMerge.merges < statsAfterCleanup.merges ? "applied" : "failed";
+      mergeOutcome =
+        (await appliedCount(page, "已合并")) > appliedMergesBefore ? "applied" : "failed";
       if (mergeOutcome === "applied") {
         mergedPath = await download(page, () => previewButton.click(), artifactDir, "merged");
         merged = await pixelDigest(page, mergedPath);

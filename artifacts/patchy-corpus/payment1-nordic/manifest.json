@@ -8,11 +8,11 @@
     "unchanged": true
   },
   "timingMs": {
-    "import": 42191,
-    "cleanup": 563,
-    "group": 2133,
-    "merge": 3430,
-    "saveAndReopen": 39608
+    "import": 31037,
+    "cleanup": 518,
+    "group": 2139,
+    "merge": 2762,
+    "saveAndReopen": 28502
   },
   "memory": {
     "afterLoad": {
@@ -23,7 +23,7 @@
       "limitBytes": 4293918720
     },
     "afterEdits": {
-      "usedBytes": 154140672,
+      "usedBytes": 155189248,
       "peakUsedBytes": 180355072,
       "heapBytes": 268435456,
       "historyBytes": 0,
@@ -31,7 +31,7 @@
     },
     "afterSave": {
       "usedBytes": 155189248,
-      "peakUsedBytes": 185597952,
+      "peakUsedBytes": 184549376,
       "heapBytes": 386662400,
       "historyBytes": 0,
       "limitBytes": 4293918720
@@ -39,18 +39,18 @@
   },
   "cleanup": {
     "afterCleanup": {
-      "renames": 26,
-      "findings": 6,
-      "groups": 1,
-      "merges": 7,
-      "slices": 0
+      "renames": 43,
+      "findings": 3,
+      "groups": 2,
+      "merges": 10,
+      "slices": 40
     },
     "afterEdits": {
-      "renames": 23,
-      "findings": 5,
-      "groups": 0,
-      "merges": 6,
-      "slices": 0
+      "renames": 42,
+      "findings": 2,
+      "groups": 2,
+      "merges": 9,
+      "slices": 40
     },
     "groupOutcome": "applied",
     "mergeOutcome": "applied"
@@ -58,7 +58,7 @@
   "output": {
     "psd": {
       "path": "B:\\src\\LayerForgeAI\\artifacts\\patchy-corpus\\payment1-nordic\\saved.psd",
-      "sha256": "a49e1932e4bee49cc9f29c5c06c1a9baffb9a5b6d5da22b4e3c44f62e2d61fd5",
+      "sha256": "0f0e1c133b3fa6eb6242c3706e911bf96425c55a020d0e658895faf19dc5c0da",
       "roots": 9
     },
     "before": {
@@ -77,13 +77,13 @@
       "path": "B:\\src\\LayerForgeAI\\artifacts\\patchy-corpus\\payment1-nordic\\merged.png",
       "width": 467,
       "height": 1024,
-      "rgbaSha256": "6da9cbb8993704093dc471578a2f8466ac48ba94131ca74c50ed5bb02a5f35b5"
+      "rgbaSha256": "55ead739c3550bd092d116d30eb013f0da993c39f41b008bf8776f0a8d8a72df"
     },
     "reopened": {
       "path": "B:\\src\\LayerForgeAI\\artifacts\\patchy-corpus\\payment1-nordic\\reopened.png",
       "width": 467,
       "height": 1024,
-      "rgbaSha256": "59c09c5142e8094da813a43bfe7f1a464fafbd41650bbae8ba453194c52dfbd0"
+      "rgbaSha256": "fcc0040e8ecfafc8b70e44e03042746af741dc8c800eff22b8cf0bb741365e60"
     }
   },
   "diffs": {
@@ -107,14 +107,14 @@
       "width": 467,
       "height": 1024,
       "totalPixels": 478208,
-      "differingPixels": 20,
-      "ratio": 0.00004182280513918629,
+      "differingPixels": 3047,
+      "ratio": 0.006371704362955032,
       "maxDelta": 1,
       "bounds": {
-        "x": 40,
-        "y": 479,
-        "width": 35,
-        "height": 36
+        "x": 0,
+        "y": 830,
+        "width": 467,
+        "height": 112
       }
     },
     "saveAndReopen": {
@@ -122,31 +122,31 @@
       "width": 467,
       "height": 1024,
       "totalPixels": 478208,
-      "differingPixels": 5544,
-      "ratio": 0.011593281584582442,
+      "differingPixels": 3404,
+      "ratio": 0.0071182414346895075,
       "maxDelta": 236,
       "bounds": {
         "x": 0,
         "y": 223,
         "width": 466,
-        "height": 710
+        "height": 535
       }
     }
   },
   "uiPixelDiff": {
-    "differingPixels": 5544,
-    "ratio": "1.159%"
+    "differingPixels": 3404,
+    "ratio": "0.712%"
   },
   "pixelsMatch": false,
   "applied": [
-    "已合并：icon-button-merged",
+    "已合并：button-merged",
     "已编组：card"
   ],
   "warnings": [
     {
       "level": "dot dot--warn",
       "message": "保存前后预览存在像素差异",
-      "detail": "差异 5544/478208（1.159%）最大通道差 236 · 区域 466×710 · 对比对象是预览 PNG，不是 PSD 二进制或 Photoshop 渲染"
+      "detail": "差异 3404/478208（0.712%）最大通道差 236 · 区域 466×535 · 对比对象是预览 PNG，不是 PSD 二进制或 Photoshop 渲染"
     }
   ],
   "problems": [],

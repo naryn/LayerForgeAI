@@ -525,9 +525,12 @@ export function analyzeLayers(input: CleanupInput): CleanupReport {
         );
       }
 
+      const ownBounds =
+        node.bounds && node.bounds.width > 0 && node.bounds.height > 0
+          ? node.bounds
+          : undefined;
       const sliceBounds =
-        node.bounds ??
-        (node.kind === "group" ? unionBounds(node.children) : undefined);
+        ownBounds ?? (node.kind === "group" ? unionBounds(node.children) : undefined);
       const roleInfo = roles.get(node.path);
       const assetCandidate =
         isAssetLeaf(node) || (node.kind === "group" && isAssetGroup(roleInfo?.role));

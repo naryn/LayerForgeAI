@@ -26,10 +26,12 @@ Patchy 固定提交：`d1ff95235e00af296868d4253e03391ca002ee9d`
   `icon-button-merged`（无子层）符合预期，`badge` 组已不存在；证据见
   `artifacts/patchy-roundtrip/manifest.json`。重建中发现真实引擎对 PSD 组返回 0×0
   边界，导致组角色被判为“无有效边界”、合并候选为 0；已让组优先取子层边界并集
-  （`roles.ts` 的 `boundsOf`），单元测试与真实 E2E 均通过。新盘 Nordic mobile
+  （`roles.ts` 的 `boundsOf`），并在 `normalizePatchyLayers` 中直接补全 0×0 组边界；
+  同时识别 automation state 的 `isText/isShape/isArtboard` 布尔标记，使 Patchy 路径
+  的切图候选从 0 恢复为与本地解析一致（2.2.3），单元测试与真实 E2E 均通过。新盘 Nordic mobile
   语料（4 份 PSD，21–49 MB）已完成导入、整理、编组/合并与另存重开，源文件均未
   被覆盖；`Store_D.psd` 保存重开 0 像素差，`Payment1_D`、`Payment2_D`、
-  `Detial_D_0708` 仍有**0.962%–1.291% 的保存重开预览差异**（最大通道差 236），
+  `Detial_D_0708` 仍有**0.547%–0.844% 的保存重开预览差异**（最大通道差 236），
   根因是 Patchy 按矢量约定保存形状/切片层（像素通道为空、矢量块保留），重开时
   重新栅格化。旧伊拉克语料（`Payment1` 5.1 MB、`Store_PC` 66.5 MB）数字来自
   故障磁盘，仅作历史记录。
@@ -121,7 +123,7 @@ Patchy 固定提交：`d1ff95235e00af296868d4253e03391ca002ee9d`
 | wasm-release 构建 | 重新构建完成；`patchy.js` 419,501 B、`patchy.wasm` 87,744,030 B、`patchy.data` 77,138,414 B |
 | 产物 SHA-256 | js `cff853fd…3efea50`、wasm `c3288dd7…8af72b6`、data `fab99b8e…ffe78e36`（完整值见 `artifacts/patchy-release-sha256.txt`） |
 | Windows 浏览器 E2E | **通过**：重建产物上真实引擎编组/合并/撤销/另存重开与保存前后像素对比，4 份预览 RGBA 哈希一致，UI 像素差 0，结构断言通过（28.9 s） |
-| 真实语料 E2E | **新盘 Nordic mobile（2.2.3）**：4 份 PSD 完成整理、编组/合并与另存重开，源文件未改变；`Store_D` 保存重开 0 像素差，Payment1/Payment2/Detial 保存重开 0.962%–1.291%（已知形状/切片层保真项） |
+| 真实语料 E2E | **新盘 Nordic mobile（2.2.3）**：4 份 PSD 完成整理、编组/合并与另存重开，源文件未改变；`Store_D` 保存重开 0 像素差，Payment1/Payment2/Detial 保存重开 0.547%–0.844%（已知形状/切片层保真项） |
 
 本轮重建未单独保留 `build.log`，构建入口见下方；产物指纹以
 [`artifacts/patchy-release-sha256.txt`](../artifacts/patchy-release-sha256.txt) 为准。
@@ -136,7 +138,7 @@ CMake 4.4.4、Ninja 1.13.2 已重新安装；`wasm-core` 重新构建成功
 （`build/wasm-core/patchy_core_tests.{js,wasm}`），核心测试执行 1299 项、1191 通过、
 0 失败、108 跳过（可选真实样本缺失），耗时 246.6 s；`wasm-release` 首次配置因
 `src/ui/web_bridge_wasm.hpp` 未恢复而失败，补齐后重新配置、编译并完成两轮
-`wasm-opt` 链接。Web 侧 `typecheck`/`build` 通过，Vitest 181 项通过 + 1 项环境跳过，
+`wasm-opt` 链接。Web 侧 `typecheck`/`build` 通过，Vitest 184 项通过 + 1 项环境跳过，
 演示 E2E 7 条通过 + 7 条门控跳过（Nordic 语料默认 4 条往返）；staged 重建产物上的真实引擎
 `e2e/patchy-group-merge.spec.ts` 通过（28.9 s，0 像素差），证据见
 `artifacts/patchy-roundtrip/manifest.json`。重建时发现并修复：真实引擎返回的 PSD
@@ -217,36 +219,43 @@ PLAYWRIGHT_CHANNEL=chrome npx playwright test e2e/patchy-real-corpus.spec.ts
 
 | 文件 | 导入 | 整理 | 编组 | 合并 | 保存重开 | WASM used/peak |
 |---|---:|---:|---:|---:|---:|---:|
-| `Payment1_D.psd`（21.4 MB） | 42.2 s | 0.56 s | 2.13 s（`card`） | 3.43 s（`icon-button-merged`） | 39.6 s | 155/186 MB |
-| `Payment2_D.psd`（21.4 MB） | 48.2 s | 0.58 s | 2.33 s（`card`） | 3.19 s（`icon-button-merged`） | 31.2 s | 156/184 MB |
-| `Detial_D_0708.psd`（28.3 MB） | 32.7 s | 0.48 s | 2.43 s（`section`） | 3.61 s（`card-merged`） | 34.7 s | 200/223 MB |
-| `Store_D.psd`（49.5 MB） | 41.2 s | 0.69 s | 无候选 | 4.30 s（`icon-button-merged`） | 55.6 s | 337/426 MB |
+| `Payment1_D.psd`（21.4 MB） | 31.0 s | 0.52 s | 2.14 s（`card`） | 2.76 s（`button-merged`） | 28.5 s | 155/185 MB |
+| `Payment2_D.psd`（21.4 MB） | 32.9 s | 0.52 s | 2.12 s（`card`） | 2.59 s（`button-merged`） | 32.7 s | 155/188 MB |
+| `Detial_D_0708.psd`（28.3 MB） | 72.4 s | 0.74 s | 3.46 s（`section`） | 5.42 s（`button-merged`） | 70.8 s | 188/226 MB |
+| `Store_D.psd`（49.5 MB） | 73.3 s | 1.01 s | 3.65 s（`badge`） | 5.13 s（`badge-merged`） | 96.0 s | 411/431 MB |
 
-整理统计（重命名/结构检查/编组/合并/切图）分别为 Payment1 `26/6/1/7/0`、
-Payment2 `30/8/1/8/0`、Detial `31/8/1/8/0`、Store `99/50/0/13/0`。有候选的编组与
-合并均成功写入引擎内存（`Store_D` 无编组候选）；保存产物图层树根数依次为
+整理统计（重命名/结构检查/编组/合并/切图）分别为 Payment1 `43/3/2/10/40`、
+Payment2 `48/3/2/10/45`、Detial `48/6/4/6/42`、Store `139/36/14/10/137`。4 份文件的编组与
+合并均成功写入引擎内存；保存产物图层树根数依次为
 9、9、8、10，console 无 `pageerror`，活动日志无 danger 项。
 
 **像素差异（引擎预览，独立 Chromium 解码复核）**：
 
 | 文件 | 编组 | 合并 | 保存重开 | UI 记录 | 结论 |
 |---|---:|---:|---:|---:|---|
-| `Payment1_D` | 1,024（0.214%，Δ20） | 20（0.00004%，Δ1） | 5,544（1.159%，Δ236） | 1.159% | 仅保真软断言失败 |
-| `Payment2_D` | 1,024（0.214%，Δ20） | 20（0.00004%，Δ1） | 6,174（1.291%，Δ236） | 1.291% | 仅保真软断言失败 |
-| `Detial_D_0708` | 0（0%，Δ0） | 10（0.00002%，Δ1） | 4,599（0.962%，Δ236） | 0.962% | 仅保真软断言失败 |
-| `Store_D` | 无候选 | 0（0%，Δ0） | **0（0%，Δ0）** | 0.000% | **通过，像素一致** |
+| `Payment1_D` | 1,024（0.214%，Δ20） | 3,047（0.637%，Δ1） | 3,404（0.712%，Δ236） | 0.712% | 仅保真软断言失败 |
+| `Payment2_D` | 1,024（0.214%，Δ20） | 3,039（0.635%，Δ1） | 4,034（0.844%，Δ236） | 0.844% | 仅保真软断言失败 |
+| `Detial_D_0708` | 0（0%，Δ0） | 3,366（0.704%，Δ1） | 2,618（0.547%，Δ236） | 0.547% | 仅保真软断言失败 |
+| `Store_D` | 0（0%，Δ0） | 0（0%，Δ0） | **0（0%，Δ0）** | 0.000% | **通过，像素一致** |
 
 `Store_D` 提供了同引擎、同保存路径的正向对照：保存并重开后 RGBA 哈希与保存前
 完全相同，说明该流程本身可以做到像素一致；Payment1/Payment2/Detial 的差异集中在
 y≈223 起的内容区，与形状/切片层按矢量约定保存、重开时重新栅格化的已知保真项
-一致。未编辑对照（`Payment1_D` 原样另存）显示连续两次预览哈希一致、保存前后
+一致。本轮修复后 4 份文件的合并建议真正写入了引擎内存，合并步骤的预览差异从此前
+不足 20 个像素升到 3,039–3,366 个，但最大通道差仍为 1（栅格化抗锯齿级别），
+远低于形状层重栅格化造成的 Δ236。未编辑对照（`Payment1_D` 原样另存）显示连续两次预览哈希一致、保存前后
 13 个根图层名称与顺序一致，但仍有 5,725（1.197%，Δ236）像素差，证明差异来自
 保存/重开而非编组/合并或渲染随机性；证据在
 `artifacts/patchy-corpus/save-fidelity-noop/manifest.json`。
 
-Patchy automation state 对 4 份文件的切图候选均为 0（`slices=0`）；同一
-`Payment1_D.psd` 经演示引擎本地解析可产生 40 个切图候选（2.7 资产包），说明切图
-候选目前只在演示/本地解析路径可用，Patchy 路径的切图候选生成仍需补齐。每份运行的完整耗时、内存、预览哈希、保存 PSD
+**切图/合并候选的 Patchy 归一化修复（2026-10-21）**：Patchy automation state 不返回
+`type/kind/layerType`，只返回 `isGroup/isText/isArtboard/isShape` 布尔标记，且组节点
+`bounds` 为 0×0。旧归一化把全部叶子标成 `unknown`，并让组在合并/切图分析中被视为
+无边界节点，导致 4 份文件的切图候选均为 0、编组/合并候选偏少。修复后
+`normalizePatchyLayers` 识别布尔标记，把无类型叶子按栅格层处理，并在组边界为 0×0 时
+用子层并集补全；`cleanup` 的切图边界也接受该回退。`Payment1_D.psd` 的 Patchy 分析
+与本地 ag-psd 解析逐项一致：重命名 43、结构检查 3、编组 2、合并 10、切图 40，切图
+路径/边界/文件名一致。切图 PNG 仍由本地合成图裁切，不是 Patchy 逐层渲染。每份运行的完整耗时、内存、预览哈希、保存 PSD
 SHA-256 与差异包围盒见 `artifacts/patchy-corpus/{payment1-nordic,payment2-nordic,
 detail-nordic,store-nordic}/manifest.json`。
 
@@ -397,7 +406,7 @@ E2E 14.0 s 通过：40 个切图、10 个合并素材全部通过逐张 PNG 尺�
 最大通道差 0；IR 节点 `assetId`、逻辑编组、agent-context 与 `preview.html` 断言
 均通过。产物在 `artifacts/asset-pack/Payment1_D/`。该用例走演示引擎
 （`?engine=demo`，本地 ag-psd + 合成图裁切），不是 Patchy/Photoshop 证据；
-Patchy 路径下同一文件切图候选为 0（2.2.3）。
+Patchy 路径经类型/组边界归一化后，同一文件同样产生 40 个切图候选（2.2.3）。
 
 **旧伊拉克语料（历史记录，故障磁盘前）**：
 
@@ -461,7 +470,7 @@ preview、视觉对比截图与 `visual-diff.json`）；大型 ZIP/PNG 不入库
 - `e2e/patchy-real-corpus.spec.ts`：支持 `LAYERFORGE_CORPUS_CASES` 按语料切换；
   2026-10-21 对 Nordic 4 份 PSD 记录导入/整理/编组/合并/保存耗时、WASM 内存采样、
   失败项与保存前后像素差，UI 像素差与独立 Chromium 解码一致；`Store_D` 保存重开
-  像素一致，另 3 份仅因 0.962%–1.291% 的已知保真差异在软断言失败（2.2.3）。
+  像素一致，另 3 份仅因 0.547%–0.844% 的已知保真差异在软断言失败（2.2.3）。
   历史伊拉克两份数字见 2.2.2。
 - 真实 PSD 资产包 E2E（`LAYERFORGE_PSD_DIR` + `LAYERFORGE_REAL_PSD`）
   通过（Nordic `Payment1_D` 14.0 s）：40 个切图、10 个合并素材、80+20 个输出，
@@ -506,7 +515,7 @@ preview、视觉对比截图与 `visual-diff.json`）；大型 ZIP/PNG 不入库
     `Rectangle …`、`Ellipse …`、`Shape …`、`-slice-` 共 22 个图层在保存 PSD 中
     不再带图层像素数据，重开由矢量重新栅格化，造成 0.672% 预览像素差异（最大通道
     差 236）；位图与文本图层逐像素一致。新盘 Nordic 语料中 3/4 文件为
-    0.962%–1.291%（Δ236），`Store_D` 为 0，说明差异与文件中的形状/切片层相关。
+    0.547%–0.844%（Δ236），`Store_D` 为 0，说明差异与文件中的形状/切片层相关。
     当前只记录并量化，未修改引擎保存路径；需在 Photoshop 中确认矢量数据是否可
     正常打开，或在 Patchy 保存时保留栅格像素。
 
@@ -524,8 +533,8 @@ preview、视觉对比截图与 `visual-diff.json`）；大型 ZIP/PNG 不入库
 | P1 | 本地资产包（合成图裁切 + 解码校验 + IR/AI 上下文/ZIP） | 完成；Nordic `Payment1_D` 40 个切图 + 10 个合并素材、50/50 零误差（演示引擎） |
 | P1 | 保存前后结构对比（`layerforge.psd-diff`） | 完成；图层树结构，非像素/二进制 |
 | P1 | Patchy `selectLayer` 双向高亮 | 未实现 |
-| P1 | Web 工作台真实 Patchy E2E | 合成 PSD 通过（重建产物，28.9 s）；Nordic 4 份真实语料完成往返，UI 像素差与独立计算一致；`Store_D` 保存重开 0 像素差，其余 3 份 0.962%–1.291%，见形状层保真项 |
-| P1 | 形状/切片图层保存保真 | 已量化：保存按矢量约定写空像素通道并保留矢量块；Nordic 中 3/4 文件重开差异 0.962%–1.291%（Δ236），`Store_D` 为 0；待 Photoshop 验证显示与兼容性 |
+| P1 | Web 工作台真实 Patchy E2E | 合成 PSD 通过（重建产物，28.9 s）；Nordic 4 份真实语料完成往返，UI 像素差与独立计算一致；`Store_D` 保存重开 0 像素差，其余 3 份 0.547%–0.844%，见形状层保真项 |
+| P1 | 形状/切片图层保存保真 | 已量化：保存按矢量约定写空像素通道并保留矢量块；Nordic 中 3/4 文件重开差异 0.547%–0.844%（Δ236），`Store_D` 为 0；待 Photoshop 验证显示与兼容性 |
 | P1 | FastAPI + SQLite 项目/版本/任务 API | 未开始 |
 | P1 | AI 语义命名、审核、批量执行 | 提示词导出、严格 JSON 导入、人工审核与加入计划完成；直接模型 API、视觉输入与批量执行未开始 |
 | P1 | tab 崩溃恢复、大响应分块/流式传输 | 未实现 |
@@ -564,14 +573,14 @@ Patchy/Photoshop 证据。
 - [x] **新盘 Nordic mobile 真实语料**：`Payment1_D`、`Payment2_D`、
   `Detial_D_0708`、`Store_D` 四份 PSD（21–49 MB）全部完成导入、一键整理、
   编组/合并与另存重开；源文件 SHA-256 运行前后一致；`Store_D` 保存重开
-  0 像素差，其余 3 份仅因已知形状/切片层差异（0.962%–1.291%，Δ236）触发
+  0 像素差，其余 3 份仅因已知形状/切片层差异（0.547%–0.844%，Δ236）触发
   软断言失败。证据在
   `artifacts/patchy-corpus/{payment1-nordic,payment2-nordic,detail-nordic,store-nordic}/manifest.json`，
   源哈希在 `artifacts/patchy-corpus/source-sha256-nordic-mobile.txt`。
 - [x] **Nordic 资产包**：`Payment1_D.psd` 经演示引擎生成 40 个切图（80 个输出）
   与 10 个合并素材（20 个输出），50/50 逐张 PNG 校验通过、最大通道差 0，
   证据在 `artifacts/asset-pack/Payment1_D/`。该结果不是 Patchy/Photoshop 证据；
-  Patchy 路径下同一文件切图候选为 0，图层边界/类型映射仍待补齐。
+  Patchy 路径经归一化后同样产生 40 个切图候选，与本地解析一致。
 - [ ] **Photoshop 2026 无警告打开**：本机不可用；需在具备 Photoshop 的 Windows
   主机运行 `ci/photoshop-m0-check.ps1` 并通过完整 verifier 后才能更新 M0；之前
   保持 `blocked` / `m1Allowed:false`。`Store_D` 保存重开 0 像素差提供了正向
@@ -584,7 +593,7 @@ Patchy/Photoshop 证据。
   `Rectangle`/`Ellipse`/`Shape`/`-slice-` 图层按 Patchy 文档化约定只写矢量块与
   空像素通道（`psd_layer_records.cpp:337`），矢量掩码与填充块经 psd-tools 确认
   保留。新盘 Nordic 语料中 Payment1/Payment2/Detial 重开预览差
-  0.962%–1.291%（Δ236），`Store_D` 为 0，说明差异与文件内容相关而非保存路径
+  0.547%–0.844%（Δ236），`Store_D` 为 0，说明差异与文件内容相关而非保存路径
   必然失败。需在 Photoshop 中确认这些层能无警告打开并正常显示；若 Photoshop 不
   重建填充，再修改保存路径写入栅格预览。原样另存回归已在
   `patchy-real-corpus.spec.ts` 的“保存保真”用例中，4 份语料的编辑后保存重开见
@@ -605,7 +614,7 @@ Patchy/Photoshop 证据。
 
 **P2：工程化与收尾**
 
-- [x] **全量回归**：本轮 `npm run typecheck`、`npm run build`、181 项单测（+1
+- [x] **全量回归**：本轮 `npm run typecheck`、`npm run build`、184 项单测（+1
   环境跳过）、7 条演示 E2E、v2 真实 Patchy 合成 E2E（通过）、4 条 Nordic 真实
   语料往返（3 条仅保存重开像素软断言失败，`Store_D` 通过）、保存保真对照与真实
   资产包 E2E（`Payment1_D` 14.0 s 通过）均已运行。
@@ -613,13 +622,14 @@ Patchy/Photoshop 证据。
   内存采样（2.2.2）；仍缺低内存机器对照、完整 SBOM 与 87.7 MB wasm + 77.1 MB
   data 对首屏的影响评估。
 - [ ] **崩溃恢复**：tab 崩溃后的请求恢复尚未实现；当前只有单请求互斥、超时与取消。
-- [ ] **文档收尾**：把 Windows 最终产物大小、真实 E2E 哈希与失败项写回
+- [x] **文档收尾**：Windows 最终产物大小、真实 E2E 哈希与失败项已写回
   README/PROGRESS；大型 PSD/PNG/trace 继续留在 `artifacts/`，不入库。
-- [ ] **Git 提交**：尚未创建任何提交；按约定需项目负责人明确要求后再提交。
+- [x] **Git 提交**：按项目负责人要求提交并推送；`3f8dd62` 为重建后的首个提交，
+  本轮 Patchy 归一化修复与真实语料证据随后继续推送到 `origin/main`。
 
 **当前硬阻塞**：Photoshop 2026 无警告打开（本机未安装 Photoshop）。真实引擎构建、
 合成 PSD 编组/合并/保存回归与 Nordic 真实语料往返已完成，但 3/4 文件仍有
-0.96%–1.29% 的形状层保存重开像素差异（`Store_D` 为 0），需在 Photoshop 中确认
+0.547%–0.844% 的形状层保存重开像素差异（`Store_D` 为 0），需在 Photoshop 中确认
 矢量层显示并决定修复方式。在 Photoshop 证据落地前，不得把 M0 标记为通过，也不得
 宣称保存 PSD 与源文件视觉一致。
 
@@ -628,13 +638,13 @@ Patchy/Photoshop 证据。
 - 没有 Photoshop 证据，不能承诺输出 PSD 在 Photoshop 中无警告；Patchy 自保存/重开
   不能替代该检查。
 - 真实语料已覆盖 4 份 Nordic mobile PSD（21–49 MB）；保存/重开在 3 份含形状/切片
-  层的文件中出现 0.96%–1.29% 差异（Δ236），`Store_D` 为 0，说明不能把该问题简单
+  层的文件中出现 0.547%–0.844% 差异（Δ236），`Store_D` 为 0，说明不能把该问题简单
   归因于保存路径，也不能据此承诺通用保真度；含智能对象、蒙版、调整层组合的复杂
   文件仍未纳入语料。
 - 桥接响应仍是整包 JSON；大图/大计划需要分块或改成文件句柄。
-- 真实 49.5 MB PSD 已在 Patchy 模式下跑完导入→保存重开（导入 41.2 s、保存 55.6 s、
-  WASM 峰值 426 MB）；4 份 21–49 MB 语料的导入为 32.7–48.2 s、保存重开为
-  31.2–55.6 s；但 87.7 MB wasm + 77.1 MB data 的首屏加载、低内存机器行为仍只在
+- 真实 49.5 MB PSD 已在 Patchy 模式下跑完导入→保存重开（导入 73.3 s、保存 96.0 s、
+  WASM 峰值 431 MB）；4 份 21–49 MB 语料的导入为 31.0–73.3 s、保存重开为
+  28.5–96.0 s；但 87.7 MB wasm + 77.1 MB data 的首屏加载、低内存机器行为仍只在
   单机验证，未做内存上限压测。
 - 一键整理按边界、层级与子层类型推断组件角色，不理解设计语义，也不读取图层名或
   T 文案：名称只来自角色（按钮、输入框、角标、图标按钮、卡片等），文本层、调整层

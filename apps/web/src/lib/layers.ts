@@ -81,11 +81,17 @@ function detectPatchyKind(raw: RawRecord, children: LayerNode[]): LayerKind {
   const rawType = (readString(raw.type) ?? readString(raw.kind) ?? readString(raw.layerType) ?? "")
     .toLowerCase()
     .replace(/[\s_-]+/g, "");
-  if (raw.isGroup === true || raw.group === true || rawType === "group" || rawType === "folder") {
+  if (
+    raw.isGroup === true ||
+    raw.isArtboard === true ||
+    raw.group === true ||
+    rawType === "group" ||
+    rawType === "folder"
+  ) {
     return "group";
   }
   if (children.length > 0) return "group";
-  if (raw.text !== undefined || rawType.includes("text")) return "text";
+  if (raw.isText === true || raw.text !== undefined || rawType.includes("text")) return "text";
   if (raw.adjustment !== undefined || rawType.includes("adjust")) return "adjustment";
   if (
     raw.smartObject !== undefined ||
@@ -94,10 +100,15 @@ function detectPatchyKind(raw: RawRecord, children: LayerNode[]): LayerKind {
   ) {
     return "smart-object";
   }
-  if (rawType.includes("shape") || rawType.includes("vector")) return "shape";
+  if (raw.isShape === true || rawType.includes("shape") || rawType.includes("vector")) {
+    return "shape";
+  }
   if (rawType.includes("raster") || rawType.includes("pixel") || rawType === "normal") {
     return "pixel";
   }
+  // Patchy automation state exposes only isGroup/isText/isArtboard/isShape;
+  // every remaining leaf is a raster layer.
+  if (typeof raw.isGroup === "boolean") return "pixel";
   return "unknown";
 }
 
@@ -125,12 +136,15 @@ export function normalizePatchyLayers(rawLayers: unknown, parentPath = ""): Laye
     if (entry.mask !== undefined) meta.hasMask = true;
     if (entry.effects !== undefined) meta.hasEffects = true;
     if (entry.text !== undefined) meta.hasText = true;
+    const own = normalizeBounds(entry.bounds ?? entry.rect);
+    const bounds =
+      own && (own.width > 0 || own.height > 0) ? own : kind === "group" ? unionBounds(children) : own;
     nodes.push({
       id: rawId ?? path,
       name,
       path,
       kind,
-      bounds: normalizeBounds(entry.bounds ?? entry.rect),
+      bounds,
       visible,
       locked,
       opacity:

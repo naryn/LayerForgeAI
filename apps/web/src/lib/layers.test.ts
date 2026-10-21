@@ -242,6 +242,32 @@ describe("normalizePatchyLayers", () => {
     expect(layers[3].visible).toBe(false);
   });
 
+  it("识别自动化 state 的 isArtboard/isText/isShape 标志", () => {
+    const layers = normalizePatchyLayers([
+      { id: "1", name: "画板", isGroup: false, isArtboard: true },
+      { id: "2", name: "标题", isGroup: false, isText: true },
+      { id: "3", name: "按钮底", isGroup: false, isShape: true },
+      { id: "4", name: "照片", isGroup: false },
+    ]);
+    expect(layers.map((layer) => layer.kind)).toEqual(["group", "text", "shape", "pixel"]);
+  });
+
+  it("组边界为 0×0 时改用子层并集", () => {
+    const [group] = normalizePatchyLayers([
+      {
+        id: "g",
+        name: "组",
+        isGroup: true,
+        bounds: { x: 0, y: 0, width: 0, height: 0 },
+        children: [
+          { id: "a", name: "a", isShape: true, bounds: { x: 10, y: 20, width: 30, height: 40 } },
+          { id: "b", name: "b", bounds: { x: 50, y: 30, width: 10, height: 10 } },
+        ],
+      },
+    ]);
+    expect(group.bounds).toEqual({ x: 10, y: 20, width: 50, height: 40 });
+  });
+
   it("缺少 id 时用路径作为回退 id", () => {
     const layers = normalizePatchyLayers([{ name: "无 id" }]);
     expect(layers[0].id).toBe("0");

@@ -398,6 +398,34 @@ describe("analyzeLayers · 合并候选", () => {
     ]);
   });
 
+  it("自动化 state 的叶子按标志分类后产出切图候选", () => {
+    const layers = normalizePatchyLayers([
+      {
+        id: "1",
+        name: "Rectangle 16",
+        isGroup: false,
+        isShape: true,
+        bounds: { x: 62, y: 2277, width: 1118, height: 155 },
+      },
+      {
+        id: "2",
+        name: "Pay Now",
+        isGroup: false,
+        isText: true,
+        bounds: { x: 519, y: 2334, width: 208, height: 46 },
+      },
+      {
+        id: "3",
+        name: "photo",
+        isGroup: false,
+        bounds: { x: 100, y: 2600, width: 320, height: 200 },
+      },
+    ]);
+    const report = analyzeLayers({ layers, width: 1242, height: 5540, now: NOW });
+    expect(report.summary.slices).toBe(2);
+    expect(report.slices.map((slice) => slice.kind).sort()).toEqual(["pixel", "shape"]);
+  });
+
   it("真实引擎返回 0×0 组边界时仍按子层边界识别组件", () => {
     const layers = normalizePatchyLayers([
       {
@@ -416,6 +444,10 @@ describe("analyzeLayers · 合并候选", () => {
     expect(report.mergeCandidates[0]).toMatchObject({
       suggestedName: "icon-button-merged",
       kind: "component",
+    });
+    expect(report.summary.slices).toBe(3);
+    expect(report.slices.find((slice) => slice.kind === "group")).toMatchObject({
+      bounds: { x: 120, y: 70, width: 14, height: 12 },
     });
   });
 

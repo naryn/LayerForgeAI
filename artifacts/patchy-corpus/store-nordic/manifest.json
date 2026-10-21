@@ -8,30 +8,30 @@
     "unchanged": true
   },
   "timingMs": {
-    "import": 41226,
-    "cleanup": 693,
-    "group": null,
-    "merge": 4299,
-    "saveAndReopen": 55602
+    "import": 73294,
+    "cleanup": 1011,
+    "group": 3646,
+    "merge": 5126,
+    "saveAndReopen": 95982
   },
   "memory": {
     "afterLoad": {
-      "usedBytes": 372244480,
-      "peakUsedBytes": 374341632,
+      "usedBytes": 391118848,
+      "peakUsedBytes": 391118848,
       "heapBytes": 463994880,
       "historyBytes": 0,
       "limitBytes": 4293918720
     },
     "afterEdits": {
-      "usedBytes": 400556032,
-      "peakUsedBytes": 425721856,
+      "usedBytes": 411041792,
+      "peakUsedBytes": 430964736,
       "heapBytes": 668205056,
       "historyBytes": 0,
       "limitBytes": 4293918720
     },
     "afterSave": {
-      "usedBytes": 336592896,
-      "peakUsedBytes": 425721856,
+      "usedBytes": 337641472,
+      "peakUsedBytes": 430964736,
       "heapBytes": 801898496,
       "historyBytes": 0,
       "limitBytes": 4293918720
@@ -39,26 +39,26 @@
   },
   "cleanup": {
     "afterCleanup": {
-      "renames": 99,
-      "findings": 50,
-      "groups": 0,
-      "merges": 13,
-      "slices": 0
+      "renames": 139,
+      "findings": 36,
+      "groups": 14,
+      "merges": 10,
+      "slices": 137
     },
     "afterEdits": {
-      "renames": 95,
-      "findings": 50,
-      "groups": 0,
+      "renames": 140,
+      "findings": 35,
+      "groups": 13,
       "merges": 10,
-      "slices": 0
+      "slices": 137
     },
-    "groupOutcome": "no-candidates",
+    "groupOutcome": "applied",
     "mergeOutcome": "applied"
   },
   "output": {
     "psd": {
       "path": "B:\\src\\LayerForgeAI\\artifacts\\patchy-corpus\\store-nordic\\saved.psd",
-      "sha256": "d44dad813fa85c3591dc41a68f788acbdad290e92eda63ecd81f27f18dc7b3e0",
+      "sha256": "7ae312d76b051b993bb63de394141c8a8267b352fac09eadd6ddf78415747379",
       "roots": 10
     },
     "before": {
@@ -67,7 +67,12 @@
       "height": 1024,
       "rgbaSha256": "492a09762c8b2ddb5bbe1115d97d737a213f8f13b5013ee77e8c770759aa0afd"
     },
-    "grouped": null,
+    "grouped": {
+      "path": "B:\\src\\LayerForgeAI\\artifacts\\patchy-corpus\\store-nordic\\grouped.png",
+      "width": 212,
+      "height": 1024,
+      "rgbaSha256": "492a09762c8b2ddb5bbe1115d97d737a213f8f13b5013ee77e8c770759aa0afd"
+    },
     "merged": {
       "path": "B:\\src\\LayerForgeAI\\artifacts\\patchy-corpus\\store-nordic\\merged.png",
       "width": 212,
@@ -82,7 +87,16 @@
     }
   },
   "diffs": {
-    "group": null,
+    "group": {
+      "sameSize": true,
+      "width": 212,
+      "height": 1024,
+      "totalPixels": 217088,
+      "differingPixels": 0,
+      "ratio": 0,
+      "maxDelta": 0,
+      "bounds": null
+    },
     "merge": {
       "sameSize": true,
       "width": 212,
@@ -110,7 +124,8 @@
   },
   "pixelsMatch": true,
   "applied": [
-    "已合并：icon-button-merged"
+    "已合并：badge-merged",
+    "已编组：badge"
   ],
   "warnings": [],
   "problems": [],

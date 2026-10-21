@@ -19,7 +19,7 @@
 | Windows 官方构建 lane | 未运行 |
 | 100+ 图层获批真实设计样本 | 已提供（2026-10-21：`B:\迅雷下载\北欧1019\mobile`，4 份 PSD，只读） |
 | Vue3 Web 工作台（`apps/web`） | **初版完成**：导入、检查、一键整理、AI 语义命名审核、计划、保存重开、历史、结构对比、IR/资产清单/资产包导出 |
-| Web 工作台自动化测试 | 181 项 Vitest 通过（1 项环境变量跳过）；7 条演示 E2E 通过、7 条真实引擎/真实 PSD 用例按环境变量启用 |
+| Web 工作台自动化测试 | 184 项 Vitest 通过（1 项环境变量跳过）；7 条演示 E2E 通过、7 条真实引擎/真实 PSD 用例按环境变量启用 |
 | 本地资产包（合成图裁切 + 解码校验 + 文本样式 + ZIP） | 完成；Nordic `Payment1_D` 生成 40 个切图/80 个输出 + 10 个合并素材/20 个输出，50/50 校验零误差 |
 | Patchy 构建接入 Web 工作台 | **已完成（重建）**：wasm-core / wasm-release 均重建并 staging；真实引擎编组/合并/撤销/保存前后像素对比 E2E 通过（28.9 s，0 像素差） |
 | FastAPI + SQLite | 尚未实现 |
@@ -165,14 +165,15 @@ npm run stage:patchy -- <built-patchy-site>
 > 资产包验证；源文件 SHA-256 前后一致，运行只写新文件。
 
 - `npm run typecheck`、`npm run build` 通过。
-- `npm test`：181 项通过、1 项按环境变量跳过（真实 PSD 目录解析）。
+- `npm test`：184 项通过、1 项按环境变量跳过（真实 PSD 目录解析）。
 - 真实 PSD（Nordic mobile，2026-10-21）：4 份文件全部完成 Patchy 导入、一键整理、
   编组/合并、另存重开，源 SHA-256 未改变；整理统计（重命名/检查/编组/合并/切图）
-  为 Payment1_D `26/6/1/7/0`、Payment2_D `30/8/1/8/0`、Detial_D_0708
-  `31/8/1/8/0`、Store_D `99/50/0/13/0`。保存重开像素：`Store_D` 0（通过），
-  Payment1_D 1.159%、Payment2_D 1.291%、Detial_D_0708 0.962%（Δ236，已知
+  为 Payment1_D `43/3/2/10/40`、Payment2_D `48/3/2/10/45`、Detial_D_0708
+  `48/6/4/6/42`、Store_D `139/36/14/10/137`。保存重开像素：`Store_D` 0（通过），
+  Payment1_D 0.712%、Payment2_D 0.844%、Detial_D_0708 0.547%（Δ236，已知
   形状/切片层保真项）；编组/合并差异 ≤0.214%，UI 像素差与独立 Chromium 解码一致。
-  Patchy 路径切图候选为 0，切图与资产包由演示/本地解析路径验证。证据在
+  Patchy automation state 的布尔类型标记与 0×0 组边界已归一化，切图/合并/编组
+  分析与本地解析结果一致。证据在
   `artifacts/patchy-corpus/{payment1-nordic,payment2-nordic,detail-nordic,store-nordic}/`。
 - 真实 PSD 解析（旧伊拉克语料，历史）：`F:\设计稿\伊拉克` 下 7 份文件（227 MiB，
   63–475 节点）全部无警告解析，路径唯一；分组边界由子节点并集推导。AI 命名候选
@@ -201,7 +202,7 @@ npm run stage:patchy -- <built-patchy-site>
   `LAYERFORGE_CORPUS_CASES` 切换。
 - 真实 Patchy 引擎 E2E：合成 PSD 编组/合并/撤销/另存重开与保存前后像素对比通过
   （重建产物，28.9 s，像素差 0）；Nordic 4 份真实语料完成往返，UI 像素差与独立
-  Chromium 解码一致，`Store_D` 保存重开 0 像素差，其余 3 份仍有 0.962%–1.291%
+  Chromium 解码一致，`Store_D` 保存重开 0 像素差，其余 3 份仍有 0.547%–0.844%
   形状/切片层差异（已知保真项，需 Photoshop 门禁确认）。
 - 中文项目名会保留在建议的 PSD、IR 与资产清单文件名中。
 
@@ -211,14 +212,17 @@ npm run stage:patchy -- <built-patchy-site>
   wasm-core 核心测试执行 1299 项、1191 通过、0 失败、108 跳过（可选样本缺失）。
   重建的 `wasm-release` 已 staging，真实引擎编组/合并/撤销/保存前后像素对比通过
   （28.9 s，0 像素差）；期间修复真实引擎把 PSD 组边界报告为 0×0、导致组角色与
-  合并候选丢失的问题。Photoshop 2026 无警告打开仍未验证。
+  合并候选丢失的问题。2026-10-21 又补齐自动化 state 的 `isText/isShape/isArtboard`
+  类型映射，并在归一化时用子层并集补全 0×0 组边界，使 Patchy 路径的切图候选从 0
+  恢复到与本地解析一致的 40 个（Payment1_D）。Photoshop 2026 无警告打开仍未验证。
 - 演示引擎与本地只读检查都不是 Patchy/Photoshop 证据。
-- 真实语料保存重开：Nordic `Store_D` 为 0 像素差，其余 3 份 0.962%–1.291%
+- 真实语料保存重开：Nordic `Store_D` 为 0 像素差，其余 3 份 0.547%–0.844%
   （Δ236），差异与文件中的形状/切片层相关；Photoshop 未验证前不能承诺所有 PSD
   保存后视觉一致。
-- Nordic 语料在 Patchy automation state 下切图候选均为 0，而演示引擎本地解析同一
-  `Payment1_D` 得到 40 个切图；切图与资产包目前不是 Patchy 路径产物，Patchy 的
-  图层边界/类型映射仍需补齐。
+- Patchy automation state 只提供 `isGroup/isText/isArtboard/isShape`，不区分智能对象
+  与调整层；非文本/形状叶子统一按栅格层参与分析。智能对象仍可作为切图候选，调整层
+  的边界可能产生需要人工复核的候选。资产包像素仍从 PSD 扁平合成图本地裁切，不是
+  Patchy 逐图层渲染产物。
 - 规则分析与内置 AI 都不理解设计语义：规则按边界与层级结构猜测组件角色，角色
   名称是建议而非事实，按钮/角标等小尺寸组件可能混淆，必须人工复核；AI 命名需
   用户导出提示词到外部工具、再导入审核，看不到像素，只能依据结构与文本样例，

@@ -1,0 +1,18 @@
+# Photoshop open checks, 2026-10-22, Photoshop 27.11 (20260929.r.26 8c16e56)
+# Driver: ci/photoshop-open-check-actions.ps1 (legacy action automation, dialogs visible)
+# Pinned ExtendScript checker unavailable on this host; see corpus-open-check-driver.json
+
+## Nordic corpus originals (opened from identical temp copies at 09:14; originals unchanged)
+CLEAN C:\Users\naryn\AppData\Local\Temp\nordic-copies\Detial_D_0708 - 副本.psd
+CLEAN C:\Users\naryn\AppData\Local\Temp\nordic-copies\Detial_D_0708.psd
+CLEAN C:\Users\naryn\AppData\Local\Temp\nordic-copies\Payment1_D.psd
+CLEAN C:\Users\naryn\AppData\Local\Temp\nordic-copies\Payment2_D.psd
+CLEAN C:\Users\naryn\AppData\Local\Temp\nordic-copies\Store_D.psd
+
+## Patchy-saved corpus outputs — refreshed with the 2026-10-22 17:24 build
+## (renderLayer + shape-layer save fidelity; temp copies checked 18:51)
+CLEAN C:\Users\naryn\AppData\Local\Temp\layerforge-ps-open-20261022b\Payment1_D.psd
+CLEAN C:\Users\naryn\AppData\Local\Temp\layerforge-ps-open-20261022b\Payment2_D.psd
+CLEAN C:\Users\naryn\AppData\Local\Temp\layerforge-ps-open-20261022b\Detial_D_0708.psd
+CLEAN C:\Users\naryn\AppData\Local\Temp\layerforge-ps-open-20261022b\Store_D.psd
+CLEAN C:\Users\naryn\AppData\Local\Temp\layerforge-ps-open-20261022b\Payment1_D-noop.psd

@@ -1,0 +1,120 @@
+{
+  "patchyCommit": "d1ff95235e00af296868d4253e03391ca002ee9d",
+  "result": {
+    "protocolVersion": 2,
+    "sourceFile": "photoshop-clip-base-effects.psd",
+    "sourceDocumentId": "1",
+    "sourceLayerId": "1",
+    "originalName": "Background",
+    "renamed": "Background [M0]",
+    "reopenedDocumentId": "2",
+    "reopenedLayerId": "1",
+    "before": {
+      "documentId": "1",
+      "height": 100,
+      "offscreen": false,
+      "path": "/saved/m0-before.png",
+      "rect": {
+        "height": 100,
+        "width": 360,
+        "x": 0,
+        "y": 0
+      },
+      "scaleX": 1,
+      "scaleY": 1,
+      "width": 360
+    },
+    "after": {
+      "documentId": "2",
+      "height": 100,
+      "offscreen": false,
+      "path": "/saved/m0-after.png",
+      "rect": {
+        "height": 100,
+        "width": 360,
+        "x": 0,
+        "y": 0
+      },
+      "scaleX": 1,
+      "scaleY": 1,
+      "width": 360
+    },
+    "finalRevision": "0",
+    "finalFingerprint": "c2035b87a98333b4bb104f24559887f114e959247803e06d52a25010b2c5cabe",
+    "protocolChecks": {
+      "checks": {
+        "missingPrecondition": {
+          "operation": "renameLayer",
+          "expectedCode": "PRECONDITION_REQUIRED",
+          "actualCode": "PRECONDITION_REQUIRED",
+          "passed": true
+        },
+        "stalePrecondition": {
+          "operation": "renameLayer",
+          "expectedCode": "STALE_DOCUMENT",
+          "actualCode": "STALE_DOCUMENT",
+          "passed": true
+        },
+        "invalidPreviewPath": {
+          "operation": "renderPreview",
+          "expectedCode": "INVALID_REQUEST",
+          "actualCode": "INVALID_REQUEST",
+          "passed": true
+        },
+        "invalidOpenPath": {
+          "operation": "openDocument",
+          "expectedCode": "INVALID_REQUEST",
+          "actualCode": "INVALID_REQUEST",
+          "passed": true
+        },
+        "unknownOperation": {
+          "operation": "executeScript",
+          "expectedCode": "INVALID_REQUEST",
+          "actualCode": "INVALID_REQUEST",
+          "passed": true
+        },
+        "previewOverwrite": {
+          "operation": "renderPreview",
+          "expectedCode": "SCRIPT_ERROR",
+          "actualCode": "SCRIPT_ERROR",
+          "passed": true
+        },
+        "psdOverwrite": {
+          "operation": "saveAsAndReopen",
+          "expectedCode": "SCRIPT_ERROR",
+          "actualCode": "SCRIPT_ERROR",
+          "passed": true
+        },
+        "stateUnchanged": {
+          "passed": true
+        }
+      },
+      "fingerprint": "c2035b87a98333b4bb104f24559887f114e959247803e06d52a25010b2c5cabe"
+    }
+  },
+  "source": {
+    "path": "B:\\src\\LayerForgeAI\\vendor\\Patchy\\test-fixtures\\psd\\photoshop-clip-base-effects.psd",
+    "sha256": "ac492156547a772ba120f1d3a0d1b0164836d719100eb51e54c2a3c8f12ae66a"
+  },
+  "output": {
+    "psd": {
+      "path": "B:\\src\\LayerForgeAI\\artifacts\\m0\\win-20261022-03\\m0-normalized.psd",
+      "sha256": "cf6cb55011599824370e159ab6c7e81f24666551155b2d963b1576215ea84f5a"
+    },
+    "before": {
+      "path": "B:\\src\\LayerForgeAI\\artifacts\\m0\\win-20261022-03\\m0-before.png",
+      "sha256": "992b2ad5796716993b26950476a469ca920ce93c3fdad9a7ca961de647f10d3a",
+      "width": 360,
+      "height": 100,
+      "rgbaSha256": "b22584a6cfae011f3875ebeb4c126126550f10c668bcc2aeb86995d450fd18c4"
+    },
+    "after": {
+      "path": "B:\\src\\LayerForgeAI\\artifacts\\m0\\win-20261022-03\\m0-after.png",
+      "sha256": "992b2ad5796716993b26950476a469ca920ce93c3fdad9a7ca961de647f10d3a",
+      "width": 360,
+      "height": 100,
+      "rgbaSha256": "b22584a6cfae011f3875ebeb4c126126550f10c668bcc2aeb86995d450fd18c4"
+    }
+  },
+  "crossOriginIsolated": true
+}

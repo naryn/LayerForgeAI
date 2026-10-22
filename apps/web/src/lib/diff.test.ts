@@ -209,7 +209,7 @@ describe("diffLayerTrees", () => {
     expect(clean.summary.unchanged).toBe(1);
     expect(clean.baseline).toBe("session-open");
     expect(clean.notes.join(" ")).toContain("本次会话打开文档时");
-    expect(clean.notes.join(" ")).toContain("协议 v1 未提供");
+    expect(clean.notes.join(" ")).toContain("原 PSD 对比");
 
     const subsequent = diffLayerTrees(snapshot(tree), snapshot(tree, "1"), {
       baseline: "previous-save",

@@ -233,7 +233,7 @@ test("导出资产包 ZIP：真实 PNG 切图、解码校验与 AI 编码上下�
   const decoder = new TextDecoder();
   const manifest = JSON.parse(decoder.decode(entries["manifest.json"]));
   expect(manifest.schema).toBe("layerforge.asset-pack");
-  expect(manifest.schemaVersion).toBe("0.3.0");
+  expect(manifest.schemaVersion).toBe("0.4.0");
   expect(manifest.logicalGroups).toEqual([]);
 
   const ir = JSON.parse(decoder.decode(entries["design-ir.json"]));

@@ -1,5 +1,6 @@
 import type {
   DocumentSnapshot,
+  IsolatedRenderResult,
   LayerBounds,
   PixelDiffSummary,
   Precondition,
@@ -16,6 +17,18 @@ import type {
 
 export const PATCHY_SITE_URL =
   (import.meta.env.VITE_PATCHY_URL as string | undefined) ?? "/patchy/patchy.html";
+
+// The branded shell self-embeds the engine in a nested iframe whenever its GUI
+// scale is not 100%, which hides the bridge helper from the host. Pinning
+// embedded=100 makes the shell run the engine in its own window instead.
+export function patchyIframeUrl(siteUrl = PATCHY_SITE_URL): string {
+  const [beforeHash, hash] = siteUrl.split("#", 2);
+  const [path, query] = beforeHash.split("?", 2);
+  const params = new URLSearchParams(query ?? "");
+  params.set("embedded", "100");
+  const suffix = hash ? `#${hash}` : "";
+  return `${path}?${params.toString()}${suffix}`;
+}
 
 export interface PatchySiteStatus {
   available: boolean;
@@ -152,6 +165,18 @@ export interface IframeTransportOptions {
   requestTimeoutMs?: number;
 }
 
+interface PatchyFs {
+  readFile: (path: string, options?: { encoding?: "binary" }) => Uint8Array;
+  unlink: (path: string) => void;
+}
+
+interface PatchyFsRoot {
+  FS?: PatchyFs;
+  // patchy.html aliases the qtLoad() result here; the Emscripten FS lives on
+  // the module instance, not on the iframe window.
+  __patchyModule?: { FS?: PatchyFs };
+}
+
 /**
  * Real transport: same-origin iframe running a bridge-enabled Patchy WASM
  * build. All engine work stays on Patchy's Qt event loop; the host only writes
@@ -160,6 +185,7 @@ export interface IframeTransportOptions {
 export class IframePatchyTransport implements EngineTransport {
   readonly mode = "patchy" as const;
   readonly label = "Patchy 引擎";
+  readonly supportsIsolatedRender = true;
 
   private readonly iframe: HTMLIFrameElement;
   private readonly connectTimeoutMs: number;
@@ -326,6 +352,37 @@ export class IframePatchyTransport implements EngineTransport {
     };
   }
 
+  async renderLayer(layerId: string, path: string): Promise<IsolatedRenderResult> {
+    const client = this.requireClient();
+    const documentId = this.requireDocument();
+    if (!/^\/saved\/[^/]+\.png$/i.test(path)) {
+      throw new PatchyBridgeError("INVALID_REQUEST", "隔离渲染路径必须是 /saved/*.png");
+    }
+    const result = await client.request<Record<string, unknown>>(
+      "renderLayer",
+      { documentId, layerId, path },
+      { timeoutMs: 300_000 },
+    );
+    const bounds = readBounds(result.bounds);
+    const width = readCount(result.width);
+    const height = readCount(result.height);
+    if (!bounds || width < 1 || height < 1) {
+      throw new PatchyBridgeError("PROTOCOL_MISMATCH", "Patchy renderLayer 未返回有效边界");
+    }
+    if (result.path !== path) {
+      throw new PatchyBridgeError("PROTOCOL_MISMATCH", "Patchy renderLayer 返回了意外路径");
+    }
+    return {
+      documentId:
+        typeof result.documentId === "string" ? result.documentId : documentId,
+      layerId,
+      width,
+      height,
+      bounds,
+      bytes: this.takeSavedBytes(path),
+    };
+  }
+
   async comparePreview(beforePath: string, afterPath: string): Promise<PixelDiffSummary> {
     const client = this.requireClient();
     const documentId = this.requireDocument();
@@ -372,6 +429,18 @@ export class IframePatchyTransport implements EngineTransport {
     return { ...snapshot, path };
   }
 
+  async readSavedFile(path: string): Promise<Uint8Array | null> {
+    if (!/^\/saved\/[^/]+\.(psd|psb)$/i.test(path)) {
+      throw new PatchyBridgeError(
+        "INVALID_REQUEST",
+        "只能读取 /saved/*.psd 或 .psb 保存结果",
+      );
+    }
+    // Keep the PSD in MEMFS: the reopened document may still reference it.
+    // Patchy's save coordinator leaves saved files in place for the same reason.
+    return this.takeSavedBytes(path, { unlink: false });
+  }
+
   dispose(): void {
     this.client?.dispose();
     this.client = null;
@@ -389,6 +458,38 @@ export class IframePatchyTransport implements EngineTransport {
       throw new PatchyBridgeError("DOCUMENT_NOT_FOUND", "Patchy 中没有打开的文档");
     }
     return this.currentDocumentId;
+  }
+
+  // The bridge writes PNGs into the iframe's MEMFS. Reading them here keeps
+  // pixel data off the JSON queue, and unlinking bounds memory growth to one
+  // render at a time.
+  private takeSavedBytes(path: string, options: { unlink?: boolean } = {}): Uint8Array {
+    const root = this.iframe.contentWindow as unknown as PatchyFsRoot | null;
+    const fs = root?.__patchyModule?.FS ?? root?.FS;
+    if (!fs || typeof fs.readFile !== "function") {
+      throw new PatchyBridgeError(
+        "ENGINE_UNAVAILABLE",
+        "Patchy MEMFS 不可访问，无法读取隔离渲染结果",
+      );
+    }
+    let bytes: Uint8Array;
+    try {
+      bytes = fs.readFile(path, { encoding: "binary" });
+    } catch (error) {
+      throw new PatchyBridgeError(
+        "REQUEST_FAILED",
+        `无法读取隔离渲染 PNG：${error instanceof Error ? error.message : String(error)}`,
+      );
+    }
+    const copy = bytes.slice();
+    if (options.unlink !== false) {
+      try {
+        fs.unlink(path);
+      } catch {
+        // The bytes are already in the host; a failed cleanup only costs MEMFS space.
+      }
+    }
+    return copy;
   }
 
   private assertDocument(precondition: Precondition): void {

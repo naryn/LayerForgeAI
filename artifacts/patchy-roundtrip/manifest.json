@@ -2,44 +2,63 @@
   "engine": "patchy-wasm",
   "fixture": {
     "name": "patchy-group-merge.psd",
-    "sha256": "42947acdaeefe6aad4fd9be3298841c7570787b8d929e609e10945cc63711609",
+    "sha256": "82b74a93c66bb4a19d52c48e2701560ee9efe9fd8464807a606e00fcce7525f3",
     "width": 160,
     "height": 100
   },
   "output": {
     "psd": {
-      "path": "B:\\src\\LayerForgeAI\\artifacts\\patchy-roundtrip\\patchy-编组合并-20261021-141005-normalized.psd",
+      "path": "B:\\src\\LayerForgeAI\\artifacts\\patchy-roundtrip\\patchy-编组合并-20261022-190658-normalized.psd",
       "sha256": "32370739675fcdf9dbb7be8674593db71813e7f05cdd65f0ce59d4e878331e21"
     },
     "before": {
-      "path": "B:\\src\\LayerForgeAI\\artifacts\\patchy-roundtrip\\patchy-preview-20261021060958-5hhm.png",
+      "path": "B:\\src\\LayerForgeAI\\artifacts\\patchy-roundtrip\\patchy-preview-20261022110650-321n.png",
       "width": 160,
       "height": 100,
       "rgbaSha256": "ca3355942edcda4327eb426745a1494a2320807259cde36732982520649cac53"
     },
     "grouped": {
-      "path": "B:\\src\\LayerForgeAI\\artifacts\\patchy-roundtrip\\patchy-preview-20261021061001-kin5.png",
+      "path": "B:\\src\\LayerForgeAI\\artifacts\\patchy-roundtrip\\patchy-preview-20261022110655-4na6.png",
       "width": 160,
       "height": 100,
       "rgbaSha256": "ca3355942edcda4327eb426745a1494a2320807259cde36732982520649cac53"
     },
     "merged": {
-      "path": "B:\\src\\LayerForgeAI\\artifacts\\patchy-roundtrip\\patchy-preview-20261021061004-23ol.png",
+      "path": "B:\\src\\LayerForgeAI\\artifacts\\patchy-roundtrip\\patchy-preview-20261022110657-3lxd.png",
       "width": 160,
       "height": 100,
       "rgbaSha256": "ca3355942edcda4327eb426745a1494a2320807259cde36732982520649cac53"
     },
     "reopened": {
-      "path": "B:\\src\\LayerForgeAI\\artifacts\\patchy-roundtrip\\patchy-preview-20261021061007-tv8i.png",
+      "path": "B:\\src\\LayerForgeAI\\artifacts\\patchy-roundtrip\\patchy-preview-20261022110702-pjpg.png",
       "width": 160,
       "height": 100,
       "rgbaSha256": "ca3355942edcda4327eb426745a1494a2320807259cde36732982520649cac53"
+    },
+    "compare": {
+      "path": "B:\\src\\LayerForgeAI\\artifacts\\patchy-roundtrip\\patchy-编组合并-psd-compare-20261022.json",
+      "sha256": "4b0fe68ad2dbb743b01095cecffff6140d0ec1d28a0d6031ea8d25bd572c4b28"
     }
   },
   "pixelsMatch": true,
   "pixelDiff": {
     "differingPixels": 0,
     "ratio": "0.000%"
+  },
+  "layerPixelDiff": {
+    "identical": "5/5",
+    "differing": 0,
+    "total": 17536
+  },
+  "psdCompare": {
+    "evidence": "ag-psd-independent",
+    "sourceLayers": 8,
+    "savedLayers": 7,
+    "compositeDifferingPixels": 0,
+    "layerPixelCompared": 5,
+    "layerPixelIdentical": 5,
+    "layerPixelDiffering": 0,
+    "layerPixelUnpaired": 3
   },
   "photoshopVerified": false,
   "m0Accepted": false,

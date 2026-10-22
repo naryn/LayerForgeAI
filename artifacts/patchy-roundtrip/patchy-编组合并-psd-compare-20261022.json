@@ -1,0 +1,229 @@
+{
+  "schema": "layerforge.psd-compare",
+  "schemaVersion": "0.2.0",
+  "generatedAt": "2026-10-22T11:07:00.496Z",
+  "evidence": "ag-psd-independent",
+  "source": {
+    "fileName": "patchy-group-merge.psd",
+    "header": {
+      "version": 1,
+      "channels": 3,
+      "height": 100,
+      "width": 160,
+      "depth": 8,
+      "colorMode": 3,
+      "colorModeLabel": "RGB",
+      "fileSize": 6988
+    },
+    "sha256": "82b74a93c66bb4a19d52c48e2701560ee9efe9fd8464807a606e00fcce7525f3",
+    "layerCount": 8
+  },
+  "saved": {
+    "fileName": "/saved/patchy-编组合并-20261022-190658-normalized.psd",
+    "header": {
+      "version": 1,
+      "channels": 3,
+      "height": 100,
+      "width": 160,
+      "depth": 8,
+      "colorMode": 3,
+      "colorModeLabel": "RGB",
+      "fileSize": 6824
+    },
+    "sha256": "32370739675fcdf9dbb7be8674593db71813e7f05cdd65f0ce59d4e878331e21",
+    "layerCount": 7
+  },
+  "identicalBinary": false,
+  "structure": {
+    "beforeLayers": 8,
+    "afterLayers": 7,
+    "added": 4,
+    "removed": 5,
+    "renamed": 2,
+    "geometryChanged": 0,
+    "restyled": 0,
+    "unchanged": 1
+  },
+  "structureEntries": [
+    {
+      "layerId": "local-1",
+      "status": "changed",
+      "kind": "group",
+      "matchedBy": "id",
+      "beforePath": "1",
+      "afterPath": "1",
+      "nameBefore": "hero-title",
+      "nameAfter": "row-cluster",
+      "changes": [
+        {
+          "field": "name",
+          "label": "名称",
+          "before": "hero-title",
+          "after": "row-cluster"
+        },
+        {
+          "field": "kind",
+          "label": "类型",
+          "before": "pixel",
+          "after": "group"
+        },
+        {
+          "field": "bounds",
+          "label": "边界",
+          "before": "24×16 @ 10,10",
+          "after": "108×16 @ 10,10"
+        },
+        {
+          "field": "blendMode",
+          "label": "混合模式",
+          "before": "normal",
+          "after": "pass through"
+        }
+      ]
+    },
+    {
+      "layerId": "local-2",
+      "status": "changed",
+      "kind": "pixel",
+      "matchedBy": "id",
+      "beforePath": "2",
+      "afterPath": "2",
+      "nameBefore": "hero-cta",
+      "nameAfter": "icon-button-merged",
+      "changes": [
+        {
+          "field": "name",
+          "label": "名称",
+          "before": "hero-cta",
+          "after": "icon-button-merged"
+        },
+        {
+          "field": "bounds",
+          "label": "边界",
+          "before": "24×16 @ 38,10",
+          "after": "14×12 @ 120,70"
+        }
+      ]
+    },
+    {
+      "layerId": "local-3",
+      "status": "removed",
+      "kind": "pixel",
+      "matchedBy": "id",
+      "beforePath": "3",
+      "nameBefore": "icon-star",
+      "changes": []
+    },
+    {
+      "layerId": "local-4",
+      "status": "removed",
+      "kind": "pixel",
+      "matchedBy": "id",
+      "beforePath": "4",
+      "nameBefore": "icon-heart",
+      "changes": []
+    },
+    {
+      "layerId": "local-5",
+      "status": "removed",
+      "kind": "group",
+      "matchedBy": "id",
+      "beforePath": "5",
+      "nameBefore": "badge",
+      "changes": []
+    },
+    {
+      "layerId": "local-5/0",
+      "status": "removed",
+      "kind": "pixel",
+      "matchedBy": "id",
+      "beforePath": "5/0",
+      "nameBefore": "badge-count",
+      "changes": []
+    },
+    {
+      "layerId": "local-5/1",
+      "status": "removed",
+      "kind": "pixel",
+      "matchedBy": "id",
+      "beforePath": "5/1",
+      "nameBefore": "badge-icon",
+      "changes": []
+    },
+    {
+      "layerId": "local-1/0",
+      "status": "added",
+      "kind": "pixel",
+      "matchedBy": "id",
+      "afterPath": "1/0",
+      "nameAfter": "hero-title",
+      "changes": []
+    },
+    {
+      "layerId": "local-1/1",
+      "status": "added",
+      "kind": "pixel",
+      "matchedBy": "id",
+      "afterPath": "1/1",
+      "nameAfter": "hero-cta",
+      "changes": []
+    },
+    {
+      "layerId": "local-1/2",
+      "status": "added",
+      "kind": "pixel",
+      "matchedBy": "id",
+      "afterPath": "1/2",
+      "nameAfter": "icon-star",
+      "changes": []
+    },
+    {
+      "layerId": "local-1/3",
+      "status": "added",
+      "kind": "pixel",
+      "matchedBy": "id",
+      "afterPath": "1/3",
+      "nameAfter": "icon-heart",
+      "changes": []
+    }
+  ],
+  "pixel": {
+    "available": true,
+    "tolerance": 2,
+    "sameSize": true,
+    "width": 160,
+    "height": 100,
+    "totalPixels": 16000,
+    "differingPixels": 0,
+    "ratio": 0,
+    "maxDelta": 0,
+    "bounds": null
+  },
+  "layerPixels": {
+    "available": true,
+    "binaryIdentical": false,
+    "tolerance": 2,
+    "maxPixels": 48000000,
+    "truncated": false,
+    "compared": 5,
+    "identical": 5,
+    "differing": 0,
+    "unavailable": 0,
+    "unpaired": 3,
+    "matchedById": 0,
+    "matchedByPath": 0,
+    "matchedByName": 5,
+    "totalPixels": 17536,
+    "differingPixels": 0,
+    "maxDelta": 0,
+    "entriesTruncated": false,
+    "entries": []
+  },
+  "notes": [
+    "对比双方均由 ag-psd 独立解析：源文件取自导入时的本地副本，保存文件由 Patchy 另存后从 MEMFS 读回。",
+    "结构对比按图层 id/路径匹配；编组与合并会改变路径，新增/移除计数需结合命名与合并计划解读。",
+    "逐层像素对比按 真实图层 ID → 唯一名称+类型+尺寸 → 路径+同类型同尺寸 配对非组图层，只比较尺寸一致的图层缓存，不做位移对齐；未配对图层不计入逐层差异。",
+    "像素数据来自两份 PSD 的图层缓存与内嵌合成图，不是 Photoshop 渲染，也不等同于 PSD 二进制逐字节比较。",
+    "逐层像素对比了 5 个匹配图层，3 个叶层未配对。"
+  ]
+}

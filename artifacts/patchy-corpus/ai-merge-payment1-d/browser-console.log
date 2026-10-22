@@ -1,0 +1,7 @@
+[debug] [vite] connecting...
+[debug] [vite] connected.
+[info] Patchy wasm memory: initial=512MB max=4096MB pool=default
+[warning] Case insensitive sorting unsupported in the posix collation implementation
+
+[verbose] [DOM] Password field is not contained in a form: (More info: https://goo.gl/9p2vKq) %o
+[verbose] [DOM] Password field is not contained in a form: (More info: https://goo.gl/9p2vKq) %o

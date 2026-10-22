@@ -1,0 +1,280 @@
+{
+  "engine": "patchy-wasm",
+  "feature": "ai-merge-review-real-corpus",
+  "source": {
+    "fileName": "Payment2_D.psd",
+    "path": "B:\\迅雷下载\\北欧1019\\mobile\\Payment2_D.psd",
+    "size": 21408241,
+    "sha256": "4980a2b78ee2208a5cf08df0d2a55415dc03c78d70a1510f45631924118b976c",
+    "unchanged": true,
+    "layerCount": 69,
+    "rootCount": 13
+  },
+  "timingMs": {
+    "import": 57225,
+    "cleanup": 1701,
+    "aiApply": 3785,
+    "undo": 3718,
+    "saveAndReopen": 49313,
+    "assetPack": 10240
+  },
+  "memory": {
+    "afterLoad": {
+      "usedBytes": 153092096,
+      "peakUsedBytes": 180355072,
+      "heapBytes": 536870912,
+      "historyBytes": 0,
+      "limitBytes": 4294967296
+    },
+    "afterMerge": {
+      "usedBytes": 141557760,
+      "peakUsedBytes": 180355072,
+      "heapBytes": 536870912,
+      "historyBytes": 0,
+      "limitBytes": 4294967296
+    },
+    "afterSave": {
+      "usedBytes": 141557760,
+      "peakUsedBytes": 195035136,
+      "heapBytes": 536870912,
+      "historyBytes": 0,
+      "limitBytes": 4294967296
+    }
+  },
+  "cleanup": {
+    "renames": 48,
+    "findings": 3,
+    "groups": 2,
+    "merges": 10,
+    "slices": 45
+  },
+  "cleanupAfterReopen": {
+    "renames": 45,
+    "findings": 3,
+    "groups": 2,
+    "merges": 9,
+    "slices": 42
+  },
+  "aiTask": {
+    "prompt": {
+      "path": "B:\\src\\LayerForgeAI\\artifacts\\patchy-corpus\\ai-merge-payment2-d\\ai-task.md",
+      "sha256": "a14d3db81d75b9b60d1fff459ed678cc74aabcbc2d2a16f1f1e8c15170dd0f77"
+    },
+    "candidate": {
+      "path": "10",
+      "kind": "component",
+      "suggestedName": "component-merged",
+      "bounds": {
+        "x": 63,
+        "y": 961,
+        "width": 168,
+        "height": 133
+      },
+      "areaRatio": 0.007,
+      "layout": {
+        "direction": "stack",
+        "gap": null,
+        "align": "mixed"
+      },
+      "memberCount": 3,
+      "memberKinds": [
+        {
+          "kind": "shape",
+          "count": 3
+        },
+        {
+          "kind": "text",
+          "count": 2
+        },
+        {
+          "kind": "group",
+          "count": 1
+        }
+      ],
+      "textDescendantCount": 2,
+      "nestedGroupCount": 1,
+      "reason": "3 个可见子图层集中在 168×133 区域（占画布 0.7%），子层包含文本且边界紧凑；建议合并为单层素材",
+      "sourceGroupName": "Selected",
+      "outlineName": "Selected",
+      "sourceChildCount": 3,
+      "sourceSubtreeCount": 7
+    },
+    "response": {
+      "name": "ai-merge-10",
+      "path": "10"
+    }
+  },
+  "nodes": {
+    "afterImport": 69,
+    "projectLayerCount": 69,
+    "afterMerge": 63,
+    "sourcePsd": 69,
+    "savedPsd": 63,
+    "expectedSavedPsd": 63
+  },
+  "output": {
+    "psd": {
+      "path": "B:\\src\\LayerForgeAI\\artifacts\\patchy-corpus\\ai-merge-payment2-d\\saved.psd",
+      "sha256": "86007aa80fd491a83fc838377b0c40a5823adf57a95efb83a2ca1c8eadd82940"
+    },
+    "before": {
+      "path": "B:\\src\\LayerForgeAI\\artifacts\\patchy-corpus\\ai-merge-payment2-d\\before.png",
+      "width": 467,
+      "height": 1024,
+      "rgbaSha256": "71bf48daeb34da7178af64f217c57c57e3d00f9508b4ffa489e00d8473bdb6ca"
+    },
+    "merged": {
+      "path": "B:\\src\\LayerForgeAI\\artifacts\\patchy-corpus\\ai-merge-payment2-d\\merged.png",
+      "width": 467,
+      "height": 1024,
+      "rgbaSha256": "0ec9edf73f78eb93c3b3e5d318fbcb09ef532997612e497e69cc632f4748aed6"
+    },
+    "undo": {
+      "path": "B:\\src\\LayerForgeAI\\artifacts\\patchy-corpus\\ai-merge-payment2-d\\undo.png",
+      "width": 467,
+      "height": 1024,
+      "rgbaSha256": "71bf48daeb34da7178af64f217c57c57e3d00f9508b4ffa489e00d8473bdb6ca"
+    },
+    "reopened": {
+      "path": "B:\\src\\LayerForgeAI\\artifacts\\patchy-corpus\\ai-merge-payment2-d\\reopened.png",
+      "width": 467,
+      "height": 1024,
+      "rgbaSha256": "0ec9edf73f78eb93c3b3e5d318fbcb09ef532997612e497e69cc632f4748aed6"
+    },
+    "prompt": "B:\\src\\LayerForgeAI\\artifacts\\patchy-corpus\\ai-merge-payment2-d\\ai-task.md",
+    "compare": {
+      "path": "B:\\src\\LayerForgeAI\\artifacts\\patchy-corpus\\ai-merge-payment2-d\\psd-compare.json",
+      "sha256": "afc23fa066b8c669f20e28700d74f865b96c32b76b7e06199d5026a71db764b6"
+    }
+  },
+  "diffs": {
+    "merge": {
+      "sameSize": true,
+      "width": 467,
+      "height": 1024,
+      "totalPixels": 478208,
+      "differingPixels": 24,
+      "ratio": 0.000050187366167023554,
+      "maxDelta": 1,
+      "bounds": {
+        "x": 24,
+        "y": 391,
+        "width": 20,
+        "height": 21
+      }
+    },
+    "undo": {
+      "sameSize": true,
+      "width": 467,
+      "height": 1024,
+      "totalPixels": 478208,
+      "differingPixels": 0,
+      "ratio": 0,
+      "maxDelta": 0,
+      "bounds": null
+    },
+    "saveAndReopen": {
+      "sameSize": true,
+      "width": 467,
+      "height": 1024,
+      "totalPixels": 478208,
+      "differingPixels": 0,
+      "ratio": 0,
+      "maxDelta": 0,
+      "bounds": null
+    }
+  },
+  "structural": {
+    "savedMergedLayers": 1,
+    "mergedLayerIsLeaf": true,
+    "savedGroupNameCount": 0,
+    "sourceGroupNameCount": 2,
+    "pathReplaced": true
+  },
+  "psdCompare": {
+    "evidence": "ag-psd-independent",
+    "sourceLayers": 69,
+    "savedLayers": 63,
+    "compositePixel": {
+      "available": true,
+      "differingPixels": 61694,
+      "ratio": 0.01827560996707108,
+      "maxDelta": 184
+    },
+    "layerPixel": {
+      "available": true,
+      "binaryIdentical": false,
+      "tolerance": 2,
+      "maxPixels": 48000000,
+      "truncated": false,
+      "compared": 46,
+      "identical": 46,
+      "differing": 0,
+      "unavailable": 0,
+      "unpaired": 6,
+      "matchedById": 46,
+      "matchedByPath": 0,
+      "matchedByName": 0,
+      "totalPixels": 13706094,
+      "differingPixels": 0,
+      "maxDelta": 0,
+      "entriesTruncated": false,
+      "entries": []
+    }
+  },
+  "uiPixelDiff": {
+    "differingPixels": 0,
+    "ratio": "0.000%"
+  },
+  "assetPack": {
+    "zip": {
+      "path": "B:\\src\\LayerForgeAI\\artifacts\\patchy-corpus\\ai-merge-payment2-d\\asset-pack.zip",
+      "bytes": 4591188,
+      "sha256": "931fd3df221efb33ed995875065d6db296eab663a557f65976cb0aff8a9b85e3"
+    },
+    "schema": "layerforge.asset-pack",
+    "schemaVersion": "0.4.0",
+    "slices": 42,
+    "mergedAssets": 9,
+    "isolatedLayerRenders": 51,
+    "compositeCrops": 0,
+    "mismatchedAssets": 0,
+    "mismatchedMergedAssets": 0,
+    "aiMerged": {
+      "name": "ai-merge-10",
+      "path": "10",
+      "candidateBounds": {
+        "x": 63,
+        "y": 961,
+        "width": 168,
+        "height": 133
+      },
+      "bounds": {
+        "x": 63,
+        "y": 961,
+        "width": 168,
+        "height": 133
+      },
+      "candidateOverlapRatio": 1,
+      "oneX": "ai-merge-10.png",
+      "source": "isolated-layer"
+    }
+  },
+  "pixelsMatch": true,
+  "applied": [
+    "已合并：ai-merge-10",
+    "已合并：ai-merge-10"
+  ],
+  "aiApplied": 2,
+  "warnings": [
+    {
+      "level": "dot dot--warn",
+      "message": "原 PSD 与保存 PSD 独立对比完成",
+      "detail": "69 → 63 图层；结构新增 0、移除 6、命名 1、几何 0；合成像素差异 61694/3375756（1.828%），最大通道差 184；ag-psd 独立解析，不是 Photoshop 验证。"
+    }
+  ],
+  "problems": [],
+  "photoshopVerified": false,
+  "m0Accepted": false,
+  "note": "Real Patchy WASM AI merge review plus asset pack evidence on a production PSD. Save/reopen differences are subject to the documented shape/slice vector save convention; the open check is warning-free open only, not visual acceptance."
+}

@@ -1,16 +1,29 @@
 # M0 可行性报告：PSD Normalize Studio Web × Patchy
 
-日期：2026-10-20（Asia/Shanghai）  
-结论：**M0 仍未通过；Photoshop 门禁未解除。**  
+日期：2026-10-20 起草；2026-10-22 更新  
+结论：**M0 已通过（2026-10-22）；Photoshop 门禁已解除。** `artifacts/m0/status.json`
+为 `status: passed`、`m1Allowed: true`。本机 ExtendScript 子系统损坏，门禁由
+`ci/photoshop-m0-check-actions.ps1` 执行并记录驱动身份。  
 开发顺序：用户已于 2026-10-20 决定先完成 Web 应用/界面到可用状态，再回头完成
-Photoshop 相关验证。该决定只调整开发顺序，不改变 M0 的未通过结论，也不把浏览器
-证据当作 Photoshop 兼容性证明。
+Photoshop 相关验证；该顺序不改变门禁语义，浏览器证据仍不能替代 Photoshop 证据。
 
 本轮补完了 macOS 上的真实 WASM 构建、C++ 桥接编译接线，并分别用一份
 上游 Patchy 测试套件中 `photoshop-*` 命名的 29 层真实 PSD 和一份 130 层
 合成压力样本完成浏览器内打开/重命名/保存副本/关闭重开/图层校验，以及
-before/after PNG 的独立像素比较。**只剩 Photoshop 无警告打开这一项 P0
-未验证**，因此 M0 仍未通过。
+before/after PNG 的独立像素比较。
+
+> **2026-10-22 更新**：Windows 10 上也完成了真实引擎 E2E（协议 v2、8/8 协议边界，
+> 输出哈希与 macOS 一致），Photoshop 27.11 以默认（可见）对话框打开
+> `m0-normalized.psd` 无警告；Nordic 原始 5/5 与 Patchy 保存输出 5/5 同样 CLEAN。
+> M0 的 P0 已全部解除，`artifacts/m0/status.json` 为 `passed`。本机 ExtendScript
+> 子系统损坏，门禁由 `ci/photoshop-m0-check-actions.ps1` 执行并记录驱动身份。
+
+> **2026-10-22 保存保真更新**：`save-fidelity.patch` 修复了形状/切片层保存时丢失
+> Photoshop 光栅预览的问题。Payment1 原样另存重开从 5,725 px / 1.197%（Δ236）降为
+> 0/478,208（Δ0），Nordic 4 份编辑后保存重开也全部为 0 像素差（此前 3 份为
+> 0.547%–0.844%）。原生色彩模式保存仍保持 Photoshop 的空通道约定；无光栅预览的
+> 纯矢量层仍可能在重开时被 Patchy 重栅格化。证据见
+> `artifacts/patchy-corpus/{save-fidelity-noop,payment1-nordic,payment2-nordic,detail-nordic,store-nordic}/manifest.json`。
 
 > **M1 进展（2026-10-20）**：负责人授权的 Web 工作台初版已在 `apps/web` 完成，
 > 详见 [PROGRESS.md](PROGRESS.md)。该工作不使用 Photoshop 证据，也未改变本报告的
@@ -25,7 +38,9 @@ before/after PNG 的独立像素比较。**只剩 Photoshop 无警告打开这�
   提交的 codeload tarball，覆盖在原有 partial clone 工作树上。此前 sparse
   checkout 只含审计文件，本轮的完整树已成功配置并构建。
 - 说明：工作树包含本轮新增桥接文件，因此不再是“未修改的上游树”；上游文件
-  的修改范围见 `poc/patchy-bridge/patchy/integration.patch`。
+  的修改范围见 `poc/patchy-bridge/patchy/integration.patch` 与
+  `poc/patchy-bridge/patchy/save-fidelity.patch`（形状层光栅预览保存保真修复
+  及其核心回归测试）。
 
 已完整阅读要求中的：
 
@@ -156,6 +171,8 @@ cmake --build vendor/Patchy/build/wasm-release
 - `poc/patchy-bridge/web/M0BridgeProbe.vue`：最小 Vue 3 调用链。
 - `poc/patchy-bridge/patchy/web_bridge_wasm.hpp/.cpp`：Patchy 侧 `QTimer` 轮询与白名单操作草案。
 - `poc/patchy-bridge/patchy/integration.patch`：针对固定提交的 CMake/MainWindow 精确接线。
+- `poc/patchy-bridge/patchy/save-fidelity.patch`：RGB 另存时保留 Photoshop 形状层的
+  光栅预览通道（原生色彩模式保存仍写空通道约定），含核心回归测试。
 - `poc/patchy-bridge/PROTOCOL.md`：协议 v2、白名单、前置条件、撤销与预览像素对比、稳定错误码。
 - `poc/patchy-bridge/tests/*.test.mjs`：队列、取消、多客户端、协议和静态接线门禁。
 - `poc/patchy-bridge/web/m0-harness.js`：仅在 `?m0=1` 启用的浏览器验收入口。
@@ -277,9 +294,10 @@ Patchy 保存协调器已经通过 `offer_browser_download_for_saved_file` 提�
 
 ### 未运行验证
 
-- **没有用 Photoshop 打开输出。** 本机未安装 Photoshop，因此没有执行
-  “警告可见、无 repair/unknown-data/discard-data”检查；Patchy 自己保存/重开
-  成功不能替代该检查。
+- **没有用 Photoshop 打开输出。** ~~本机未安装 Photoshop~~（2026-10-22 已补：在
+  Windows + Photoshop 27.11 上以可见对话框打开，无 repair/unknown-data/discard-data
+  警告；见 `artifacts/m0/win-20261022-03/` 与
+  `artifacts/photoshop-checks/20261022/open-checks.log`）。
 - **没有 100+ 图层的获批真实设计 PSD/PSB。** 29 层真实 Photoshop 测试样本
   覆盖了真实文件路径，130 层合成样本覆盖了图层数量，但两者都不等于 M1 所需
   的复杂设计文件（蒙版、智能对象、调整层、文字等组合）。
@@ -306,7 +324,8 @@ ci/macos-wasm-m0.sh \
 脚本核对固定 SHA、复制桥接文件、按上面参数配置并构建 `wasm-core` 与
 `wasm-release`、运行 CTest、staging harness、执行 Playwright E2E，最后由
 独立 verifier 写 `browser-evidence-verification.json`。它只证明浏览器链路，
-不会把 M0 标为通过。
+不会把 M0 标为通过（2026-10-22 起该 verifier 会读取同目录的 Photoshop
+open-check 证据；macOS 脚本目录没有该证据，因此结论仍为 false）。
 
 该脚本已于 2026-10-20 19:14–19:16 在固定 SHA 上端到端执行一次：自动使用
 `.tools/venv` 的 CMake/Ninja、`wasm-core` CTest 1/1（20.63 s）、
@@ -368,7 +387,7 @@ verifier 以 `M0 evidence invalid: photoshop-open-check.log is missing or empty`
 | P0 | C++ bridge 未编译/未接线 | **已解除**：桥接编译进真实 `patchy_ui`，浏览器 request/response 与单层往返通过；桥接代码零警告。 |
 | P0 | 协议边界未在真实 WASM 验证 | **已解除**：真实浏览器中 8 项路径、前置条件、只读与覆盖保护断言全部通过，拒绝请求后指纹不变。 |
 | P0 | 真实 PSD 往返 | **已解除**：29 层 Photoshop 测试 PSD 完成重命名、另存、关闭重开、层名校验和 PNG 像素一致；130 层合成样本另做数量压力验证。 |
-| P0 | Photoshop 无警告打开未验证 | **未解除**：本机未安装 Photoshop，尚未以警告可见方式打开输出。 |
+| P0 | Photoshop 无警告打开 | **已解除（2026-10-22）**：Photoshop 27.11 以默认（可见）对话框打开 `m0-normalized.psd`、Nordic 原始 5/5 与 Patchy 保存输出 5/5，均无警告；驱动为 `ci/photoshop-m0-check-actions.ps1`（ExtendScript 子系统在本机损坏）。 |
 | P0 | before/after PNG 未产生/比较 | **已解除**：真实 PSD 与合成样本的两张渲染 PNG 均已归档，独立解码 RGBA SHA-256 完全一致。 |
 | P1 | Windows 官方构建 lane 未运行 | 在 Windows 自托管 runner 上执行官方脚本，确认与 macOS 结果一致，并处理 2 条上游警告。 |
 | P1 | 100+ 图层获批真实设计样本未提供（M1 输入） | 提供样本并完成 100+ 图层浏览/选择稳定性验收；这超出当前 29 层真实 PSD 证据。 |

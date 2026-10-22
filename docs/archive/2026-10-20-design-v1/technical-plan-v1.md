@@ -1,4 +1,8 @@
-# PSD Normalize Studio Web — 基于 Patchy 的技术实施方案 V1.0
+# PSD Normalize Studio Web — 基于 Patchy 的技术实施方案 V1.0（已归档）
+
+> **归档说明（2026-10-22）**：这是项目启动时的实施设计，已由当前实现和
+> `docs/PROGRESS.md`、`docs/M0_FEASIBILITY.md`、`docs/EVIDENCE.md` 取代。
+> 保留本文仅用于追溯早期目标、边界与架构判断；文中的“未验证”状态不代表当前状态。
 
 > 目标读者：Codex CLI / 技术负责人。日期：2026-10-20。
 > 本文是工程实施设计，不代表已经在本机成功构建 Patchy 或验证浏览器控制 API。

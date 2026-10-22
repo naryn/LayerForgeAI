@@ -1,0 +1,136 @@
+{
+  "schema": "layerforge.psd-compare",
+  "schemaVersion": "0.2.0",
+  "generatedAt": "2026-10-22T11:07:33.838Z",
+  "evidence": "ag-psd-independent",
+  "source": {
+    "fileName": "patchy-group-merge.psd",
+    "header": {
+      "version": 1,
+      "channels": 3,
+      "height": 100,
+      "width": 160,
+      "depth": 8,
+      "colorMode": 3,
+      "colorModeLabel": "RGB",
+      "fileSize": 6988
+    },
+    "sha256": "82b74a93c66bb4a19d52c48e2701560ee9efe9fd8464807a606e00fcce7525f3",
+    "layerCount": 8
+  },
+  "saved": {
+    "fileName": "/saved/patchy-AI-合并复核-20261022-190731-normalized.psd",
+    "header": {
+      "version": 1,
+      "channels": 3,
+      "height": 100,
+      "width": 160,
+      "depth": 8,
+      "colorMode": 3,
+      "colorModeLabel": "RGB",
+      "fileSize": 6566
+    },
+    "sha256": "65d6dec1a7a16fb55087c8991a148dbfd804cd65708901999e097bb14666c8d5",
+    "layerCount": 6
+  },
+  "identicalBinary": false,
+  "structure": {
+    "beforeLayers": 8,
+    "afterLayers": 6,
+    "added": 0,
+    "removed": 2,
+    "renamed": 1,
+    "geometryChanged": 0,
+    "restyled": 0,
+    "unchanged": 5
+  },
+  "structureEntries": [
+    {
+      "layerId": "local-5",
+      "status": "changed",
+      "kind": "pixel",
+      "matchedBy": "id",
+      "beforePath": "5",
+      "afterPath": "5",
+      "nameBefore": "badge",
+      "nameAfter": "badge-chip",
+      "changes": [
+        {
+          "field": "name",
+          "label": "名称",
+          "before": "badge",
+          "after": "badge-chip"
+        },
+        {
+          "field": "kind",
+          "label": "类型",
+          "before": "group",
+          "after": "pixel"
+        },
+        {
+          "field": "blendMode",
+          "label": "混合模式",
+          "before": "pass through",
+          "after": "normal"
+        }
+      ]
+    },
+    {
+      "layerId": "local-5/0",
+      "status": "removed",
+      "kind": "pixel",
+      "matchedBy": "id",
+      "beforePath": "5/0",
+      "nameBefore": "badge-count",
+      "changes": []
+    },
+    {
+      "layerId": "local-5/1",
+      "status": "removed",
+      "kind": "pixel",
+      "matchedBy": "id",
+      "beforePath": "5/1",
+      "nameBefore": "badge-icon",
+      "changes": []
+    }
+  ],
+  "pixel": {
+    "available": true,
+    "tolerance": 2,
+    "sameSize": true,
+    "width": 160,
+    "height": 100,
+    "totalPixels": 16000,
+    "differingPixels": 0,
+    "ratio": 0,
+    "maxDelta": 0,
+    "bounds": null
+  },
+  "layerPixels": {
+    "available": true,
+    "binaryIdentical": false,
+    "tolerance": 2,
+    "maxPixels": 48000000,
+    "truncated": false,
+    "compared": 5,
+    "identical": 5,
+    "differing": 0,
+    "unavailable": 0,
+    "unpaired": 3,
+    "matchedById": 0,
+    "matchedByPath": 0,
+    "matchedByName": 5,
+    "totalPixels": 17536,
+    "differingPixels": 0,
+    "maxDelta": 0,
+    "entriesTruncated": false,
+    "entries": []
+  },
+  "notes": [
+    "对比双方均由 ag-psd 独立解析：源文件取自导入时的本地副本，保存文件由 Patchy 另存后从 MEMFS 读回。",
+    "结构对比按图层 id/路径匹配；编组与合并会改变路径，新增/移除计数需结合命名与合并计划解读。",
+    "逐层像素对比按 真实图层 ID → 唯一名称+类型+尺寸 → 路径+同类型同尺寸 配对非组图层，只比较尺寸一致的图层缓存，不做位移对齐；未配对图层不计入逐层差异。",
+    "像素数据来自两份 PSD 的图层缓存与内嵌合成图，不是 Photoshop 渲染，也不等同于 PSD 二进制逐字节比较。",
+    "逐层像素对比了 5 个匹配图层，3 个叶层未配对。"
+  ]
+}

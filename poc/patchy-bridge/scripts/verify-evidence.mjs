@@ -34,7 +34,7 @@ for (const name of requiredFiles) {
 
 const manifest = JSON.parse(await readFile(path.join(artifactDir, "manifest.json"), "utf8"));
 if (manifest.patchyCommit !== expectedPatchyCommit) fail("Patchy commit is not the pinned M0 commit");
-if (manifest.result?.protocolVersion !== 1) fail("bridge protocol version is not 1");
+if (manifest.result?.protocolVersion !== 2) fail("bridge protocol version is not 2");
 if (manifest.crossOriginIsolated !== true) fail("crossOriginIsolated was not true");
 if (!manifest.result?.renamed || manifest.result.renamed === manifest.result.originalName) {
   fail("renamed layer evidence is absent");

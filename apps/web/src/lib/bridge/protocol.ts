@@ -5,6 +5,7 @@ export type PatchyOperation =
   | "getState"
   | "openDocument"
   | "renderPreview"
+  | "renderLayer"
   | "comparePreview"
   | "renameLayer"
   | "groupLayers"

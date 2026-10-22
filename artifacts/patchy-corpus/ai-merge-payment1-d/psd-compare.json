@@ -1,0 +1,177 @@
+{
+  "schema": "layerforge.psd-compare",
+  "schemaVersion": "0.2.0",
+  "generatedAt": "2026-10-22T10:39:35.472Z",
+  "evidence": "ag-psd-independent",
+  "source": {
+    "fileName": "Payment1_D.psd",
+    "header": {
+      "version": 1,
+      "channels": 3,
+      "height": 2718,
+      "width": 1242,
+      "depth": 8,
+      "colorMode": 3,
+      "colorModeLabel": "RGB",
+      "fileSize": 21354939
+    },
+    "sha256": "5b5ad045039e373caa644e59b7b790692b7505369e86098ec5ede2de8037a819",
+    "layerCount": 63
+  },
+  "saved": {
+    "fileName": "/saved/ai-merge-payment1-d-20261022-183852-normalized.psd",
+    "header": {
+      "version": 1,
+      "channels": 3,
+      "height": 2718,
+      "width": 1242,
+      "depth": 8,
+      "colorMode": 3,
+      "colorModeLabel": "RGB",
+      "fileSize": 21595268
+    },
+    "sha256": "e5c83c81a4a640f9997910975783df2781e29b4a25e3dd2a7e2e109172a9c0ec",
+    "layerCount": 57
+  },
+  "identicalBinary": false,
+  "structure": {
+    "beforeLayers": 63,
+    "afterLayers": 57,
+    "added": 0,
+    "removed": 6,
+    "renamed": 1,
+    "geometryChanged": 0,
+    "restyled": 0,
+    "unchanged": 56
+  },
+  "structureEntries": [
+    {
+      "layerId": "local-10",
+      "status": "changed",
+      "kind": "pixel",
+      "matchedBy": "path",
+      "beforePath": "10",
+      "afterPath": "10",
+      "nameBefore": "Selected",
+      "nameAfter": "ai-merge-10",
+      "changes": [
+        {
+          "field": "name",
+          "label": "名称",
+          "before": "Selected",
+          "after": "ai-merge-10"
+        },
+        {
+          "field": "kind",
+          "label": "类型",
+          "before": "group",
+          "after": "pixel"
+        },
+        {
+          "field": "blendMode",
+          "label": "混合模式",
+          "before": "pass through",
+          "after": "normal"
+        }
+      ]
+    },
+    {
+      "layerId": "local-1635",
+      "status": "removed",
+      "kind": "text",
+      "matchedBy": "id",
+      "beforePath": "10/0",
+      "nameBefore": "VIP",
+      "changes": []
+    },
+    {
+      "layerId": "local-1640",
+      "status": "removed",
+      "kind": "group",
+      "matchedBy": "id",
+      "beforePath": "10/1",
+      "nameBefore": "-s-villable",
+      "changes": []
+    },
+    {
+      "layerId": "local-1637",
+      "status": "removed",
+      "kind": "shape",
+      "matchedBy": "id",
+      "beforePath": "10/1/0",
+      "nameBefore": "-slice-",
+      "changes": []
+    },
+    {
+      "layerId": "local-1638",
+      "status": "removed",
+      "kind": "shape",
+      "matchedBy": "id",
+      "beforePath": "10/1/1",
+      "nameBefore": "Ellipse 8",
+      "changes": []
+    },
+    {
+      "layerId": "local-1639",
+      "status": "removed",
+      "kind": "shape",
+      "matchedBy": "id",
+      "beforePath": "10/1/2",
+      "nameBefore": "Shape 17",
+      "changes": []
+    },
+    {
+      "layerId": "local-1641",
+      "status": "removed",
+      "kind": "text",
+      "matchedBy": "id",
+      "beforePath": "10/2",
+      "nameBefore": "Selected",
+      "changes": []
+    }
+  ],
+  "pixel": {
+    "available": true,
+    "tolerance": 2,
+    "sameSize": true,
+    "width": 1242,
+    "height": 2718,
+    "totalPixels": 3375756,
+    "differingPixels": 60525,
+    "ratio": 0.017929317166288084,
+    "maxDelta": 184,
+    "bounds": {
+      "x": 62,
+      "y": 831,
+      "width": 1117,
+      "height": 1694
+    }
+  },
+  "layerPixels": {
+    "available": true,
+    "binaryIdentical": false,
+    "tolerance": 2,
+    "maxPixels": 48000000,
+    "truncated": false,
+    "compared": 41,
+    "identical": 41,
+    "differing": 0,
+    "unavailable": 0,
+    "unpaired": 6,
+    "matchedById": 41,
+    "matchedByPath": 0,
+    "matchedByName": 0,
+    "totalPixels": 13693664,
+    "differingPixels": 0,
+    "maxDelta": 0,
+    "entriesTruncated": false,
+    "entries": []
+  },
+  "notes": [
+    "对比双方均由 ag-psd 独立解析：源文件取自导入时的本地副本，保存文件由 Patchy 另存后从 MEMFS 读回。",
+    "结构对比按图层 id/路径匹配；编组与合并会改变路径，新增/移除计数需结合命名与合并计划解读。",
+    "逐层像素对比按 真实图层 ID → 唯一名称+类型+尺寸 → 路径+同类型同尺寸 配对非组图层，只比较尺寸一致的图层缓存，不做位移对齐；未配对图层不计入逐层差异。",
+    "像素数据来自两份 PSD 的图层缓存与内嵌合成图，不是 Photoshop 渲染，也不等同于 PSD 二进制逐字节比较。",
+    "逐层像素对比了 41 个匹配图层，6 个叶层未配对。"
+  ]
+}

@@ -1,5 +1,5 @@
 const DEFAULT_TIMEOUT_MS = 30_000;
-export const PATCHY_BRIDGE_PROTOCOL_VERSION = 1;
+export const PATCHY_BRIDGE_PROTOCOL_VERSION = 2;
 
 export class PatchyBridgeError extends Error {
   constructor(code, message, details) {

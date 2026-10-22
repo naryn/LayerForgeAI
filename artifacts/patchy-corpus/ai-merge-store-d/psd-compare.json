@@ -1,0 +1,3226 @@
+{
+  "schema": "layerforge.psd-compare",
+  "schemaVersion": "0.2.0",
+  "generatedAt": "2026-10-22T10:54:03.078Z",
+  "evidence": "ag-psd-independent",
+  "source": {
+    "fileName": "Store_D.psd",
+    "header": {
+      "version": 1,
+      "channels": 3,
+      "height": 5988,
+      "width": 1242,
+      "depth": 8,
+      "colorMode": 3,
+      "colorModeLabel": "RGB",
+      "fileSize": 49482331
+    },
+    "sha256": "3fb54c5cf7019470575a00e9756428bc65d0ffb0d9626f115acc6ffae8500303",
+    "layerCount": 270
+  },
+  "saved": {
+    "fileName": "/saved/ai-merge-store-d-20261022-185257-normalized.psd",
+    "header": {
+      "version": 1,
+      "channels": 3,
+      "height": 5988,
+      "width": 1242,
+      "depth": 8,
+      "colorMode": 3,
+      "colorModeLabel": "RGB",
+      "fileSize": 50493692
+    },
+    "sha256": "1cec9423bc14bb943384d80a1300a8d62f7d58fe0f4b1e3b82e6659bcd37e403",
+    "layerCount": 245
+  },
+  "identicalBinary": false,
+  "structure": {
+    "beforeLayers": 270,
+    "afterLayers": 245,
+    "added": 0,
+    "removed": 25,
+    "renamed": 1,
+    "geometryChanged": 87,
+    "restyled": 0,
+    "unchanged": 157
+  },
+  "structureEntries": [
+    {
+      "layerId": "local-1006",
+      "status": "changed",
+      "kind": "shape",
+      "matchedBy": "id",
+      "beforePath": "1",
+      "afterPath": "1",
+      "nameBefore": "Rectangle 1",
+      "nameAfter": "Rectangle 1",
+      "changes": [
+        {
+          "field": "bounds",
+          "label": "边界",
+          "before": "0×0 @ -1,5019",
+          "after": "0×0 @ 0,0"
+        }
+      ]
+    },
+    {
+      "layerId": "local-861",
+      "status": "changed",
+      "kind": "shape",
+      "matchedBy": "id",
+      "beforePath": "2/1",
+      "afterPath": "2/1",
+      "nameBefore": "Rectangle 10",
+      "nameAfter": "Rectangle 10",
+      "changes": [
+        {
+          "field": "bounds",
+          "label": "边界",
+          "before": "0×0 @ 62,3997",
+          "after": "0×0 @ 0,0"
+        }
+      ]
+    },
+    {
+      "layerId": "local-864",
+      "status": "changed",
+      "kind": "shape",
+      "matchedBy": "id",
+      "beforePath": "2/4",
+      "afterPath": "2/4",
+      "nameBefore": "Rectangle 10 copy",
+      "nameAfter": "Rectangle 10 copy",
+      "changes": [
+        {
+          "field": "bounds",
+          "label": "边界",
+          "before": "0×0 @ 651,3997",
+          "after": "0×0 @ 0,0"
+        }
+      ]
+    },
+    {
+      "layerId": "local-867",
+      "status": "changed",
+      "kind": "shape",
+      "matchedBy": "id",
+      "beforePath": "2/7",
+      "afterPath": "2/7",
+      "nameBefore": "Rectangle 10 copy 2",
+      "nameAfter": "Rectangle 10 copy 2",
+      "changes": [
+        {
+          "field": "bounds",
+          "label": "边界",
+          "before": "0×0 @ 62,4414",
+          "after": "0×0 @ 0,0"
+        }
+      ]
+    },
+    {
+      "layerId": "local-870",
+      "status": "changed",
+      "kind": "shape",
+      "matchedBy": "id",
+      "beforePath": "2/10",
+      "afterPath": "2/10",
+      "nameBefore": "Rectangle 10 copy 3",
+      "nameAfter": "Rectangle 10 copy 3",
+      "changes": [
+        {
+          "field": "bounds",
+          "label": "边界",
+          "before": "0×0 @ 652,4414",
+          "after": "0×0 @ 0,0"
+        }
+      ]
+    },
+    {
+      "layerId": "local-873",
+      "status": "changed",
+      "kind": "shape",
+      "matchedBy": "id",
+      "beforePath": "2/13",
+      "afterPath": "2/13",
+      "nameBefore": "Rectangle 10 copy 6",
+      "nameAfter": "Rectangle 10 copy 6",
+      "changes": [
+        {
+          "field": "bounds",
+          "label": "边界",
+          "before": "0×0 @ 62,4829",
+          "after": "0×0 @ 0,0"
+        }
+      ]
+    },
+    {
+      "layerId": "local-876",
+      "status": "changed",
+      "kind": "shape",
+      "matchedBy": "id",
+      "beforePath": "2/16",
+      "afterPath": "2/16",
+      "nameBefore": "Rectangle 10 copy 7",
+      "nameAfter": "Rectangle 10 copy 7",
+      "changes": [
+        {
+          "field": "bounds",
+          "label": "边界",
+          "before": "0×0 @ 651,4829",
+          "after": "0×0 @ 0,0"
+        }
+      ]
+    },
+    {
+      "layerId": "local-879",
+      "status": "changed",
+      "kind": "shape",
+      "matchedBy": "id",
+      "beforePath": "2/19",
+      "afterPath": "2/19",
+      "nameBefore": "Rectangle 10 copy 8",
+      "nameAfter": "Rectangle 10 copy 8",
+      "changes": [
+        {
+          "field": "bounds",
+          "label": "边界",
+          "before": "0×0 @ 62,5245",
+          "after": "0×0 @ 0,0"
+        }
+      ]
+    },
+    {
+      "layerId": "local-701",
+      "status": "changed",
+      "kind": "shape",
+      "matchedBy": "id",
+      "beforePath": "3/2",
+      "afterPath": "3/2",
+      "nameBefore": "Rectangle 1 copy 8",
+      "nameAfter": "Rectangle 1 copy 8",
+      "changes": [
+        {
+          "field": "bounds",
+          "label": "边界",
+          "before": "0×0 @ -1,3461",
+          "after": "0×0 @ 0,0"
+        }
+      ]
+    },
+    {
+      "layerId": "local-702",
+      "status": "changed",
+      "kind": "shape",
+      "matchedBy": "id",
+      "beforePath": "3/3",
+      "afterPath": "3/3",
+      "nameBefore": "Rectangle 10 copy 4",
+      "nameAfter": "Rectangle 10 copy 4",
+      "changes": [
+        {
+          "field": "bounds",
+          "label": "边界",
+          "before": "0×0 @ 62,3084",
+          "after": "0×0 @ 0,0"
+        }
+      ]
+    },
+    {
+      "layerId": "local-705",
+      "status": "changed",
+      "kind": "shape",
+      "matchedBy": "id",
+      "beforePath": "3/6",
+      "afterPath": "3/6",
+      "nameBefore": "Rectangle 10 copy 5",
+      "nameAfter": "Rectangle 10 copy 5",
+      "changes": [
+        {
+          "field": "bounds",
+          "label": "边界",
+          "before": "0×0 @ 895,3084",
+          "after": "0×0 @ 0,0"
+        }
+      ]
+    },
+    {
+      "layerId": "local-708",
+      "status": "changed",
+      "kind": "shape",
+      "matchedBy": "id",
+      "beforePath": "3/9",
+      "afterPath": "3/9",
+      "nameBefore": "Rectangle 11 copy 4",
+      "nameAfter": "Rectangle 11 copy 4",
+      "changes": [
+        {
+          "field": "bounds",
+          "label": "边界",
+          "before": "0×0 @ 1102,2953",
+          "after": "0×0 @ 0,0"
+        }
+      ]
+    },
+    {
+      "layerId": "local-709",
+      "status": "changed",
+      "kind": "shape",
+      "matchedBy": "id",
+      "beforePath": "3/10",
+      "afterPath": "3/10",
+      "nameBefore": "Shape 8",
+      "nameAfter": "Shape 8",
+      "changes": [
+        {
+          "field": "bounds",
+          "label": "边界",
+          "before": "0×0 @ 1134,2964",
+          "after": "0×0 @ 0,0"
+        }
+      ]
+    },
+    {
+      "layerId": "local-710",
+      "status": "changed",
+      "kind": "shape",
+      "matchedBy": "id",
+      "beforePath": "3/11",
+      "afterPath": "3/11",
+      "nameBefore": "Rectangle 11",
+      "nameAfter": "Rectangle 11",
+      "changes": [
+        {
+          "field": "bounds",
+          "label": "边界",
+          "before": "0×0 @ 895,3633",
+          "after": "0×0 @ 0,0"
+        }
+      ]
+    },
+    {
+      "layerId": "local-712",
+      "status": "changed",
+      "kind": "shape",
+      "matchedBy": "id",
+      "beforePath": "3/13",
+      "afterPath": "3/13",
+      "nameBefore": "Rectangle 11 copy",
+      "nameAfter": "Rectangle 11 copy",
+      "changes": [
+        {
+          "field": "bounds",
+          "label": "边界",
+          "before": "0×0 @ 992,3633",
+          "after": "0×0 @ 0,0"
+        }
+      ]
+    },
+    {
+      "layerId": "local-714",
+      "status": "changed",
+      "kind": "shape",
+      "matchedBy": "id",
+      "beforePath": "3/15",
+      "afterPath": "3/15",
+      "nameBefore": "Rectangle 11 copy 2",
+      "nameAfter": "Rectangle 11 copy 2",
+      "changes": [
+        {
+          "field": "bounds",
+          "label": "边界",
+          "before": "0×0 @ 402,3633",
+          "after": "0×0 @ 0,0"
+        }
+      ]
+    },
+    {
+      "layerId": "local-716",
+      "status": "changed",
+      "kind": "shape",
+      "matchedBy": "id",
+      "beforePath": "3/17",
+      "afterPath": "3/17",
+      "nameBefore": "Rectangle 11 copy 3",
+      "nameAfter": "Rectangle 11 copy 3",
+      "changes": [
+        {
+          "field": "bounds",
+          "label": "边界",
+          "before": "0×0 @ 552,3633",
+          "after": "0×0 @ 0,0"
+        }
+      ]
+    },
+    {
+      "layerId": "local-718",
+      "status": "changed",
+      "kind": "shape",
+      "matchedBy": "id",
+      "beforePath": "3/19",
+      "afterPath": "3/19",
+      "nameBefore": "Rectangle 11 copy 5",
+      "nameAfter": "Rectangle 11 copy 5",
+      "changes": [
+        {
+          "field": "bounds",
+          "label": "边界",
+          "before": "0×0 @ 62,3633",
+          "after": "0×0 @ 0,0"
+        }
+      ]
+    },
+    {
+      "layerId": "local-720",
+      "status": "changed",
+      "kind": "shape",
+      "matchedBy": "id",
+      "beforePath": "3/21",
+      "afterPath": "3/21",
+      "nameBefore": "Rectangle 11 copy 7",
+      "nameAfter": "Rectangle 11 copy 7",
+      "changes": [
+        {
+          "field": "bounds",
+          "label": "边界",
+          "before": "0×0 @ 207,3633",
+          "after": "0×0 @ 0,0"
+        }
+      ]
+    },
+    {
+      "layerId": "local-856",
+      "status": "changed",
+      "kind": "shape",
+      "matchedBy": "id",
+      "beforePath": "3/24",
+      "afterPath": "3/24",
+      "nameBefore": "Rectangle 1 copy 10",
+      "nameAfter": "Rectangle 1 copy 10",
+      "changes": [
+        {
+          "field": "bounds",
+          "label": "边界",
+          "before": "0×0 @ 818,2944",
+          "after": "0×0 @ 0,0"
+        }
+      ]
+    },
+    {
+      "layerId": "local-4",
+      "status": "changed",
+      "kind": "pixel",
+      "matchedBy": "path",
+      "beforePath": "4",
+      "afterPath": "4",
+      "nameBefore": "Nav",
+      "nameAfter": "ai-merge-4",
+      "changes": [
+        {
+          "field": "name",
+          "label": "名称",
+          "before": "Nav",
+          "after": "ai-merge-4"
+        },
+        {
+          "field": "kind",
+          "label": "类型",
+          "before": "group",
+          "after": "pixel"
+        },
+        {
+          "field": "bounds",
+          "label": "边界",
+          "before": "976×31 @ 135,5867",
+          "after": "1242×248 @ 0,5740"
+        },
+        {
+          "field": "blendMode",
+          "label": "混合模式",
+          "before": "pass through",
+          "after": "normal"
+        }
+      ]
+    },
+    {
+      "layerId": "local-1231",
+      "status": "changed",
+      "kind": "shape",
+      "matchedBy": "id",
+      "beforePath": "5/0/0",
+      "afterPath": "5/0/0",
+      "nameBefore": "Rectangle 14 copy 4",
+      "nameAfter": "Rectangle 14 copy 4",
+      "changes": [
+        {
+          "field": "bounds",
+          "label": "边界",
+          "before": "0×0 @ 64,900",
+          "after": "0×0 @ 0,0"
+        }
+      ]
+    },
+    {
+      "layerId": "local-1232",
+      "status": "changed",
+      "kind": "shape",
+      "matchedBy": "id",
+      "beforePath": "5/0/1",
+      "afterPath": "5/0/1",
+      "nameBefore": "Rectangle 14 copy 5",
+      "nameAfter": "Rectangle 14 copy 5",
+      "changes": [
+        {
+          "field": "bounds",
+          "label": "边界",
+          "before": "0×0 @ 64,900",
+          "after": "0×0 @ 0,0"
+        }
+      ]
+    },
+    {
+      "layerId": "local-1234",
+      "status": "changed",
+      "kind": "shape",
+      "matchedBy": "id",
+      "beforePath": "5/0/2/0",
+      "afterPath": "5/0/2/0",
+      "nameBefore": "-slice-",
+      "nameAfter": "-slice-",
+      "changes": [
+        {
+          "field": "bounds",
+          "label": "边界",
+          "before": "0×0 @ 182,899",
+          "after": "0×0 @ 0,0"
+        }
+      ]
+    },
+    {
+      "layerId": "local-1239",
+      "status": "changed",
+      "kind": "shape",
+      "matchedBy": "id",
+      "beforePath": "5/0/3/0/0",
+      "afterPath": "5/0/3/0/0",
+      "nameBefore": "-slice-",
+      "nameAfter": "-slice-",
+      "changes": [
+        {
+          "field": "bounds",
+          "label": "边界",
+          "before": "0×0 @ 488,1384",
+          "after": "0×0 @ 0,0"
+        }
+      ]
+    },
+    {
+      "layerId": "local-1248",
+      "status": "changed",
+      "kind": "shape",
+      "matchedBy": "id",
+      "beforePath": "5/0/4/0",
+      "afterPath": "5/0/4/0",
+      "nameBefore": "-slice-",
+      "nameAfter": "-slice-",
+      "changes": [
+        {
+          "field": "bounds",
+          "label": "边界",
+          "before": "0×0 @ 236,1013",
+          "after": "0×0 @ 0,0"
+        }
+      ]
+    },
+    {
+      "layerId": "local-1252",
+      "status": "changed",
+      "kind": "shape",
+      "matchedBy": "id",
+      "beforePath": "5/0/5/0",
+      "afterPath": "5/0/5/0",
+      "nameBefore": "-slice-",
+      "nameAfter": "-slice-",
+      "changes": [
+        {
+          "field": "bounds",
+          "label": "边界",
+          "before": "0×0 @ 104,1082",
+          "after": "0×0 @ 0,0"
+        }
+      ]
+    },
+    {
+      "layerId": "local-1253",
+      "status": "changed",
+      "kind": "shape",
+      "matchedBy": "id",
+      "beforePath": "5/0/5/1",
+      "afterPath": "5/0/5/1",
+      "nameBefore": "dis_icon",
+      "nameAfter": "dis_icon",
+      "changes": [
+        {
+          "field": "bounds",
+          "label": "边界",
+          "before": "0×0 @ 105,1083",
+          "after": "0×0 @ 0,0"
+        }
+      ]
+    },
+    {
+      "layerId": "local-1256",
+      "status": "changed",
+      "kind": "shape",
+      "matchedBy": "id",
+      "beforePath": "5/0/7",
+      "afterPath": "5/0/7",
+      "nameBefore": "Rectangle 18 copy",
+      "nameAfter": "Rectangle 18 copy",
+      "changes": [
+        {
+          "field": "bounds",
+          "label": "边界",
+          "before": "0×0 @ 64,901",
+          "after": "0×0 @ 0,0"
+        }
+      ]
+    },
+    {
+      "layerId": "local-1260",
+      "status": "changed",
+      "kind": "shape",
+      "matchedBy": "id",
+      "beforePath": "5/1/0",
+      "afterPath": "5/1/0",
+      "nameBefore": "Rectangle 14 copy 4",
+      "nameAfter": "Rectangle 14 copy 4",
+      "changes": [
+        {
+          "field": "bounds",
+          "label": "边界",
+          "before": "0×0 @ 652,900",
+          "after": "0×0 @ 0,0"
+        }
+      ]
+    },
+    {
+      "layerId": "local-1261",
+      "status": "changed",
+      "kind": "shape",
+      "matchedBy": "id",
+      "beforePath": "5/1/1",
+      "afterPath": "5/1/1",
+      "nameBefore": "Rectangle 14 copy 5",
+      "nameAfter": "Rectangle 14 copy 5",
+      "changes": [
+        {
+          "field": "bounds",
+          "label": "边界",
+          "before": "0×0 @ 652,900",
+          "after": "0×0 @ 0,0"
+        }
+      ]
+    },
+    {
+      "layerId": "local-1263",
+      "status": "changed",
+      "kind": "shape",
+      "matchedBy": "id",
+      "beforePath": "5/1/2/0",
+      "afterPath": "5/1/2/0",
+      "nameBefore": "-slice-",
+      "nameAfter": "-slice-",
+      "changes": [
+        {
+          "field": "bounds",
+          "label": "边界",
+          "before": "0×0 @ 772,899",
+          "after": "0×0 @ 0,0"
+        }
+      ]
+    },
+    {
+      "layerId": "local-1268",
+      "status": "changed",
+      "kind": "shape",
+      "matchedBy": "id",
+      "beforePath": "5/1/3/0/0",
+      "afterPath": "5/1/3/0/0",
+      "nameBefore": "-slice-",
+      "nameAfter": "-slice-",
+      "changes": [
+        {
+          "field": "bounds",
+          "label": "边界",
+          "before": "0×0 @ 1076,1384",
+          "after": "0×0 @ 0,0"
+        }
+      ]
+    },
+    {
+      "layerId": "local-1276",
+      "status": "changed",
+      "kind": "shape",
+      "matchedBy": "id",
+      "beforePath": "5/1/4/0",
+      "afterPath": "5/1/4/0",
+      "nameBefore": "-slice-",
+      "nameAfter": "-slice-",
+      "changes": [
+        {
+          "field": "bounds",
+          "label": "边界",
+          "before": "0×0 @ 826,1013",
+          "after": "0×0 @ 0,0"
+        }
+      ]
+    },
+    {
+      "layerId": "local-1279",
+      "status": "changed",
+      "kind": "shape",
+      "matchedBy": "id",
+      "beforePath": "5/1/5",
+      "afterPath": "5/1/5",
+      "nameBefore": "Rectangle 18 copy 3",
+      "nameAfter": "Rectangle 18 copy 3",
+      "changes": [
+        {
+          "field": "bounds",
+          "label": "边界",
+          "before": "0×0 @ 652,901",
+          "after": "0×0 @ 0,0"
+        }
+      ]
+    },
+    {
+      "layerId": "local-1283",
+      "status": "changed",
+      "kind": "shape",
+      "matchedBy": "id",
+      "beforePath": "5/2/0",
+      "afterPath": "5/2/0",
+      "nameBefore": "Rectangle 14 copy 4",
+      "nameAfter": "Rectangle 14 copy 4",
+      "changes": [
+        {
+          "field": "bounds",
+          "label": "边界",
+          "before": "0×0 @ 64,1546",
+          "after": "0×0 @ 0,0"
+        }
+      ]
+    },
+    {
+      "layerId": "local-1284",
+      "status": "changed",
+      "kind": "shape",
+      "matchedBy": "id",
+      "beforePath": "5/2/1",
+      "afterPath": "5/2/1",
+      "nameBefore": "Rectangle 14 copy 5",
+      "nameAfter": "Rectangle 14 copy 5",
+      "changes": [
+        {
+          "field": "bounds",
+          "label": "边界",
+          "before": "0×0 @ 64,1546",
+          "after": "0×0 @ 0,0"
+        }
+      ]
+    },
+    {
+      "layerId": "local-1286",
+      "status": "changed",
+      "kind": "shape",
+      "matchedBy": "id",
+      "beforePath": "5/2/2/0",
+      "afterPath": "5/2/2/0",
+      "nameBefore": "-slice-",
+      "nameAfter": "-slice-",
+      "changes": [
+        {
+          "field": "bounds",
+          "label": "边界",
+          "before": "0×0 @ 184,1545",
+          "after": "0×0 @ 0,0"
+        }
+      ]
+    },
+    {
+      "layerId": "local-1290",
+      "status": "changed",
+      "kind": "shape",
+      "matchedBy": "id",
+      "beforePath": "5/2/3/0",
+      "afterPath": "5/2/3/0",
+      "nameBefore": "Rectangle 23",
+      "nameAfter": "Rectangle 23",
+      "changes": [
+        {
+          "field": "bounds",
+          "label": "边界",
+          "before": "0×0 @ 421,1968",
+          "after": "0×0 @ 0,0"
+        }
+      ]
+    },
+    {
+      "layerId": "local-1293",
+      "status": "changed",
+      "kind": "shape",
+      "matchedBy": "id",
+      "beforePath": "5/2/3/2/0",
+      "afterPath": "5/2/3/2/0",
+      "nameBefore": "-slice-",
+      "nameAfter": "-slice-",
+      "changes": [
+        {
+          "field": "bounds",
+          "label": "边界",
+          "before": "0×0 @ 488,2030",
+          "after": "0×0 @ 0,0"
+        }
+      ]
+    },
+    {
+      "layerId": "local-1302",
+      "status": "changed",
+      "kind": "shape",
+      "matchedBy": "id",
+      "beforePath": "5/2/4/0",
+      "afterPath": "5/2/4/0",
+      "nameBefore": "-slice-",
+      "nameAfter": "-slice-",
+      "changes": [
+        {
+          "field": "bounds",
+          "label": "边界",
+          "before": "0×0 @ 237,1610",
+          "after": "0×0 @ 0,0"
+        }
+      ]
+    },
+    {
+      "layerId": "local-1306",
+      "status": "changed",
+      "kind": "shape",
+      "matchedBy": "id",
+      "beforePath": "5/2/5/0",
+      "afterPath": "5/2/5/0",
+      "nameBefore": "Shape 21",
+      "nameAfter": "Shape 21",
+      "changes": [
+        {
+          "field": "bounds",
+          "label": "边界",
+          "before": "0×0 @ 392,1547",
+          "after": "0×0 @ 0,0"
+        }
+      ]
+    },
+    {
+      "layerId": "local-1311",
+      "status": "changed",
+      "kind": "shape",
+      "matchedBy": "id",
+      "beforePath": "5/2/6/0",
+      "afterPath": "5/2/6/0",
+      "nameBefore": "-slice-",
+      "nameAfter": "-slice-",
+      "changes": [
+        {
+          "field": "bounds",
+          "label": "边界",
+          "before": "0×0 @ 456,1545",
+          "after": "0×0 @ 0,0"
+        }
+      ]
+    },
+    {
+      "layerId": "local-1315",
+      "status": "changed",
+      "kind": "shape",
+      "matchedBy": "id",
+      "beforePath": "5/2/7/0",
+      "afterPath": "5/2/7/0",
+      "nameBefore": "-slice-",
+      "nameAfter": "-slice-",
+      "changes": [
+        {
+          "field": "bounds",
+          "label": "边界",
+          "before": "0×0 @ 104,1728",
+          "after": "0×0 @ 0,0"
+        }
+      ]
+    },
+    {
+      "layerId": "local-1316",
+      "status": "changed",
+      "kind": "shape",
+      "matchedBy": "id",
+      "beforePath": "5/2/7/1",
+      "afterPath": "5/2/7/1",
+      "nameBefore": "dis_icon",
+      "nameAfter": "dis_icon",
+      "changes": [
+        {
+          "field": "bounds",
+          "label": "边界",
+          "before": "0×0 @ 105,1729",
+          "after": "0×0 @ 0,0"
+        }
+      ]
+    },
+    {
+      "layerId": "local-1321",
+      "status": "changed",
+      "kind": "shape",
+      "matchedBy": "id",
+      "beforePath": "5/3/0",
+      "afterPath": "5/3/0",
+      "nameBefore": "Rectangle 14 copy 4",
+      "nameAfter": "Rectangle 14 copy 4",
+      "changes": [
+        {
+          "field": "bounds",
+          "label": "边界",
+          "before": "0×0 @ 652,1546",
+          "after": "0×0 @ 0,0"
+        }
+      ]
+    },
+    {
+      "layerId": "local-1322",
+      "status": "changed",
+      "kind": "shape",
+      "matchedBy": "id",
+      "beforePath": "5/3/1",
+      "afterPath": "5/3/1",
+      "nameBefore": "Rectangle 14 copy 5",
+      "nameAfter": "Rectangle 14 copy 5",
+      "changes": [
+        {
+          "field": "bounds",
+          "label": "边界",
+          "before": "0×0 @ 652,1546",
+          "after": "0×0 @ 0,0"
+        }
+      ]
+    },
+    {
+      "layerId": "local-1324",
+      "status": "changed",
+      "kind": "shape",
+      "matchedBy": "id",
+      "beforePath": "5/3/2/0",
+      "afterPath": "5/3/2/0",
+      "nameBefore": "-slice-",
+      "nameAfter": "-slice-",
+      "changes": [
+        {
+          "field": "bounds",
+          "label": "边界",
+          "before": "0×0 @ 772,1545",
+          "after": "0×0 @ 0,0"
+        }
+      ]
+    },
+    {
+      "layerId": "local-1329",
+      "status": "changed",
+      "kind": "shape",
+      "matchedBy": "id",
+      "beforePath": "5/3/3/0/0",
+      "afterPath": "5/3/3/0/0",
+      "nameBefore": "-slice-",
+      "nameAfter": "-slice-",
+      "changes": [
+        {
+          "field": "bounds",
+          "label": "边界",
+          "before": "0×0 @ 1076,2030",
+          "after": "0×0 @ 0,0"
+        }
+      ]
+    },
+    {
+      "layerId": "local-1337",
+      "status": "changed",
+      "kind": "shape",
+      "matchedBy": "id",
+      "beforePath": "5/3/4/0",
+      "afterPath": "5/3/4/0",
+      "nameBefore": "-slice-",
+      "nameAfter": "-slice-",
+      "changes": [
+        {
+          "field": "bounds",
+          "label": "边界",
+          "before": "0×0 @ 825,1656",
+          "after": "0×0 @ 0,0"
+        }
+      ]
+    },
+    {
+      "layerId": "local-1341",
+      "status": "changed",
+      "kind": "shape",
+      "matchedBy": "id",
+      "beforePath": "5/3/5/0",
+      "afterPath": "5/3/5/0",
+      "nameBefore": "Shape 21",
+      "nameAfter": "Shape 21",
+      "changes": [
+        {
+          "field": "bounds",
+          "label": "边界",
+          "before": "0×0 @ 980,1547",
+          "after": "0×0 @ 0,0"
+        }
+      ]
+    },
+    {
+      "layerId": "local-1346",
+      "status": "changed",
+      "kind": "shape",
+      "matchedBy": "id",
+      "beforePath": "5/3/6/0",
+      "afterPath": "5/3/6/0",
+      "nameBefore": "-slice-",
+      "nameAfter": "-slice-",
+      "changes": [
+        {
+          "field": "bounds",
+          "label": "边界",
+          "before": "0×0 @ 1044,1545",
+          "after": "0×0 @ 0,0"
+        }
+      ]
+    },
+    {
+      "layerId": "local-1349",
+      "status": "changed",
+      "kind": "shape",
+      "matchedBy": "id",
+      "beforePath": "5/3/7",
+      "afterPath": "5/3/7",
+      "nameBefore": "Rectangle 18 copy 5",
+      "nameAfter": "Rectangle 18 copy 5",
+      "changes": [
+        {
+          "field": "bounds",
+          "label": "边界",
+          "before": "0×0 @ 652,1547",
+          "after": "0×0 @ 0,0"
+        }
+      ]
+    },
+    {
+      "layerId": "local-1353",
+      "status": "changed",
+      "kind": "shape",
+      "matchedBy": "id",
+      "beforePath": "5/4/0",
+      "afterPath": "5/4/0",
+      "nameBefore": "Rectangle 14 copy 4",
+      "nameAfter": "Rectangle 14 copy 4",
+      "changes": [
+        {
+          "field": "bounds",
+          "label": "边界",
+          "before": "0×0 @ 63,2189",
+          "after": "0×0 @ 0,0"
+        }
+      ]
+    },
+    {
+      "layerId": "local-1354",
+      "status": "changed",
+      "kind": "shape",
+      "matchedBy": "id",
+      "beforePath": "5/4/1",
+      "afterPath": "5/4/1",
+      "nameBefore": "Rectangle 14 copy 5",
+      "nameAfter": "Rectangle 14 copy 5",
+      "changes": [
+        {
+          "field": "bounds",
+          "label": "边界",
+          "before": "0×0 @ 63,2189",
+          "after": "0×0 @ 0,0"
+        }
+      ]
+    },
+    {
+      "layerId": "local-1356",
+      "status": "changed",
+      "kind": "shape",
+      "matchedBy": "id",
+      "beforePath": "5/4/2/0",
+      "afterPath": "5/4/2/0",
+      "nameBefore": "-slice-",
+      "nameAfter": "-slice-",
+      "changes": [
+        {
+          "field": "bounds",
+          "label": "边界",
+          "before": "0×0 @ 183,2188",
+          "after": "0×0 @ 0,0"
+        }
+      ]
+    },
+    {
+      "layerId": "local-1361",
+      "status": "changed",
+      "kind": "shape",
+      "matchedBy": "id",
+      "beforePath": "5/4/3/0/0",
+      "afterPath": "5/4/3/0/0",
+      "nameBefore": "-slice-",
+      "nameAfter": "-slice-",
+      "changes": [
+        {
+          "field": "bounds",
+          "label": "边界",
+          "before": "0×0 @ 487,2673",
+          "after": "0×0 @ 0,0"
+        }
+      ]
+    },
+    {
+      "layerId": "local-1369",
+      "status": "changed",
+      "kind": "shape",
+      "matchedBy": "id",
+      "beforePath": "5/4/4/0",
+      "afterPath": "5/4/4/0",
+      "nameBefore": "-slice-",
+      "nameAfter": "-slice-",
+      "changes": [
+        {
+          "field": "bounds",
+          "label": "边界",
+          "before": "0×0 @ 236,2299",
+          "after": "0×0 @ 0,0"
+        }
+      ]
+    },
+    {
+      "layerId": "local-1374",
+      "status": "changed",
+      "kind": "shape",
+      "matchedBy": "id",
+      "beforePath": "5/5/0",
+      "afterPath": "5/5/0",
+      "nameBefore": "Rectangle 14 copy 4",
+      "nameAfter": "Rectangle 14 copy 4",
+      "changes": [
+        {
+          "field": "bounds",
+          "label": "边界",
+          "before": "0×0 @ 651,2189",
+          "after": "0×0 @ 0,0"
+        }
+      ]
+    },
+    {
+      "layerId": "local-1375",
+      "status": "changed",
+      "kind": "shape",
+      "matchedBy": "id",
+      "beforePath": "5/5/1",
+      "afterPath": "5/5/1",
+      "nameBefore": "Rectangle 14 copy 5",
+      "nameAfter": "Rectangle 14 copy 5",
+      "changes": [
+        {
+          "field": "bounds",
+          "label": "边界",
+          "before": "0×0 @ 651,2189",
+          "after": "0×0 @ 0,0"
+        }
+      ]
+    },
+    {
+      "layerId": "local-1377",
+      "status": "changed",
+      "kind": "shape",
+      "matchedBy": "id",
+      "beforePath": "5/5/2/0",
+      "afterPath": "5/5/2/0",
+      "nameBefore": "-slice-",
+      "nameAfter": "-slice-",
+      "changes": [
+        {
+          "field": "bounds",
+          "label": "边界",
+          "before": "0×0 @ 771,2188",
+          "after": "0×0 @ 0,0"
+        }
+      ]
+    },
+    {
+      "layerId": "local-1382",
+      "status": "changed",
+      "kind": "shape",
+      "matchedBy": "id",
+      "beforePath": "5/5/3/0/0",
+      "afterPath": "5/5/3/0/0",
+      "nameBefore": "-slice-",
+      "nameAfter": "-slice-",
+      "changes": [
+        {
+          "field": "bounds",
+          "label": "边界",
+          "before": "0×0 @ 1075,2673",
+          "after": "0×0 @ 0,0"
+        }
+      ]
+    },
+    {
+      "layerId": "local-1390",
+      "status": "changed",
+      "kind": "shape",
+      "matchedBy": "id",
+      "beforePath": "5/5/4/0",
+      "afterPath": "5/5/4/0",
+      "nameBefore": "-slice-",
+      "nameAfter": "-slice-",
+      "changes": [
+        {
+          "field": "bounds",
+          "label": "边界",
+          "before": "0×0 @ 824,2299",
+          "after": "0×0 @ 0,0"
+        }
+      ]
+    },
+    {
+      "layerId": "local-1394",
+      "status": "changed",
+      "kind": "shape",
+      "matchedBy": "id",
+      "beforePath": "5/5/5/0",
+      "afterPath": "5/5/5/0",
+      "nameBefore": "-slice-",
+      "nameAfter": "-slice-",
+      "changes": [
+        {
+          "field": "bounds",
+          "label": "边界",
+          "before": "0×0 @ 692,2369",
+          "after": "0×0 @ 0,0"
+        }
+      ]
+    },
+    {
+      "layerId": "local-1395",
+      "status": "changed",
+      "kind": "shape",
+      "matchedBy": "id",
+      "beforePath": "5/5/5/1",
+      "afterPath": "5/5/5/1",
+      "nameBefore": "dis_icon",
+      "nameAfter": "dis_icon",
+      "changes": [
+        {
+          "field": "bounds",
+          "label": "边界",
+          "before": "0×0 @ 693,2370",
+          "after": "0×0 @ 0,0"
+        }
+      ]
+    },
+    {
+      "layerId": "local-1399",
+      "status": "changed",
+      "kind": "shape",
+      "matchedBy": "id",
+      "beforePath": "5/5/7/0",
+      "afterPath": "5/5/7/0",
+      "nameBefore": "Shape 21",
+      "nameAfter": "Shape 21",
+      "changes": [
+        {
+          "field": "bounds",
+          "label": "边界",
+          "before": "0×0 @ 1049,2190",
+          "after": "0×0 @ 0,0"
+        }
+      ]
+    },
+    {
+      "layerId": "local-1406",
+      "status": "changed",
+      "kind": "shape",
+      "matchedBy": "id",
+      "beforePath": "5/6/0/0",
+      "afterPath": "5/6/0/0",
+      "nameBefore": "Rectangle 14 copy 2",
+      "nameAfter": "Rectangle 14 copy 2",
+      "changes": [
+        {
+          "field": "bounds",
+          "label": "边界",
+          "before": "0×0 @ 64,758",
+          "after": "0×0 @ 0,0"
+        }
+      ]
+    },
+    {
+      "layerId": "local-1418",
+      "status": "changed",
+      "kind": "shape",
+      "matchedBy": "id",
+      "beforePath": "5/7/0",
+      "afterPath": "5/7/0",
+      "nameBefore": "Shape 6 copy",
+      "nameAfter": "Shape 6 copy",
+      "changes": [
+        {
+          "field": "bounds",
+          "label": "边界",
+          "before": "0×0 @ 1156,646",
+          "after": "0×0 @ 0,0"
+        }
+      ]
+    },
+    {
+      "layerId": "local-1419",
+      "status": "changed",
+      "kind": "shape",
+      "matchedBy": "id",
+      "beforePath": "5/7/1",
+      "afterPath": "5/7/1",
+      "nameBefore": "Shape 6 copy 2",
+      "nameAfter": "Shape 6 copy 2",
+      "changes": [
+        {
+          "field": "bounds",
+          "label": "边界",
+          "before": "0×0 @ 1156,663",
+          "after": "0×0 @ 0,0"
+        }
+      ]
+    },
+    {
+      "layerId": "local-1422",
+      "status": "changed",
+      "kind": "shape",
+      "matchedBy": "id",
+      "beforePath": "5/8/0",
+      "afterPath": "5/8/0",
+      "nameBefore": "Shape 6 copy",
+      "nameAfter": "Shape 6 copy",
+      "changes": [
+        {
+          "field": "bounds",
+          "label": "边界",
+          "before": "0×0 @ 1072,646",
+          "after": "0×0 @ 0,0"
+        }
+      ]
+    },
+    {
+      "layerId": "local-1423",
+      "status": "changed",
+      "kind": "shape",
+      "matchedBy": "id",
+      "beforePath": "5/8/1",
+      "afterPath": "5/8/1",
+      "nameBefore": "Shape 6 copy 2",
+      "nameAfter": "Shape 6 copy 2",
+      "changes": [
+        {
+          "field": "bounds",
+          "label": "边界",
+          "before": "0×0 @ 1072,663",
+          "after": "0×0 @ 0,0"
+        }
+      ]
+    },
+    {
+      "layerId": "local-1049",
+      "status": "changed",
+      "kind": "shape",
+      "matchedBy": "id",
+      "beforePath": "6/0",
+      "afterPath": "6/0",
+      "nameBefore": "-slice-",
+      "nameAfter": "-slice-",
+      "changes": [
+        {
+          "field": "bounds",
+          "label": "边界",
+          "before": "0×0 @ -2,-3",
+          "after": "0×0 @ 0,0"
+        }
+      ]
+    },
+    {
+      "layerId": "local-667",
+      "status": "changed",
+      "kind": "shape",
+      "matchedBy": "id",
+      "beforePath": "7/0/0",
+      "afterPath": "7/0/0",
+      "nameBefore": "Ellipse 5",
+      "nameAfter": "Ellipse 5",
+      "changes": [
+        {
+          "field": "bounds",
+          "label": "边界",
+          "before": "0×0 @ 62,312",
+          "after": "0×0 @ 0,0"
+        }
+      ]
+    },
+    {
+      "layerId": "local-932",
+      "status": "changed",
+      "kind": "shape",
+      "matchedBy": "id",
+      "beforePath": "7/1/0",
+      "afterPath": "7/1/0",
+      "nameBefore": "-slice-",
+      "nameAfter": "-slice-",
+      "changes": [
+        {
+          "field": "bounds",
+          "label": "边界",
+          "before": "0×0 @ 216,453",
+          "after": "0×0 @ 0,0"
+        }
+      ]
+    },
+    {
+      "layerId": "local-672",
+      "status": "changed",
+      "kind": "shape",
+      "matchedBy": "id",
+      "beforePath": "7/1/1",
+      "afterPath": "7/1/1",
+      "nameBefore": "Ellipse 6",
+      "nameAfter": "Ellipse 6",
+      "changes": [
+        {
+          "field": "bounds",
+          "label": "边界",
+          "before": "0×0 @ 216,454",
+          "after": "0×0 @ 0,0"
+        }
+      ]
+    },
+    {
+      "layerId": "local-670",
+      "status": "changed",
+      "kind": "shape",
+      "matchedBy": "id",
+      "beforePath": "7/1/2",
+      "afterPath": "7/1/2",
+      "nameBefore": "Raccoon VIP",
+      "nameAfter": "Raccoon VIP",
+      "changes": [
+        {
+          "field": "bounds",
+          "label": "边界",
+          "before": "0×0 @ 231,470",
+          "after": "0×0 @ 0,0"
+        }
+      ]
+    },
+    {
+      "layerId": "local-11",
+      "status": "changed",
+      "kind": "shape",
+      "matchedBy": "id",
+      "beforePath": "8/0",
+      "afterPath": "8/0",
+      "nameBefore": "Rectangle 2 copy 2",
+      "nameAfter": "Rectangle 2 copy 2",
+      "changes": [
+        {
+          "field": "bounds",
+          "label": "边界",
+          "before": "0×0 @ -1,263",
+          "after": "0×0 @ 0,0"
+        }
+      ]
+    },
+    {
+      "layerId": "local-649",
+      "status": "changed",
+      "kind": "shape",
+      "matchedBy": "id",
+      "beforePath": "8/1/0",
+      "afterPath": "8/1/0",
+      "nameBefore": "Rectangle 8 copy 7",
+      "nameAfter": "Rectangle 8 copy 7",
+      "changes": [
+        {
+          "field": "bounds",
+          "label": "边界",
+          "before": "0×0 @ 1074,140",
+          "after": "0×0 @ 0,0"
+        }
+      ]
+    },
+    {
+      "layerId": "local-1046",
+      "status": "changed",
+      "kind": "shape",
+      "matchedBy": "id",
+      "beforePath": "8/1/1/0",
+      "afterPath": "8/1/1/0",
+      "nameBefore": "-slice-",
+      "nameAfter": "-slice-",
+      "changes": [
+        {
+          "field": "bounds",
+          "label": "边界",
+          "before": "0×0 @ 1101,164",
+          "after": "0×0 @ 0,0"
+        }
+      ]
+    },
+    {
+      "layerId": "local-651",
+      "status": "changed",
+      "kind": "shape",
+      "matchedBy": "id",
+      "beforePath": "8/1/1/1",
+      "afterPath": "8/1/1/1",
+      "nameBefore": "Shape 7",
+      "nameAfter": "Shape 7",
+      "changes": [
+        {
+          "field": "bounds",
+          "label": "边界",
+          "before": "0×0 @ 1102,171",
+          "after": "0×0 @ 0,0"
+        }
+      ]
+    },
+    {
+      "layerId": "local-652",
+      "status": "changed",
+      "kind": "shape",
+      "matchedBy": "id",
+      "beforePath": "8/1/1/2",
+      "afterPath": "8/1/1/2",
+      "nameBefore": "Ellipse 3 copy 2",
+      "nameAfter": "Ellipse 3 copy 2",
+      "changes": [
+        {
+          "field": "bounds",
+          "label": "边界",
+          "before": "0×0 @ 1121,191",
+          "after": "0×0 @ 0,0"
+        }
+      ]
+    },
+    {
+      "layerId": "local-654",
+      "status": "changed",
+      "kind": "shape",
+      "matchedBy": "id",
+      "beforePath": "8/1/2",
+      "afterPath": "8/1/2",
+      "nameBefore": "Ellipse 3",
+      "nameAfter": "Ellipse 3",
+      "changes": [
+        {
+          "field": "bounds",
+          "label": "边界",
+          "before": "0×0 @ 1139,136",
+          "after": "0×0 @ 0,0"
+        }
+      ]
+    },
+    {
+      "layerId": "local-658",
+      "status": "changed",
+      "kind": "shape",
+      "matchedBy": "id",
+      "beforePath": "8/2/0",
+      "afterPath": "8/2/0",
+      "nameBefore": "Rectangle 8 copy 8",
+      "nameAfter": "Rectangle 8 copy 8",
+      "changes": [
+        {
+          "field": "bounds",
+          "label": "边界",
+          "before": "0×0 @ 917,140",
+          "after": "0×0 @ 0,0"
+        }
+      ]
+    },
+    {
+      "layerId": "local-1045",
+      "status": "changed",
+      "kind": "shape",
+      "matchedBy": "id",
+      "beforePath": "8/2/1/0",
+      "afterPath": "8/2/1/0",
+      "nameBefore": "-slice-",
+      "nameAfter": "-slice-",
+      "changes": [
+        {
+          "field": "bounds",
+          "label": "边界",
+          "before": "0×0 @ 944,164",
+          "after": "0×0 @ 0,0"
+        }
+      ]
+    },
+    {
+      "layerId": "local-661",
+      "status": "changed",
+      "kind": "shape",
+      "matchedBy": "id",
+      "beforePath": "8/2/1/1",
+      "afterPath": "8/2/1/1",
+      "nameBefore": "Ellipse 2",
+      "nameAfter": "Ellipse 2",
+      "changes": [
+        {
+          "field": "bounds",
+          "label": "边界",
+          "before": "0×0 @ 950,170",
+          "after": "0×0 @ 0,0"
+        }
+      ]
+    },
+    {
+      "layerId": "local-662",
+      "status": "changed",
+      "kind": "shape",
+      "matchedBy": "id",
+      "beforePath": "8/2/1/2",
+      "afterPath": "8/2/1/2",
+      "nameBefore": "Shape 6",
+      "nameAfter": "Shape 6",
+      "changes": [
+        {
+          "field": "bounds",
+          "label": "边界",
+          "before": "0×0 @ 985,206",
+          "after": "0×0 @ 0,0"
+        }
+      ]
+    },
+    {
+      "layerId": "local-637",
+      "status": "changed",
+      "kind": "shape",
+      "matchedBy": "id",
+      "beforePath": "8/4/0/0",
+      "afterPath": "8/4/0/0",
+      "nameBefore": "Shape 6 copy",
+      "nameAfter": "Shape 6 copy",
+      "changes": [
+        {
+          "field": "bounds",
+          "label": "边界",
+          "before": "0×0 @ 63,190",
+          "after": "0×0 @ 0,0"
+        }
+      ]
+    },
+    {
+      "layerId": "local-638",
+      "status": "changed",
+      "kind": "shape",
+      "matchedBy": "id",
+      "beforePath": "8/4/0/1",
+      "afterPath": "8/4/0/1",
+      "nameBefore": "Shape 6 copy 2",
+      "nameAfter": "Shape 6 copy 2",
+      "changes": [
+        {
+          "field": "bounds",
+          "label": "边界",
+          "before": "0×0 @ 63,175",
+          "after": "0×0 @ 0,0"
+        }
+      ]
+    },
+    {
+      "layerId": "local-1178",
+      "status": "removed",
+      "kind": "shape",
+      "matchedBy": "id",
+      "beforePath": "4/0",
+      "nameBefore": "nav_bg",
+      "changes": []
+    },
+    {
+      "layerId": "local-1186",
+      "status": "removed",
+      "kind": "group",
+      "matchedBy": "id",
+      "beforePath": "4/1",
+      "nameBefore": "Profile",
+      "changes": []
+    },
+    {
+      "layerId": "local-1215",
+      "status": "removed",
+      "kind": "shape",
+      "matchedBy": "id",
+      "beforePath": "4/1/0",
+      "nameBefore": "Rectangle 2 copy 9",
+      "changes": []
+    },
+    {
+      "layerId": "local-1181",
+      "status": "removed",
+      "kind": "text",
+      "matchedBy": "id",
+      "beforePath": "4/1/1",
+      "nameBefore": "Profile",
+      "changes": []
+    },
+    {
+      "layerId": "local-1185",
+      "status": "removed",
+      "kind": "group",
+      "matchedBy": "id",
+      "beforePath": "4/1/2",
+      "nameBefore": "-s-Profile",
+      "changes": []
+    },
+    {
+      "layerId": "local-1183",
+      "status": "removed",
+      "kind": "shape",
+      "matchedBy": "id",
+      "beforePath": "4/1/2/0",
+      "nameBefore": "-slice-",
+      "changes": []
+    },
+    {
+      "layerId": "local-1184",
+      "status": "removed",
+      "kind": "shape",
+      "matchedBy": "id",
+      "beforePath": "4/1/2/1",
+      "nameBefore": "Profile",
+      "changes": []
+    },
+    {
+      "layerId": "local-1194",
+      "status": "removed",
+      "kind": "group",
+      "matchedBy": "id",
+      "beforePath": "4/2",
+      "nameBefore": "Vip",
+      "changes": []
+    },
+    {
+      "layerId": "local-1188",
+      "status": "removed",
+      "kind": "shape",
+      "matchedBy": "id",
+      "beforePath": "4/2/0",
+      "nameBefore": "Rectangle 2 copy 4",
+      "changes": []
+    },
+    {
+      "layerId": "local-1189",
+      "status": "removed",
+      "kind": "text",
+      "matchedBy": "id",
+      "beforePath": "4/2/1",
+      "nameBefore": "Vip",
+      "changes": []
+    },
+    {
+      "layerId": "local-1193",
+      "status": "removed",
+      "kind": "group",
+      "matchedBy": "id",
+      "beforePath": "4/2/2",
+      "nameBefore": "-s-Vip",
+      "changes": []
+    },
+    {
+      "layerId": "local-1191",
+      "status": "removed",
+      "kind": "shape",
+      "matchedBy": "id",
+      "beforePath": "4/2/2/0",
+      "nameBefore": "-slice-",
+      "changes": []
+    },
+    {
+      "layerId": "local-1192",
+      "status": "removed",
+      "kind": "shape",
+      "matchedBy": "id",
+      "beforePath": "4/2/2/1",
+      "nameBefore": "Vip",
+      "changes": []
+    },
+    {
+      "layerId": "local-1202",
+      "status": "removed",
+      "kind": "group",
+      "matchedBy": "id",
+      "beforePath": "4/3",
+      "nameBefore": "Library",
+      "changes": []
+    },
+    {
+      "layerId": "local-1213",
+      "status": "removed",
+      "kind": "shape",
+      "matchedBy": "id",
+      "beforePath": "4/3/0",
+      "nameBefore": "Rectangle 2 copy 7",
+      "changes": []
+    },
+    {
+      "layerId": "local-1197",
+      "status": "removed",
+      "kind": "text",
+      "matchedBy": "id",
+      "beforePath": "4/3/1",
+      "nameBefore": "Library",
+      "changes": []
+    },
+    {
+      "layerId": "local-1201",
+      "status": "removed",
+      "kind": "group",
+      "matchedBy": "id",
+      "beforePath": "4/3/2",
+      "nameBefore": "-s-Library",
+      "changes": []
+    },
+    {
+      "layerId": "local-1199",
+      "status": "removed",
+      "kind": "shape",
+      "matchedBy": "id",
+      "beforePath": "4/3/2/0",
+      "nameBefore": "-slice-",
+      "changes": []
+    },
+    {
+      "layerId": "local-1200",
+      "status": "removed",
+      "kind": "shape",
+      "matchedBy": "id",
+      "beforePath": "4/3/2/1",
+      "nameBefore": "Library",
+      "changes": []
+    },
+    {
+      "layerId": "local-1210",
+      "status": "removed",
+      "kind": "group",
+      "matchedBy": "id",
+      "beforePath": "4/4",
+      "nameBefore": "Home",
+      "changes": []
+    },
+    {
+      "layerId": "local-1214",
+      "status": "removed",
+      "kind": "shape",
+      "matchedBy": "id",
+      "beforePath": "4/4/0",
+      "nameBefore": "Rectangle 2 copy 8",
+      "changes": []
+    },
+    {
+      "layerId": "local-1205",
+      "status": "removed",
+      "kind": "text",
+      "matchedBy": "id",
+      "beforePath": "4/4/1",
+      "nameBefore": "Home",
+      "changes": []
+    },
+    {
+      "layerId": "local-1209",
+      "status": "removed",
+      "kind": "group",
+      "matchedBy": "id",
+      "beforePath": "4/4/2",
+      "nameBefore": "-s-Home",
+      "changes": []
+    },
+    {
+      "layerId": "local-1207",
+      "status": "removed",
+      "kind": "shape",
+      "matchedBy": "id",
+      "beforePath": "4/4/2/0",
+      "nameBefore": "-slice-",
+      "changes": []
+    },
+    {
+      "layerId": "local-1208",
+      "status": "removed",
+      "kind": "shape",
+      "matchedBy": "id",
+      "beforePath": "4/4/2/1",
+      "nameBefore": "Home",
+      "changes": []
+    }
+  ],
+  "pixel": {
+    "available": true,
+    "tolerance": 2,
+    "sameSize": true,
+    "width": 1242,
+    "height": 5988,
+    "totalPixels": 7437096,
+    "differingPixels": 274686,
+    "ratio": 0.03693457769000158,
+    "maxDelta": 239,
+    "bounds": {
+      "x": 0,
+      "y": 138,
+      "width": 1242,
+      "height": 5795
+    }
+  },
+  "layerPixels": {
+    "available": true,
+    "binaryIdentical": false,
+    "tolerance": 2,
+    "maxPixels": 48000000,
+    "truncated": false,
+    "compared": 99,
+    "identical": 99,
+    "differing": 0,
+    "unavailable": 87,
+    "unpaired": 18,
+    "matchedById": 186,
+    "matchedByPath": 0,
+    "matchedByName": 0,
+    "totalPixels": 13347062,
+    "differingPixels": 0,
+    "maxDelta": 0,
+    "entriesTruncated": false,
+    "entries": [
+      {
+        "layerId": "local-1006",
+        "name": "Rectangle 1",
+        "matchedBy": "id",
+        "beforePath": "1",
+        "afterPath": "1",
+        "status": "unavailable",
+        "width": 0,
+        "height": 0,
+        "totalPixels": 0,
+        "differingPixels": 0,
+        "maxDelta": 0,
+        "bounds": null,
+        "reason": "源文件没有该图层的像素数据"
+      },
+      {
+        "layerId": "local-861",
+        "name": "Rectangle 10",
+        "matchedBy": "id",
+        "beforePath": "2/1",
+        "afterPath": "2/1",
+        "status": "unavailable",
+        "width": 0,
+        "height": 0,
+        "totalPixels": 0,
+        "differingPixels": 0,
+        "maxDelta": 0,
+        "bounds": null,
+        "reason": "源文件没有该图层的像素数据"
+      },
+      {
+        "layerId": "local-864",
+        "name": "Rectangle 10 copy",
+        "matchedBy": "id",
+        "beforePath": "2/4",
+        "afterPath": "2/4",
+        "status": "unavailable",
+        "width": 0,
+        "height": 0,
+        "totalPixels": 0,
+        "differingPixels": 0,
+        "maxDelta": 0,
+        "bounds": null,
+        "reason": "源文件没有该图层的像素数据"
+      },
+      {
+        "layerId": "local-867",
+        "name": "Rectangle 10 copy 2",
+        "matchedBy": "id",
+        "beforePath": "2/7",
+        "afterPath": "2/7",
+        "status": "unavailable",
+        "width": 0,
+        "height": 0,
+        "totalPixels": 0,
+        "differingPixels": 0,
+        "maxDelta": 0,
+        "bounds": null,
+        "reason": "源文件没有该图层的像素数据"
+      },
+      {
+        "layerId": "local-870",
+        "name": "Rectangle 10 copy 3",
+        "matchedBy": "id",
+        "beforePath": "2/10",
+        "afterPath": "2/10",
+        "status": "unavailable",
+        "width": 0,
+        "height": 0,
+        "totalPixels": 0,
+        "differingPixels": 0,
+        "maxDelta": 0,
+        "bounds": null,
+        "reason": "源文件没有该图层的像素数据"
+      },
+      {
+        "layerId": "local-873",
+        "name": "Rectangle 10 copy 6",
+        "matchedBy": "id",
+        "beforePath": "2/13",
+        "afterPath": "2/13",
+        "status": "unavailable",
+        "width": 0,
+        "height": 0,
+        "totalPixels": 0,
+        "differingPixels": 0,
+        "maxDelta": 0,
+        "bounds": null,
+        "reason": "源文件没有该图层的像素数据"
+      },
+      {
+        "layerId": "local-876",
+        "name": "Rectangle 10 copy 7",
+        "matchedBy": "id",
+        "beforePath": "2/16",
+        "afterPath": "2/16",
+        "status": "unavailable",
+        "width": 0,
+        "height": 0,
+        "totalPixels": 0,
+        "differingPixels": 0,
+        "maxDelta": 0,
+        "bounds": null,
+        "reason": "源文件没有该图层的像素数据"
+      },
+      {
+        "layerId": "local-879",
+        "name": "Rectangle 10 copy 8",
+        "matchedBy": "id",
+        "beforePath": "2/19",
+        "afterPath": "2/19",
+        "status": "unavailable",
+        "width": 0,
+        "height": 0,
+        "totalPixels": 0,
+        "differingPixels": 0,
+        "maxDelta": 0,
+        "bounds": null,
+        "reason": "源文件没有该图层的像素数据"
+      },
+      {
+        "layerId": "local-701",
+        "name": "Rectangle 1 copy 8",
+        "matchedBy": "id",
+        "beforePath": "3/2",
+        "afterPath": "3/2",
+        "status": "unavailable",
+        "width": 0,
+        "height": 0,
+        "totalPixels": 0,
+        "differingPixels": 0,
+        "maxDelta": 0,
+        "bounds": null,
+        "reason": "源文件没有该图层的像素数据"
+      },
+      {
+        "layerId": "local-702",
+        "name": "Rectangle 10 copy 4",
+        "matchedBy": "id",
+        "beforePath": "3/3",
+        "afterPath": "3/3",
+        "status": "unavailable",
+        "width": 0,
+        "height": 0,
+        "totalPixels": 0,
+        "differingPixels": 0,
+        "maxDelta": 0,
+        "bounds": null,
+        "reason": "源文件没有该图层的像素数据"
+      },
+      {
+        "layerId": "local-705",
+        "name": "Rectangle 10 copy 5",
+        "matchedBy": "id",
+        "beforePath": "3/6",
+        "afterPath": "3/6",
+        "status": "unavailable",
+        "width": 0,
+        "height": 0,
+        "totalPixels": 0,
+        "differingPixels": 0,
+        "maxDelta": 0,
+        "bounds": null,
+        "reason": "源文件没有该图层的像素数据"
+      },
+      {
+        "layerId": "local-708",
+        "name": "Rectangle 11 copy 4",
+        "matchedBy": "id",
+        "beforePath": "3/9",
+        "afterPath": "3/9",
+        "status": "unavailable",
+        "width": 0,
+        "height": 0,
+        "totalPixels": 0,
+        "differingPixels": 0,
+        "maxDelta": 0,
+        "bounds": null,
+        "reason": "源文件没有该图层的像素数据"
+      },
+      {
+        "layerId": "local-709",
+        "name": "Shape 8",
+        "matchedBy": "id",
+        "beforePath": "3/10",
+        "afterPath": "3/10",
+        "status": "unavailable",
+        "width": 0,
+        "height": 0,
+        "totalPixels": 0,
+        "differingPixels": 0,
+        "maxDelta": 0,
+        "bounds": null,
+        "reason": "源文件没有该图层的像素数据"
+      },
+      {
+        "layerId": "local-710",
+        "name": "Rectangle 11",
+        "matchedBy": "id",
+        "beforePath": "3/11",
+        "afterPath": "3/11",
+        "status": "unavailable",
+        "width": 0,
+        "height": 0,
+        "totalPixels": 0,
+        "differingPixels": 0,
+        "maxDelta": 0,
+        "bounds": null,
+        "reason": "源文件没有该图层的像素数据"
+      },
+      {
+        "layerId": "local-712",
+        "name": "Rectangle 11 copy",
+        "matchedBy": "id",
+        "beforePath": "3/13",
+        "afterPath": "3/13",
+        "status": "unavailable",
+        "width": 0,
+        "height": 0,
+        "totalPixels": 0,
+        "differingPixels": 0,
+        "maxDelta": 0,
+        "bounds": null,
+        "reason": "源文件没有该图层的像素数据"
+      },
+      {
+        "layerId": "local-714",
+        "name": "Rectangle 11 copy 2",
+        "matchedBy": "id",
+        "beforePath": "3/15",
+        "afterPath": "3/15",
+        "status": "unavailable",
+        "width": 0,
+        "height": 0,
+        "totalPixels": 0,
+        "differingPixels": 0,
+        "maxDelta": 0,
+        "bounds": null,
+        "reason": "源文件没有该图层的像素数据"
+      },
+      {
+        "layerId": "local-716",
+        "name": "Rectangle 11 copy 3",
+        "matchedBy": "id",
+        "beforePath": "3/17",
+        "afterPath": "3/17",
+        "status": "unavailable",
+        "width": 0,
+        "height": 0,
+        "totalPixels": 0,
+        "differingPixels": 0,
+        "maxDelta": 0,
+        "bounds": null,
+        "reason": "源文件没有该图层的像素数据"
+      },
+      {
+        "layerId": "local-718",
+        "name": "Rectangle 11 copy 5",
+        "matchedBy": "id",
+        "beforePath": "3/19",
+        "afterPath": "3/19",
+        "status": "unavailable",
+        "width": 0,
+        "height": 0,
+        "totalPixels": 0,
+        "differingPixels": 0,
+        "maxDelta": 0,
+        "bounds": null,
+        "reason": "源文件没有该图层的像素数据"
+      },
+      {
+        "layerId": "local-720",
+        "name": "Rectangle 11 copy 7",
+        "matchedBy": "id",
+        "beforePath": "3/21",
+        "afterPath": "3/21",
+        "status": "unavailable",
+        "width": 0,
+        "height": 0,
+        "totalPixels": 0,
+        "differingPixels": 0,
+        "maxDelta": 0,
+        "bounds": null,
+        "reason": "源文件没有该图层的像素数据"
+      },
+      {
+        "layerId": "local-856",
+        "name": "Rectangle 1 copy 10",
+        "matchedBy": "id",
+        "beforePath": "3/24",
+        "afterPath": "3/24",
+        "status": "unavailable",
+        "width": 0,
+        "height": 0,
+        "totalPixels": 0,
+        "differingPixels": 0,
+        "maxDelta": 0,
+        "bounds": null,
+        "reason": "源文件没有该图层的像素数据"
+      },
+      {
+        "layerId": "local-1231",
+        "name": "Rectangle 14 copy 4",
+        "matchedBy": "id",
+        "beforePath": "5/0/0",
+        "afterPath": "5/0/0",
+        "status": "unavailable",
+        "width": 0,
+        "height": 0,
+        "totalPixels": 0,
+        "differingPixels": 0,
+        "maxDelta": 0,
+        "bounds": null,
+        "reason": "源文件没有该图层的像素数据"
+      },
+      {
+        "layerId": "local-1232",
+        "name": "Rectangle 14 copy 5",
+        "matchedBy": "id",
+        "beforePath": "5/0/1",
+        "afterPath": "5/0/1",
+        "status": "unavailable",
+        "width": 0,
+        "height": 0,
+        "totalPixels": 0,
+        "differingPixels": 0,
+        "maxDelta": 0,
+        "bounds": null,
+        "reason": "源文件没有该图层的像素数据"
+      },
+      {
+        "layerId": "local-1234",
+        "name": "-slice-",
+        "matchedBy": "id",
+        "beforePath": "5/0/2/0",
+        "afterPath": "5/0/2/0",
+        "status": "unavailable",
+        "width": 0,
+        "height": 0,
+        "totalPixels": 0,
+        "differingPixels": 0,
+        "maxDelta": 0,
+        "bounds": null,
+        "reason": "源文件没有该图层的像素数据"
+      },
+      {
+        "layerId": "local-1239",
+        "name": "-slice-",
+        "matchedBy": "id",
+        "beforePath": "5/0/3/0/0",
+        "afterPath": "5/0/3/0/0",
+        "status": "unavailable",
+        "width": 0,
+        "height": 0,
+        "totalPixels": 0,
+        "differingPixels": 0,
+        "maxDelta": 0,
+        "bounds": null,
+        "reason": "源文件没有该图层的像素数据"
+      },
+      {
+        "layerId": "local-1248",
+        "name": "-slice-",
+        "matchedBy": "id",
+        "beforePath": "5/0/4/0",
+        "afterPath": "5/0/4/0",
+        "status": "unavailable",
+        "width": 0,
+        "height": 0,
+        "totalPixels": 0,
+        "differingPixels": 0,
+        "maxDelta": 0,
+        "bounds": null,
+        "reason": "源文件没有该图层的像素数据"
+      },
+      {
+        "layerId": "local-1252",
+        "name": "-slice-",
+        "matchedBy": "id",
+        "beforePath": "5/0/5/0",
+        "afterPath": "5/0/5/0",
+        "status": "unavailable",
+        "width": 0,
+        "height": 0,
+        "totalPixels": 0,
+        "differingPixels": 0,
+        "maxDelta": 0,
+        "bounds": null,
+        "reason": "源文件没有该图层的像素数据"
+      },
+      {
+        "layerId": "local-1253",
+        "name": "dis_icon",
+        "matchedBy": "id",
+        "beforePath": "5/0/5/1",
+        "afterPath": "5/0/5/1",
+        "status": "unavailable",
+        "width": 0,
+        "height": 0,
+        "totalPixels": 0,
+        "differingPixels": 0,
+        "maxDelta": 0,
+        "bounds": null,
+        "reason": "源文件没有该图层的像素数据"
+      },
+      {
+        "layerId": "local-1256",
+        "name": "Rectangle 18 copy",
+        "matchedBy": "id",
+        "beforePath": "5/0/7",
+        "afterPath": "5/0/7",
+        "status": "unavailable",
+        "width": 0,
+        "height": 0,
+        "totalPixels": 0,
+        "differingPixels": 0,
+        "maxDelta": 0,
+        "bounds": null,
+        "reason": "源文件没有该图层的像素数据"
+      },
+      {
+        "layerId": "local-1260",
+        "name": "Rectangle 14 copy 4",
+        "matchedBy": "id",
+        "beforePath": "5/1/0",
+        "afterPath": "5/1/0",
+        "status": "unavailable",
+        "width": 0,
+        "height": 0,
+        "totalPixels": 0,
+        "differingPixels": 0,
+        "maxDelta": 0,
+        "bounds": null,
+        "reason": "源文件没有该图层的像素数据"
+      },
+      {
+        "layerId": "local-1261",
+        "name": "Rectangle 14 copy 5",
+        "matchedBy": "id",
+        "beforePath": "5/1/1",
+        "afterPath": "5/1/1",
+        "status": "unavailable",
+        "width": 0,
+        "height": 0,
+        "totalPixels": 0,
+        "differingPixels": 0,
+        "maxDelta": 0,
+        "bounds": null,
+        "reason": "源文件没有该图层的像素数据"
+      },
+      {
+        "layerId": "local-1263",
+        "name": "-slice-",
+        "matchedBy": "id",
+        "beforePath": "5/1/2/0",
+        "afterPath": "5/1/2/0",
+        "status": "unavailable",
+        "width": 0,
+        "height": 0,
+        "totalPixels": 0,
+        "differingPixels": 0,
+        "maxDelta": 0,
+        "bounds": null,
+        "reason": "源文件没有该图层的像素数据"
+      },
+      {
+        "layerId": "local-1268",
+        "name": "-slice-",
+        "matchedBy": "id",
+        "beforePath": "5/1/3/0/0",
+        "afterPath": "5/1/3/0/0",
+        "status": "unavailable",
+        "width": 0,
+        "height": 0,
+        "totalPixels": 0,
+        "differingPixels": 0,
+        "maxDelta": 0,
+        "bounds": null,
+        "reason": "源文件没有该图层的像素数据"
+      },
+      {
+        "layerId": "local-1276",
+        "name": "-slice-",
+        "matchedBy": "id",
+        "beforePath": "5/1/4/0",
+        "afterPath": "5/1/4/0",
+        "status": "unavailable",
+        "width": 0,
+        "height": 0,
+        "totalPixels": 0,
+        "differingPixels": 0,
+        "maxDelta": 0,
+        "bounds": null,
+        "reason": "源文件没有该图层的像素数据"
+      },
+      {
+        "layerId": "local-1279",
+        "name": "Rectangle 18 copy 3",
+        "matchedBy": "id",
+        "beforePath": "5/1/5",
+        "afterPath": "5/1/5",
+        "status": "unavailable",
+        "width": 0,
+        "height": 0,
+        "totalPixels": 0,
+        "differingPixels": 0,
+        "maxDelta": 0,
+        "bounds": null,
+        "reason": "源文件没有该图层的像素数据"
+      },
+      {
+        "layerId": "local-1283",
+        "name": "Rectangle 14 copy 4",
+        "matchedBy": "id",
+        "beforePath": "5/2/0",
+        "afterPath": "5/2/0",
+        "status": "unavailable",
+        "width": 0,
+        "height": 0,
+        "totalPixels": 0,
+        "differingPixels": 0,
+        "maxDelta": 0,
+        "bounds": null,
+        "reason": "源文件没有该图层的像素数据"
+      },
+      {
+        "layerId": "local-1284",
+        "name": "Rectangle 14 copy 5",
+        "matchedBy": "id",
+        "beforePath": "5/2/1",
+        "afterPath": "5/2/1",
+        "status": "unavailable",
+        "width": 0,
+        "height": 0,
+        "totalPixels": 0,
+        "differingPixels": 0,
+        "maxDelta": 0,
+        "bounds": null,
+        "reason": "源文件没有该图层的像素数据"
+      },
+      {
+        "layerId": "local-1286",
+        "name": "-slice-",
+        "matchedBy": "id",
+        "beforePath": "5/2/2/0",
+        "afterPath": "5/2/2/0",
+        "status": "unavailable",
+        "width": 0,
+        "height": 0,
+        "totalPixels": 0,
+        "differingPixels": 0,
+        "maxDelta": 0,
+        "bounds": null,
+        "reason": "源文件没有该图层的像素数据"
+      },
+      {
+        "layerId": "local-1290",
+        "name": "Rectangle 23",
+        "matchedBy": "id",
+        "beforePath": "5/2/3/0",
+        "afterPath": "5/2/3/0",
+        "status": "unavailable",
+        "width": 0,
+        "height": 0,
+        "totalPixels": 0,
+        "differingPixels": 0,
+        "maxDelta": 0,
+        "bounds": null,
+        "reason": "源文件没有该图层的像素数据"
+      },
+      {
+        "layerId": "local-1293",
+        "name": "-slice-",
+        "matchedBy": "id",
+        "beforePath": "5/2/3/2/0",
+        "afterPath": "5/2/3/2/0",
+        "status": "unavailable",
+        "width": 0,
+        "height": 0,
+        "totalPixels": 0,
+        "differingPixels": 0,
+        "maxDelta": 0,
+        "bounds": null,
+        "reason": "源文件没有该图层的像素数据"
+      },
+      {
+        "layerId": "local-1302",
+        "name": "-slice-",
+        "matchedBy": "id",
+        "beforePath": "5/2/4/0",
+        "afterPath": "5/2/4/0",
+        "status": "unavailable",
+        "width": 0,
+        "height": 0,
+        "totalPixels": 0,
+        "differingPixels": 0,
+        "maxDelta": 0,
+        "bounds": null,
+        "reason": "源文件没有该图层的像素数据"
+      },
+      {
+        "layerId": "local-1306",
+        "name": "Shape 21",
+        "matchedBy": "id",
+        "beforePath": "5/2/5/0",
+        "afterPath": "5/2/5/0",
+        "status": "unavailable",
+        "width": 0,
+        "height": 0,
+        "totalPixels": 0,
+        "differingPixels": 0,
+        "maxDelta": 0,
+        "bounds": null,
+        "reason": "源文件没有该图层的像素数据"
+      },
+      {
+        "layerId": "local-1311",
+        "name": "-slice-",
+        "matchedBy": "id",
+        "beforePath": "5/2/6/0",
+        "afterPath": "5/2/6/0",
+        "status": "unavailable",
+        "width": 0,
+        "height": 0,
+        "totalPixels": 0,
+        "differingPixels": 0,
+        "maxDelta": 0,
+        "bounds": null,
+        "reason": "源文件没有该图层的像素数据"
+      },
+      {
+        "layerId": "local-1315",
+        "name": "-slice-",
+        "matchedBy": "id",
+        "beforePath": "5/2/7/0",
+        "afterPath": "5/2/7/0",
+        "status": "unavailable",
+        "width": 0,
+        "height": 0,
+        "totalPixels": 0,
+        "differingPixels": 0,
+        "maxDelta": 0,
+        "bounds": null,
+        "reason": "源文件没有该图层的像素数据"
+      },
+      {
+        "layerId": "local-1316",
+        "name": "dis_icon",
+        "matchedBy": "id",
+        "beforePath": "5/2/7/1",
+        "afterPath": "5/2/7/1",
+        "status": "unavailable",
+        "width": 0,
+        "height": 0,
+        "totalPixels": 0,
+        "differingPixels": 0,
+        "maxDelta": 0,
+        "bounds": null,
+        "reason": "源文件没有该图层的像素数据"
+      },
+      {
+        "layerId": "local-1321",
+        "name": "Rectangle 14 copy 4",
+        "matchedBy": "id",
+        "beforePath": "5/3/0",
+        "afterPath": "5/3/0",
+        "status": "unavailable",
+        "width": 0,
+        "height": 0,
+        "totalPixels": 0,
+        "differingPixels": 0,
+        "maxDelta": 0,
+        "bounds": null,
+        "reason": "源文件没有该图层的像素数据"
+      },
+      {
+        "layerId": "local-1322",
+        "name": "Rectangle 14 copy 5",
+        "matchedBy": "id",
+        "beforePath": "5/3/1",
+        "afterPath": "5/3/1",
+        "status": "unavailable",
+        "width": 0,
+        "height": 0,
+        "totalPixels": 0,
+        "differingPixels": 0,
+        "maxDelta": 0,
+        "bounds": null,
+        "reason": "源文件没有该图层的像素数据"
+      },
+      {
+        "layerId": "local-1324",
+        "name": "-slice-",
+        "matchedBy": "id",
+        "beforePath": "5/3/2/0",
+        "afterPath": "5/3/2/0",
+        "status": "unavailable",
+        "width": 0,
+        "height": 0,
+        "totalPixels": 0,
+        "differingPixels": 0,
+        "maxDelta": 0,
+        "bounds": null,
+        "reason": "源文件没有该图层的像素数据"
+      },
+      {
+        "layerId": "local-1329",
+        "name": "-slice-",
+        "matchedBy": "id",
+        "beforePath": "5/3/3/0/0",
+        "afterPath": "5/3/3/0/0",
+        "status": "unavailable",
+        "width": 0,
+        "height": 0,
+        "totalPixels": 0,
+        "differingPixels": 0,
+        "maxDelta": 0,
+        "bounds": null,
+        "reason": "源文件没有该图层的像素数据"
+      },
+      {
+        "layerId": "local-1337",
+        "name": "-slice-",
+        "matchedBy": "id",
+        "beforePath": "5/3/4/0",
+        "afterPath": "5/3/4/0",
+        "status": "unavailable",
+        "width": 0,
+        "height": 0,
+        "totalPixels": 0,
+        "differingPixels": 0,
+        "maxDelta": 0,
+        "bounds": null,
+        "reason": "源文件没有该图层的像素数据"
+      },
+      {
+        "layerId": "local-1341",
+        "name": "Shape 21",
+        "matchedBy": "id",
+        "beforePath": "5/3/5/0",
+        "afterPath": "5/3/5/0",
+        "status": "unavailable",
+        "width": 0,
+        "height": 0,
+        "totalPixels": 0,
+        "differingPixels": 0,
+        "maxDelta": 0,
+        "bounds": null,
+        "reason": "源文件没有该图层的像素数据"
+      },
+      {
+        "layerId": "local-1346",
+        "name": "-slice-",
+        "matchedBy": "id",
+        "beforePath": "5/3/6/0",
+        "afterPath": "5/3/6/0",
+        "status": "unavailable",
+        "width": 0,
+        "height": 0,
+        "totalPixels": 0,
+        "differingPixels": 0,
+        "maxDelta": 0,
+        "bounds": null,
+        "reason": "源文件没有该图层的像素数据"
+      },
+      {
+        "layerId": "local-1349",
+        "name": "Rectangle 18 copy 5",
+        "matchedBy": "id",
+        "beforePath": "5/3/7",
+        "afterPath": "5/3/7",
+        "status": "unavailable",
+        "width": 0,
+        "height": 0,
+        "totalPixels": 0,
+        "differingPixels": 0,
+        "maxDelta": 0,
+        "bounds": null,
+        "reason": "源文件没有该图层的像素数据"
+      },
+      {
+        "layerId": "local-1353",
+        "name": "Rectangle 14 copy 4",
+        "matchedBy": "id",
+        "beforePath": "5/4/0",
+        "afterPath": "5/4/0",
+        "status": "unavailable",
+        "width": 0,
+        "height": 0,
+        "totalPixels": 0,
+        "differingPixels": 0,
+        "maxDelta": 0,
+        "bounds": null,
+        "reason": "源文件没有该图层的像素数据"
+      },
+      {
+        "layerId": "local-1354",
+        "name": "Rectangle 14 copy 5",
+        "matchedBy": "id",
+        "beforePath": "5/4/1",
+        "afterPath": "5/4/1",
+        "status": "unavailable",
+        "width": 0,
+        "height": 0,
+        "totalPixels": 0,
+        "differingPixels": 0,
+        "maxDelta": 0,
+        "bounds": null,
+        "reason": "源文件没有该图层的像素数据"
+      },
+      {
+        "layerId": "local-1356",
+        "name": "-slice-",
+        "matchedBy": "id",
+        "beforePath": "5/4/2/0",
+        "afterPath": "5/4/2/0",
+        "status": "unavailable",
+        "width": 0,
+        "height": 0,
+        "totalPixels": 0,
+        "differingPixels": 0,
+        "maxDelta": 0,
+        "bounds": null,
+        "reason": "源文件没有该图层的像素数据"
+      },
+      {
+        "layerId": "local-1361",
+        "name": "-slice-",
+        "matchedBy": "id",
+        "beforePath": "5/4/3/0/0",
+        "afterPath": "5/4/3/0/0",
+        "status": "unavailable",
+        "width": 0,
+        "height": 0,
+        "totalPixels": 0,
+        "differingPixels": 0,
+        "maxDelta": 0,
+        "bounds": null,
+        "reason": "源文件没有该图层的像素数据"
+      },
+      {
+        "layerId": "local-1369",
+        "name": "-slice-",
+        "matchedBy": "id",
+        "beforePath": "5/4/4/0",
+        "afterPath": "5/4/4/0",
+        "status": "unavailable",
+        "width": 0,
+        "height": 0,
+        "totalPixels": 0,
+        "differingPixels": 0,
+        "maxDelta": 0,
+        "bounds": null,
+        "reason": "源文件没有该图层的像素数据"
+      },
+      {
+        "layerId": "local-1374",
+        "name": "Rectangle 14 copy 4",
+        "matchedBy": "id",
+        "beforePath": "5/5/0",
+        "afterPath": "5/5/0",
+        "status": "unavailable",
+        "width": 0,
+        "height": 0,
+        "totalPixels": 0,
+        "differingPixels": 0,
+        "maxDelta": 0,
+        "bounds": null,
+        "reason": "源文件没有该图层的像素数据"
+      },
+      {
+        "layerId": "local-1375",
+        "name": "Rectangle 14 copy 5",
+        "matchedBy": "id",
+        "beforePath": "5/5/1",
+        "afterPath": "5/5/1",
+        "status": "unavailable",
+        "width": 0,
+        "height": 0,
+        "totalPixels": 0,
+        "differingPixels": 0,
+        "maxDelta": 0,
+        "bounds": null,
+        "reason": "源文件没有该图层的像素数据"
+      },
+      {
+        "layerId": "local-1377",
+        "name": "-slice-",
+        "matchedBy": "id",
+        "beforePath": "5/5/2/0",
+        "afterPath": "5/5/2/0",
+        "status": "unavailable",
+        "width": 0,
+        "height": 0,
+        "totalPixels": 0,
+        "differingPixels": 0,
+        "maxDelta": 0,
+        "bounds": null,
+        "reason": "源文件没有该图层的像素数据"
+      },
+      {
+        "layerId": "local-1382",
+        "name": "-slice-",
+        "matchedBy": "id",
+        "beforePath": "5/5/3/0/0",
+        "afterPath": "5/5/3/0/0",
+        "status": "unavailable",
+        "width": 0,
+        "height": 0,
+        "totalPixels": 0,
+        "differingPixels": 0,
+        "maxDelta": 0,
+        "bounds": null,
+        "reason": "源文件没有该图层的像素数据"
+      },
+      {
+        "layerId": "local-1390",
+        "name": "-slice-",
+        "matchedBy": "id",
+        "beforePath": "5/5/4/0",
+        "afterPath": "5/5/4/0",
+        "status": "unavailable",
+        "width": 0,
+        "height": 0,
+        "totalPixels": 0,
+        "differingPixels": 0,
+        "maxDelta": 0,
+        "bounds": null,
+        "reason": "源文件没有该图层的像素数据"
+      },
+      {
+        "layerId": "local-1394",
+        "name": "-slice-",
+        "matchedBy": "id",
+        "beforePath": "5/5/5/0",
+        "afterPath": "5/5/5/0",
+        "status": "unavailable",
+        "width": 0,
+        "height": 0,
+        "totalPixels": 0,
+        "differingPixels": 0,
+        "maxDelta": 0,
+        "bounds": null,
+        "reason": "源文件没有该图层的像素数据"
+      },
+      {
+        "layerId": "local-1395",
+        "name": "dis_icon",
+        "matchedBy": "id",
+        "beforePath": "5/5/5/1",
+        "afterPath": "5/5/5/1",
+        "status": "unavailable",
+        "width": 0,
+        "height": 0,
+        "totalPixels": 0,
+        "differingPixels": 0,
+        "maxDelta": 0,
+        "bounds": null,
+        "reason": "源文件没有该图层的像素数据"
+      },
+      {
+        "layerId": "local-1399",
+        "name": "Shape 21",
+        "matchedBy": "id",
+        "beforePath": "5/5/7/0",
+        "afterPath": "5/5/7/0",
+        "status": "unavailable",
+        "width": 0,
+        "height": 0,
+        "totalPixels": 0,
+        "differingPixels": 0,
+        "maxDelta": 0,
+        "bounds": null,
+        "reason": "源文件没有该图层的像素数据"
+      },
+      {
+        "layerId": "local-1406",
+        "name": "Rectangle 14 copy 2",
+        "matchedBy": "id",
+        "beforePath": "5/6/0/0",
+        "afterPath": "5/6/0/0",
+        "status": "unavailable",
+        "width": 0,
+        "height": 0,
+        "totalPixels": 0,
+        "differingPixels": 0,
+        "maxDelta": 0,
+        "bounds": null,
+        "reason": "源文件没有该图层的像素数据"
+      },
+      {
+        "layerId": "local-1418",
+        "name": "Shape 6 copy",
+        "matchedBy": "id",
+        "beforePath": "5/7/0",
+        "afterPath": "5/7/0",
+        "status": "unavailable",
+        "width": 0,
+        "height": 0,
+        "totalPixels": 0,
+        "differingPixels": 0,
+        "maxDelta": 0,
+        "bounds": null,
+        "reason": "源文件没有该图层的像素数据"
+      },
+      {
+        "layerId": "local-1419",
+        "name": "Shape 6 copy 2",
+        "matchedBy": "id",
+        "beforePath": "5/7/1",
+        "afterPath": "5/7/1",
+        "status": "unavailable",
+        "width": 0,
+        "height": 0,
+        "totalPixels": 0,
+        "differingPixels": 0,
+        "maxDelta": 0,
+        "bounds": null,
+        "reason": "源文件没有该图层的像素数据"
+      },
+      {
+        "layerId": "local-1422",
+        "name": "Shape 6 copy",
+        "matchedBy": "id",
+        "beforePath": "5/8/0",
+        "afterPath": "5/8/0",
+        "status": "unavailable",
+        "width": 0,
+        "height": 0,
+        "totalPixels": 0,
+        "differingPixels": 0,
+        "maxDelta": 0,
+        "bounds": null,
+        "reason": "源文件没有该图层的像素数据"
+      },
+      {
+        "layerId": "local-1423",
+        "name": "Shape 6 copy 2",
+        "matchedBy": "id",
+        "beforePath": "5/8/1",
+        "afterPath": "5/8/1",
+        "status": "unavailable",
+        "width": 0,
+        "height": 0,
+        "totalPixels": 0,
+        "differingPixels": 0,
+        "maxDelta": 0,
+        "bounds": null,
+        "reason": "源文件没有该图层的像素数据"
+      },
+      {
+        "layerId": "local-1049",
+        "name": "-slice-",
+        "matchedBy": "id",
+        "beforePath": "6/0",
+        "afterPath": "6/0",
+        "status": "unavailable",
+        "width": 0,
+        "height": 0,
+        "totalPixels": 0,
+        "differingPixels": 0,
+        "maxDelta": 0,
+        "bounds": null,
+        "reason": "源文件没有该图层的像素数据"
+      },
+      {
+        "layerId": "local-667",
+        "name": "Ellipse 5",
+        "matchedBy": "id",
+        "beforePath": "7/0/0",
+        "afterPath": "7/0/0",
+        "status": "unavailable",
+        "width": 0,
+        "height": 0,
+        "totalPixels": 0,
+        "differingPixels": 0,
+        "maxDelta": 0,
+        "bounds": null,
+        "reason": "源文件没有该图层的像素数据"
+      },
+      {
+        "layerId": "local-932",
+        "name": "-slice-",
+        "matchedBy": "id",
+        "beforePath": "7/1/0",
+        "afterPath": "7/1/0",
+        "status": "unavailable",
+        "width": 0,
+        "height": 0,
+        "totalPixels": 0,
+        "differingPixels": 0,
+        "maxDelta": 0,
+        "bounds": null,
+        "reason": "源文件没有该图层的像素数据"
+      },
+      {
+        "layerId": "local-672",
+        "name": "Ellipse 6",
+        "matchedBy": "id",
+        "beforePath": "7/1/1",
+        "afterPath": "7/1/1",
+        "status": "unavailable",
+        "width": 0,
+        "height": 0,
+        "totalPixels": 0,
+        "differingPixels": 0,
+        "maxDelta": 0,
+        "bounds": null,
+        "reason": "源文件没有该图层的像素数据"
+      },
+      {
+        "layerId": "local-670",
+        "name": "Raccoon VIP",
+        "matchedBy": "id",
+        "beforePath": "7/1/2",
+        "afterPath": "7/1/2",
+        "status": "unavailable",
+        "width": 0,
+        "height": 0,
+        "totalPixels": 0,
+        "differingPixels": 0,
+        "maxDelta": 0,
+        "bounds": null,
+        "reason": "源文件没有该图层的像素数据"
+      },
+      {
+        "layerId": "local-11",
+        "name": "Rectangle 2 copy 2",
+        "matchedBy": "id",
+        "beforePath": "8/0",
+        "afterPath": "8/0",
+        "status": "unavailable",
+        "width": 0,
+        "height": 0,
+        "totalPixels": 0,
+        "differingPixels": 0,
+        "maxDelta": 0,
+        "bounds": null,
+        "reason": "源文件没有该图层的像素数据"
+      },
+      {
+        "layerId": "local-649",
+        "name": "Rectangle 8 copy 7",
+        "matchedBy": "id",
+        "beforePath": "8/1/0",
+        "afterPath": "8/1/0",
+        "status": "unavailable",
+        "width": 0,
+        "height": 0,
+        "totalPixels": 0,
+        "differingPixels": 0,
+        "maxDelta": 0,
+        "bounds": null,
+        "reason": "源文件没有该图层的像素数据"
+      },
+      {
+        "layerId": "local-1046",
+        "name": "-slice-",
+        "matchedBy": "id",
+        "beforePath": "8/1/1/0",
+        "afterPath": "8/1/1/0",
+        "status": "unavailable",
+        "width": 0,
+        "height": 0,
+        "totalPixels": 0,
+        "differingPixels": 0,
+        "maxDelta": 0,
+        "bounds": null,
+        "reason": "源文件没有该图层的像素数据"
+      },
+      {
+        "layerId": "local-651",
+        "name": "Shape 7",
+        "matchedBy": "id",
+        "beforePath": "8/1/1/1",
+        "afterPath": "8/1/1/1",
+        "status": "unavailable",
+        "width": 0,
+        "height": 0,
+        "totalPixels": 0,
+        "differingPixels": 0,
+        "maxDelta": 0,
+        "bounds": null,
+        "reason": "源文件没有该图层的像素数据"
+      },
+      {
+        "layerId": "local-652",
+        "name": "Ellipse 3 copy 2",
+        "matchedBy": "id",
+        "beforePath": "8/1/1/2",
+        "afterPath": "8/1/1/2",
+        "status": "unavailable",
+        "width": 0,
+        "height": 0,
+        "totalPixels": 0,
+        "differingPixels": 0,
+        "maxDelta": 0,
+        "bounds": null,
+        "reason": "源文件没有该图层的像素数据"
+      },
+      {
+        "layerId": "local-654",
+        "name": "Ellipse 3",
+        "matchedBy": "id",
+        "beforePath": "8/1/2",
+        "afterPath": "8/1/2",
+        "status": "unavailable",
+        "width": 0,
+        "height": 0,
+        "totalPixels": 0,
+        "differingPixels": 0,
+        "maxDelta": 0,
+        "bounds": null,
+        "reason": "源文件没有该图层的像素数据"
+      },
+      {
+        "layerId": "local-658",
+        "name": "Rectangle 8 copy 8",
+        "matchedBy": "id",
+        "beforePath": "8/2/0",
+        "afterPath": "8/2/0",
+        "status": "unavailable",
+        "width": 0,
+        "height": 0,
+        "totalPixels": 0,
+        "differingPixels": 0,
+        "maxDelta": 0,
+        "bounds": null,
+        "reason": "源文件没有该图层的像素数据"
+      },
+      {
+        "layerId": "local-1045",
+        "name": "-slice-",
+        "matchedBy": "id",
+        "beforePath": "8/2/1/0",
+        "afterPath": "8/2/1/0",
+        "status": "unavailable",
+        "width": 0,
+        "height": 0,
+        "totalPixels": 0,
+        "differingPixels": 0,
+        "maxDelta": 0,
+        "bounds": null,
+        "reason": "源文件没有该图层的像素数据"
+      },
+      {
+        "layerId": "local-661",
+        "name": "Ellipse 2",
+        "matchedBy": "id",
+        "beforePath": "8/2/1/1",
+        "afterPath": "8/2/1/1",
+        "status": "unavailable",
+        "width": 0,
+        "height": 0,
+        "totalPixels": 0,
+        "differingPixels": 0,
+        "maxDelta": 0,
+        "bounds": null,
+        "reason": "源文件没有该图层的像素数据"
+      },
+      {
+        "layerId": "local-662",
+        "name": "Shape 6",
+        "matchedBy": "id",
+        "beforePath": "8/2/1/2",
+        "afterPath": "8/2/1/2",
+        "status": "unavailable",
+        "width": 0,
+        "height": 0,
+        "totalPixels": 0,
+        "differingPixels": 0,
+        "maxDelta": 0,
+        "bounds": null,
+        "reason": "源文件没有该图层的像素数据"
+      },
+      {
+        "layerId": "local-637",
+        "name": "Shape 6 copy",
+        "matchedBy": "id",
+        "beforePath": "8/4/0/0",
+        "afterPath": "8/4/0/0",
+        "status": "unavailable",
+        "width": 0,
+        "height": 0,
+        "totalPixels": 0,
+        "differingPixels": 0,
+        "maxDelta": 0,
+        "bounds": null,
+        "reason": "源文件没有该图层的像素数据"
+      },
+      {
+        "layerId": "local-638",
+        "name": "Shape 6 copy 2",
+        "matchedBy": "id",
+        "beforePath": "8/4/0/1",
+        "afterPath": "8/4/0/1",
+        "status": "unavailable",
+        "width": 0,
+        "height": 0,
+        "totalPixels": 0,
+        "differingPixels": 0,
+        "maxDelta": 0,
+        "bounds": null,
+        "reason": "源文件没有该图层的像素数据"
+      }
+    ]
+  },
+  "notes": [
+    "对比双方均由 ag-psd 独立解析：源文件取自导入时的本地副本，保存文件由 Patchy 另存后从 MEMFS 读回。",
+    "结构对比按图层 id/路径匹配；编组与合并会改变路径，新增/移除计数需结合命名与合并计划解读。",
+    "逐层像素对比按 真实图层 ID → 唯一名称+类型+尺寸 → 路径+同类型同尺寸 配对非组图层，只比较尺寸一致的图层缓存，不做位移对齐；未配对图层不计入逐层差异。",
+    "像素数据来自两份 PSD 的图层缓存与内嵌合成图，不是 Photoshop 渲染，也不等同于 PSD 二进制逐字节比较。",
+    "逐层像素对比了 99 个匹配图层，18 个叶层未配对。"
+  ]
+}

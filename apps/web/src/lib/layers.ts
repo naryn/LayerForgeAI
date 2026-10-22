@@ -6,6 +6,7 @@ export interface AgLayerLike {
   name?: string;
   id?: number;
   children?: AgLayerLike[];
+  imageData?: unknown;
   top?: number;
   left?: number;
   bottom?: number;
@@ -259,7 +260,7 @@ export function normalizeLocalLayers(
     const bounds =
       own && (own.width > 0 || own.height > 0) ? own : kind === "group" ? unionBounds(children) : own;
     return {
-      id: raw.id !== undefined ? `local-${raw.id}` : `local-${path}`,
+      id: agLayerId(raw, path),
       name: raw.name?.trim() || `layer_${path}`,
       path,
       kind,
@@ -276,6 +277,61 @@ export function normalizeLocalLayers(
       ...(Object.keys(meta).length > 0 ? { meta } : {}),
     };
   });
+}
+
+export interface AgLayerImage {
+  width: number;
+  height: number;
+  data: Uint8Array | Uint8ClampedArray;
+}
+
+/** Keeps the id formula used by normalizeLocalLayers so pixel maps join cleanly. */
+export function agLayerId(raw: AgLayerLike, path: string): string {
+  return raw.id !== undefined ? `local-${raw.id}` : `local-${path}`;
+}
+
+function readAgLayerImage(value: unknown): AgLayerImage | undefined {
+  if (!isRecord(value)) return undefined;
+  const width = readNumber(value.width);
+  const height = readNumber(value.height);
+  if (width === undefined || height === undefined || width <= 0 || height <= 0) {
+    return undefined;
+  }
+  if (!(value.data instanceof Uint8ClampedArray) && !(value.data instanceof Uint8Array)) {
+    return undefined;
+  }
+  if (value.data.length !== width * height * 4) return undefined;
+  return { width, height, data: value.data };
+}
+
+export function collectAgLayerImages(
+  rawLayers: AgLayerLike[] | undefined,
+  parentPath = "",
+  out = new Map<string, AgLayerImage>(),
+): Map<string, AgLayerImage> {
+  if (!rawLayers) return out;
+  rawLayers.forEach((raw, index) => {
+    const path = parentPath ? `${parentPath}/${index}` : String(index);
+    const image = readAgLayerImage(raw.imageData);
+    if (image) out.set(agLayerId(raw, path), image);
+    collectAgLayerImages(raw.children, path, out);
+  });
+  return out;
+}
+
+/** Ids that came from the PSD layer record, not from the local path fallback. */
+export function collectAgLayerIds(
+  rawLayers: AgLayerLike[] | undefined,
+  parentPath = "",
+  out = new Set<string>(),
+): Set<string> {
+  if (!rawLayers) return out;
+  rawLayers.forEach((raw, index) => {
+    const path = parentPath ? `${parentPath}/${index}` : String(index);
+    if (raw.id !== undefined) out.add(agLayerId(raw, path));
+    collectAgLayerIds(raw.children, path, out);
+  });
+  return out;
 }
 
 export function flattenLayers(layers: LayerNode[]): LayerNode[] {

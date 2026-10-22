@@ -21,11 +21,13 @@ test("native adapter is timer-polled and exposes only the bridge whitelist", () 
     .map((match) => match[1]);
   assert.deepEqual([...new Set(operationChecks)].sort(), [
     "comparePreview", "getState", "groupLayers", "mergeLayers", "openDocument",
-    "renameLayer", "renderPreview", "saveAsAndReopen", "undo",
+    "renameLayer", "renderLayer", "renderPreview", "saveAsAndReopen", "undo",
   ]);
   assert.match(nativeSource, /kProtocolVersion = 2/);
   assert.match(nativeSource, /if\(!d\.undo\(\)\)/);
   assert.match(nativeSource, /compareSavedPreviews\(/);
+  assert.match(nativeSource, /renderSavedLayer\(/);
+  assert.match(nativeSource, /layer_render_bounds/);
 });
 
 test("integration patch wires only the wasm target and MainWindow timer owner", () => {

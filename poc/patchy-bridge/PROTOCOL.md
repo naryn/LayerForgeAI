@@ -59,6 +59,33 @@ The result is `{sameSize, width, height, totalPixels, differingPixels, ratio,
 maxDelta, bounds, sizes}`. It is a raw RGBA comparison of the two renders, not
 a PSD binary or Photoshop comparison.
 
+`renderLayer` renders one layer or group alone into a new `/saved/*.png` and
+returns its document-space bounds. It uses the same scratch-document path as
+Patchy's GIF/sprite exports: the target layer is forced visible and composited
+alone, so parent group opacity, masks, clipping bases and the canvas background
+are intentionally not applied. The live document is never mutated and no undo
+entry is created.
+
+```json
+{
+  "operation": "renderLayer",
+  "payload": {
+    "documentId": "21",
+    "layerId": "144",
+    "path": "/saved/isolated-144.png"
+  }
+}
+```
+
+The result is `{documentId, layerId, path, isolated: true, width, height,
+bounds: {x, y, width, height}}`. `bounds` is clipped to the document canvas.
+The bridge returns metadata only; the caller reads the PNG from the same-origin
+Patchy MEMFS and may then unlink it. The Emscripten FS lives on the module
+instance returned by `qtLoad()`, not on `window`, so the host page must expose
+it (LayerForgeAI's `stage:patchy` aliases it as `window.__patchyModule.FS`).
+An existing target is never overwritten, and a layer with no pixels inside the
+canvas fails with `EMPTY_RENDER`.
+
 `groupLayers` accepts two or more unique layer IDs that share one parent and
 returns the new group:
 
@@ -120,6 +147,7 @@ buffer; the browser must still save and reopen to persist anything.
 | `getState` | no | Recursive Patchy automation state plus fingerprint. |
 | `openDocument` | no | Open only a Patchy-staged `/opened/` file. |
 | `renderPreview` | no | Write only `/saved/*.png`; optional browser download. |
+| `renderLayer` | no | Isolated layer/group render to `/saved/*.png`; returns bounds only. |
 | `comparePreview` | no | Compare two existing `/saved/*.png` previews and return aggregate RGBA differences. |
 | `renameLayer` | yes | Rename exactly one document/layer ID. |
 | `groupLayers` | yes | Group two or more same-sibling layer IDs under a new group. |
@@ -146,6 +174,7 @@ successful round trip produces exactly one PSD transfer.
 - `PRECONDITION_REQUIRED`
 - `STALE_DOCUMENT`
 - `DOCUMENT_NOT_FOUND`
+- `EMPTY_RENDER`
 - `BUSY`
 - `SCRIPT_ERROR`
 - `CANCELLED`
@@ -154,8 +183,9 @@ successful round trip produces exactly one PSD transfer.
 ## Still outside v2
 
 Large JSON streaming, persisted recovery across a full tab crash, multi-request
-transactions, bulk rename, per-layer/group isolated rendering, and visibility
-operations remain deferred. `undo` is a single history step, not a transaction
-rollback for a whole cleanup batch. The operations remain additive under
-`protocolVersion: 2`; a failed Photoshop gate does not promote `m1Allowed`.
+transactions, bulk rename, and visibility operations remain deferred. `undo` is
+a single history step, not a transaction rollback for a whole cleanup batch.
+`renderLayer` returns 1x pixels only; native 2x re-rendering is not part of v2.
+The operations remain additive under `protocolVersion: 2`; a failed Photoshop
+gate does not promote `m1Allowed`.
 

@@ -1,4 +1,4 @@
-import { access, cp, mkdir, readdir, readFile, rm, stat } from "node:fs/promises";
+import { access, cp, mkdir, readdir, readFile, rm, stat, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -26,16 +26,46 @@ await rm(targetDir, { recursive: true, force: true });
 await mkdir(path.dirname(targetDir), { recursive: true });
 await cp(sourceDir, targetDir, { recursive: true });
 
+const instanceExposed = await exposeModuleInstance(targetDir);
+if (!instanceExposed) {
+  console.warn(
+    "stage:patchy: warning: could not find a qtLoad() call in patchy.html; " +
+      "isolated render reads will fail because the Emscripten FS stays private.",
+  );
+}
+
 const bridgeMarker = "__patchyStageBrowserFile";
 const hasBridge = await containsMarker(targetDir, bridgeMarker);
 
 console.log(`stage:patchy: copied ${sourceDir} -> ${targetDir}`);
+console.log(
+  instanceExposed
+    ? "stage:patchy: exposed the Emscripten module as window.__patchyModule"
+    : "stage:patchy: module instance was not exposed",
+);
 console.log("Served at /patchy/patchy.html");
 if (!hasBridge) {
   console.warn(
     `stage:patchy: warning: no "${bridgeMarker}" string found in the build. ` +
       "The iframe will load but the bridge will report ENGINE_UNAVAILABLE.",
   );
+}
+
+async function exposeModuleInstance(directory) {
+  const htmlPath = path.join(directory, "patchy.html");
+  const html = await readFile(htmlPath, "utf8");
+  if (html.includes("__patchyModule")) return true;
+  const patches = [
+    ["const instance = await qtLoad(", "const instance = window.__patchyModule = await qtLoad("],
+    ["await qtLoad(loadConfig)", "window.__patchyModule = await qtLoad(loadConfig)"],
+  ];
+  for (const [from, to] of patches) {
+    if (html.includes(from)) {
+      await writeFile(htmlPath, html.replace(from, to));
+      return true;
+    }
+  }
+  return false;
 }
 
 async function containsMarker(directory, marker) {

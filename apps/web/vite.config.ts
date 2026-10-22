@@ -15,6 +15,7 @@ export default defineConfig({
     },
   },
   server: {
+    host: "127.0.0.1",
     port: 5173,
     headers: isolationHeaders,
     fs: {
@@ -22,6 +23,7 @@ export default defineConfig({
     },
   },
   preview: {
+    host: "127.0.0.1",
     port: 4173,
     headers: isolationHeaders,
   },

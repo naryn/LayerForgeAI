@@ -1,0 +1,17 @@
+# Photoshop open checks, 2026-10-22, Photoshop 27.11 (20260929.r.26 8c16e56)
+# Driver: ci/photoshop-open-check-actions.ps1 (legacy action automation, dialogs visible)
+# Pinned ExtendScript checker unavailable on this host; see photoshop-open-check-driver.json
+
+## Nordic corpus originals (opened from identical temp copies; originals unchanged)
+CLEAN C:\Users\naryn\AppData\Local\Temp\nordic-copies\Detial_D_0708 - 副本.psd
+CLEAN C:\Users\naryn\AppData\Local\Temp\nordic-copies\Detial_D_0708.psd
+CLEAN C:\Users\naryn\AppData\Local\Temp\nordic-copies\Payment1_D.psd
+CLEAN C:\Users\naryn\AppData\Local\Temp\nordic-copies\Payment2_D.psd
+CLEAN C:\Users\naryn\AppData\Local\Temp\nordic-copies\Store_D.psd
+
+## Patchy-saved corpus outputs
+CLEAN B:\src\LayerForgeAI\artifacts\patchy-corpus\detail-nordic\saved.psd
+CLEAN B:\src\LayerForgeAI\artifacts\patchy-corpus\payment1-nordic\saved.psd
+CLEAN B:\src\LayerForgeAI\artifacts\patchy-corpus\payment2-nordic\saved.psd
+CLEAN B:\src\LayerForgeAI\artifacts\patchy-corpus\save-fidelity-noop\saved.psd
+CLEAN B:\src\LayerForgeAI\artifacts\patchy-corpus\store-nordic\saved.psd

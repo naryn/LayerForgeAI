@@ -16,7 +16,8 @@ import type {
 import { downloadBlob, sanitizeFileName } from "./format";
 import { buildDesignIr } from "./ir";
 import { layoutSummary } from "./layout";
-import { layerKindLabel } from "./layers";
+import { findLayerByPath, layerKindLabel } from "./layers";
+import { buildPageScaffold } from "./pageScaffold";
 import { sha256Hex } from "./psd";
 
 const MAX_PACK_BYTES = 512 * 1024 * 1024;
@@ -38,8 +39,10 @@ export interface AssetPackOutput {
   height: number;
   bytes: number;
   sha256: string;
-  source: "composite-crop" | "composite-upscale";
+  source: "composite-crop" | "composite-upscale" | "isolated-layer" | "isolated-upscale";
 }
+
+export type AssetVerificationMode = "isolated-render-decode" | "composite-crop-match";
 
 export interface AssetPackAsset {
   id: string;
@@ -53,6 +56,7 @@ export interface AssetPackAsset {
   verification: {
     checked: boolean;
     mismatched: boolean;
+    mode: AssetVerificationMode;
   };
 }
 
@@ -69,11 +73,14 @@ export interface AssetPackMergedAsset {
   verification: {
     checked: boolean;
     mismatched: boolean;
+    mode: AssetVerificationMode;
   };
 }
 
 export interface AssetPackComparison {
-  method: "composite-crops-and-decode-verification";
+  method:
+    | "composite-crops-and-decode-verification"
+    | "isolated-layer-renders-with-composite-fallback";
   width: number;
   height: number;
   totalPixels: number;
@@ -85,6 +92,13 @@ export interface AssetPackComparison {
   mismatchedMergedAssets: number;
   maxChannelDelta: number;
   tolerance: number;
+  render: {
+    isolatedAssets: number;
+    compositeAssets: number;
+    isolatedMergedAssets: number;
+    compositeMergedAssets: number;
+    isolatedFailures: number;
+  };
   notes: string[];
 }
 
@@ -100,11 +114,16 @@ export interface AssetPackLimits {
 
 export interface AssetPackManifest {
   schema: "layerforge.asset-pack";
-  schemaVersion: "0.3.0";
+  schemaVersion: "0.4.0";
   generatedAt: string;
   status: {
     validated: false;
-    pixels: "generated-local-composite-crops";
+    pixels:
+      | "patchy-isolated-layer-renders"
+      | "patchy-isolated-layer-renders-with-composite-fallback"
+      | "generated-local-composite-crops";
+    isolatedLayerRenders: number;
+    compositeCrops: number;
     note: string;
   };
   project: { id: string; name: string };
@@ -157,7 +176,19 @@ export interface AssetPackBuildOptions {
   report: CleanupReport;
   file: Blob;
   now?: Date;
+  isolatedRenderer?: AssetPackIsolatedRenderer;
   onProgress?: (message: string, done: number, total: number) => void;
+}
+
+export interface IsolatedLayerImage {
+  bytes: Uint8Array;
+  width: number;
+  height: number;
+  bounds: LayerBounds;
+}
+
+export interface AssetPackIsolatedRenderer {
+  render(layerId: string, path: string): Promise<IsolatedLayerImage>;
 }
 
 function createCanvas(width: number, height: number): HTMLCanvasElement {
@@ -301,6 +332,26 @@ async function verifyPngAgainstPixels(
   return { checked: true, mismatched, maxChannelDelta };
 }
 
+const SYSTEMIC_ISOLATED_ERRORS = new Set([
+  "UNSUPPORTED",
+  "ENGINE_UNAVAILABLE",
+  "BUSY",
+  "DISPOSED",
+  "PROTOCOL_MISMATCH",
+  "TIMEOUT",
+  "REQUEST_FAILED",
+]);
+
+async function decodePngCanvas(bytes: Uint8Array): Promise<HTMLCanvasElement | null> {
+  if (typeof createImageBitmap !== "function") return null;
+  const blob = new Blob([bytes.slice().buffer], { type: "image/png" });
+  const bitmap = await createImageBitmap(blob);
+  const canvas = createCanvas(bitmap.width, bitmap.height);
+  context2d(canvas).drawImage(bitmap, 0, 0);
+  bitmap.close?.();
+  return canvas;
+}
+
 function escapeHtml(value: string): string {
   return value
     .replace(/&/g, "&amp;")
@@ -324,6 +375,7 @@ export function buildAssetPackPreview(options: {
   engine: EngineMode;
 }): string {
   const { projectName, width, height, assets, comparison, engine } = options;
+  const usesIsolated = comparison.render.isolatedAssets > 0;
   const oneX = assets
     .map((asset) => ({
       asset,
@@ -404,7 +456,7 @@ export function buildAssetPackPreview(options: {
     <p>${width}×${height} · ${assets.length} 个切图资产 · 引擎 ${escapeHtml(engine)}</p>
     <p>
       <span class="badge">未验证</span>
-      <span class="badge">合成图裁切</span>
+      <span class="badge">${usesIsolated ? "逐层隔离渲染" : "合成图裁切"}</span>
       <span class="badge">非 Photoshop 证据</span>
       <span class="badge">覆盖率 ${(comparison.coverageRatio * 100).toFixed(1)}%</span>
     </p>
@@ -438,15 +490,15 @@ export function buildAssetPackPreview(options: {
     <section class="notes">
       <h2>使用说明</h2>
       <ul>
-        <li>切图来自 PSD 的扁平合成图按图层边界裁切，保留合成效果，但不是逐图层隔离渲染。</li>
-        <li>@2x 输出由合成图放大得到，不是原生 2x 重渲染。</li>
+        <li>${usesIsolated ? "切图优先来自 Patchy 逐层隔离渲染：目标图层单独渲染在透明背景上，父组不透明度/蒙版/剪贴与画布背景不参与；失败项回退为合成图裁切。" : "切图来自 PSD 的扁平合成图按图层边界裁切，保留合成效果，但不是逐图层隔离渲染。"}</li>
+        <li>所有 @2x 输出由 1x 放大得到，不是原生 2x 重渲染。</li>
         <li>资产重建按边界叠加切图，重叠区域以较小切图为准；它用于快速预览与代码搭建，不是像素级保真证明。</li>
         <li>design-ir.json 提供机器可读的图层树、逻辑编组与布局提示，agent-context.md 提供面向 AI 编码工具的结构摘要。</li>
         <li>本资产包未经 Patchy 或 Photoshop 验证，不能作为兼容性证据。</li>
       </ul>
     </section>
   </main>
-  <footer>Generated by LayerForgeAI · local composite pack · ${new Date().toISOString()}</footer>
+  <footer>Generated by LayerForgeAI · ${usesIsolated ? "isolated layer renders" : "local composite pack"} · ${new Date().toISOString()}</footer>
 </body>
 </html>`;
 }
@@ -491,18 +543,27 @@ export function buildAgentContext(options: {
   } = options;
   const planByPath = new Map(plan.map((entry) => [entry.path, entry]));
   const mergedByPath = new Map(mergedAssets.map((asset) => [asset.sourcePath, asset]));
+  const usesIsolated =
+    comparison.render.isolatedAssets + comparison.render.isolatedMergedAssets > 0;
   const lines: string[] = [
     `# ${project.name} · AI 编码上下文`,
     "",
-    "> 由 LayerForgeAI 从 PSD 本地解析生成。切图来自扁平合成图裁切；这不是 Patchy/Photoshop 验证结果。",
+    usesIsolated
+      ? "> 由 LayerForgeAI 从 PSD 本地解析并借助 Patchy 逐层隔离渲染生成。隔离渲染只包含目标图层本身，父组不透明度/蒙版/剪贴与画布背景不参与；失败项回退为合成图裁切。这不是 Patchy/Photoshop 验证结果。"
+      : "> 由 LayerForgeAI 从 PSD 本地解析生成。切图来自扁平合成图裁切；这不是 Patchy/Photoshop 验证结果。",
     "",
     "## 文件",
     "",
     "- `design-ir.json`：机器可读图层树、边界、语义名、文本内容/样式、命名计划、含布局提示的逻辑编组、切图节点 `assetId` 与全局绘制序 `paintOrder`。",
     "- `manifest.json`：资产、输出文件、哈希与对比统计。",
+    "- `page.html`：可直接打开的页面骨架；按画布百分比绝对定位切图，`data-component-*`/`data-layout-*` 标记逻辑编组与布局提示，`data-*` 属性保留语义名、图层路径、文本与样式，适合 AI 在此基础上改写成组件化页面。",
     "- `preview.html`：原始合成图与资产重建的并排预览。",
-    "- `assets/`：PNG 切图（1x 与 @2x）。",
-    "- `merged/`：合并候选区域的单张合成裁剪 PNG（1x 与 @2x），可直接作为前端素材，不代表 PSD 已合并。",
+    usesIsolated
+      ? "- `assets/`：逐层隔离渲染 PNG（1x 透明背景，@2x 为放大）。"
+      : "- `assets/`：PNG 切图（1x 与 @2x）。",
+    usesIsolated
+      ? "- `merged/`：合并候选组/图层的独立渲染 PNG（1x 与 @2x），可直接作为前端素材，不代表 PSD 已合并。"
+      : "- `merged/`：合并候选区域的单张合成裁剪 PNG（1x 与 @2x），可直接作为前端素材，不代表 PSD 已合并。",
     "",
     "## 页面",
     "",
@@ -511,6 +572,7 @@ export function buildAgentContext(options: {
     `- 画布：${project.source.width}×${project.source.height}`,
     `- 引擎：${engine}（本地资产包不代表引擎能力）`,
     `- 资产数量：${assets.length}`,
+    `- 像素来源：逐层隔离渲染 ${comparison.render.isolatedAssets} 个切图 / ${comparison.render.isolatedMergedAssets} 个合并素材，合成图裁切 ${comparison.render.compositeAssets} 个切图 / ${comparison.render.compositeMergedAssets} 个合并素材`,
     `- 切图覆盖率：${(comparison.coverageRatio * 100).toFixed(1)}%（按面积）`,
     "",
     "## 图层结构",
@@ -620,7 +682,9 @@ export function buildAgentContext(options: {
     lines.push("没有符合规则的合并候选。");
   } else {
     lines.push(
-      "以下组的结构角色为角标、按钮、输入框或图标按钮等组件，且边界紧凑，适合在 PSD 中合并为单层素材；`merged/` 提供对应区域的单张合成裁剪，尚未写入文档。",
+      usesIsolated
+        ? "以下组的结构角色为角标、按钮、输入框或图标按钮等组件，且边界紧凑，适合在 PSD 中合并为单层素材；`merged/` 提供对应组/图层的独立渲染，尚未写入文档。"
+        : "以下组的结构角色为角标、按钮、输入框或图标按钮等组件，且边界紧凑，适合在 PSD 中合并为单层素材；`merged/` 提供对应区域的单张合成裁剪，尚未写入文档。",
       "",
       "| 组 | 建议名 | 类型 | 成员 | 边界 | 布局 | 占画布 | 文件 |",
       "|---|---|---|---|---|---|---|---|",
@@ -641,15 +705,19 @@ export function buildAgentContext(options: {
     "",
     "## 使用建议",
     "",
-    "1. 以 `design-ir.json` 的边界和层级搭建布局，以 `assets/` 的 PNG 作为图像资源；`paintOrder` 越大越靠上，可映射为 CSS z-index。",
+    "1. 可直接打开 `page.html` 检查静态还原；它按画布百分比绝对定位，每个 `<img>` 带图层路径、语义名、边界与文本样式。以它作为页面转换起点，再参考 `design-ir.json` 的层级改写为组件；`paintOrder` 越大越靠上，可映射为 CSS z-index。",
     "2. 切图节点的 `assetId` 对应 `manifest.json` 的资产 id 与 `assets/` 文件，可据此把该节点渲染为 `<img>`，不必按名称猜测。",
-    "3. `design-ir.json` 的 `logicalGroups` 与节点 `logicalGroupId` 是规则版逻辑分组；每组 `layout` 给出 row/column/stack、间距与对齐，可作为 flex 布局线索，但它是边界推断，不改变 PSD 层级。",
+    "3. `design-ir.json` 的 `logicalGroups` 与节点 `logicalGroupId` 是规则版逻辑分组；每组 `layout` 给出 row/column/stack、间距与对齐，可作为 flex 布局线索，但它是边界推断，不改变 PSD 层级。`page.html` 中对应 `<section class=\"lf-component\">`（`display:contents`）与 `data-layout-*` 属性。",
     "4. 文本层优先使用真实文本与上表的字体/字号/颜色/对齐，不要把文字烘焙进图片。",
     "5. 边界使用 PSD 像素坐标；网页实现时按设计宽度等比换算。",
     "6. 重叠切图在小尺寸资产中会覆盖大尺寸资产；页面重建预览已按此规则生成。",
-    "7. 图层树中的剪贴/蒙版/效果/混合标记来自 PSD 元数据；切图是合成裁剪，效果已反映在像素中，但不等于隔离渲染。",
-    "8. 合并候选用于指导 PSD 清理与前端组件拆分；`merged/` 是合成图裁切，可直接引用，但不代表 PSD 已合并；应用内可通过桥接执行合并，需另存并重开。",
-    "9. 需要逐图层隔离图或原生 2x 时，必须接入 Patchy 逐图层渲染（协议 v2）。",
+    usesIsolated
+      ? "7. 隔离渲染只含目标图层：它已经带自身不透明度/混合/图层效果，但不含父组不透明度、蒙版、剪贴基座与画布背景；把这些像素直接放到页面对应位置。"
+      : "7. 图层树中的剪贴/蒙版/效果/混合标记来自 PSD 元数据；切图是合成裁剪，效果已反映在像素中，但不等于隔离渲染。",
+    usesIsolated
+      ? "8. 合并候选用于指导 PSD 清理与前端组件拆分；`merged/` 是候选组/图层的独立渲染，可直接引用，但不代表 PSD 已合并；应用内可通过桥接执行合并，需另存并重开。"
+      : "8. 合并候选用于指导 PSD 清理与前端组件拆分；`merged/` 是合成图裁切，可直接引用，但不代表 PSD 已合并；应用内可通过桥接执行合并，需另存并重开。",
+    "9. @2x 输出由 1x 最近邻放大，不是原生 2x 渲染；需要原生 2x 时应重新渲染而不是缩放。",
     "",
   );
   return lines.join("\n");
@@ -669,14 +737,27 @@ export function buildAssetPackManifest(options: {
 }): AssetPackManifest {
   const { project, snapshot, engine, report, assets, mergedAssets, comparison, limits, files } =
     options;
+  const isolatedLayerRenders =
+    comparison.render.isolatedAssets + comparison.render.isolatedMergedAssets;
+  const compositeCrops = comparison.render.compositeAssets + comparison.render.compositeMergedAssets;
+  const usesIsolated = isolatedLayerRenders > 0;
+  const pixels = usesIsolated
+    ? compositeCrops > 0
+      ? "patchy-isolated-layer-renders-with-composite-fallback"
+      : "patchy-isolated-layer-renders"
+    : "generated-local-composite-crops";
   return {
     schema: "layerforge.asset-pack",
-    schemaVersion: "0.3.0",
+    schemaVersion: "0.4.0",
     generatedAt: (options.now ?? new Date()).toISOString(),
     status: {
       validated: false,
-      pixels: "generated-local-composite-crops",
-      note: "PNG assets were cropped from the PSD composite locally. Not a Patchy/Photoshop-verified release.",
+      pixels,
+      isolatedLayerRenders,
+      compositeCrops,
+      note: usesIsolated
+        ? "PNG assets were rendered per layer by Patchy inside WASM; failed renders fell back to the local PSD composite. Not a Photoshop-verified release."
+        : "PNG assets were cropped from the PSD composite locally. Not a Patchy/Photoshop-verified release.",
     },
     project: { id: project.id, name: project.name },
     source: {
@@ -708,10 +789,13 @@ export function buildAssetPackManifest(options: {
     limits,
     files,
     notes: [
-      "切图来自 PSD 扁平合成图按边界裁切；重叠区域包含下方内容，不是逐图层隔离渲染。",
-      "@2x 输出由合成图放大，不是原生 2x 渲染。",
+      usesIsolated
+        ? "切图优先来自 Patchy 逐层隔离渲染（透明背景，不含父组不透明度/蒙版/剪贴与画布背景）；失败项回退为 PSD 扁平合成图裁切。"
+        : "切图来自 PSD 扁平合成图按边界裁切；重叠区域包含下方内容，不是逐图层隔离渲染。",
+      "所有 @2x 输出由 1x 放大，不是原生 2x 渲染。",
+      "page.html 是按切图边界绝对定位的页面骨架，未覆盖区域为透明；它用于 AI 转页面起点，不是像素保真或 Photoshop 证据。",
       "logicalGroups 与 layout 只是 Design IR 中的规则建议/启发式提示；应用内可经桥接写入文档内存，未另存重开前不改变 PSD。",
-      "mergeCandidates 只是可审核的规则建议；merged/ 中的图片是合成裁剪，不是 PSD 合并结果；应用内合并需另存重开。",
+      "mergeCandidates 只是可审核的规则建议；merged/ 中的图片是独立渲染或合成裁剪，不是 PSD 合并结果；应用内合并需另存重开。",
       "本资产包未经 Patchy 或 Photoshop 验证，不能作为兼容性证据。",
     ],
   };
@@ -722,6 +806,7 @@ function buildReadme(options: {
   comparison: AssetPackComparison;
 }): string {
   const { manifest, comparison } = options;
+  const usesIsolated = manifest.status.isolatedLayerRenders > 0;
   return [
     `${manifest.project.name} · LayerForgeAI 资产包`,
     "",
@@ -731,6 +816,7 @@ function buildReadme(options: {
     `资产：${manifest.assets.length} 个，输出 ${manifest.assets.reduce((sum, asset) => sum + asset.outputs.length, 0)} 个 PNG`,
     `逻辑编组建议：${manifest.logicalGroups.length} 组（仅 Design IR，不写回 PSD）`,
     `合并素材：${manifest.mergedAssets.length} 个，输出 ${manifest.mergedAssets.reduce((sum, asset) => sum + asset.outputs.length, 0)} 个 PNG`,
+    `像素来源：逐层隔离渲染 ${manifest.status.isolatedLayerRenders} 个，合成图裁切 ${manifest.status.compositeCrops} 个`,
     `覆盖率：${(comparison.coverageRatio * 100).toFixed(1)}%`,
     `PNG 解码校验：切图 ${comparison.verifiedAssets} 个通过、${comparison.mismatchedAssets} 个不一致；合并素材 ${comparison.verifiedMergedAssets} 个通过、${comparison.mismatchedMergedAssets} 个不一致`,
     "",
@@ -738,15 +824,22 @@ function buildReadme(options: {
     "- manifest.json：资产清单与哈希",
     "- design-ir.json：Design IR 草稿",
     "- agent-context.md：面向 AI 编码工具的结构摘要",
+    "- page.html：可直接打开的页面骨架（绝对定位切图 + 逻辑编组/布局提示 + 文本样式 data 属性）",
     "- preview.html：原始合成图与资产重建并排预览",
     "- assets/：1x 与 @2x PNG",
-    "- merged/：合并候选区域的单张合成裁剪 PNG（1x 与 @2x）",
+    usesIsolated
+      ? "- merged/：合并候选组/图层的独立渲染 PNG（1x 与 @2x）"
+      : "- merged/：合并候选区域的单张合成裁剪 PNG（1x 与 @2x）",
     "- preview/：原始合成图与资产重建 PNG",
     "",
     "限制：",
-    "- 切图为合成图裁切，不是逐图层隔离渲染。",
-    "- @2x 由合成图放大，不是原生渲染。",
-    "- merged/ 为合成图裁切，不是 PSD 合并，也未写回文档。",
+    usesIsolated
+      ? "- 隔离渲染只包含目标图层本身：父组不透明度、蒙版、剪贴基座与画布背景不会参与；失败项回退为合成图裁切。"
+      : "- 切图为合成图裁切，不是逐图层隔离渲染。",
+    "- @2x 由 1x 放大，不是原生渲染。",
+    usesIsolated
+      ? "- merged/ 为候选组/图层的独立渲染，不是 PSD 合并，也未写回文档。"
+      : "- merged/ 为合成图裁切，不是 PSD 合并，也未写回文档。",
     "- logicalGroups 与 layout 为 Design IR 中的规则建议/启发式提示，未写入 PSD。",
     "- 未写入编组、合并或命名；命名与逻辑编组计划见 design-ir.json。",
     "- 本资产包未经 Patchy 或 Photoshop 验证，不能作为兼容性证据。",
@@ -763,7 +856,7 @@ function buildReadme(options: {
 export async function buildLocalAssetPack(
   options: AssetPackBuildOptions,
 ): Promise<AssetPackResult> {
-  const { project, snapshot, plan, engine, report, file, onProgress } = options;
+  const { project, snapshot, plan, engine, report, file, onProgress, isolatedRenderer } = options;
   const generatedAt = options.now ?? new Date();
   const total = report.slices.length + report.mergeCandidates.length;
   onProgress?.("读取 PSD 合成图", 0, total);
@@ -802,7 +895,120 @@ export async function buildLocalAssetPack(
   let mismatchedAssets = 0;
   let verifiedMergedAssets = 0;
   let mismatchedMergedAssets = 0;
+  let isolatedAssets = 0;
+  let compositeAssets = 0;
+  let isolatedMergedAssets = 0;
+  let compositeMergedAssets = 0;
+  let isolatedFailures = 0;
+  let isolatedDisabled = isolatedRenderer === undefined;
   let maxChannelDelta = 0;
+  let isolatedRenderSeq = 0;
+  const isolatedErrors: string[] = [];
+  const nextIsolatedPath = () =>
+    `/saved/lf-isolated-${generatedAt.getTime()}-${++isolatedRenderSeq}.png`;
+
+  const renderIsolatedOrComposite = async (
+    layerId: string | null,
+    fallbackBounds: LayerBounds,
+    category: "asset" | "merged",
+  ): Promise<{
+    bounds: LayerBounds;
+    oneX: Uint8Array;
+    canvas: HTMLCanvasElement | null;
+    isolated: boolean;
+    mode: AssetVerificationMode;
+    verification: VerificationResult;
+  }> => {
+    let isolated: IsolatedLayerImage | null = null;
+    if (!isolatedDisabled && layerId) {
+      try {
+        isolated = await isolatedRenderer!.render(layerId, nextIsolatedPath());
+      } catch (error) {
+        isolatedFailures += 1;
+        const code =
+          typeof error === "object" && error !== null && "code" in error
+            ? String((error as { code: unknown }).code)
+            : "";
+        if (SYSTEMIC_ISOLATED_ERRORS.has(code)) isolatedDisabled = true;
+        if (isolatedErrors.length < 5) {
+          isolatedErrors.push(
+            `${category === "asset" ? "切图" : "合并"} ${layerId}：${
+              error instanceof Error ? error.message : String(error)
+            }`,
+          );
+        }
+      }
+    }
+    if (isolated) {
+      const decoded = await decodePngCanvas(isolated.bytes);
+      const mismatched =
+        decoded !== null &&
+        (decoded.width !== isolated.width || decoded.height !== isolated.height);
+      if (category === "asset") {
+        isolatedAssets += 1;
+        if (decoded) {
+          verifiedAssets += 1;
+          if (mismatched) mismatchedAssets += 1;
+        }
+      } else {
+        isolatedMergedAssets += 1;
+        if (decoded) {
+          verifiedMergedAssets += 1;
+          if (mismatched) mismatchedMergedAssets += 1;
+        }
+      }
+      return {
+        bounds: isolated.bounds,
+        oneX: isolated.bytes,
+        canvas: decoded,
+        isolated: true,
+        mode: "isolated-render-decode",
+        verification: decoded
+          ? { checked: true, mismatched, maxChannelDelta: 0 }
+          : { checked: false, mismatched: false, maxChannelDelta: 0 },
+      };
+    }
+
+    const crop = createCanvas(fallbackBounds.width, fallbackBounds.height);
+    const cropContext = context2d(crop);
+    cropContext.imageSmoothingEnabled = false;
+    cropContext.drawImage(
+      compositeCanvas,
+      fallbackBounds.x,
+      fallbackBounds.y,
+      fallbackBounds.width,
+      fallbackBounds.height,
+      0,
+      0,
+      fallbackBounds.width,
+      fallbackBounds.height,
+    );
+    if (category === "asset") compositeAssets += 1;
+    else compositeMergedAssets += 1;
+    const oneX = await canvasToPng(crop);
+    const expected = cropContext.getImageData(0, 0, fallbackBounds.width, fallbackBounds.height);
+    const verification = await verifyPngAgainstPixels(oneX, expected);
+    if (verification.checked) {
+      if (category === "asset") {
+        verifiedAssets += 1;
+        if (verification.mismatched) mismatchedAssets += 1;
+      } else {
+        verifiedMergedAssets += 1;
+        if (verification.mismatched) mismatchedMergedAssets += 1;
+      }
+    }
+    if (verification.maxChannelDelta > maxChannelDelta) {
+      maxChannelDelta = verification.maxChannelDelta;
+    }
+    return {
+      bounds: fallbackBounds,
+      oneX,
+      canvas: crop,
+      isolated: false,
+      mode: "composite-crop-match",
+      verification,
+    };
+  };
 
   for (let index = 0; index < slices.length; index += 1) {
     const slice = slices[index];
@@ -811,8 +1017,8 @@ export async function buildLocalAssetPack(
       index,
       slices.length,
     );
-    const bounds = clampBounds(slice.bounds, composite.width, composite.height);
-    if (!bounds) {
+    const fallbackBounds = clampBounds(slice.bounds, composite.width, composite.height);
+    if (!fallbackBounds) {
       skippedAssets += 1;
       continue;
     }
@@ -822,34 +1028,17 @@ export async function buildLocalAssetPack(
       break;
     }
 
-    const crop = createCanvas(bounds.width, bounds.height);
-    const cropContext = context2d(crop);
-    cropContext.imageSmoothingEnabled = false;
-    cropContext.drawImage(
-      compositeCanvas,
-      bounds.x,
-      bounds.y,
-      bounds.width,
-      bounds.height,
-      0,
-      0,
-      bounds.width,
-      bounds.height,
+    const prepared = await renderIsolatedOrComposite(
+      slice.layerId,
+      fallbackBounds,
+      "asset",
     );
-    reconstructionContext.drawImage(crop, bounds.x, bounds.y);
+    const { bounds, oneX, isolated, mode, verification } = prepared;
+    if (prepared.canvas) {
+      reconstructionContext.drawImage(prepared.canvas, bounds.x, bounds.y);
+    }
     for (let y = bounds.y; y < bounds.y + bounds.height; y += 1) {
       covered.fill(1, y * composite.width + bounds.x, y * composite.width + bounds.x + bounds.width);
-    }
-
-    const oneX = await canvasToPng(crop);
-    const expected = cropContext.getImageData(0, 0, bounds.width, bounds.height);
-    const verification = await verifyPngAgainstPixels(oneX, expected);
-    if (verification.checked) {
-      verifiedAssets += 1;
-      if (verification.mismatched) mismatchedAssets += 1;
-    }
-    if (verification.maxChannelDelta > maxChannelDelta) {
-      maxChannelDelta = verification.maxChannelDelta;
     }
 
     const slug = slice.fileName.replace(/\.png$/i, "");
@@ -861,7 +1050,7 @@ export async function buildLocalAssetPack(
         height: bounds.height,
         bytes: oneX.byteLength,
         sha256: await sha256Bytes(oneX),
-        source: "composite-crop",
+        source: isolated ? "isolated-layer" : "composite-crop",
       },
     ];
     entries[`assets/${slug}.png`] = oneX;
@@ -870,6 +1059,7 @@ export async function buildLocalAssetPack(
     const doubledWidth = bounds.width * 2;
     const doubledHeight = bounds.height * 2;
     if (
+      prepared.canvas &&
       doubledWidth <= MAX_OUTPUT_DIMENSION &&
       doubledHeight <= MAX_OUTPUT_DIMENSION &&
       bytesUsed <= MAX_PACK_BYTES
@@ -877,7 +1067,7 @@ export async function buildLocalAssetPack(
       const doubled = createCanvas(doubledWidth, doubledHeight);
       const doubledContext = context2d(doubled);
       doubledContext.imageSmoothingEnabled = false;
-      doubledContext.drawImage(crop, 0, 0, doubledWidth, doubledHeight);
+      doubledContext.drawImage(prepared.canvas, 0, 0, doubledWidth, doubledHeight);
       const png = await canvasToPng(doubled);
       entries[`assets/${slug}@2x.png`] = png;
       bytesUsed += png.byteLength;
@@ -888,10 +1078,10 @@ export async function buildLocalAssetPack(
         height: doubledHeight,
         bytes: png.byteLength,
         sha256: await sha256Bytes(png),
-        source: "composite-upscale",
+        source: isolated ? "isolated-upscale" : "composite-upscale",
       });
     } else {
-      oversizedOutputs += 1;
+      if (prepared.canvas) oversizedOutputs += 1;
       skippedOutputs += 1;
     }
 
@@ -907,6 +1097,7 @@ export async function buildLocalAssetPack(
       verification: {
         checked: verification.checked,
         mismatched: verification.mismatched,
+        mode,
       },
     });
   }
@@ -919,8 +1110,8 @@ export async function buildLocalAssetPack(
       slices.length + index,
       total,
     );
-    const bounds = clampBounds(merge.bounds, composite.width, composite.height);
-    if (!bounds) {
+    const fallbackBounds = clampBounds(merge.bounds, composite.width, composite.height);
+    if (!fallbackBounds) {
       skippedMergedAssets += 1;
       continue;
     }
@@ -930,31 +1121,13 @@ export async function buildLocalAssetPack(
       break;
     }
 
-    const crop = createCanvas(bounds.width, bounds.height);
-    const cropContext = context2d(crop);
-    cropContext.imageSmoothingEnabled = false;
-    cropContext.drawImage(
-      compositeCanvas,
-      bounds.x,
-      bounds.y,
-      bounds.width,
-      bounds.height,
-      0,
-      0,
-      bounds.width,
-      bounds.height,
+    const mergeNode = findLayerByPath(snapshot.layers, merge.path);
+    const prepared = await renderIsolatedOrComposite(
+      mergeNode?.id ?? null,
+      fallbackBounds,
+      "merged",
     );
-
-    const oneX = await canvasToPng(crop);
-    const expected = cropContext.getImageData(0, 0, bounds.width, bounds.height);
-    const verification = await verifyPngAgainstPixels(oneX, expected);
-    if (verification.checked) {
-      verifiedMergedAssets += 1;
-      if (verification.mismatched) mismatchedMergedAssets += 1;
-    }
-    if (verification.maxChannelDelta > maxChannelDelta) {
-      maxChannelDelta = verification.maxChannelDelta;
-    }
+    const { bounds, oneX, isolated, mode, verification } = prepared;
 
     const baseSlug = sanitizeFileName(merge.suggestedName, "merged-component");
     let slug = baseSlug;
@@ -973,7 +1146,7 @@ export async function buildLocalAssetPack(
         height: bounds.height,
         bytes: oneX.byteLength,
         sha256: await sha256Bytes(oneX),
-        source: "composite-crop",
+        source: isolated ? "isolated-layer" : "composite-crop",
       },
     ];
     entries[`merged/${slug}.png`] = oneX;
@@ -982,6 +1155,7 @@ export async function buildLocalAssetPack(
     const doubledWidth = bounds.width * 2;
     const doubledHeight = bounds.height * 2;
     if (
+      prepared.canvas &&
       doubledWidth <= MAX_OUTPUT_DIMENSION &&
       doubledHeight <= MAX_OUTPUT_DIMENSION &&
       bytesUsed <= MAX_PACK_BYTES
@@ -989,7 +1163,7 @@ export async function buildLocalAssetPack(
       const doubled = createCanvas(doubledWidth, doubledHeight);
       const doubledContext = context2d(doubled);
       doubledContext.imageSmoothingEnabled = false;
-      doubledContext.drawImage(crop, 0, 0, doubledWidth, doubledHeight);
+      doubledContext.drawImage(prepared.canvas, 0, 0, doubledWidth, doubledHeight);
       const png = await canvasToPng(doubled);
       entries[`merged/${slug}@2x.png`] = png;
       bytesUsed += png.byteLength;
@@ -1000,10 +1174,10 @@ export async function buildLocalAssetPack(
         height: doubledHeight,
         bytes: png.byteLength,
         sha256: await sha256Bytes(png),
-        source: "composite-upscale",
+        source: isolated ? "isolated-upscale" : "composite-upscale",
       });
     } else {
-      oversizedOutputs += 1;
+      if (prepared.canvas) oversizedOutputs += 1;
       skippedOutputs += 1;
     }
 
@@ -1020,14 +1194,19 @@ export async function buildLocalAssetPack(
       verification: {
         checked: verification.checked,
         mismatched: verification.mismatched,
+        mode,
       },
     });
   }
 
   onProgress?.("生成对比与预览", total, total);
   const reconstructionPng = await canvasToPng(reconstruction);
+  const isolatedLayerRenders = isolatedAssets + isolatedMergedAssets;
   const comparison: AssetPackComparison = {
-    method: "composite-crops-and-decode-verification",
+    method:
+      isolatedLayerRenders > 0
+        ? "isolated-layer-renders-with-composite-fallback"
+        : "composite-crops-and-decode-verification",
     width: composite.width,
     height: composite.height,
     totalPixels: composite.width * composite.height,
@@ -1039,12 +1218,26 @@ export async function buildLocalAssetPack(
     mismatchedMergedAssets,
     maxChannelDelta,
     tolerance: VERIFY_TOLERANCE,
+    render: {
+      isolatedAssets,
+      compositeAssets,
+      isolatedMergedAssets,
+      compositeMergedAssets,
+      isolatedFailures,
+    },
     notes: [
       "覆盖率按切图边界并集面积计算；它不是像素级保真证明。",
-      "每个 1x PNG 都经过解码并与源合成图裁切区域逐像素比较；容差为 2。",
+      isolatedLayerRenders > 0
+        ? "主要切图来自 Patchy 逐层隔离渲染：目标图层单独渲染在透明背景上，父组不透明度/蒙版/剪贴与画布背景不会参与；失败项回退为合成图裁切。"
+        : "切图来自 PSD 扁平合成图按边界裁切，重叠区域包含下方内容。",
+      isolatedLayerRenders > 0
+        ? "隔离 1x PNG 只做解码与尺寸校验，不与合成图逐像素比较；合成回退项仍与合成裁切逐像素比较（容差 2）。"
+        : "每个 1x PNG 都经过解码并与源合成图裁切区域逐像素比较；容差为 2。",
+      "所有 @2x 输出都由 1x 最近邻放大，不是原生 2x 渲染。",
       "重叠切图在页面重建中按面积从大到小叠加。",
-      "合并素材是候选区域的合成裁剪，不参与页面重建覆盖率，也不代表 PSD 已合并。",
-      "编组/合并写入尚未执行；当前桥接协议没有这些操作。",
+      "合并素材是候选组/图层的独立渲染或合成裁剪，不参与页面重建覆盖率，也不代表 PSD 已合并。",
+      "资产包导出本身不修改文档；编组/合并需在应用内显式执行并另存重开。",
+      ...isolatedErrors.map((message) => `隔离渲染回退：${message}`),
     ],
   };
   comparison.coverageRatio =
@@ -1059,10 +1252,19 @@ export async function buildLocalAssetPack(
     skippedOutputs,
     oversizedOutputs,
   };
+  const ir = buildDesignIr({
+    project,
+    snapshot,
+    plan,
+    engine,
+    logicalGroups: report.groups,
+    assets,
+  });
   const files = [
     "manifest.json",
     "design-ir.json",
     "agent-context.md",
+    "page.html",
     "preview.html",
     "comparison.json",
     "README.txt",
@@ -1082,13 +1284,14 @@ export async function buildLocalAssetPack(
     files,
     now: generatedAt,
   });
-  const ir = buildDesignIr({
-    project,
-    snapshot,
-    plan,
+  const pageHtml = buildPageScaffold({
+    projectName: project.name,
     engine,
-    logicalGroups: report.groups,
+    width: composite.width,
+    height: composite.height,
+    ir,
     assets,
+    coverageRatio: comparison.coverageRatio,
   });
   const previewHtml = buildAssetPackPreview({
     projectName: project.name,
@@ -1114,6 +1317,7 @@ export async function buildLocalAssetPack(
   entries["manifest.json"] = encoder.encode(JSON.stringify(manifest, null, 2));
   entries["design-ir.json"] = encoder.encode(JSON.stringify(ir, null, 2));
   entries["agent-context.md"] = encoder.encode(agentContext);
+  entries["page.html"] = encoder.encode(pageHtml);
   entries["preview.html"] = encoder.encode(previewHtml);
   entries["comparison.json"] = encoder.encode(JSON.stringify(comparison, null, 2));
   entries["README.txt"] = encoder.encode(readme);

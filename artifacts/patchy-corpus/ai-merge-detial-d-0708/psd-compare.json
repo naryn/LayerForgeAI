@@ -1,0 +1,147 @@
+{
+  "schema": "layerforge.psd-compare",
+  "schemaVersion": "0.2.0",
+  "generatedAt": "2026-10-22T10:49:33.022Z",
+  "evidence": "ag-psd-independent",
+  "source": {
+    "fileName": "Detial_D_0708.psd",
+    "header": {
+      "version": 1,
+      "channels": 3,
+      "height": 2718,
+      "width": 1242,
+      "depth": 8,
+      "colorMode": 3,
+      "colorModeLabel": "RGB",
+      "fileSize": 28319902
+    },
+    "sha256": "a39cb5959c6d259544b8d4498f3e35ec65eb223877c2fe000fb4649f7af140ee",
+    "layerCount": 71
+  },
+  "saved": {
+    "fileName": "/saved/ai-merge-detial-d-0708-20261022-184842-normalized.psd",
+    "header": {
+      "version": 1,
+      "channels": 3,
+      "height": 2718,
+      "width": 1242,
+      "depth": 8,
+      "colorMode": 3,
+      "colorModeLabel": "RGB",
+      "fileSize": 29120092
+    },
+    "sha256": "8c4eb3e053b0cdf01b6127308c64b9e40133993fcc943dc7342ca5a7882661c2",
+    "layerCount": 69
+  },
+  "identicalBinary": false,
+  "structure": {
+    "beforeLayers": 71,
+    "afterLayers": 69,
+    "added": 0,
+    "removed": 2,
+    "renamed": 1,
+    "geometryChanged": 0,
+    "restyled": 0,
+    "unchanged": 68
+  },
+  "structureEntries": [
+    {
+      "layerId": "local-3",
+      "status": "changed",
+      "kind": "pixel",
+      "matchedBy": "path",
+      "beforePath": "3",
+      "afterPath": "3",
+      "nameBefore": "Buy Now",
+      "nameAfter": "ai-merge-3",
+      "changes": [
+        {
+          "field": "name",
+          "label": "名称",
+          "before": "Buy Now",
+          "after": "ai-merge-3"
+        },
+        {
+          "field": "kind",
+          "label": "类型",
+          "before": "group",
+          "after": "pixel"
+        },
+        {
+          "field": "bounds",
+          "label": "边界",
+          "before": "1118×155 @ 62,2405",
+          "after": "1242×321 @ 0,2322"
+        },
+        {
+          "field": "blendMode",
+          "label": "混合模式",
+          "before": "pass through",
+          "after": "normal"
+        }
+      ]
+    },
+    {
+      "layerId": "local-1574",
+      "status": "removed",
+      "kind": "shape",
+      "matchedBy": "id",
+      "beforePath": "3/0",
+      "nameBefore": "Rectangle 16 copy 2",
+      "changes": []
+    },
+    {
+      "layerId": "local-1575",
+      "status": "removed",
+      "kind": "text",
+      "matchedBy": "id",
+      "beforePath": "3/1",
+      "nameBefore": "Buy Now",
+      "changes": []
+    }
+  ],
+  "pixel": {
+    "available": true,
+    "tolerance": 2,
+    "sameSize": true,
+    "width": 1242,
+    "height": 2718,
+    "totalPixels": 3375756,
+    "differingPixels": 50046,
+    "ratio": 0.01482512361675429,
+    "maxDelta": 195,
+    "bounds": {
+      "x": 63,
+      "y": 831,
+      "width": 1115,
+      "height": 1727
+    }
+  },
+  "layerPixels": {
+    "available": true,
+    "binaryIdentical": false,
+    "tolerance": 2,
+    "maxPixels": 48000000,
+    "truncated": false,
+    "compared": 48,
+    "identical": 48,
+    "differing": 0,
+    "unavailable": 0,
+    "unpaired": 3,
+    "matchedById": 48,
+    "matchedByPath": 0,
+    "matchedByName": 0,
+    "totalPixels": 14150172,
+    "differingPixels": 0,
+    "maxDelta": 0,
+    "entriesTruncated": false,
+    "entries": []
+  },
+  "notes": [
+    "对比双方均由 ag-psd 独立解析：源文件取自导入时的本地副本，保存文件由 Patchy 另存后从 MEMFS 读回。",
+    "结构对比按图层 id/路径匹配；编组与合并会改变路径，新增/移除计数需结合命名与合并计划解读。",
+    "逐层像素对比按 真实图层 ID → 唯一名称+类型+尺寸 → 路径+同类型同尺寸 配对非组图层，只比较尺寸一致的图层缓存，不做位移对齐；未配对图层不计入逐层差异。",
+    "像素数据来自两份 PSD 的图层缓存与内嵌合成图，不是 Photoshop 渲染，也不等同于 PSD 二进制逐字节比较。",
+    "逐层像素对比了 48 个匹配图层，3 个叶层未配对。"
+  ]
+}

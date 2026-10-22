@@ -1,5 +1,6 @@
 import type {
   DocumentSnapshot,
+  IsolatedRenderResult,
   LayerNode,
   PixelDiffSummary,
   Precondition,
@@ -75,6 +76,7 @@ function reindexPaths(layers: LayerNode[], parentPath = ""): void {
 export class DemoTransport implements EngineTransport {
   readonly mode = "demo" as const;
   readonly label = "演示引擎";
+  readonly supportsIsolatedRender = false;
 
   private readonly options: DemoTransportOptions;
   private tree: LayerNode[];
@@ -262,6 +264,17 @@ export class DemoTransport implements EngineTransport {
     };
   }
 
+  async renderLayer(layerId: string, _path: string): Promise<IsolatedRenderResult> {
+    this.ensureConnected();
+    if (!findLayerById(this.tree, layerId)) {
+      throw new PatchyBridgeError("DOCUMENT_NOT_FOUND", "演示文档中找不到该图层");
+    }
+    throw new PatchyBridgeError(
+      "UNSUPPORTED",
+      "演示引擎不生成真实像素；逐层隔离渲染需要 Patchy 引擎",
+    );
+  }
+
   async comparePreview(beforePath: string, afterPath: string): Promise<PixelDiffSummary> {
     this.ensureConnected();
     if (!this.previewPaths.has(beforePath) || !this.previewPaths.has(afterPath)) {
@@ -311,6 +324,10 @@ export class DemoTransport implements EngineTransport {
     this.tree = cloneTree(this.tree);
     this.undoStack.length = 0;
     return { ...this.snapshot(), path };
+  }
+
+  async readSavedFile(_path: string): Promise<Uint8Array | null> {
+    return null;
   }
 
   dispose(): void {

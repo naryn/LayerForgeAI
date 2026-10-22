@@ -35,7 +35,7 @@ test("request only enqueues JSON and resolves from the response queue", async ()
   assert.equal(root.__wasmCalls, 0);
 
   root.__patchyM0Responses.push({
-    protocolVersion: 1, requestId: "test-1", clientId: "test", ok: true,
+    protocolVersion: PATCHY_BRIDGE_PROTOCOL_VERSION, requestId: "test-1", clientId: "test", ok: true,
     result: { documents: [] },
   });
   bridge.drainResponses();
@@ -58,7 +58,7 @@ test("file staging Promise continuation enqueues instead of entering WASM", asyn
   assert.equal(root.__patchyM0Requests[0].payload.path, "/opened/7/sample.psd");
 
   root.__patchyM0Responses.push({
-    protocolVersion: 1, requestId: "test-1", clientId: "test", ok: true,
+    protocolVersion: PATCHY_BRIDGE_PROTOCOL_VERSION, requestId: "test-1", clientId: "test", ok: true,
     result: { documentId: "9" },
   });
   bridge.drainResponses();
@@ -72,7 +72,7 @@ test("an error response rejects the matching request", async () => {
   const bridge = new PatchyBridgeClient(root, { timeoutMs: 1_000, clientId: "test" });
   const resultPromise = bridge.request("renameLayer", { layerId: "3" });
   root.__patchyM0Responses.push({
-    protocolVersion: 1,
+    protocolVersion: PATCHY_BRIDGE_PROTOCOL_VERSION,
     requestId: "test-1",
     clientId: "test",
     ok: false,
@@ -98,7 +98,7 @@ test("precondition is serialized without invoking WASM", async () => {
   });
   assert.equal(root.__wasmCalls, 0);
   root.__patchyM0Responses.push({
-    protocolVersion: 1, requestId: "test-1", clientId: "test", ok: true,
+    protocolVersion: PATCHY_BRIDGE_PROTOCOL_VERSION, requestId: "test-1", clientId: "test", ok: true,
     result: { name: "hero" },
   });
   bridge.drainResponses();
@@ -133,7 +133,7 @@ test("one client does not consume another client's response", async () => {
   const second = new PatchyBridgeClient(root, { timeoutMs: 1_000, clientId: "second" });
   const secondPromise = second.request("getState");
   root.__patchyM0Responses.push({
-    protocolVersion: 1,
+    protocolVersion: PATCHY_BRIDGE_PROTOCOL_VERSION,
     requestId: "second-1",
     clientId: "second",
     ok: true,
@@ -152,7 +152,7 @@ test("response protocol mismatch is rejected", async () => {
   const bridge = new PatchyBridgeClient(root, { timeoutMs: 1_000, clientId: "test" });
   const promise = bridge.request("getState");
   root.__patchyM0Responses.push({
-    protocolVersion: 2, requestId: "test-1", clientId: "test", ok: true, result: {},
+    protocolVersion: PATCHY_BRIDGE_PROTOCOL_VERSION + 1, requestId: "test-1", clientId: "test", ok: true, result: {},
   });
   bridge.drainResponses();
   await assert.rejects(promise, (error) => error.code === "PROTOCOL_MISMATCH");

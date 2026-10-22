@@ -1,3 +1,4 @@
-cff853fd1fe7bcce1623c21e1255f433a19b4e23ff13c4f93fd1f51b73efea50 *vendor/Patchy/build/wasm-release/patchy.js
-c3288dd731250382f82921bb5440dfc248b41feedda0f839c9f33b6ba8af72b6 *vendor/Patchy/build/wasm-release/patchy.wasm
+# wasm-release with bridge protocol v2 renderLayer + shape-layer save fidelity, rebuilt 2026-10-22 17:24 Asia/Shanghai
+005611923f72a843af8f78dbf3bc754258d5506554905850b707a23720fa783c *vendor/Patchy/build/wasm-release/patchy.js
+b0b67979540230f0c7099cc2ca3e620b6bb42cb32445d64909c5382d8a9480bb *vendor/Patchy/build/wasm-release/patchy.wasm
 fab99b8e4b12de603ac8f31c2cfcbbcff4ca1af0146ce0d33ae64816ffe78e36 *vendor/Patchy/build/wasm-release/patchy.data

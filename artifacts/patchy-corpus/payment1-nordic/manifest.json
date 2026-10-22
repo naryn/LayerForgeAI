@@ -8,33 +8,33 @@
     "unchanged": true
   },
   "timingMs": {
-    "import": 31037,
-    "cleanup": 518,
-    "group": 2139,
-    "merge": 2762,
-    "saveAndReopen": 28502
+    "import": 67983,
+    "cleanup": 763,
+    "group": 2495,
+    "merge": 3066,
+    "saveAndReopen": 39377
   },
   "memory": {
     "afterLoad": {
       "usedBytes": 141557760,
       "peakUsedBytes": 180355072,
-      "heapBytes": 268435456,
+      "heapBytes": 536870912,
       "historyBytes": 0,
-      "limitBytes": 4293918720
+      "limitBytes": 4294967296
     },
     "afterEdits": {
       "usedBytes": 155189248,
       "peakUsedBytes": 180355072,
-      "heapBytes": 268435456,
+      "heapBytes": 536870912,
       "historyBytes": 0,
-      "limitBytes": 4293918720
+      "limitBytes": 4294967296
     },
     "afterSave": {
-      "usedBytes": 155189248,
-      "peakUsedBytes": 184549376,
-      "heapBytes": 386662400,
+      "usedBytes": 142606336,
+      "peakUsedBytes": 196083712,
+      "heapBytes": 536870912,
       "historyBytes": 0,
-      "limitBytes": 4293918720
+      "limitBytes": 4294967296
     }
   },
   "cleanup": {
@@ -58,7 +58,7 @@
   "output": {
     "psd": {
       "path": "B:\\src\\LayerForgeAI\\artifacts\\patchy-corpus\\payment1-nordic\\saved.psd",
-      "sha256": "0f0e1c133b3fa6eb6242c3706e911bf96425c55a020d0e658895faf19dc5c0da",
+      "sha256": "00267158f345d5725def16dc0069edffb65952317f90c10b015f15c11f031e38",
       "roots": 9
     },
     "before": {
@@ -83,7 +83,7 @@
       "path": "B:\\src\\LayerForgeAI\\artifacts\\patchy-corpus\\payment1-nordic\\reopened.png",
       "width": 467,
       "height": 1024,
-      "rgbaSha256": "fcc0040e8ecfafc8b70e44e03042746af741dc8c800eff22b8cf0bb741365e60"
+      "rgbaSha256": "55ead739c3550bd092d116d30eb013f0da993c39f41b008bf8776f0a8d8a72df"
     }
   },
   "diffs": {
@@ -122,22 +122,17 @@
       "width": 467,
       "height": 1024,
       "totalPixels": 478208,
-      "differingPixels": 3404,
-      "ratio": 0.0071182414346895075,
-      "maxDelta": 236,
-      "bounds": {
-        "x": 0,
-        "y": 223,
-        "width": 466,
-        "height": 535
-      }
+      "differingPixels": 0,
+      "ratio": 0,
+      "maxDelta": 0,
+      "bounds": null
     }
   },
   "uiPixelDiff": {
-    "differingPixels": 3404,
-    "ratio": "0.712%"
+    "differingPixels": 0,
+    "ratio": "0.000%"
   },
-  "pixelsMatch": false,
+  "pixelsMatch": true,
   "applied": [
     "已合并：button-merged",
     "已编组：card"
@@ -145,8 +140,8 @@
   "warnings": [
     {
       "level": "dot dot--warn",
-      "message": "保存前后预览存在像素差异",
-      "detail": "差异 3404/478208（0.712%）最大通道差 236 · 区域 466×535 · 对比对象是预览 PNG，不是 PSD 二进制或 Photoshop 渲染"
+      "message": "原 PSD 与保存 PSD 独立对比完成",
+      "detail": "63 → 62 图层；结构新增 1、移除 2、命名 1、几何 55；合成像素差异 63902/3375756（1.893%），最大通道差 184；ag-psd 独立解析，不是 Photoshop 验证。"
     }
   ],
   "problems": [],

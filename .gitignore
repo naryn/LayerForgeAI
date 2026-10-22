@@ -26,3 +26,11 @@ apps/web/public/patchy/
 
 # Local real-file asset pack evidence
 artifacts/**/*.zip
+
+# Scratch unpacks of generated asset packs
+artifacts/**/unpacked/
+
+# Local session-recovery scratch and its index
+.recovery/
+.recovery-*.json
+

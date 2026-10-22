@@ -11,11 +11,20 @@
   "mismatchedMergedAssets": 0,
   "maxChannelDelta": 0,
   "tolerance": 2,
+  "render": {
+    "isolatedAssets": 0,
+    "compositeAssets": 40,
+    "isolatedMergedAssets": 0,
+    "compositeMergedAssets": 10,
+    "isolatedFailures": 0
+  },
   "notes": [
     "覆盖率按切图边界并集面积计算；它不是像素级保真证明。",
+    "切图来自 PSD 扁平合成图按边界裁切，重叠区域包含下方内容。",
     "每个 1x PNG 都经过解码并与源合成图裁切区域逐像素比较；容差为 2。",
+    "所有 @2x 输出都由 1x 最近邻放大，不是原生 2x 渲染。",
     "重叠切图在页面重建中按面积从大到小叠加。",
-    "合并素材是候选区域的合成裁剪，不参与页面重建覆盖率，也不代表 PSD 已合并。",
-    "编组/合并写入尚未执行；当前桥接协议没有这些操作。"
+    "合并素材是候选组/图层的独立渲染或合成裁剪，不参与页面重建覆盖率，也不代表 PSD 已合并。",
+    "资产包导出本身不修改文档；编组/合并需在应用内显式执行并另存重开。"
   ]
 }

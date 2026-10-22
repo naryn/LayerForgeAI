@@ -1,8 +1,9 @@
 # 开发进度快照
 
-日期：2026-10-21（Asia/Shanghai）  
-阶段：M0 技术验证完成（Photoshop 门禁未验证）；Windows wasm-release 协议 v2 构建完成，真实引擎编组/合并/撤销/保存前后像素对比 E2E 通过；新盘 Nordic mobile 真实语料（4 份 PSD）完成导入/整理/编组/合并/另存重开，其中 1 份保存重开 0 像素差、3 份仍有 0.96%–1.29% 形状/切片层保真差异；M1 Web 工作台 + 规则版一键整理（含逻辑编组、布局提示与合并候选）+ 本地资产包 + 保存前后结构与像素对比 + AI 语义命名导出/审核完成  
-Patchy 固定提交：`d1ff95235e00af296868d4253e03391ca002ee9d`
+日期：2026-10-22（Asia/Shanghai）  
+阶段：M0 技术验证完成（Photoshop 2026 无警告打开已通过）；Windows wasm-release 协议 v2 构建完成，真实引擎编组/合并/撤销/保存前后像素对比与逐层隔离切图 E2E 通过；新盘 Nordic mobile 真实语料（4 份 PSD）完成导入/整理/编组/合并/另存重开，**4 份保存重开均 0 像素差**（形状/切片层光栅预览保存保真修复，2026-10-22）；M1 Web 工作台 + 规则版一键整理（含逻辑编组、布局提示与合并候选）+ 真实 Patchy 逐层隔离切图资产包 + 保存前后结构与像素对比 + 保存 PSD 从 MEMFS 回读并与源 PSD 做 ag-psd 独立对比（合成图 + 逐层像素）+ AI 语义命名与合并复核（导出/审核/模型直连/人工执行；真实 Patchy 合成 PSD 与 Nordic mobile 4 份真实语料 AI 合并回归通过，节点数 63→57、69→63、71→69、270→245，撤销均像素完全恢复；保存重开后自动重新分析并导出资产包，4 份分别为 37/42/41/119 个切图（隔离渲染 46/51/46/128）；保存重开全部 0 像素差）完成  
+Patchy 固定提交：`d1ff95235e00af296868d4253e03391ca002ee9d`  
+功能全景、验收依据与待办 backlog 见 [FEATURE_MAP](FEATURE_MAP.md)。
 
 > **2026-10-21 磁盘故障与语料状态**：故障磁盘上的旧语料（`F:\设计稿\伊拉克`）与
 > 上一轮 Windows 构建/证据仍不可复查，文中 2026-10-20/21 的伊拉克语料数字保留为
@@ -14,9 +15,12 @@ Patchy 固定提交：`d1ff95235e00af296868d4253e03391ca002ee9d`
 
 ## 1. 结论
 
-- M0 的构建、桥接、真实 PSD 往返、协议边界和独立证据校验均已完成；**唯一未完成的
-  M0 P0 是 Photoshop 2026 无警告打开**，因此仓库状态仍为 `blocked`、
-  `m1Allowed=false`。
+- M0 的构建、桥接、真实 PSD 往返、协议边界、独立证据校验以及 **Photoshop 2026
+  无警告打开**均已完成；2026-10-22 起仓库状态为 `passed`、`m1Allowed=true`。
+  注意：本机 Photoshop 的 ExtendScript 子系统损坏（`ScriptingSupport.8li` 命令不可用），
+  固化在仓库里的 `photoshop-open-check.ps1` 无法运行；门禁改用
+  `ci/photoshop-m0-check-actions.ps1`（旧版 action automation、对话框保持可见）
+  完成，驱动身份记录在证据目录的 `photoshop-open-check-driver.json`。
 - 2026-10-21（磁盘故障后重建）：Windows wasm-release 重新链接完成（`patchy.js`
   419,501 B、`patchy.wasm` 87,744,030 B、`patchy.data` 77,138,414 B；SHA-256 见
   `artifacts/patchy-release-sha256.txt`），协议 v2 接入撤销与保存前后像素对比。
@@ -30,41 +34,89 @@ Patchy 固定提交：`d1ff95235e00af296868d4253e03391ca002ee9d`
   同时识别 automation state 的 `isText/isShape/isArtboard` 布尔标记，使 Patchy 路径
   的切图候选从 0 恢复为与本地解析一致（2.2.3），单元测试与真实 E2E 均通过。新盘 Nordic mobile
   语料（4 份 PSD，21–49 MB）已完成导入、整理、编组/合并与另存重开，源文件均未
-  被覆盖；`Store_D.psd` 保存重开 0 像素差，`Payment1_D`、`Payment2_D`、
-  `Detial_D_0708` 仍有**0.547%–0.844% 的保存重开预览差异**（最大通道差 236），
-  根因是 Patchy 按矢量约定保存形状/切片层（像素通道为空、矢量块保留），重开时
-  重新栅格化。旧伊拉克语料（`Payment1` 5.1 MB、`Store_PC` 66.5 MB）数字来自
-  故障磁盘，仅作历史记录。
-  该行为是否符合 Photoshop 显示约定需门禁验证，详见 2.2.2 与 3.1。未完成事项汇总在
-  [3.1](#31-未完成工作清单2026-10-21)。
+  被覆盖。**2026-10-22 下午修复形状/切片层保存保真后，4 份文件的保存重开预览均
+  为 0 像素差（Δ0）**；修复前 `Payment1_D`、`Payment2_D`、`Detial_D_0708` 曾分别
+  为 0.712%、0.844%、0.547%（Δ236），`Store_D` 为 0。历史数字保留在 2.2.3 与 Git
+  记录中；旧伊拉克语料（`Payment1` 5.1 MB、`Store_PC` 66.5 MB）数字来自故障磁盘，
+  仅作历史记录。未完成事项汇总在 [3.1](#31-未完成工作清单2026-10-22)。
+- 2026-10-22（逐层隔离渲染增量）：Windows wasm-release 重新编译并链接（`patchy.js`
+  419,501 B、`patchy.wasm` 87,762,151 B、`patchy.data` 77,138,414 B；SHA-256 见
+  `artifacts/patchy-release-sha256.txt`），协议 v2 追加只读 `renderLayer`。资产包在
+  Patchy 引擎下改为逐层/逐组隔离渲染（透明背景 1x，MEMFS 读回），失败项回退合成
+  裁切并计数；演示引擎仍为合成图裁切。真实 Patchy 资产包 E2E 通过（37.1 s）：
+  `Payment1_D.psd` 的 50 个切图/合并素材全部为隔离渲染，0 回退、0 失败，透明度
+  样本 31,532/398,682 像素，ZIP 4.3 MB，源文件 SHA-256 不变；证据在
+  `artifacts/asset-pack-patchy/Payment1_D/`（2.7）。
+- 2026-10-22（保存保真修复）：Windows wasm-release 重新编译（`patchy.js` 428,209 B、
+  `patchy.wasm` 87,799,621 B、`patchy.data` 77,138,414 B；SHA-256 见
+  `artifacts/patchy-release-sha256.txt`），接入 `save-fidelity.patch`：RGB 另存时，
+  导入自 Photoshop 且带可见光栅预览的形状层写回预览，不再统一写空像素通道；
+  Patchy 自己栅格化的形状仍保留空通道约定，原生色彩模式保存保持 Photoshop 约定。
+  结果：`Payment1_D` 原样另存重开 0/478,208 像素差（此前 5,725 / 1.197%，Δ236）；
+  Nordic 4 份语料编辑后保存重开全部 0 像素差（此前 3 份为 0.547%–0.844%）。
+  保存 PSD 因写回预览而略大（`Payment1_D` 21.4→22.1 MB）。同时修正宿主 iframe
+  地址，强制 `?embedded=100`，避免 Patchy 品牌 shell 默认 75% 缩放自嵌套导致桥接
+  入口不可见；保存保真用例的 `pixelsMatch` 改为对比保存前最后一次编辑预览（不再
+  错误对比导入原图）。核心回归测试
+  `psd_photoshop_raster_shape_pixels_survive_save` 随 patch 提供。
 - 2026-10-20 项目负责人调整开发顺序：**先做界面与整体应用，再做 Photoshop 对接**。
   UI/应用工作据此提前启动，但不得把 M0 或 Photoshop 兼容性标记为通过。
 - `apps/web` 已完成 M1 Web 工作台初版（项目、导入、检查、命名计划、保存重开、
   历史、IR 草稿），并新增**规则版一键整理**（结构角色命名、结构检查、编组建议、
-  合并候选、切图候选、资产清单）；FastAPI 后端与 AI 模块尚未开始。
+  合并候选、切图候选、资产清单）与 **AI 语义命名/合并复核**（提示词导出、模型
+  直连、严格 JSON 导入、人工审核、经白名单桥接执行合并）；FastAPI 后端尚未开始。
 - 一键整理的命名与结构检查走本地确定性规则：按边界、层级与子层类型推断组件角色
   （背景、按钮、输入框、角标、图标按钮、卡片等），不读取图层名或 T 文案；重命名复用
   已有“计划 → 应用 → 保存重开验证”路径；编组与合并已加入桥接 v2 白名单（`groupLayers` /
   `mergeLayers`），可在 Patchy 或演示引擎中写入当前文档内存，仍需另存并重开；
-  v2 另提供单步 `undo` 与保存前后预览 `comparePreview`，切图候选仍只是建议，
-  逐图层渲染未实现。
-- 新增**本地资产包导出**：从 PSD 扁平合成图按切图候选边界裁切 1x/2x PNG，逐张
-  解码校验，并打包 Design IR、AI 编码上下文、页面对比预览与清单。合并候选区域
-  另存为 `merged/` 下的单张 1x/2x PNG，写入 manifest `mergedAssets`，供前端直接
-  引用或人工审核。文本层内容、
-  字体、字号、颜色、对齐与粗体标记写入 IR `meta` 和 agent-context 文本表。真实
-  `Store_PC_D_0706(1).psd` 已生成 250 个切图、500 个输出，全部校验零误差；
-  `Payment1` 另有 9 个合并素材、18 个输出全部通过。
-  资产包是合成图裁切，不是逐图层隔离渲染，也不是原生 2x，不作为 Patchy/Photoshop
-  证据；编组/合并已能经桥接写入文档内存，逐图层隔离渲染仍未实现。
+  v2 另提供单步 `undo` 与保存前后预览 `comparePreview`。
+- 2026-10-22 新增**逐图层/逐组隔离渲染**：协议 v2 追加只读 `renderLayer`，在 Patchy
+  内用临时文档把目标图层单独合成到透明背景，按 `layer_render_bounds` 裁切并写入
+  `/saved/*.png`，不改变当前文档、不产生撤销记录；浏览器从同源 iframe 的 MEMFS
+  直接读取字节并删除临时文件。MEMFS 挂在 `qtLoad()` 返回的 Emscripten 模块实例上，
+  因此 `scripts/stage-patchy.mjs` 在 staging 时把 `patchy.html` 的 qtLoad 结果暴露为
+  `window.__patchyModule`，传输层从 `__patchyModule.FS` 读取（不再假设 `window.FS`）。
+  资产包切片与合并素材优先使用该路径（1x），失败或演示引擎时回退为 PSD 扁平合成图
+  裁切，逐项计数并在 manifest 中区分来源。隔离渲染只含目标图层自身的不透明度/混合/
+  效果，不含父组不透明度、蒙版、剪贴基座与画布背景；2x 仍是最近邻放大，不是原生 2x。
+- 新增**资产包导出**（`layerforge.asset-pack` v0.4.0）：Patchy 引擎下切图与合并
+  素材优先经 `renderLayer` 逐层/逐组隔离渲染为透明背景 1x PNG，再从 iframe MEMFS
+  读回字节并解码校验尺寸；失败项回退为合成图裁切并与源合成区域逐像素比较
+  （容差 2），计数写入 `comparison.render`。演示引擎没有真实像素，仍从 PSD 扁平
+  合成图按切图候选边界裁切。两种路径都生成（尺寸允许时）最近邻 2x PNG，并打包
+  Design IR、AI 编码上下文、页面对比预览与清单。合并候选区域另存为 `merged/`
+  下的 1x/2x PNG，写入 manifest `mergedAssets`，供前端直接引用或人工审核。
+  文本层内容、字体、字号、颜色、对齐与粗体标记写入 IR `meta` 和 agent-context
+  文本表。旧版合成包在真实 `Store_PC_D_0706(1).psd` 上生成 250 个切图、500 个
+  输出，全部校验零误差；`Payment1` 另有 9 个合并素材、18 个输出全部通过。
+  隔离渲染只含目标图层，不含父组不透明度/蒙版/剪贴与画布背景；它不是
+  Photoshop 证据，2x 也不是原生渲染。
+- 新增**页面骨架 `page.html`**（2026-10-22）：资产包 ZIP 直接附一份可打开的页面
+  骨架，切图按画布百分比绝对定位，`z-index` 取 IR `paintOrder`；逻辑编组输出
+  `<section class="lf-component">`（`display:contents`）与 `data-layout-direction/
+  gap/align`，每个切图带 `data-layer-path`、`data-semantic-name`、`data-bounds`、
+  `data-text`/字体/颜色/对齐等属性，2x 通过 `srcset` 提供，未覆盖区域保持透明。
+  它把“Design IR → AI 可接手页面”的入口变成可直接运行的文件；演示与真实 Patchy
+  资产包 E2E 均断言 40 个切图、逻辑编组与 ZIP 文件清单，Patchy 用例 37.1 s 通过。
 - 新增**保存前后对比**：以本次会话打开时（或上次成功保存后）的快照为基准，与引擎
   重开返回的图层树对比，按图层 ID 优先、路径回退匹配，分类统计重命名/几何/属性/
   新增/移除，历史面板可见并可导出 `layerforge.psd-diff` JSON。v2 另在保存前后各
   渲染一张预览 PNG，由 Patchy 内 `comparePreview` 逐像素比较，显示差异数、比例、
   最大通道差与包围盒，并写入版本记录。两项对比都不是 PSD 二进制或 Photoshop
   渲染结果，独立 Chromium 解码校验仍作为外部证据。
+- 新增**保存 PSD 独立对比**：`saveAsAndReopen` 完成后通过 iframe 的
+  `__patchyModule.FS` 回读刚写出的 `/saved/*.psd`（不删除，重开文档仍可能引用），
+  与 IndexedDB 导入源文件一起由 ag-psd 独立解析，输出
+  `layerforge.psd-compare`：双方 SHA-256/大小/图层数、结构差异、内嵌合成图像素差
+  （容差 2）与包围盒，以及逐层像素差。历史面板新增“原 PSD 独立对比”卡片并可导出
+  JSON，摘要写入版本记录。该链路不依赖引擎返回的图层树，能把“保存文件本身”与
+  “引擎重开状态”分开核验；合成图缺失/非 8 位或不支持 2D canvas 时明确标记像素
+  不可用。逐层对比按真实图层 ID → 唯一名称+类型+尺寸 → 路径+同类型同尺寸 pairing，
+  只比较尺寸一致的图层缓存（上限 4800 万像素），未配对叶层单独计数。真实
+  Patchy E2E 中源 8 节点 → 保存 7 节点、合成图 0/16,000 差异、逐层 5/5 一致
+  （0 差异，3 个叶层因合并/移除未配对，27–29 s）。
 - 新增**逻辑编组输出**：一键整理的 `group-cluster` 建议映射为 Design IR 的
-  `logicalGroups` 与节点 `logicalGroupId`，资产包 manifest（v0.3.0）和
+  `logicalGroups` 与节点 `logicalGroupId`，资产包 manifest（v0.4.0）和
   `agent-context.md` 同步输出；AI 编码工具可据此拆分前端组件。该分组只影响 IR 与
   上下文；应用内可一键经桥接写入文档内存，保存并重开后持久化。
 - 新增**资产与图层关联**：资产包内 `design-ir.json` 的切图节点写入 `assetId`，
@@ -75,14 +127,22 @@ Patchy 固定提交：`d1ff95235e00af296868d4253e03391ca002ee9d`
   agent-context 的“布局”列，作为 AI 生成 flex 布局的线索；它是启发式推断，
   不是 PSD 中的布局属性。真实 PSD 上 Store_PC 得到 24 个逻辑编组（4 横向、
   3 纵向、17 叠加）和 24 个合并候选（5 横向、19 叠加）。
-- 新增 **AI 语义命名导出/导入/审核**：规则无法处理的通用名汇总为候选，导出
-  自包含 Markdown 提示词（`layerforge.ai-naming.request` v0.1.0，含结构、父子/
-  兄弟名称、边界、文本样例与布局，不含像素）；把外部 AI 返回的
-  `layerforge.ai-naming.response` JSON 导入后，严格校验 schema、候选路径与
-  过期状态、名称规范化/长度/通用名/同级冲突/重复路径，逐条展示通过与需修正项，
-  用户勾选后才加入命名计划。该流程不调用外部 API、不需要密钥、不直接修改 PSD；
-  AI 只产出计划。伊拉克语料共 387 个 AI 候选（单文件 14–136 个；语料已随故障磁盘
-  丢失，数字为历史记录）。视觉分析、直接模型 API 与自动批量执行仍未实现。
+- 新增 **AI 语义命名与合并复核**：规则无法处理的通用名与规则判定的合并候选一并进入
+  任务，提示词自包含（`layerforge.ai-naming.request` v0.2.0，含结构、父子/兄弟名称、
+  边界、文本样例、布局与合并候选的成员统计，不含像素；仍接受 v0.1.0 纯命名响应）。
+  用户既可下载 Markdown 交给外部工具，也可在弹窗「模型配置」中填写 OpenAI 兼容接口后
+  直接“调用模型生成”。配置支持 DeepSeek / OpenAI / Ollama / LM Studio 预设、自动补齐
+  `/v1/chat/completions`、可选 `response_format` JSON 模式与 120 s 超时；API Key
+  默认只留在内存，勾选“记住”才写入本浏览器 localStorage。模型响应与导入 JSON
+  走同一套严格校验（schema、候选路径与过期状态、名称规范化/长度/通用名/同级冲突/
+  重复路径）。合并复核另行校验候选成员资格、组类型、可见带尺寸成员数、当前联合边界与
+  分析时一致、合并名同级冲突，并拒绝被合并组内/组下的命名建议；通过项逐条展示，命名
+  勾选后加入计划，合并必须单独勾选并经 `mergeLayers` 写入引擎内存（可撤销，保存重开才
+  写入新 PSD）。模型调用只记录模型名、耗时、tokens 与通过/修正数量，不记录 Key，也不
+  直接修改 PSD；浏览器直连要求接口允许 CORS。旧伊拉克语料共 387 个 AI 命名候选
+  （单文件 14–136 个；语料已随故障磁盘丢失，数字为历史记录）。合并候选的真实语料
+  AI 复核已在 Nordic mobile 4 份 PSD 上通过（执行/撤销/保存重开，见 2.7）。视觉
+  输入、批量自动执行与服务端代理仍未实现。
 
 ## 2. 已完成内容
 
@@ -120,10 +180,10 @@ Patchy 固定提交：`d1ff95235e00af296868d4253e03391ca002ee9d`
 | wasm-core 构建 | 完成；wasm 产物 `patchy_core_tests.{js,wasm}` |
 | wasm-core 测试 | 执行 1299 项，1191 通过，0 失败，108 跳过（可选样本缺失） |
 | wasm-release 配置 | 完成，桥接源码已编入 `patchy_ui` |
-| wasm-release 构建 | 重新构建完成；`patchy.js` 419,501 B、`patchy.wasm` 87,744,030 B、`patchy.data` 77,138,414 B |
-| 产物 SHA-256 | js `cff853fd…3efea50`、wasm `c3288dd7…8af72b6`、data `fab99b8e…ffe78e36`（完整值见 `artifacts/patchy-release-sha256.txt`） |
-| Windows 浏览器 E2E | **通过**：重建产物上真实引擎编组/合并/撤销/另存重开与保存前后像素对比，4 份预览 RGBA 哈希一致，UI 像素差 0，结构断言通过（28.9 s） |
-| 真实语料 E2E | **新盘 Nordic mobile（2.2.3）**：4 份 PSD 完成整理、编组/合并与另存重开，源文件未改变；`Store_D` 保存重开 0 像素差，Payment1/Payment2/Detial 保存重开 0.547%–0.844%（已知形状/切片层保真项） |
+| wasm-release 构建 | 2026-10-22 17:24 重建完成（含 `renderLayer` + 形状层保存保真）；`patchy.js` 428,209 B、`patchy.wasm` 87,799,621 B、`patchy.data` 77,138,414 B |
+| 产物 SHA-256 | js `00561192…20fa783c`、wasm `b0b67979…8a9480bb`、data `fab99b8e…ffe78e36`（完整值见 `artifacts/patchy-release-sha256.txt`） |
+| Windows 浏览器 E2E | **通过**：17:24 产物上真实引擎编组/合并/撤销/另存重开与保存前后像素对比，4 份预览 RGBA 哈希一致，UI 像素差 0；另从 MEMFS 回读保存 PSD，经 ag-psd 独立解析为 8 → 7 节点、内嵌合成图 0/16,000 差异、逐层 5/5 一致（0/17,536，3 个叶层未配对），对比 JSON 已作为证据落盘（35.3 s） |
+| 真实语料 E2E | **新盘 Nordic mobile（2.2.3）**：4 份 PSD 完成整理、编组/合并与另存重开，源文件未改变；保存保真修复后 **4/4 保存重开 0 像素差**（此前 3 份 0.547%–0.844%） |
 
 本轮重建未单独保留 `build.log`，构建入口见下方；产物指纹以
 [`artifacts/patchy-release-sha256.txt`](../artifacts/patchy-release-sha256.txt) 为准。
@@ -217,6 +277,8 @@ PLAYWRIGHT_CHANNEL=chrome npx playwright test e2e/patchy-real-corpus.spec.ts
 与 `LAYERFORGE_PRESERVE_PSD`，便于按目录切换语料而不改代码。每份文件执行导入、
 一键整理、应用首个编组/合并建议、另存并重开，并独立解码预览 PNG 逐像素比对。
 
+2026-10-21 首轮耗时（保存保真修复前，保留为对照）：
+
 | 文件 | 导入 | 整理 | 编组 | 合并 | 保存重开 | WASM used/peak |
 |---|---:|---:|---:|---:|---:|---:|
 | `Payment1_D.psd`（21.4 MB） | 31.0 s | 0.52 s | 2.14 s（`card`） | 2.76 s（`button-merged`） | 28.5 s | 155/185 MB |
@@ -229,24 +291,27 @@ Payment2 `48/3/2/10/45`、Detial `48/6/4/6/42`、Store `139/36/14/10/137`。4 �
 合并均成功写入引擎内存；保存产物图层树根数依次为
 9、9、8、10，console 无 `pageerror`，活动日志无 danger 项。
 
-**像素差异（引擎预览，独立 Chromium 解码复核）**：
+**像素差异（2026-10-22 保存保真修复后重跑；引擎预览，独立 Chromium 解码复核）**：
 
 | 文件 | 编组 | 合并 | 保存重开 | UI 记录 | 结论 |
 |---|---:|---:|---:|---:|---|
-| `Payment1_D` | 1,024（0.214%，Δ20） | 3,047（0.637%，Δ1） | 3,404（0.712%，Δ236） | 0.712% | 仅保真软断言失败 |
-| `Payment2_D` | 1,024（0.214%，Δ20） | 3,039（0.635%，Δ1） | 4,034（0.844%，Δ236） | 0.844% | 仅保真软断言失败 |
-| `Detial_D_0708` | 0（0%，Δ0） | 3,366（0.704%，Δ1） | 2,618（0.547%，Δ236） | 0.547% | 仅保真软断言失败 |
-| `Store_D` | 0（0%，Δ0） | 0（0%，Δ0） | **0（0%，Δ0）** | 0.000% | **通过，像素一致** |
+| `Payment1_D` | 1,024（0.214%，Δ20） | 3,047（0.637%，Δ1） | **0（0%，Δ0）** | 0.000% | 通过 |
+| `Payment2_D` | 1,024（0.214%，Δ20） | 3,039（0.635%，Δ1） | **0（0%，Δ0）** | 0.000% | 通过 |
+| `Detial_D_0708` | 0（0%，Δ0） | 3,366（0.704%，Δ1） | **0（0%，Δ0）** | 0.000% | 通过 |
+| `Store_D` | 0（0%，Δ0） | 0（0%，Δ0） | **0（0%，Δ0）** | 0.000% | 通过 |
 
-`Store_D` 提供了同引擎、同保存路径的正向对照：保存并重开后 RGBA 哈希与保存前
-完全相同，说明该流程本身可以做到像素一致；Payment1/Payment2/Detial 的差异集中在
-y≈223 起的内容区，与形状/切片层按矢量约定保存、重开时重新栅格化的已知保真项
-一致。本轮修复后 4 份文件的合并建议真正写入了引擎内存，合并步骤的预览差异从此前
-不足 20 个像素升到 3,039–3,366 个，但最大通道差仍为 1（栅格化抗锯齿级别），
-远低于形状层重栅格化造成的 Δ236。未编辑对照（`Payment1_D` 原样另存）显示连续两次预览哈希一致、保存前后
-13 个根图层名称与顺序一致，但仍有 5,725（1.197%，Δ236）像素差，证明差异来自
-保存/重开而非编组/合并或渲染随机性；证据在
-`artifacts/patchy-corpus/save-fidelity-noop/manifest.json`。
+编组与合并的差异来自编辑本身（组/合并改变合成结构，栅格化抗锯齿最大 Δ20/Δ1），
+不是保存缺陷。保存重开的对比对象是**保存前最后一次编辑预览**；重开后合成像素
+逐像素一致。修复前 Payment1/Payment2/Detial 的保存重开差分别为 0.712%、0.844%、
+0.547%（Δ236），根因是形状/切片层按矢量约定写空像素通道；`save-fidelity.patch`
+让带 Photoshop 光栅预览的形状层写回预览后归零。原样另存对照
+（`artifacts/patchy-corpus/save-fidelity-noop/manifest.json`）同样从 5,725 px /
+1.197%（Δ236）降为 **0/478,208（Δ0）**，且连续两次预览确定、13 个根图层名称与
+顺序一致、源文件 SHA-256 不变。
+
+2026-10-22 重跑耗时：Payment1 导入 68.0 s、保存重开 39.4 s；Payment2 33.9 s / 50.6 s；
+Detial 50.4 s / 50.8 s；Store 52.8 s / 72.8 s。6 条真实语料 E2E（4 份往返 + AI 合并
+复核 + 原样另存）全部通过，总计 14.3 min。
 
 **切图/合并候选的 Patchy 归一化修复（2026-10-21）**：Patchy automation state 不返回
 `type/kind/layerType`，只返回 `isGroup/isText/isArtboard/isShape` 布尔标记，且组节点
@@ -265,7 +330,8 @@ detail-nordic,store-nordic}/manifest.json`。
   `__patchyM0Cancelled`；DOM/Promise 回调从不直接调用 WASM export。
 - Patchy 侧 `QTimer` 轮询、单请求互斥、超时、取消、应用内完成确认。
 - 白名单：`getState`、`openDocument`、`renderPreview`、`comparePreview`、
-  `renameLayer`、`groupLayers`、`mergeLayers`、`undo`、`saveAsAndReopen`。
+  `renderLayer`、`renameLayer`、`groupLayers`、`mergeLayers`、`undo`、
+  `saveAsAndReopen`。
 - `renameLayer` / `groupLayers` / `mergeLayers` / `undo` / `saveAsAndReopen`
   必须携带文档 revision 前置条件；可选 fingerprint 必须与当前自动化状态一致。
 - `groupLayers` 要求 ≥2 个同一父级的唯一图层 ID；`mergeLayers` 使用
@@ -279,6 +345,20 @@ detail-nordic,store-nordic}/manifest.json`。
   包围盒。工作台在“保存并重开”前渲染保存前预览、重开后渲染新预览并调用该操作，
   结果显示在历史面板与版本记录中。对比对象是预览 PNG，不是 PSD 二进制，也不能
   替代 Photoshop 验证。
+- **v2 保存 PSD 回读**：`saveAsAndReopen` 返回后，宿主通过
+  `__patchyModule.FS.readFile` 读取 `/saved/*.psd`（只读，不 unlink；Patchy 的下载
+  协调器已把字节复制给浏览器）。字节交给 `psdCompare.ts`：两份文件用 ag-psd 各解析
+  一次，图层树复用 `diffLayerTrees`，内嵌合成图逐像素比较，容差 2，大画布超过
+  36,000,000 像素时跳过像素部分；同一解析顺带保留每个图层的像素缓存，按真实 ID →
+  唯一名称+类型+尺寸 → 路径+同类型同尺寸 配对后逐层比较，逐层总量上限
+  48,000,000 像素，尺寸变化的匹配层标记为不可比较。仅 Patchy 传输实现该读取，
+  演示引擎返回 `null`。
+- **v2 逐层隔离渲染**：`renderLayer` 只接受当前文档 ID、图层 ID 与
+  `/saved/*.png`，用临时 `Document` 强制目标图层可见并单独合成，再按
+  `layer_render_bounds ∩ 画布` 裁切保存；父组不透明度、蒙版、剪贴与画布背景
+  不参与。操作只读，不修改当前文档、不产生撤销记录；已存在的目标文件拒绝覆盖，
+  空边界返回 `EMPTY_RENDER`。桥接只返回边界与尺寸，浏览器读取同源 MEMFS 中的
+  PNG 字节后立即 `unlink`。资产包据此生成透明背景切图，失败项回退合成裁剪。
 - 路径限制：打开只接受 `/opened/<number>/<name>`；输出只接受 `/saved/` 直接
   子文件；preview/PSD 已存在时拒绝覆盖；请求 JSON 上限 64 KiB。
 - 稳定错误码：`PROTOCOL_MISMATCH`、`INVALID_REQUEST`、`PRECONDITION_REQUIRED`、
@@ -324,12 +404,13 @@ before/after RGBA SHA-256 均为
 ### 2.6 证据与 CI
 
 - 独立浏览器 verifier：重新计算源/输出哈希，独立 Chromium 解码 PNG RGBA，
-  检查 8BPS header、重开截图、console、trace；输出
-  `photoshopVerified:false`、`m0Accepted:false`。
+  检查 8BPS header、重开截图、console、trace；Photoshop 结论读取同目录
+  `photoshop-open-check.log` 与 `evidence-verification.json`，缺失或不一致时
+  为 false。
 - 完整 verifier：额外要求恰好一条 Photoshop `CLEAN`，复核 8 项协议检查；缺少
   `photoshop-open-check.log` 时明确拒绝且不写验收文件（已做负向验证）。
-- 最新证据：`artifacts/m0/browser-20261020-06/`；构建/测试日志：
-  `artifacts/m0/logs/macos-20261020-191428/`。
+- 最新证据：`artifacts/m0/win-20261022-03/`（Windows，M0 通过）；构建/测试
+  日志：`artifacts/m0/logs/macos-20261020-191428/`。
 - CI 脚本端到端重跑：CTest 1/1（20.63 s）、E2E 1 passed（4.0 s）、verifier
   `ok:true`；同一 fixture 在 `-03`、`-05`、`-06` 三次运行的源/输出/RGBA 哈希
   完全一致。
@@ -352,14 +433,16 @@ ag-psd 31 只读解析；IndexedDB 持久化；Vitest 5 + Playwright 1.64。
 | 历史版本与图层树快照 | 完成 |
 | Design IR 草稿导出（`layerforge.design-ir.draft` v0.4.0） | 完成；含带 `layout` 的 `logicalGroups`、节点 `logicalGroupId` 与资产包 `assetId` |
 | 一键整理：结构角色命名 + 重复名消歧 + 通用名识别 | 完成（本地规则；名称由边界与层级推断组件角色，不读取图层名或 T 文案，文本层不改名） |
-| AI 语义命名：候选导出、提示词、严格 JSON 导入与人工审核 | 完成；真实语料 387 个候选，无外部 API、不直接修改文档，审核后加入命名计划 |
+| AI 语义命名：候选导出、提示词、严格 JSON 导入与人工审核 | 完成；真实语料 387 个命名候选，不直接修改文档，审核后加入命名计划 |
+| AI 语义命名：OpenAI 兼容模型直连与配置 UI | 完成；预设/接口/模型/Key/JSON 模式/超时，Key 可选记忆；12 项单测 + mock 端点 E2E；不直接修改文档 |
+| AI 合并复核：规则候选 + `merges` 响应、边界/重名校验、人工执行 | 完成；`layerforge.ai-naming.request` v0.2.0（兼容 v0.1.0），合并经 `mergeLayers` 写入引擎内存、可撤销，保存重开才落盘；演示引擎 E2E、真实 Patchy 合成 PSD 与 Nordic mobile 4 份真实语料回归覆盖执行、撤销、保存重开（63→57、69→63、71→69、270→245，撤销像素完全恢复，保存重开均 0 像素差）；保存重开后自动重新分析并导出隔离切图资产包（37/42/41/119 个切图，0 合成回退） |
 | 一键整理：空组/单子组检查、逻辑编组、合并候选、切图候选 | 完成；逻辑编组（含布局提示）进入 IR/AI 上下文，可一键写入可写引擎内存；切图仍不写回 PSD |
 | 合并候选：紧凑组/复杂角标的规则识别、`merged/` 单张裁剪与 AI 上下文输出 | 完成；名称来自结构角色（如 `badge-merged`、`icon-button-merged`），可通过桥接合并并另存重开 |
 | 资产清单导出（`layerforge.asset-manifest.draft` v0.1.0） | 完成；不生成像素 |
-| 资产包导出（`layerforge.asset-pack` v0.3.0） | 完成；合成图裁切 1x/2x PNG + 合并素材 + 解码校验 + IR（含逻辑编组布局与 assetId）/AI 上下文/预览 ZIP |
+| 资产包导出（`layerforge.asset-pack` v0.4.0） | 完成；Patchy 下逐层隔离渲染 1x + 失败回退合成裁切 + 解码/尺寸校验 + 合并素材 + IR（含逻辑编组布局与 assetId）/AI 上下文/页面骨架 `page.html`/预览 ZIP；演示引擎仍为合成图裁切。真实 Patchy E2E：`Payment1_D` 50/50 隔离、0 回退，40 个切图进入页面骨架 |
 | 文本内容与样式提取（内容/字体/字号/颜色/对齐） | 完成；写入 IR `meta` 与 AI 上下文文本表 |
 | 显式堆叠顺序（IR `zIndex`、agent-context `Z` 列） | 完成；同级 0 为最底层（PSD 数组自底向上） |
-| Patchy iframe 传输层（协议 v2，含 undo/comparePreview 与 rename/group/merge/saveAsAndReopen） | 已实现；演示引擎单测与真实 Patchy 构建回归见 2.4 |
+| Patchy iframe 传输层（协议 v2，含 undo/comparePreview/renderLayer 与 rename/group/merge/saveAsAndReopen） | 已实现；演示引擎单测与真实 Patchy 构建回归见 2.4 |
 | 本地只读检查（ag-psd）自动回退 | 完成 |
 | 演示引擎（`?engine=demo`） | 完成；仅用于 UI/测试，不作为证据 |
 
@@ -394,7 +477,7 @@ ag-psd 31 只读解析；IndexedDB 持久化；Vitest 5 + Playwright 1.64。
 > 未按新语义重跑，这些数字仅作历史规模参考。新盘 Nordic 语料已按新规则重跑：
 > Patchy 路径的整理统计见 2.2.3，演示引擎资产包见下方 Payment1_D 行。
 
-真实 PSD 资产包（合成图裁切 + 逐张 PNG 解码校验）：
+真实 PSD 资产包（演示引擎：合成图裁切 + 逐张 PNG 解码校验）：
 
 **Nordic mobile 新语料（2026-10-21）**：
 
@@ -408,6 +491,30 @@ E2E 14.0 s 通过：40 个切图、10 个合并素材全部通过逐张 PNG 尺�
 （`?engine=demo`，本地 ag-psd + 合成图裁切），不是 Patchy/Photoshop 证据；
 Patchy 路径经类型/组边界归一化后，同一文件同样产生 40 个切图候选（2.2.3）。
 
+**Patchy 隔离渲染（2026-10-22）**：
+
+| 文件 | 尺寸 | 切图 | 合并素材 | 隔离切图 | 隔离合并 | 合成回退 | 失败 | 校验 | 最大通道差 | 覆盖率 | ZIP | 耗时 |
+|---|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| `Payment1_D.psd` | 1242×2718 | 40 | 10 | 40 | 10 | 0 | 0 | 50/50 解码/尺寸 | 0（无回退项） | 34.1% | 4.3 MB | 37.1 s |
+
+真实 Patchy 资产包 E2E `e2e/asset-pack-patchy.spec.ts` 通过：
+`status.pixels = "patchy-isolated-layer-renders"`、`isolatedLayerRenders = 50`、
+`compositeCrops = 0`，`comparison.render` 为
+`isolatedAssets 40 / compositeAssets 0 / isolatedMergedAssets 10 / compositeMergedAssets 0 /
+isolatedFailures 0`，`comparison.method` 仍为
+`isolated-layer-renders-with-composite-fallback`（方法名覆盖混合路径）。
+40 个切图与 10 个合并素材的 1x PNG 全部由 Patchy 在 WASM 内隔离渲染并解码校验尺寸；
+由于没有合成回退项，逐像素容差比较（容差 2）未触发，`maxChannelDelta` 为 0。
+透明度样本（资产 `3`，1242×321）含 31,532 个 alpha=0 像素与 168,059 个不透明像素，
+证明输出是透明背景而非不透明画布裁切；50 个 @2x 输出仍标记
+`isolated-upscale`，即最近邻放大。manifest 共 108 个文件；源文件 SHA-256
+`5b5ad045039e373caa644e59b7b790692b7505369e86098ec5ede2de8037a819` 运行前后一致。
+证据在 `artifacts/asset-pack-patchy/Payment1_D/`（ZIP、manifest、alpha-sample、
+run.json、browser-console.log）。隔离渲染边界来自引擎 `layer_render_bounds`，可能与
+本地合成裁切边界不同，因此覆盖率 34.1% 与演示路径 22.7% 不可直接比较；覆盖率仍是
+切图边界并集面积，不是像素保真证明。该证据证明 Patchy WASM 内的逐层渲染与 MEMFS
+读回链路可用，不是 Photoshop 验证。
+
 **旧伊拉克语料（历史记录，故障磁盘前）**：
 
 | 文件 | 尺寸 | 切图 | 切图输出 | 合并素材 | 合并输出 | 校验 | 最大通道差 | 覆盖率 | ZIP |
@@ -417,9 +524,9 @@ Patchy 路径经类型/组边界归一化后，同一文件同样产生 40 个�
 
 资产包 manifest 同步写入 `analysis.merges`、`analysis.mergedAssets` 与
 `mergeCandidates`（建议名、类型、成员、边界、面积占比）；`mergedAssets` 记录候选
-对应的裁剪边界、输出文件、哈希与逐张解码校验。agent-context 的“合并候选”表增加
-`merged/` 文件列并注明尚未写入文档；README 与 comparison 说明合并素材只是合成
-裁剪，不参与页面重建覆盖率。
+对应的边界、输出文件、哈希与校验方式（隔离解码或合成裁剪逐像素）。Agent-context
+的“合并候选”表增加 `merged/` 文件列并注明尚未写入文档；README 与 comparison 说明
+合并素材是独立渲染或合成裁剪，不参与页面重建覆盖率。
 产物写入 `artifacts/asset-pack/<psd>/`（ZIP、manifest、comparison、agent-context、
 preview、视觉对比截图与 `visual-diff.json`）；大型 ZIP/PNG 不入库。最大文件构建
 耗时约 35 s。
@@ -469,15 +576,93 @@ preview、视觉对比截图与 `visual-diff.json`）；大型 ZIP/PNG 不入库
   RGBA 哈希一致，保存 PSD 结构断言通过；UI 保存前后像素差 0/16,000。
 - `e2e/patchy-real-corpus.spec.ts`：支持 `LAYERFORGE_CORPUS_CASES` 按语料切换；
   2026-10-21 对 Nordic 4 份 PSD 记录导入/整理/编组/合并/保存耗时、WASM 内存采样、
-  失败项与保存前后像素差，UI 像素差与独立 Chromium 解码一致；`Store_D` 保存重开
-  像素一致，另 3 份仅因 0.547%–0.844% 的已知保真差异在软断言失败（2.2.3）。
-  历史伊拉克两份数字见 2.2.2。
+  失败项与保存前后像素差，UI 像素差与独立 Chromium 解码一致；2026-10-22 保存保真
+  修复后 4/4 保存重开 0 像素差（2.2.3）。历史伊拉克两份数字见 2.2.2。
 - 真实 PSD 资产包 E2E（`LAYERFORGE_PSD_DIR` + `LAYERFORGE_REAL_PSD`）
   通过（Nordic `Payment1_D` 14.0 s）：40 个切图、10 个合并素材、80+20 个输出，
   50/50 解码校验 0 误差；旧伊拉克语料历史运行（18.7 s、27+9 个素材）保留在上方
   资产包表。本机浏览器下载受限时可用 `PLAYWRIGHT_CHANNEL=chrome` 复用已安装 Chrome。
+- 真实 Patchy 隔离切图资产包 E2E（`e2e/asset-pack-patchy.spec.ts`）2026-10-22
+  通过（37.1 s）：`Payment1_D` 40 个切图 + 10 个合并素材全部为隔离渲染，
+  0 合成回退、0 失败，透明度样本 31,532/398,682，ZIP 4.3 MB，源 SHA 不变；
+  证据与字段说明见 2.7。
 - 桥接 PoC `npm test`：12/12 通过（静态门禁已含协议 v2、`comparePreview`、
   `undo` 与 `groupLayers` / `mergeLayers`）。
+- AI 语义命名模型接入（2026-10-22）：新增 `apps/web/src/lib/aiNamingClient.ts`
+  （配置校验/持久化、端点规范化、OpenAI Chat Completions 请求、超时与可读错误），
+  `AiNamingDialog.vue` 新增「模型配置」和「调用模型生成」。`npm test` 198 项通过、
+  1 项按环境跳过；`npm run typecheck` 与 `npm run build`（166 模块）通过；
+  `e2e/ai-naming-flow.spec.ts` 2 条通过：离线导入审核、mock OpenAI 兼容端点直连。
+  E2E 断言 `Authorization`、`response_format` 与请求中的命名 schema，并确认模型结果
+  先进入审核、加入计划前不会写入计划。
+- AI 合并复核（2026-10-22）：`lib/aiNaming.ts` schema 升至 0.2.0，任务新增
+  `mergeCandidates`（规则候选仅含边界/成员类型统计，不含成员名），响应新增
+  `merges[{path, decision, name?, reason}]`；校验候选成员资格、组类型、可见带尺寸
+  成员数、当前联合边界与分析时一致、合并名同级冲突，并拒绝被合并组内/组下的命名
+  建议。`session.applyAiMergeReviews` 复用 `applyMergeCandidates` 经 `mergeLayers`
+  执行；AI 弹窗新增“合并复核”审核区、独立执行按钮与“撤销上一步”提示。`npm test`
+  213 项通过、1 项按环境跳过（`aiNaming.test.ts` 17 项，新增 6 项合并复核）；
+  `npm run typecheck` 与 `npm run build` 通过；`e2e/ai-naming-flow.spec.ts` 3 条
+  通过（新增：导入合并决策 → 人工勾选执行 → 图层树变为单层 → 撤销恢复组）。
+  该 E2E 使用演示引擎，只验证流程与桥接调用。
+- 真实 Patchy AI 合并复核（2026-10-22）：在 `e2e/patchy-group-merge.spec.ts` 新增
+  第二条用例，从导出的任务 JSON 读取候选路径 `5`（边界 14×12、2 个成员），导入
+  v0.2.0 `merges` 决策，人工执行后图层树变为 `badge-chip`，撤销恢复 `badge`，
+  再次执行并保存重开。合并前后与重开后的预览 RGBA SHA-256 完全一致
+  （`ca335594…`），源/存 PSD 8→6 节点、合成图 0 差异、逐层 5/5 一致（0 差异、
+  3 个未配对）；证据在 `artifacts/patchy-ai-merge/`（manifest 记录 fixture、
+  任务提示词、候选、保存 PSD 与对比 JSON 哈希）。完整真实引擎 spec 两条用例
+  1.1 min 通过。该证据使用合成 PSD 与真实 Patchy WASM，未对该产物执行 Photoshop
+  打开检查；真实语料的 AI 合并复核见下一条。
+- 真实语料 AI 合并复核（2026-10-22，Nordic mobile 4 份）：在
+  `e2e/patchy-real-corpus.spec.ts` 新增门控用例，从任务提示词 JSON 读取合并候选，
+  选择首个路径能在源 PSD 中解析为同名图层组的候选，导入 v0.2.0 决策并命名为
+  `ai-merge-<path>`；执行 → 撤销 → 再执行 → 保存重开。4 份均通过：撤销后节点数
+  与预览 RGBA 哈希完全恢复；保存 PSD 中合并层位于原组路径、无子层，组内全部名称
+  的出现次数按子树计数减少，源 SHA-256 不变，0 pageerror。
+
+| 文件 | 节点 | 候选（路径/组/边界/成员/子树） | AI 命名 | 合并像素差 | 保存重开差 | 逐层可用一致 |
+| --- | --- | --- | --- | --- | --- | --- |
+| `Payment1_D` | 63→57 | `10`/`Selected`/168×133/3/7 | `ai-merge-10` | 24（0.005%，Δ1） | **0（0.000%，Δ0）** | 41/41 |
+| `Payment2_D` | 69→63 | `10`/`Selected`/168×133/3/7 | `ai-merge-10` | 24（0.005%，Δ1） | **0（0.000%，Δ0）** | 46/46 |
+| `Detial_D_0708` | 71→69 | `3`/`Buy Now`/1118×155/2/3 | `ai-merge-3` | 3,366（0.704%，Δ1） | **0（0.000%，Δ0）** | 48/48 |
+| `Store_D` | 270→245 | `4`/`Nav`/1242×250/5/26 | `ai-merge-4` | 178（0.082%，Δ1） | **0（0.000%，Δ0）** | 99/99 |
+
+  撤销步骤在 4 份文件上均为 0 像素差，预览哈希恢复到合并前。保存重开在形状层
+  光栅预览写回后全部为 0 像素差（此前 3 份为 0.547%–1.301%，Δ236）。
+  ag-psd 独立逐层对比中所有可用图层均一致（41/41、46/46、48/48、99/99），
+  `Payment1_D`/`Payment2_D`/`Detial` 不再有 unavailable 图层；`Store_D` 仍有 87 个
+  图层因源文件本身没有像素数据（纯矢量形状）记为 unavailable，未配对
+  6/6/3/18 个。合成图差异依次为 1.793%、1.828%、1.483%、3.693%，混合了
+  Photoshop 合成与 Patchy 合成，不能单独归因。导入 40–96 s、整理 0.6–1.7 s、
+  AI 执行 3.8–10 s、撤销 2.9–5 s、保存重开 46–70 s、资产包 8–28 s；
+  WASM peak 约 180–426 MB。证据分别在
+  `artifacts/patchy-corpus/ai-merge-{payment1-d,payment2-d,detial-d-0708,store-d}/`
+  （prompt、response、预览 PNG、保存 PSD、对比 JSON、manifest、console log）。
+  4 份保存 PSD 的字节副本在 Photoshop 27.11 中逐份无警告打开，全部 CLEAN，打开
+  前后哈希不变（`artifacts/photoshop-checks/20261022/ai-merge-open-checks.log`，
+  驱动信息在同目录 `ai-merge-open-check-driver.json`）。该检查只证明文件可被
+  Photoshop 无警告打开，不构成视觉或像素一致性验收。
+- AI 合并后的资产包（2026-10-22 重跑）：保存并重开完成后，工作台自动重新分析重开后的
+  图层树（无需再次点击“一键整理”），整理面板直接显示合并后的候选并可导出资产包。
+  4 份真实语料均通过：切图 37/42/41/119 个、合并素材 9/9/5/9 个、逐层隔离渲染
+  46/51/46/128 个、合成回退 0、PNG 解码不一致 0；AI 合并层自身作为切图输出
+  （`ai-merge-10`/`-10`/`-3`/`-4`），1x PNG 尺寸等于保存层实际边界。ZIP 分别为
+  4,497,769 / 4,591,188 / 5,247,355 / 43,272,959 字节（约 4.3/4.4/5.0/41.3 MiB）。
+  `Detial` 的合并层实际边界 1242×321 大于分析候选
+  1118×155（图层效果外扩），`Store` 为 1242×248 对 1242×250（2 px 栅格取整），
+  与候选边界重叠率分别为 100% 与 99.2%；资产包按保存层实际边界裁切，而不是按
+  规则估算边界。证据：各 `ai-merge-*/asset-pack.zip` 及 manifest 的 `assetPack`
+  字段（ZIP 哈希、切图数、合并素材数、隔离渲染数、重叠率、合并层 1x 输出）。
+- 保存 PSD 独立对比（2026-10-22）：新增 `lib/psdCompare.ts` 与 9 项单测，覆盖字节
+  一致、重命名识别、合成图像素差/包围盒、容差、像素上限、隐藏层差异、编组后按名称
+  配对、图层尺寸变化；`iframeTransport.ts` 新增 `readSavedFile`，
+  `session.saveAndReopen` 生成报告并写入版本记录，`HistoryPanel.vue` 新增对比卡片
+  与 JSON 导出。`npm test` 207 项通过、1 项按环境跳过；`npm run typecheck` 与
+  `npm run build` 通过。真实 Patchy E2E 复跑通过（35.3 s）：保存 PSD 独立解析
+  8 → 7 节点、合成图 0/16,000 差异、逐层 5/5 一致（0/17,536 差异像素，3 个叶层
+  未配对），并在 `artifacts/patchy-roundtrip/` 保存对比 JSON 与 manifest 记录；
+  演示保存 E2E 断言不出现该卡片，避免模拟保存被误读为真实 PSD 证据。
 
 ### 2.8 本轮修复的缺陷
 
@@ -511,51 +696,56 @@ preview、视觉对比截图与 `visual-diff.json`）；大型 ZIP/PNG 不入库
 12. **资产包 PNG 校验误报尺寸不符**：`verifyPngAgainstPixels` 在读取宽高前调用
     `ImageBitmap.close()`，关闭后的位图宽高变为 0×0，导致所有资产被标记
     `mismatched`；改为先缓存宽高再关闭，PNG 解码校验恢复为零误差。
-13. **形状/切片图层保存后丢失栅格像素**：旧语料 `Payment1` 原样另存重开时，
-    `Rectangle …`、`Ellipse …`、`Shape …`、`-slice-` 共 22 个图层在保存 PSD 中
-    不再带图层像素数据，重开由矢量重新栅格化，造成 0.672% 预览像素差异（最大通道
-    差 236）；位图与文本图层逐像素一致。新盘 Nordic 语料中 3/4 文件为
+13. **形状/切片图层保存后丢失栅格像素（已修复，2026-10-22）**：旧语料 `Payment1`
+    原样另存重开时，`Rectangle …`、`Ellipse …`、`Shape …`、`-slice-` 共 22 个图层在
+    保存 PSD 中不再带图层像素数据，重开由矢量重新栅格化，造成 0.672% 预览像素差异
+    （最大通道差 236）；位图与文本图层逐像素一致。新盘 Nordic 语料中 3/4 文件为
     0.547%–0.844%（Δ236），`Store_D` 为 0，说明差异与文件中的形状/切片层相关。
-    当前只记录并量化，未修改引擎保存路径；需在 Photoshop 中确认矢量数据是否可
-    正常打开，或在 Patchy 保存时保留栅格像素。
+    根因是 Patchy 保存时对所有矢量形状层统一写“空像素通道、由矢量重建”的约定，
+    丢弃了 Photoshop 形状层自带的光栅预览。`save-fidelity.patch` 改为：导入自
+    Photoshop 且带可见预览的形状层写回 `psd_native_colors` 光栅通道，Patchy 自行
+    栅格化的形状仍保留空通道；另修正原生色彩模式保存时的记录边界。修复后
+    Payment1 原样另存 0/478,208 像素差，Nordic 4 份编辑后保存重开全部 0 像素差；
+    回归测试 `psd_photoshop_raster_shape_pixels_survive_save` 随 patch 提供。
 
 ## 3. 未完成项与风险
 
 | 优先级 | 项目 | 状态 |
 |---|---|---|
-| P0 | Photoshop 2026 无警告打开 | 未验证；本机未安装 Photoshop；M0 因此不通过 |
-| P0 | Windows wasm-release 最终产物 | 完成（2026-10-21 重建）；`patchy.js` 419,501 B、`patchy.wasm` 87,744,030 B、`patchy.data` 77,138,414 B，SHA-256 已记录 |
+| P0 | Photoshop 2026 无警告打开 | 完成（2026-10-22）；`m0-normalized.psd` 在 Photoshop 27.11 中以默认（可见）对话框打开无警告，`artifacts/m0/win-20261022-03/`；Nordic 原始 5/5、Patchy 保存输出 5/5、AI 合并产物 4/4 同样 CLEAN（`artifacts/photoshop-checks/20261022/open-checks.log`、`ai-merge-open-checks.log`）。驱动为旧版 action automation，原因见本节末尾「已知限制」 |
+| P0 | Windows wasm-release 最终产物 | 完成（2026-10-22 17:24 重建，含 `renderLayer` + 形状层保存保真）；`patchy.js` 428,209 B、`patchy.wasm` 87,799,621 B、`patchy.data` 77,138,414 B，SHA-256 已记录 |
 | P1 | Windows 官方构建 lane | 工具链、核心测试与 wasm-release E2E 完成；CI lane 脚本尚未在本机全量执行 |
-| P1 | 100+ 图层获批真实设计 PSD/PSB | 未提供（M1 输入） |
+| P1 | 100+ 图层获批真实设计 PSD/PSB | 已提供（2026-10-21）：Nordic mobile 4 份 PSD，只读；最大 `Store_D` 270 层 |
 | P1 | Vue3 Web 工作台 | 初版完成；真实 Patchy 引擎编组/合并/保存回归通过 |
 | P1 | 规则版一键整理（命名/结构/逻辑编组/合并候选/切图候选/资产清单） | 完成；命名、编组与合并可经可写引擎执行并另存重开；切图仍为候选 |
 | P2 | 逻辑编组与布局提示写入 Design IR / AI 编码上下文 | 完成；`logicalGroups`/`logicalGroupId`/`layout`，不修改 PSD |
 | P1 | 本地资产包（合成图裁切 + 解码校验 + IR/AI 上下文/ZIP） | 完成；Nordic `Payment1_D` 40 个切图 + 10 个合并素材、50/50 零误差（演示引擎） |
 | P1 | 保存前后结构对比（`layerforge.psd-diff`） | 完成；图层树结构，非像素/二进制 |
 | P1 | Patchy `selectLayer` 双向高亮 | 未实现 |
-| P1 | Web 工作台真实 Patchy E2E | 合成 PSD 通过（重建产物，28.9 s）；Nordic 4 份真实语料完成往返，UI 像素差与独立计算一致；`Store_D` 保存重开 0 像素差，其余 3 份 0.547%–0.844%，见形状层保真项 |
-| P1 | 形状/切片图层保存保真 | 已量化：保存按矢量约定写空像素通道并保留矢量块；Nordic 中 3/4 文件重开差异 0.547%–0.844%（Δ236），`Store_D` 为 0；待 Photoshop 验证显示与兼容性 |
+| P1 | Web 工作台真实 Patchy E2E | 合成 PSD 通过；Nordic 4 份真实语料完成往返，UI 像素差与独立计算一致，**4/4 保存重开 0 像素差**；6 条真实语料 E2E 全部通过（2026-10-22，14.3 min） |
+| P1 | 形状/切片图层保存保真 | **完成（2026-10-22）**：`save-fidelity.patch` 写回 Photoshop 形状层的可见光栅预览；Payment1 原样另存与 Nordic 4 份编辑后保存重开均 0 像素差（此前 3 份 0.547%–0.844%，Δ236）；无光栅预览的纯矢量层仍由 Patchy 重栅格化 |
 | P1 | FastAPI + SQLite 项目/版本/任务 API | 未开始 |
-| P1 | AI 语义命名、审核、批量执行 | 提示词导出、严格 JSON 导入、人工审核与加入计划完成；直接模型 API、视觉输入与批量执行未开始 |
+| P1 | AI 语义命名与合并复核、审核、批量执行 | 提示词导出、严格 JSON 导入、人工审核加入计划、OpenAI 兼容模型直连、合并复核人工执行完成；视觉输入、服务端代理与批量执行未开始 |
 | P1 | tab 崩溃恢复、大响应分块/流式传输 | 未实现 |
 | P1 | 大文件/内存测试、完整 SBOM | 部分完成：21–49 MB 的真实 PSD 已记录耗时与 WASM 内存（峰值 184–426 MB）；完整 SBOM 未生成 |
-| P2 | 逐图层隔离渲染切图、像素级回写对比 | 应用内保存前后预览像素对比已实现（`comparePreview`）；逐图层隔离渲染与 PSD 二进制对比未实现 |
+| P2 | 逐图层隔离渲染切图、像素级回写对比 | 逐层隔离切图完成（真实 Patchy E2E：`Payment1_D` 50/50 隔离、0 回退）；应用内保存前后预览像素对比完成（`comparePreview`）；保存 PSD 的原/存合成图与逐层像素对比完成；原生 2x 与 PSD 二进制对比未实现 |
 | P2 | 编组/合并桥接写回与一键操作 | 完成；协议 v2 单步撤销与保存前后像素对比在真实 Patchy 回归通过，演示引擎单测同步覆盖 |
 | P2 | Design IR 校验与发布格式（M5） | 仅草稿导出 |
 
-### 3.1 未完成工作清单（2026-10-21）
+### 3.1 未完成工作清单（2026-10-22）
 
 按执行顺序排列，完成一项勾选一项；不得用演示引擎、合成图裁切或图层树差异替代
 Patchy/Photoshop 证据。
 
 **P0：真实引擎闭环**
 
-- [x] **完成 wasm-release 收尾**：重建后最终链接成功，`patchy.js` 419,501 B、
-  `patchy.wasm` 87,744,030 B（两轮 wasm-opt 后）、`patchy.data`
-  77,138,414 B。SHA-256 记录在 `artifacts/patchy-release-sha256.txt`。
+- [x] **完成 wasm-release 收尾**：2026-10-22 17:24 重建后最终链接成功（含
+  `renderLayer` + 形状层保存保真），`patchy.js` 428,209 B、`patchy.wasm`
+  87,799,621 B、`patchy.data` 77,138,414 B。SHA-256 记录在
+  `artifacts/patchy-release-sha256.txt`。
 - [x] **真实验证编组/合并/撤销与像素对比**：重建产物 staged 后用
   `LAYERFORGE_REAL_PATCHY=1 PLAYWRIGHT_CHANNEL=chrome npx playwright test e2e/patchy-group-merge.spec.ts`
-  通过（28.9 s）。覆盖编组、撤销、再次编组、合并、撤销、再次合并、另存重开；
+  通过（35.3 s）。覆盖编组、撤销、再次编组、合并、撤销、再次合并、另存重开；
   4 张预览 PNG + 1 份 PSD 下载成功；before/grouped/merged/reopened RGBA 哈希
   一致；UI 保存前后像素差 0/16,000（0.000%）；PSD 中 `row-cluster` 含 4 个子层、
   `icon-button-merged` 无子层、原 `badge` 组不存在；源文件哈希不变；console 无
@@ -572,52 +762,67 @@ Patchy/Photoshop 证据。
   数字保留在 2.2.2，源语料当前不可复查。
 - [x] **新盘 Nordic mobile 真实语料**：`Payment1_D`、`Payment2_D`、
   `Detial_D_0708`、`Store_D` 四份 PSD（21–49 MB）全部完成导入、一键整理、
-  编组/合并与另存重开；源文件 SHA-256 运行前后一致；`Store_D` 保存重开
-  0 像素差，其余 3 份仅因已知形状/切片层差异（0.547%–0.844%，Δ236）触发
-  软断言失败。证据在
+  编组/合并与另存重开；源文件 SHA-256 运行前后一致；**保存保真修复后 4 份保存重开
+  均为 0 像素差**（此前 3 份 0.547%–0.844%，Δ236），6 条真实语料 E2E 全部通过。
+  证据在
   `artifacts/patchy-corpus/{payment1-nordic,payment2-nordic,detail-nordic,store-nordic}/manifest.json`，
   源哈希在 `artifacts/patchy-corpus/source-sha256-nordic-mobile.txt`。
 - [x] **Nordic 资产包**：`Payment1_D.psd` 经演示引擎生成 40 个切图（80 个输出）
   与 10 个合并素材（20 个输出），50/50 逐张 PNG 校验通过、最大通道差 0，
   证据在 `artifacts/asset-pack/Payment1_D/`。该结果不是 Patchy/Photoshop 证据；
   Patchy 路径经归一化后同样产生 40 个切图候选，与本地解析一致。
-- [ ] **Photoshop 2026 无警告打开**：本机不可用；需在具备 Photoshop 的 Windows
-  主机运行 `ci/photoshop-m0-check.ps1` 并通过完整 verifier 后才能更新 M0；之前
-  保持 `blocked` / `m1Allowed:false`。`Store_D` 保存重开 0 像素差提供了正向
-  对照，但 Payment1/Payment2/Detial 仍包含按矢量约定保存的形状/切片层，必须在
-  Photoshop 中确认能否无警告打开并正常显示。
+- [x] **Photoshop 2026 无警告打开**：2026-10-22 在 Windows 10 + Photoshop 27.11
+  上完成。浏览器真实引擎 E2E 产出 `artifacts/m0/win-20261022-03/m0-normalized.psd`
+  （协议 v2、8/8 协议边界检查、输出与 macOS 运行哈希一致），Photoshop 以默认
+  （可见）对话框打开该文件无任何警告；Nordic 原始 5/5、Patchy 保存输出 5/5、AI
+  合并产物 4/4 也全部 CLEAN，原始语料与保存产物哈希未变。证据：
+  `artifacts/photoshop-checks/20261022/open-checks.log` 与
+  `ai-merge-open-checks.log`。
+  固化检查器 `ci/photoshop-m0-check.ps1` 依赖的 ExtendScript 在本机损坏，改用
+  `ci/photoshop-m0-check-actions.ps1`，驱动身份写入证据目录
 
 **P1：距离最终目标的功能缺口**
 
-- [ ] **形状层矢量保存的 Photoshop 兼容性**：旧语料 `Payment1` 原样另存后，22 个
+- [x] **形状层矢量保存的 Photoshop 兼容性**：旧语料 `Payment1` 原样另存后，22 个
   `Rectangle`/`Ellipse`/`Shape`/`-slice-` 图层按 Patchy 文档化约定只写矢量块与
   空像素通道（`psd_layer_records.cpp:337`），矢量掩码与填充块经 psd-tools 确认
-  保留。新盘 Nordic 语料中 Payment1/Payment2/Detial 重开预览差
-  0.547%–0.844%（Δ236），`Store_D` 为 0，说明差异与文件内容相关而非保存路径
-  必然失败。需在 Photoshop 中确认这些层能无警告打开并正常显示；若 Photoshop 不
-  重建填充，再修改保存路径写入栅格预览。原样另存回归已在
-  `patchy-real-corpus.spec.ts` 的“保存保真”用例中，4 份语料的编辑后保存重开见
-  2.2.3。
-- [ ] **逐图层/逐组隔离渲染与切图**：协议 v2 仍只有整文档 `renderPreview`，当前
-  切图是合成图按边界裁切；需新增按图层渲染操作，才能生成真正的独立资产与原生 2x。
+  保留。2026-10-22 已用 `save-fidelity.patch` 改为：导入自 Photoshop 且带可见
+  光栅预览的形状层写回预览，Patchy 自己栅格化的形状保持空通道约定，原生色彩模式
+  保存也保持 Photoshop 约定。结果 Payment1 原样另存 0/478,208（Δ0），Nordic 4 份
+  编辑后保存重开均 0 像素差；Photoshop 27.11 已能无警告打开这些输出。回归在
+  `patchy-real-corpus.spec.ts` 的“保存保真”用例与 4 份语料往返用例中（2.2.3）。
+  无光栅预览的纯矢量层仍可能在重开时被 Patchy 重栅格化，不能承诺任意 PSD 通用。
+- [x] **逐图层/逐组隔离渲染与切图（1x）**：协议 v2 新增只读 `renderLayer`（临时文档
+  单独合成、按 `layer_render_bounds` 裁切、MEMFS 读回），资产包切片与合并素材优先
+  使用隔离渲染并在失败时回退合成。真实 Patchy 资产包 E2E
+  `e2e/asset-pack-patchy.spec.ts` 通过（37.1 s）：`Payment1_D` 40 个切图 + 10 个
+  合并素材全部隔离渲染，0 回退、0 失败，透明度样本 31,532/398,682，ZIP 4.3 MB，
+  源 SHA 不变，证据在 `artifacts/asset-pack-patchy/Payment1_D/`。原生 2x 仍未实现
+  （当前 2x 为最近邻放大）。
 - [ ] **合并策略与回滚**：clipping 边界与复杂组会被 Patchy 合并检查阻止，桥接固定
   `withinGroups:false`。需评估 `withinGroups`/`keepVectors`/单层栅格化选项，在 UI
   明确失败原因；单次撤销已提供，批量编组/合并的事务回滚仍缺失。
 - [ ] **像素级与二进制对比**：现有 `layerforge.psd-diff` 只比较图层树；需逐图层
   像素差异、保存 PSD 字节或独立解析结果对比，并保留独立解码校验。
-- [ ] **资产包转正**：当前 `validated:false`、切图为合成裁剪、`merged/` 不是 PSD
-  合并结果；逐层渲染落地后重新生成，并以 Photoshop/独立解析结果作为验证依据。
+- [ ] **资产包转正**：当前 `validated:false`。Patchy 路径已能 100% 隔离渲染
+  （`Payment1_D` 50/50、0 回退），但 2x 仍为最近邻放大，`merged/` 不是 PSD 合并
+  结果，也没有 Photoshop/独立解析的逐像素对照。需以 Photoshop/独立解析结果作为
+  验证依据后提升验证状态。
 - [ ] **桥接 v2**：新增 `selectLayer`（画布↔图层树高亮）、批量重命名、可见性操作、
   大响应流式/分块；保持前置条件与白名单约束。
-- [ ] **后端与 AI 执行**：FastAPI + SQLite 项目/版本/任务/审计未开始；AI 直接模型
-  API、视觉输入与批量执行未开始，AI 仍只产出计划、执行走白名单桥接。
+- [ ] **后端与 AI 执行**：AI 命名已支持浏览器直连 OpenAI 兼容模型（Key 默认不落盘，
+  可选 localStorage；接口需允许 CORS），但视觉输入、批量执行、FastAPI 代理与审计
+  未开始；AI 仍只产出计划、执行走白名单桥接。
 
 **P2：工程化与收尾**
 
-- [x] **全量回归**：本轮 `npm run typecheck`、`npm run build`、184 项单测（+1
-  环境跳过）、7 条演示 E2E、v2 真实 Patchy 合成 E2E（通过）、4 条 Nordic 真实
-  语料往返（3 条仅保存重开像素软断言失败，`Store_D` 通过）、保存保真对照与真实
-  资产包 E2E（`Payment1_D` 14.0 s 通过）均已运行。
+- [x] **全量回归（2026-10-22，E2E 计数更新）**：`npm run typecheck`、`npm run build`
+  与 218 项 Vitest（+1 项环境跳过，含 5 项页面骨架）通过；Playwright 共 19 条，默认运行 9 条演示
+  用例全部通过、10 条门控跳过；门控启用后 4 份 Nordic AI 合并复核均通过，并在
+  保存重开后自动重新分析、导出资产包（切图与隔离渲染计数见 2.7）。保存保真修复后
+  4 份 Nordic 编辑后保存与 Payment1 原样另存均为 0 像素差（此前 3 份 0.547%–0.844%，
+  Δ236）。结构与硬断言、编组/合并/撤销、保存前后像素对比、真实 Patchy 隔离切图
+  资产包均通过。
 - [ ] **大文件与内存**：已完成 5.1 MB / 66.5 MB 真实 PSD 的导入、保存耗时与 WASM
   内存采样（2.2.2）；仍缺低内存机器对照、完整 SBOM 与 87.7 MB wasm + 77.1 MB
   data 对首屏的影响评估。
@@ -627,20 +832,26 @@ Patchy/Photoshop 证据。
 - [x] **Git 提交**：按项目负责人要求提交并推送；`3f8dd62` 为重建后的首个提交，
   本轮 Patchy 归一化修复与真实语料证据随后继续推送到 `origin/main`。
 
-**当前硬阻塞**：Photoshop 2026 无警告打开（本机未安装 Photoshop）。真实引擎构建、
-合成 PSD 编组/合并/保存回归与 Nordic 真实语料往返已完成，但 3/4 文件仍有
-0.547%–0.844% 的形状层保存重开像素差异（`Store_D` 为 0），需在 Photoshop 中确认
-矢量层显示并决定修复方式。在 Photoshop 证据落地前，不得把 M0 标记为通过，也不得
-宣称保存 PSD 与源文件视觉一致。
+**当前状态**：M0 已通过（`artifacts/m0/status.json`：`passed`、`m1Allowed:true`）。
+真实引擎构建、合成与 Nordic 真实语料往返、Photoshop 无警告打开均已有证据。
+保存保真修复后 4/4 Nordic 文件保存重开 0 像素差，原样另存对照同样为 0。剩余风险：
+没有 Photoshop 光栅预览的纯矢量层仍可能在重开时被 Patchy 重栅格化；Photoshop
+无警告打开不等于逐像素/视觉验收。
+
+**已知限制**：本机 Photoshop 2026 的 ExtendScript 子系统不可用——`ScriptingSupport.8li`
+已加载且签名有效，但播放其事件返回「无法完成请求，因为一条命令不可用。」，
+因此 `Photoshop.Application` 从不进入 ROT（DCOM 10010），`DoJavaScript` 与
+`Photoshop.exe -r` 均无效。恢复固化检查器需要修复/重装 Photoshop；在此之前
+Photoshop 门禁使用 `ci/photoshop-m0-check-actions.ps1`。
 
 主要风险：
 
 - 没有 Photoshop 证据，不能承诺输出 PSD 在 Photoshop 中无警告；Patchy 自保存/重开
   不能替代该检查。
-- 真实语料已覆盖 4 份 Nordic mobile PSD（21–49 MB）；保存/重开在 3 份含形状/切片
-  层的文件中出现 0.547%–0.844% 差异（Δ236），`Store_D` 为 0，说明不能把该问题简单
-  归因于保存路径，也不能据此承诺通用保真度；含智能对象、蒙版、调整层组合的复杂
-  文件仍未纳入语料。
+- 真实语料已覆盖 4 份 Nordic mobile PSD（21–49 MB）；保存保真修复后 4/4 保存重开
+  0 像素差，原样另存对照也为 0。该结果依赖源文件中的 Photoshop 形状层光栅预览；
+  无预览的纯矢量层、以及更多含智能对象、蒙版、调整层组合的复杂文件仍未覆盖，
+  不能据此承诺通用保真度。
 - 桥接响应仍是整包 JSON；大图/大计划需要分块或改成文件句柄。
 - 真实 49.5 MB PSD 已在 Patchy 模式下跑完导入→保存重开（导入 73.3 s、保存 96.0 s、
   WASM 峰值 431 MB）；4 份 21–49 MB 语料的导入为 31.0–73.3 s、保存重开为
@@ -659,10 +870,12 @@ Patchy/Photoshop 证据。
   本地文件，需用户自行交给外部 AI 并逐条复核。Store_PC 单文件 134 个候选，提示词
   体量较大；过期候选、路径变化与同级冲突会被拒绝，但仍不能保证语义正确。该流程
   不调用外部 API，也不替代视觉模型或人工设计判断。
-- 资产包从扁平合成图裁切：重叠的其它图层会一起截入，隐藏/蒙版/混合模式按合成结果
-  呈现；2x 是最近邻放大而非原生渲染。`merged/` 是合并候选区域的同一套合成裁剪，
-  不是 PSD 合并，也不参与页面重建覆盖率。它适合快速交付与 AI 编码上下文，不能替代
-  Patchy/Photoshop 的逐图层隔离导出与最终视觉验收。
+- 资产包像素来源随引擎不同：Patchy 下优先生成逐层隔离渲染（透明背景，不含父组
+  不透明度/蒙版/剪贴基座与画布背景；失败项回退合成图裁切），演示引擎下只有合成图
+  裁切（重叠的其它图层会一起截入，隐藏/蒙版/混合模式按合成结果呈现）。两种路径的
+  2x 都是最近邻放大而非原生渲染；`merged/` 是候选区域的独立渲染或合成裁剪，不是
+  PSD 合并结果。它适合交付与 AI 编码上下文，不能替代 Patchy/Photoshop 的最终
+  视觉验收。
 - 应用内保存前后对比是引擎返回图层树的结构对比：ID 不稳定且结构同时增删时，路径
   回退可能把同位置的不同图层配成“重命名”。E2E 另补了预览 PNG 逐像素差与 ag-psd
   图层属性对比，但仍不验证蒙版渲染、嵌入资源或 PSD 二进制完整性，不能替代
@@ -677,34 +890,38 @@ Patchy/Photoshop 证据。
 
 - 第一优先级 `apps/web` 已完成初版（项目列表、导入、图层树、属性/重命名、计划、
   保存重开、历史、IR 草稿），并完成规则版一键整理（命名、结构检查、逻辑编组、
-  合并候选、切图候选、资产清单）与本地资产包（合成图裁切、合并素材裁剪、解码校验、
-  含逻辑编组的 AI 上下文、预览）；Patchy 画布双向选择仍待 `selectLayer` 扩展。
+  合并候选、切图候选、资产清单）与本地资产包（Patchy 逐层隔离渲染、失败回退合成、
+  合并素材裁剪、解码校验、含逻辑编组的 AI 上下文、预览）；Patchy 画布双向选择仍待
+  `selectLayer` 扩展。
 - 随后接入 FastAPI + SQLite 项目/版本/任务/审计 API。
 - Photoshop 无警告打开与 Windows 官方 lane 继续作为兼容性门禁保留，在具备环境的
   主机上补做；在完成前不得宣称 Photoshop 兼容。
-- M0 报告仍保持“门禁未全部通过”的结论；状态文件中的 `m1Allowed:false` 只代表
-  M0 门禁，不代表负责人禁止 UI 工作。
+- M0 门禁已于 2026-10-22 通过（`m1Allowed:true`）；UI 工作继续按负责人要求
+  优先推进，Photoshop 兼容性结论仍以门禁证据为准。
 
 ## 5. 下一阶段任务拆分
 
-1. **Web 工作台回归**：Windows wasm-release 协议 v2 已 staged，
+1. **Web 工作台回归**：Windows wasm-release 已 staged；
    `e2e/patchy-group-merge.spec.ts` 真实引擎编组/合并/撤销/另存重开与保存前后
    像素对比已通过；`e2e/patchy-real-corpus.spec.ts` 已完成 Nordic 4 份 PSD 的
-   往返，UI 像素差与独立计算一致，`Store_D` 保存重开 0 像素差，其余 3 份仅
-   保存重开保真软断言失败。Photoshop 无警告门禁仍未通过，不得提升 `m1Allowed`。
-   当前阻塞与验收项见 3.1。
-2. **桥接 v2 收尾**：`undo` 与 `comparePreview` 已在真实引擎验证；下一步补
-   `selectLayer` 画布 ↔ 图层树双向高亮、逐图层渲染、可见性操作与大响应分块。
-3. **逐图层渲染与二进制对比**：图层树结构对比（`layerforge.psd-diff`）与保存前后
-   预览 PNG 像素对比已交付；下一步用逐图层渲染生成隔离切图与原生 2x，并补 PSD
-   二进制/独立解析对比。
-4. **AI 语义命名**：提示词导出、JSON 导入、严格校验与审核加入计划已交付；下一步
-   通过 FastAPI 代理接入模型与视觉输入并支持批量执行，AI 仍只输出计划、执行走
-   白名单桥接。
+   往返，UI 像素差与独立计算一致，**4/4 保存重开 0 像素差**（形状层保存保真
+   修复后），6 条真实语料 E2E 全通过。Photoshop 无警告打开已于 2026-10-22 通过。
+   当前剩余验收项见 3.1（`selectLayer` 双向高亮、原生 2x、后端等）。
+2. **桥接 v2 收尾**：`undo`、`comparePreview` 与 `renderLayer` 已在真实引擎实现；
+   下一步补 `selectLayer` 画布 ↔ 图层树双向高亮、可见性操作与大响应分块。
+3. **逐图层渲染与二进制对比**：协议 v2 的 `renderLayer` 已用于资产包隔离切图，
+   图层树结构对比（`layerforge.psd-diff`）、保存前后预览 PNG 像素对比、保存 PSD
+   的 ag-psd 独立合成图/逐层像素对比均已交付；下一步补原生 2x 渲染与 PSD 二进制
+   逐记录对比。
+4. **AI 语义命名与合并复核**：提示词导出、OpenAI 兼容模型直连、JSON 导入、严格校验、
+   审核加入计划与经桥接执行合并已交付；下一步通过 FastAPI 代理统一鉴权/审计，接入
+   视觉输入并支持批量执行，AI 仍只输出建议、执行走白名单桥接。
 5. **后端**：FastAPI + SQLite 项目、revision、任务与审计；浏览器执行任务状态需区分
    `interrupted`，不能伪造完成。
-6. **Photoshop 门禁**：在交互式 Windows 主机运行
-   `ci/photoshop-m0-check.ps1`，通过完整 `verify:evidence` 后才更新 M0 结论。
+6. **Photoshop 门禁**：M0 已通过；后续每次重建产物或新增保存输出，都在交互式
+   Windows 主机用 `ci/photoshop-m0-check-actions.ps1` 重新检查（单实例、串行），
+   通过完整 `verify:evidence` 后才更新结论。原版 ExtendScript 检查器需先修复本机
+   Photoshop 的 `ScriptingSupport` 子系统。
 
 ## 6. 复现入口
 
@@ -718,6 +935,12 @@ PLAYWRIGHT_CHANNEL=chrome npm run test:e2e   # 可选：复用已安装 Chrome
 LAYERFORGE_PSD_DIR='B:\迅雷下载\北欧1019\mobile' LAYERFORGE_REAL_PSD='Payment1_D' \
   PLAYWRIGHT_CHANNEL=chrome npx playwright test e2e/asset-pack-real.spec.ts
 
+# 真实 Patchy 逐层隔离渲染资产包 E2E（证据到 artifacts/asset-pack-patchy）
+npm run stage:patchy -- ../../vendor/Patchy/build/wasm-release
+LAYERFORGE_REAL_PATCHY=1 LAYERFORGE_PSD_DIR='B:\迅雷下载\北欧1019\mobile' \
+LAYERFORGE_ASSET_PACK_PSD='Payment1_D' PLAYWRIGHT_CHANNEL=chrome \
+  npx playwright test e2e/asset-pack-patchy.spec.ts
+
 # 真实 Patchy 引擎编组/合并/撤销/像素对比 E2E（已 staged wasm-release）
 cd apps/web
 npm run stage:patchy -- ../../vendor/Patchy/build/wasm-release
@@ -728,6 +951,13 @@ LAYERFORGE_REAL_PATCHY=1 PLAYWRIGHT_CHANNEL=chrome \
 LAYERFORGE_REAL_PATCHY=1 LAYERFORGE_PSD_DIR='B:\迅雷下载\北欧1019\mobile' \
 LAYERFORGE_CORPUS_CASES='Payment1_D.psd|payment1-nordic,Payment2_D.psd|payment2-nordic,Detial_D_0708.psd|detail-nordic,Store_D.psd|store-nordic' \
   PLAYWRIGHT_CHANNEL=chrome npx playwright test e2e/patchy-real-corpus.spec.ts
+
+# 真实语料 AI 合并复核 + 保存重开后资产包（默认 Payment1_D.psd，可用
+# LAYERFORGE_AI_MERGE_PSD 覆盖为 Payment2_D.psd / Detial_D_0708.psd / Store_D.psd；
+# 证据到 artifacts/patchy-corpus/ai-merge-<file>，含 asset-pack.zip 与 manifest.assetPack）
+LAYERFORGE_REAL_PATCHY=1 LAYERFORGE_PSD_DIR='B:\迅雷下载\北欧1019\mobile' \
+LAYERFORGE_AI_MERGE_PSD='Payment1_D.psd' PLAYWRIGHT_CHANNEL=chrome \
+  npx playwright test e2e/patchy-real-corpus.spec.ts -g 'AI 合并复核'
 
 # 原样另存保真对照（不编辑；默认 Payment1_D.psd，可用 LAYERFORGE_PRESERVE_PSD 覆盖）
 LAYERFORGE_REAL_PATCHY=1 LAYERFORGE_PSD_DIR='B:\迅雷下载\北欧1019\mobile' \

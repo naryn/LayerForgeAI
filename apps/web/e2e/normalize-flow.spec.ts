@@ -73,6 +73,7 @@ test("导入 → 重命名 → 计划 → 应用 → 保存并重开 → 历史�
   const history = page.locator(".history");
   await expect(history).toContainText("重开已验证");
   await expect(history).toContainText("未生成真实 PSD");
+  await expect(page.getByTestId("psd-compare")).toHaveCount(0);
 });
 
 test("IR 草稿可导出为未验证的 JSON", async ({ page }) => {

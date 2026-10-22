@@ -4,8 +4,9 @@ import { readFile, stat, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { decodePngDigests } from "./lib/png-digest.mjs";
 
-// Browser-only evidence check. This proves the macOS WASM round trip and pixel
-// equality; it deliberately cannot and does not claim the Photoshop gate.
+// Browser evidence check. This proves the WASM round trip and pixel equality.
+// The Photoshop conclusion is read from the adjacent open-check evidence, never
+// assumed: without a CLEAN log and a passing evidence verification it stays false.
 const artifactDir = process.env.M0_ARTIFACT_DIR;
 if (!artifactDir) throw new Error("M0_ARTIFACT_DIR is required");
 const expectedPatchyCommit = "d1ff95235e00af296868d4253e03391ca002ee9d";
@@ -30,7 +31,7 @@ for (const name of requiredFiles) {
 
 const manifest = JSON.parse(await readFile(path.join(artifactDir, "manifest.json"), "utf8"));
 if (manifest.patchyCommit !== expectedPatchyCommit) fail("Patchy commit is not the pinned M0 commit");
-if (manifest.result?.protocolVersion !== 1) fail("bridge protocol version is not 1");
+if (manifest.result?.protocolVersion !== 2) fail("bridge protocol version is not 2");
 if (manifest.crossOriginIsolated !== true) fail("crossOriginIsolated was not true");
 if (!manifest.result?.renamed || manifest.result.renamed === manifest.result.originalName) {
   fail("renamed layer evidence is absent");
@@ -84,9 +85,48 @@ for (const key of ["before", "after"]) {
 const consoleLog = await readFile(path.join(artifactDir, "browser-console.log"), "utf8");
 if (/^\[(?:error|pageerror)\]/m.test(consoleLog)) fail("browser console contains an error");
 
+const readOptional = async (name) => {
+  try {
+    return (await readFile(path.join(artifactDir, name), "utf8")).replace(/^\uFEFF/, "");
+  } catch {
+    return null;
+  }
+};
+const isWindowsPath = (value) => /^[A-Za-z]:[\\/]/.test(value ?? "");
+const scope = isWindowsPath(manifest.source.path) || isWindowsPath(artifactDir)
+  ? "windows-wasm-browser"
+  : "macos-wasm-browser";
+
+const photoshop = { verified: false, note: "Photoshop open check log is absent." };
+const openLog = await readOptional("photoshop-open-check.log");
+if (openLog !== null) {
+  const lines = openLog.replace(/^\uFEFF/, "").split(/\r?\n/).filter(Boolean);
+  const cleanLines = lines.filter((line) => line.startsWith("CLEAN "));
+  const driverText = await readOptional("photoshop-open-check-driver.json");
+  const evidenceText = await readOptional("evidence-verification.json");
+  if (lines.length !== 1 || cleanLines.length !== 1) {
+    photoshop.note = "Photoshop open check log is not exactly one CLEAN result.";
+  } else if (driverText === null || evidenceText === null) {
+    photoshop.note = "Photoshop driver record or evidence verification is missing.";
+  } else {
+    const driver = JSON.parse(driverText);
+    const evidence = JSON.parse(evidenceText);
+    if (driver.verdict !== cleanLines[0]) {
+      photoshop.note = "Photoshop driver verdict does not match the open check log.";
+    } else if (evidence.ok !== true || evidence.photoshop !== cleanLines[0]) {
+      photoshop.note = "Evidence verification did not pass the Photoshop open check.";
+    } else if (path.resolve(cleanLines[0].slice("CLEAN ".length).trim()) !== path.resolve(expected.psd)) {
+      photoshop.note = "Photoshop reported CLEAN for a different file than the normalized PSD.";
+    } else {
+      photoshop.verified = true;
+      photoshop.note = "Photoshop opened the normalized PSD without warnings.";
+    }
+  }
+}
+
 const verification = {
   ok: true,
-  scope: "macos-wasm-browser",
+  scope,
   verifiedAt: new Date().toISOString(),
   patchyCommit: manifest.patchyCommit,
   protocolVersion: manifest.result.protocolVersion,
@@ -95,9 +135,9 @@ const verification = {
   outputPsdSha256: manifest.output.psd.sha256,
   rgbaSha256: recomputed.before.rgbaSha256,
   dimensions: { width: recomputed.before.width, height: recomputed.before.height },
-  photoshopVerified: false,
-  m0Accepted: false,
-  note: "Photoshop warning-free open remains unverified; M0 is not passed.",
+  photoshopVerified: photoshop.verified,
+  m0Accepted: photoshop.verified,
+  note: photoshop.note,
 };
 await writeFile(
   path.join(artifactDir, "browser-evidence-verification.json"),

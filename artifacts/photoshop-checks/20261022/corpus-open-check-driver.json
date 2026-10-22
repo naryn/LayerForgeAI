@@ -1,0 +1,66 @@
+{
+  "driver": "legacy-action-automation",
+  "class": "Photoshop.Application.200.1",
+  "photoshopVersion": "27.11 (20260929.r.26 8c16e56)",
+  "checkedAt": "2026-10-22T18:51:00+08:00",
+  "dialogs": "default (visible)",
+  "pinnedCheckerAvailable": false,
+  "pinnedCheckerReason": "ScriptingSupport commands unavailable; Photoshop.Application never registers in the ROT",
+  "log": "artifacts/photoshop-checks/20261022/open-checks.log",
+  "build": {
+    "wasmRelease": "2026-10-22 17:24 Asia/Shanghai",
+    "patchyJsSha256": "005611923f72a843af8f78dbf3bc754258d5506554905850b707a23720fa783c",
+    "patchyWasmSha256": "b0b67979540230f0c7099cc2ca3e620b6bb42cb32445d64909c5382d8a9480bb"
+  },
+  "serialized": true,
+  "freshPhotoshopInstance": true,
+  "sourceOriginalsOpened": false,
+  "caveat": "Warning-free open only. This is not a Photoshop pixel/visual equivalence check.",
+  "inputs": [
+    {
+      "fileName": "Payment1_D.psd",
+      "artifact": "artifacts/patchy-corpus/payment1-nordic/saved.psd",
+      "tempCopy": "C:\\Users\\naryn\\AppData\\Local\\Temp\\layerforge-ps-open-20261022b\\Payment1_D.psd",
+      "size": 22092920,
+      "sha256": "00267158F345D5725DEF16DC0069EDFFB65952317F90C10B015F15C11F031E38",
+      "unchangedAfterOpen": true,
+      "verdict": "CLEAN"
+    },
+    {
+      "fileName": "Payment2_D.psd",
+      "artifact": "artifacts/patchy-corpus/payment2-nordic/saved.psd",
+      "tempCopy": "C:\\Users\\naryn\\AppData\\Local\\Temp\\layerforge-ps-open-20261022b\\Payment2_D.psd",
+      "size": 22148572,
+      "sha256": "4E8BB79B01DFD7AA02FC22FBEC2D13AD2853C5C4AE57CD417771C5B10E6B08A1",
+      "unchangedAfterOpen": true,
+      "verdict": "CLEAN"
+    },
+    {
+      "fileName": "Detial_D_0708.psd",
+      "artifact": "artifacts/patchy-corpus/detail-nordic/saved.psd",
+      "tempCopy": "C:\\Users\\naryn\\AppData\\Local\\Temp\\layerforge-ps-open-20261022b\\Detial_D_0708.psd",
+      "size": 29120324,
+      "sha256": "B3A0B44D32EA7E17B2CD801A269ACED2338593458D008040BE5D33B672E81AE7",
+      "unchangedAfterOpen": true,
+      "verdict": "CLEAN"
+    },
+    {
+      "fileName": "Store_D.psd",
+      "artifact": "artifacts/patchy-corpus/store-nordic/saved.psd",
+      "tempCopy": "C:\\Users\\naryn\\AppData\\Local\\Temp\\layerforge-ps-open-20261022b\\Store_D.psd",
+      "size": 50577162,
+      "sha256": "7AE312D76B051B993BB63DE394141C8A8267B352FAC09EADD6DDF78415747379",
+      "unchangedAfterOpen": true,
+      "verdict": "CLEAN"
+    },
+    {
+      "fileName": "Payment1_D-noop.psd",
+      "artifact": "artifacts/patchy-corpus/save-fidelity-noop/saved.psd",
+      "tempCopy": "C:\\Users\\naryn\\AppData\\Local\\Temp\\layerforge-ps-open-20261022b\\Payment1_D-noop.psd",
+      "size": 21632272,
+      "sha256": "C0B181234601380A33CD81CF053E64F7F3A94EC56E01906837E407DAA127460C",
+      "unchangedAfterOpen": true,
+      "verdict": "CLEAN"
+    }
+  ]
+}

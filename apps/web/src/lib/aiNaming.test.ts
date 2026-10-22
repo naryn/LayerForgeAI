@@ -10,6 +10,7 @@ import {
   collectAiNamingCandidates,
   parseAiNamingResponse,
   parseAiNamingResponseText,
+  toAiMergeCandidates,
   type AiNamingCandidate,
 } from "./aiNaming";
 import { normalizeLocalLayers } from "./layers";
@@ -78,6 +79,7 @@ const layers = normalizeLocalLayers([
 
 const report = analyzeLayers({ layers, width: 400, height: 300, now: NOW });
 const candidates = collectAiNamingCandidates({ layers, report });
+const mergeCandidates = toAiMergeCandidates(report.mergeCandidates, layers);
 
 function project(): ProjectRecord {
   return {
@@ -192,6 +194,17 @@ describe("buildAiNamingTask / buildAiNamingPrompt", () => {
       },
     });
     expect(task.outline).toContain('1 [group] "Group 12" (2 子层)');
+    expect(task.mergeCandidates).toHaveLength(1);
+    expect(task.mergeCandidates[0]).toMatchObject({
+      path: "4",
+      kind: "component",
+      suggestedName: "component-merged",
+      memberCount: 2,
+      textDescendantCount: 2,
+      nestedGroupCount: 0,
+      memberKinds: [{ kind: "text", count: 2 }],
+      bounds: { x: 300, y: 20, width: 80, height: 70 },
+    });
     const prompt = buildAiNamingPrompt(task);
     expect(prompt).toContain(AI_NAMING_REQUEST_SCHEMA);
     expect(prompt).toContain(AI_NAMING_RESPONSE_SCHEMA);
@@ -200,6 +213,161 @@ describe("buildAiNamingTask / buildAiNamingPrompt", () => {
     expect(prompt).toContain('"path": "1"');
     expect(prompt).toContain("Rectangle 5");
     expect(prompt).toContain("候选数：6");
+    expect(prompt).toContain("合并复核规则");
+    expect(prompt).toContain("mergeCandidates");
+    expect(prompt).toContain('"path": "4"');
+    expect(prompt).toContain('"decision": "merge"');
+  });
+});
+
+describe("AI 合并复核", () => {
+  const base = { candidates, mergeCandidates, layers };
+
+  it("接受合法合并与保留决定，并保留规则建议名", () => {
+    const result = parseAiNamingResponse(
+      response([], {
+        merges: [
+          {
+            path: "4",
+            decision: "merge",
+            name: "Promo Badge",
+            reason: "两个文本属于同一紧凑组件",
+          },
+          {
+            path: "4",
+            decision: "keep",
+            reason: "重复条目应被拒绝",
+          },
+        ],
+      }),
+      base,
+    );
+    expect(result.mergeReviews).toEqual([
+      {
+        path: "4",
+        layerId: "local-8",
+        decision: "merge",
+        suggestedName: "component-merged",
+        name: "promo-badge",
+        reason: "两个文本属于同一紧凑组件",
+      },
+    ]);
+    expect(result.rejectedMerges).toEqual([
+      expect.objectContaining({ path: "4", reason: "同一路径重复出现" }),
+    ]);
+    expect(result.accepted).toEqual([]);
+  });
+
+  it("接受保留决定且不要求名称", () => {
+    const result = parseAiNamingResponse(
+      response([], {
+        merges: [{ path: "4", decision: "keep", reason: "独立文本，不应合并" }],
+      }),
+      base,
+    );
+    expect(result.mergeReviews).toEqual([
+      {
+        path: "4",
+        layerId: "local-8",
+        decision: "keep",
+        suggestedName: "component-merged",
+        reason: "独立文本，不应合并",
+      },
+    ]);
+    expect(result.rejectedMerges).toEqual([]);
+  });
+
+  it("拒绝未知路径、非法决定、通用名与同级重名", () => {
+    const result = parseAiNamingResponse(
+      response([], {
+        merges: [
+          { path: "9/9", decision: "merge", name: "ghost", reason: "不存在" },
+          { path: "4", decision: "maybe", reason: "非法决定" },
+          { path: "4", decision: "merge", name: "Layer 2", reason: "通用名" },
+          { path: "4", decision: "merge", name: "hero", reason: "撞上兄弟" },
+        ],
+      }),
+      base,
+    );
+    expect(result.mergeReviews).toEqual([]);
+    expect(result.rejectedMerges).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({ path: "9/9", reason: "路径不在本次合并候选列表" }),
+        expect.objectContaining({ path: "4", reason: "decision 必须是 merge 或 keep" }),
+        expect.objectContaining({ path: "4", reason: "仍是通用名称" }),
+        expect.objectContaining({ path: "4", reason: "与同级图层名称冲突" }),
+      ]),
+    );
+  });
+
+  it("拒绝边界已变化的候选，防止对过期结构执行合并", () => {
+    const stale = mergeCandidates.map((candidate) =>
+      candidate.path === "4"
+        ? { ...candidate, bounds: { ...candidate.bounds, width: 81 } }
+        : candidate,
+    );
+    const result = parseAiNamingResponse(
+      response([], {
+        merges: [{ path: "4", decision: "merge", name: "promo-badge", reason: "过期" }],
+      }),
+      { ...base, mergeCandidates: stale },
+    );
+    expect(result.mergeReviews).toEqual([]);
+    expect(result.rejectedMerges).toEqual([
+      expect.objectContaining({ path: "4", reason: "图层结构或边界已变化，请重新分析" }),
+    ]);
+  });
+
+  it("合并后拒绝其内部命名，并与同级命名建议互相查重", () => {
+    const result = parseAiNamingResponse(
+      response(
+        [
+          { path: "4/0", newName: "promo-badge-title", reason: "将被合并移除" },
+          { path: "2", newName: "badge-shell", reason: "与合并结果撞名" },
+        ],
+        {
+          merges: [
+            { path: "4", decision: "merge", name: "badge-shell", reason: "同一组件" },
+          ],
+        },
+      ),
+      base,
+    );
+    expect(result.mergeReviews).toEqual([]);
+    expect(result.rejectedMerges).toEqual([
+      expect.objectContaining({ path: "4", reason: "与同级图层名称冲突" }),
+    ]);
+    expect(result.accepted.map((rename) => rename.path)).toEqual(
+      expect.arrayContaining(["2", "4/0"]),
+    );
+
+    const merged = parseAiNamingResponse(
+      response(
+        [{ path: "4/0", newName: "promo-badge-title", reason: "将被合并移除" }],
+        {
+          merges: [
+            { path: "4", decision: "merge", name: "promo-badge", reason: "同一组件" },
+          ],
+        },
+      ),
+      base,
+    );
+    expect(merged.accepted).toEqual([]);
+    expect(merged.rejected).toEqual([
+      expect.objectContaining({ path: "4/0", reason: "该图层将由合并复核替换，命名不再适用" }),
+    ]);
+  });
+
+  it("兼容 0.1.0 旧响应且不产生合并复核", () => {
+    const result = parseAiNamingResponse(
+      response([{ path: "1", newName: "feature-card", reason: "旧版" }], {
+        schemaVersion: "0.1.0",
+      }),
+      base,
+    );
+    expect(result.accepted).toHaveLength(1);
+    expect(result.mergeReviews).toEqual([]);
+    expect(result.rejectedMerges).toEqual([]);
   });
 });
 

@@ -8,33 +8,33 @@
     "unchanged": true
   },
   "timingMs": {
-    "import": 73294,
-    "cleanup": 1011,
-    "group": 3646,
-    "merge": 5126,
-    "saveAndReopen": 95982
+    "import": 52756,
+    "cleanup": 1140,
+    "group": 2935,
+    "merge": 5411,
+    "saveAndReopen": 72766
   },
   "memory": {
     "afterLoad": {
-      "usedBytes": 391118848,
-      "peakUsedBytes": 391118848,
-      "heapBytes": 463994880,
+      "usedBytes": 356515840,
+      "peakUsedBytes": 373293056,
+      "heapBytes": 536870912,
       "historyBytes": 0,
-      "limitBytes": 4293918720
+      "limitBytes": 4294967296
     },
     "afterEdits": {
-      "usedBytes": 411041792,
-      "peakUsedBytes": 430964736,
-      "heapBytes": 668205056,
+      "usedBytes": 426770432,
+      "peakUsedBytes": 426770432,
+      "heapBytes": 644284416,
       "historyBytes": 0,
-      "limitBytes": 4293918720
+      "limitBytes": 4294967296
     },
     "afterSave": {
-      "usedBytes": 337641472,
-      "peakUsedBytes": 430964736,
-      "heapBytes": 801898496,
+      "usedBytes": 326107136,
+      "peakUsedBytes": 426770432,
+      "heapBytes": 755630080,
       "historyBytes": 0,
-      "limitBytes": 4293918720
+      "limitBytes": 4294967296
     }
   },
   "cleanup": {
@@ -127,7 +127,13 @@
     "已合并：badge-merged",
     "已编组：badge"
   ],
-  "warnings": [],
+  "warnings": [
+    {
+      "level": "dot dot--warn",
+      "message": "原 PSD 与保存 PSD 独立对比完成",
+      "detail": "270 → 269 图层；结构新增 0、移除 1、命名 1、几何 100；合成像素差异 274677/7437096（3.693%），最大通道差 239；ag-psd 独立解析，不是 Photoshop 验证。"
+    }
+  ],
   "problems": [],
   "photoshopVerified": false,
   "m0Accepted": false,

@@ -38,6 +38,8 @@ const merging = ref(false);
 const aiDialogOpen = ref(false);
 const selectedPaths = ref<Set<string>>(new Set());
 const aiCandidates = computed(() => session.aiNamingCandidates);
+const aiMergeCandidates = computed(() => session.aiMergeCandidates);
+const aiWorkCount = computed(() => aiCandidates.value.length + aiMergeCandidates.value.length);
 
 const plannedPaths = computed(() => new Set(session.plan.map((entry) => entry.path)));
 const availableRenames = computed(
@@ -200,7 +202,7 @@ function onAiApplied(): void {
           按边界与层级结构推断组件角色（按钮、输入框、角标、图标按钮等）生成命名建议，不读取
           图层名或 T 文案；同时检测结构问题，并按空间关系给出编组、合并与切图候选。命名可直接
           进入计划，结构无法判断的通用名可导出为 AI 命名任务并在审核后加入；逻辑编组连同布局
-          提示写入 Design IR 供 AI 拆分组件，切图可导出为真实 PNG 资产包（合成图裁切，非逐图层渲染）。
+          提示写入 Design IR 供 AI 拆分组件，切图可导出为真实 PNG 资产包（Patchy 模式下逐层隔离渲染，失败项回退合成图裁切）。
         </p>
       </div>
 
@@ -350,14 +352,16 @@ function onAiApplied(): void {
 
         <section class="section">
           <header class="section__header">
-            <h4>AI 语义命名</h4>
-            <span class="section__meta">{{ aiCandidates.length }} 个候选</span>
+            <h4>AI 语义命名与合并复核</h4>
+            <span class="section__meta">
+              {{ aiCandidates.length }} 命名 · {{ aiMergeCandidates.length }} 合并
+            </span>
           </header>
-          <div v-if="aiCandidates.length > 0" class="callout">
+          <div v-if="aiWorkCount > 0" class="callout">
             <AppIcon class="callout__icon" name="info" :size="14" />
             <div>
-              结构规则无法判断的通用名图层可导出为 AI 命名任务。提示词包含图层路径、名称、尺寸
-              与文本，不含像素；导入 JSON 后需人工审核才会进入计划。
+              结构规则无法判断的通用名与规则合并候选会进入 AI 任务。提示词包含图层路径、名称、尺寸、
+              结构统计与文本，不含像素；命名需人工审核后进入计划，合并需勾选后单独执行。
             </div>
           </div>
           <button
@@ -367,10 +371,10 @@ function onAiApplied(): void {
             @click="aiDialogOpen = true"
           >
             <AppIcon name="sparkles" :size="13" />
-            AI 语义命名{{ aiCandidates.length > 0 ? `（${aiCandidates.length}）` : "" }}
+            AI 语义命名与合并复核{{ aiWorkCount > 0 ? `（${aiWorkCount}）` : "" }}
           </button>
-          <p v-if="aiCandidates.length === 0" class="section__hint">
-            没有待 AI 命名的通用图层。
+          <p v-if="aiWorkCount === 0" class="section__hint">
+            没有待 AI 命名的通用图层或待复核的合并候选。
           </p>
         </section>
 
@@ -465,7 +469,7 @@ function onAiApplied(): void {
           </header>
           <div v-if="report.mergeCandidates.length > 0" class="callout callout--warn">
             <AppIcon class="callout__icon" name="info" :size="14" />
-            <div>这些紧凑组的结构角色为角标、按钮、输入框或图标按钮等组件，适合合并为单层素材。合并会把组内图层栅格化为一个图层并写入当前引擎内存；导出资产包时仍会为每组生成 <code>merged/</code> 合成裁剪图。</div>
+            <div>这些紧凑组的结构角色为角标、按钮、输入框或图标按钮等组件，适合合并为单层素材。合并会把组内图层栅格化为一个图层并写入当前引擎内存；导出资产包时仍会为每组生成 <code>merged/</code> 独立渲染（或合成裁剪）图。</div>
           </div>
           <ul v-if="visibleMerges.length > 0" class="group-list">
             <li v-for="merge in visibleMerges" :key="merge.id" class="group-card cleanup-merge">
@@ -520,9 +524,16 @@ function onAiApplied(): void {
 
         <div class="footnote">
           <AppIcon name="info" :size="13" />
-          资产包从 PSD 扁平合成图裁切，含 1x/@2x PNG、页面对比、IR 与 AI 编码上下文；
-          不是逐图层隔离渲染，也不构成 Patchy 或 Photoshop 证据。编组与合并会先写入当前引擎内存，
-          必须另存为新 PSD 并重开后才算持久化。
+          <template v-if="session.mode === 'patchy'">
+            资产包在 Patchy 引擎中逐层隔离渲染，含 1x/@2x PNG、页面骨架、页面对比、IR 与 AI 编码上下文；
+            失败项回退为合成图裁切，不代表 Photoshop 验证。编组与合并会先写入当前引擎内存，
+            必须另存为新 PSD 并重开后才算持久化。
+          </template>
+          <template v-else>
+            资产包从 PSD 扁平合成图裁切，含 1x/@2x PNG、页面骨架、页面对比、IR 与 AI 编码上下文；
+            当前引擎没有逐层隔离渲染，也不构成 Patchy 或 Photoshop 证据。编组与合并会先写入当前引擎内存，
+            必须另存为新 PSD 并重开后才算持久化。
+          </template>
         </div>
       </template>
     </div>

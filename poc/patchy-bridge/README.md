@@ -11,7 +11,12 @@ This directory is a deliberately small bridge experiment, not an application.
   Qt `QTimer` and invokes only APIs verified at the pinned Patchy commit. It
   compiles and links into the real `wasm-release` UI target on macOS.
 - `patchy/integration.patch` contains the exact CMake/MainWindow wiring against
-  the pinned commit. `PROTOCOL.md` defines protocol v1, preconditions and errors.
+  the pinned commit. `patchy/save-fidelity.patch` keeps an imported Photoshop
+  shape-layer raster preview on save (RGB output) and pins that behavior with a
+  core regression test; native color-mode saves keep the empty-channel shape
+  convention. `PROTOCOL.md` defines protocol v2, preconditions and errors.
+  v2 adds single-step `undo`, before/after `comparePreview`, and read-only
+  `renderLayer` isolated layer/group renders.
 
 Run the browser-side unit tests:
 
@@ -65,8 +70,10 @@ The macOS evidence uses a 29-layer real PSD from Patchy's upstream
 synthetic stress sample. Neither substitutes for the 100+ layer approved
 design sample required by M1. `verify:browser-evidence` checks the saved 8BPS
 header, hashes, reopened screenshot, console, and independently decoded RGBA
-equality, then writes `browser-evidence-verification.json` with
-`photoshopVerified: false` and `m0Accepted: false`.
+equality, then writes `browser-evidence-verification.json`. Its Photoshop
+conclusion is derived from adjacent evidence: exactly one `CLEAN` open-check
+line plus a passing `evidence-verification.json` yields `photoshopVerified: true`;
+otherwise it stays false.
 
 The integration adapter is already applied to this workspace's vendor checkout.
 For a fresh checkout, add the two C++ files to Patchy's WASM target and construct
@@ -77,6 +84,8 @@ cp poc/patchy-bridge/patchy/web_bridge_wasm.* vendor/Patchy/src/ui/
 cd vendor/Patchy
 git apply --check ../../poc/patchy-bridge/patchy/integration.patch
 git apply ../../poc/patchy-bridge/patchy/integration.patch
+git apply --check ../../poc/patchy-bridge/patchy/save-fidelity.patch
+git apply ../../poc/patchy-bridge/patchy/save-fidelity.patch
 ```
 
 Do not treat a successful patch application as a build or E2E pass.

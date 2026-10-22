@@ -6,6 +6,7 @@
 
 - `design-ir.json`：机器可读图层树、边界、语义名、文本内容/样式、命名计划、含布局提示的逻辑编组、切图节点 `assetId` 与全局绘制序 `paintOrder`。
 - `manifest.json`：资产、输出文件、哈希与对比统计。
+- `page.html`：可直接打开的页面骨架；按画布百分比绝对定位切图，`data-component-*`/`data-layout-*` 标记逻辑编组与布局提示，`data-*` 属性保留语义名、图层路径、文本与样式，适合 AI 在此基础上改写成组件化页面。
 - `preview.html`：原始合成图与资产重建的并排预览。
 - `assets/`：PNG 切图（1x 与 @2x）。
 - `merged/`：合并候选区域的单张合成裁剪 PNG（1x 与 @2x），可直接作为前端素材，不代表 PSD 已合并。
@@ -17,6 +18,7 @@
 - 画布：1242×2718
 - 引擎：demo（本地资产包不代表引擎能力）
 - 资产数量：40
+- 像素来源：逐层隔离渲染 0 个切图 / 0 个合并素材，合成图裁切 40 个切图 / 10 个合并素材
 - 切图覆盖率：22.7%（按面积）
 
 ## 图层结构
@@ -182,12 +184,12 @@
 
 ## 使用建议
 
-1. 以 `design-ir.json` 的边界和层级搭建布局，以 `assets/` 的 PNG 作为图像资源；`paintOrder` 越大越靠上，可映射为 CSS z-index。
+1. 可直接打开 `page.html` 检查静态还原；它按画布百分比绝对定位，每个 `<img>` 带图层路径、语义名、边界与文本样式。以它作为页面转换起点，再参考 `design-ir.json` 的层级改写为组件；`paintOrder` 越大越靠上，可映射为 CSS z-index。
 2. 切图节点的 `assetId` 对应 `manifest.json` 的资产 id 与 `assets/` 文件，可据此把该节点渲染为 `<img>`，不必按名称猜测。
-3. `design-ir.json` 的 `logicalGroups` 与节点 `logicalGroupId` 是规则版逻辑分组；每组 `layout` 给出 row/column/stack、间距与对齐，可作为 flex 布局线索，但它是边界推断，不改变 PSD 层级。
+3. `design-ir.json` 的 `logicalGroups` 与节点 `logicalGroupId` 是规则版逻辑分组；每组 `layout` 给出 row/column/stack、间距与对齐，可作为 flex 布局线索，但它是边界推断，不改变 PSD 层级。`page.html` 中对应 `<section class="lf-component">`（`display:contents`）与 `data-layout-*` 属性。
 4. 文本层优先使用真实文本与上表的字体/字号/颜色/对齐，不要把文字烘焙进图片。
 5. 边界使用 PSD 像素坐标；网页实现时按设计宽度等比换算。
 6. 重叠切图在小尺寸资产中会覆盖大尺寸资产；页面重建预览已按此规则生成。
 7. 图层树中的剪贴/蒙版/效果/混合标记来自 PSD 元数据；切图是合成裁剪，效果已反映在像素中，但不等于隔离渲染。
 8. 合并候选用于指导 PSD 清理与前端组件拆分；`merged/` 是合成图裁切，可直接引用，但不代表 PSD 已合并；应用内可通过桥接执行合并，需另存并重开。
-9. 需要逐图层隔离图或原生 2x 时，必须接入 Patchy 逐图层渲染（协议 v2）。
+9. @2x 输出由 1x 最近邻放大，不是原生 2x 渲染；需要原生 2x 时应重新渲染而不是缩放。

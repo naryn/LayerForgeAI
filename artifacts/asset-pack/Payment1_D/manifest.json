@@ -1,14 +1,16 @@
 {
   "schema": "layerforge.asset-pack",
-  "schemaVersion": "0.3.0",
-  "generatedAt": "2026-10-21T06:32:01.394Z",
+  "schemaVersion": "0.4.0",
+  "generatedAt": "2026-10-22T06:22:34.955Z",
   "status": {
     "validated": false,
     "pixels": "generated-local-composite-crops",
+    "isolatedLayerRenders": 0,
+    "compositeCrops": 50,
     "note": "PNG assets were cropped from the PSD composite locally. Not a Patchy/Photoshop-verified release."
   },
   "project": {
-    "id": "prj_76e6ecdc-529e-4e2a-bf5a-f4192b29783e",
+    "id": "prj_9f59d91b-7c1e-45ea-b3aa-af1563f9b89d",
     "name": "real-Payment1_D"
   },
   "source": {
@@ -438,7 +440,8 @@
       ],
       "verification": {
         "checked": true,
-        "mismatched": false
+        "mismatched": false,
+        "mode": "composite-crop-match"
       }
     },
     {
@@ -476,7 +479,8 @@
       ],
       "verification": {
         "checked": true,
-        "mismatched": false
+        "mismatched": false,
+        "mode": "composite-crop-match"
       }
     },
     {
@@ -514,7 +518,8 @@
       ],
       "verification": {
         "checked": true,
-        "mismatched": false
+        "mismatched": false,
+        "mode": "composite-crop-match"
       }
     },
     {
@@ -552,7 +557,8 @@
       ],
       "verification": {
         "checked": true,
-        "mismatched": false
+        "mismatched": false,
+        "mode": "composite-crop-match"
       }
     },
     {
@@ -590,7 +596,8 @@
       ],
       "verification": {
         "checked": true,
-        "mismatched": false
+        "mismatched": false,
+        "mode": "composite-crop-match"
       }
     },
     {
@@ -628,7 +635,8 @@
       ],
       "verification": {
         "checked": true,
-        "mismatched": false
+        "mismatched": false,
+        "mode": "composite-crop-match"
       }
     },
     {
@@ -666,7 +674,8 @@
       ],
       "verification": {
         "checked": true,
-        "mismatched": false
+        "mismatched": false,
+        "mode": "composite-crop-match"
       }
     },
     {
@@ -704,7 +713,8 @@
       ],
       "verification": {
         "checked": true,
-        "mismatched": false
+        "mismatched": false,
+        "mode": "composite-crop-match"
       }
     },
     {
@@ -742,7 +752,8 @@
       ],
       "verification": {
         "checked": true,
-        "mismatched": false
+        "mismatched": false,
+        "mode": "composite-crop-match"
       }
     },
     {
@@ -780,7 +791,8 @@
       ],
       "verification": {
         "checked": true,
-        "mismatched": false
+        "mismatched": false,
+        "mode": "composite-crop-match"
       }
     },
     {
@@ -818,7 +830,8 @@
       ],
       "verification": {
         "checked": true,
-        "mismatched": false
+        "mismatched": false,
+        "mode": "composite-crop-match"
       }
     },
     {
@@ -856,7 +869,8 @@
       ],
       "verification": {
         "checked": true,
-        "mismatched": false
+        "mismatched": false,
+        "mode": "composite-crop-match"
       }
     },
     {
@@ -894,7 +908,8 @@
       ],
       "verification": {
         "checked": true,
-        "mismatched": false
+        "mismatched": false,
+        "mode": "composite-crop-match"
       }
     },
     {
@@ -932,7 +947,8 @@
       ],
       "verification": {
         "checked": true,
-        "mismatched": false
+        "mismatched": false,
+        "mode": "composite-crop-match"
       }
     },
     {
@@ -970,7 +986,8 @@
       ],
       "verification": {
         "checked": true,
-        "mismatched": false
+        "mismatched": false,
+        "mode": "composite-crop-match"
       }
     },
     {
@@ -1008,7 +1025,8 @@
       ],
       "verification": {
         "checked": true,
-        "mismatched": false
+        "mismatched": false,
+        "mode": "composite-crop-match"
       }
     },
     {
@@ -1046,7 +1064,8 @@
       ],
       "verification": {
         "checked": true,
-        "mismatched": false
+        "mismatched": false,
+        "mode": "composite-crop-match"
       }
     },
     {
@@ -1084,7 +1103,8 @@
       ],
       "verification": {
         "checked": true,
-        "mismatched": false
+        "mismatched": false,
+        "mode": "composite-crop-match"
       }
     },
     {
@@ -1122,7 +1142,8 @@
       ],
       "verification": {
         "checked": true,
-        "mismatched": false
+        "mismatched": false,
+        "mode": "composite-crop-match"
       }
     },
     {
@@ -1160,7 +1181,8 @@
       ],
       "verification": {
         "checked": true,
-        "mismatched": false
+        "mismatched": false,
+        "mode": "composite-crop-match"
       }
     },
     {
@@ -1198,7 +1220,8 @@
       ],
       "verification": {
         "checked": true,
-        "mismatched": false
+        "mismatched": false,
+        "mode": "composite-crop-match"
       }
     },
     {
@@ -1236,7 +1259,8 @@
       ],
       "verification": {
         "checked": true,
-        "mismatched": false
+        "mismatched": false,
+        "mode": "composite-crop-match"
       }
     },
     {
@@ -1274,7 +1298,8 @@
       ],
       "verification": {
         "checked": true,
-        "mismatched": false
+        "mismatched": false,
+        "mode": "composite-crop-match"
       }
     },
     {
@@ -1312,7 +1337,8 @@
       ],
       "verification": {
         "checked": true,
-        "mismatched": false
+        "mismatched": false,
+        "mode": "composite-crop-match"
       }
     },
     {
@@ -1350,7 +1376,8 @@
       ],
       "verification": {
         "checked": true,
-        "mismatched": false
+        "mismatched": false,
+        "mode": "composite-crop-match"
       }
     },
     {
@@ -1388,7 +1415,8 @@
       ],
       "verification": {
         "checked": true,
-        "mismatched": false
+        "mismatched": false,
+        "mode": "composite-crop-match"
       }
     },
     {
@@ -1426,7 +1454,8 @@
       ],
       "verification": {
         "checked": true,
-        "mismatched": false
+        "mismatched": false,
+        "mode": "composite-crop-match"
       }
     },
     {
@@ -1464,7 +1493,8 @@
       ],
       "verification": {
         "checked": true,
-        "mismatched": false
+        "mismatched": false,
+        "mode": "composite-crop-match"
       }
     },
     {
@@ -1502,7 +1532,8 @@
       ],
       "verification": {
         "checked": true,
-        "mismatched": false
+        "mismatched": false,
+        "mode": "composite-crop-match"
       }
     },
     {
@@ -1540,7 +1571,8 @@
       ],
       "verification": {
         "checked": true,
-        "mismatched": false
+        "mismatched": false,
+        "mode": "composite-crop-match"
       }
     },
     {
@@ -1578,7 +1610,8 @@
       ],
       "verification": {
         "checked": true,
-        "mismatched": false
+        "mismatched": false,
+        "mode": "composite-crop-match"
       }
     },
     {
@@ -1616,7 +1649,8 @@
       ],
       "verification": {
         "checked": true,
-        "mismatched": false
+        "mismatched": false,
+        "mode": "composite-crop-match"
       }
     },
     {
@@ -1654,7 +1688,8 @@
       ],
       "verification": {
         "checked": true,
-        "mismatched": false
+        "mismatched": false,
+        "mode": "composite-crop-match"
       }
     },
     {
@@ -1692,7 +1727,8 @@
       ],
       "verification": {
         "checked": true,
-        "mismatched": false
+        "mismatched": false,
+        "mode": "composite-crop-match"
       }
     },
     {
@@ -1730,7 +1766,8 @@
       ],
       "verification": {
         "checked": true,
-        "mismatched": false
+        "mismatched": false,
+        "mode": "composite-crop-match"
       }
     },
     {
@@ -1768,7 +1805,8 @@
       ],
       "verification": {
         "checked": true,
-        "mismatched": false
+        "mismatched": false,
+        "mode": "composite-crop-match"
       }
     },
     {
@@ -1806,7 +1844,8 @@
       ],
       "verification": {
         "checked": true,
-        "mismatched": false
+        "mismatched": false,
+        "mode": "composite-crop-match"
       }
     },
     {
@@ -1844,7 +1883,8 @@
       ],
       "verification": {
         "checked": true,
-        "mismatched": false
+        "mismatched": false,
+        "mode": "composite-crop-match"
       }
     },
     {
@@ -1882,7 +1922,8 @@
       ],
       "verification": {
         "checked": true,
-        "mismatched": false
+        "mismatched": false,
+        "mode": "composite-crop-match"
       }
     },
     {
@@ -1920,7 +1961,8 @@
       ],
       "verification": {
         "checked": true,
-        "mismatched": false
+        "mismatched": false,
+        "mode": "composite-crop-match"
       }
     }
   ],
@@ -1965,7 +2007,8 @@
       ],
       "verification": {
         "checked": true,
-        "mismatched": false
+        "mismatched": false,
+        "mode": "composite-crop-match"
       }
     },
     {
@@ -2008,7 +2051,8 @@
       ],
       "verification": {
         "checked": true,
-        "mismatched": false
+        "mismatched": false,
+        "mode": "composite-crop-match"
       }
     },
     {
@@ -2050,7 +2094,8 @@
       ],
       "verification": {
         "checked": true,
-        "mismatched": false
+        "mismatched": false,
+        "mode": "composite-crop-match"
       }
     },
     {
@@ -2092,7 +2137,8 @@
       ],
       "verification": {
         "checked": true,
-        "mismatched": false
+        "mismatched": false,
+        "mode": "composite-crop-match"
       }
     },
     {
@@ -2136,7 +2182,8 @@
       ],
       "verification": {
         "checked": true,
-        "mismatched": false
+        "mismatched": false,
+        "mode": "composite-crop-match"
       }
     },
     {
@@ -2179,7 +2226,8 @@
       ],
       "verification": {
         "checked": true,
-        "mismatched": false
+        "mismatched": false,
+        "mode": "composite-crop-match"
       }
     },
     {
@@ -2222,7 +2270,8 @@
       ],
       "verification": {
         "checked": true,
-        "mismatched": false
+        "mismatched": false,
+        "mode": "composite-crop-match"
       }
     },
     {
@@ -2265,7 +2314,8 @@
       ],
       "verification": {
         "checked": true,
-        "mismatched": false
+        "mismatched": false,
+        "mode": "composite-crop-match"
       }
     },
     {
@@ -2308,7 +2358,8 @@
       ],
       "verification": {
         "checked": true,
-        "mismatched": false
+        "mismatched": false,
+        "mode": "composite-crop-match"
       }
     },
     {
@@ -2351,7 +2402,8 @@
       ],
       "verification": {
         "checked": true,
-        "mismatched": false
+        "mismatched": false,
+        "mode": "composite-crop-match"
       }
     }
   ],
@@ -2368,12 +2420,21 @@
     "mismatchedMergedAssets": 0,
     "maxChannelDelta": 0,
     "tolerance": 2,
+    "render": {
+      "isolatedAssets": 0,
+      "compositeAssets": 40,
+      "isolatedMergedAssets": 0,
+      "compositeMergedAssets": 10,
+      "isolatedFailures": 0
+    },
     "notes": [
       "覆盖率按切图边界并集面积计算；它不是像素级保真证明。",
+      "切图来自 PSD 扁平合成图按边界裁切，重叠区域包含下方内容。",
       "每个 1x PNG 都经过解码并与源合成图裁切区域逐像素比较；容差为 2。",
+      "所有 @2x 输出都由 1x 最近邻放大，不是原生 2x 渲染。",
       "重叠切图在页面重建中按面积从大到小叠加。",
-      "合并素材是候选区域的合成裁剪，不参与页面重建覆盖率，也不代表 PSD 已合并。",
-      "编组/合并写入尚未执行；当前桥接协议没有这些操作。"
+      "合并素材是候选组/图层的独立渲染或合成裁剪，不参与页面重建覆盖率，也不代表 PSD 已合并。",
+      "资产包导出本身不修改文档；编组/合并需在应用内显式执行并另存重开。"
     ]
   },
   "limits": {
@@ -2389,6 +2450,7 @@
     "manifest.json",
     "design-ir.json",
     "agent-context.md",
+    "page.html",
     "preview.html",
     "comparison.json",
     "README.txt",
@@ -2497,9 +2559,10 @@
   ],
   "notes": [
     "切图来自 PSD 扁平合成图按边界裁切；重叠区域包含下方内容，不是逐图层隔离渲染。",
-    "@2x 输出由合成图放大，不是原生 2x 渲染。",
+    "所有 @2x 输出由 1x 放大，不是原生 2x 渲染。",
+    "page.html 是按切图边界绝对定位的页面骨架，未覆盖区域为透明；它用于 AI 转页面起点，不是像素保真或 Photoshop 证据。",
     "logicalGroups 与 layout 只是 Design IR 中的规则建议/启发式提示；应用内可经桥接写入文档内存，未另存重开前不改变 PSD。",
-    "mergeCandidates 只是可审核的规则建议；merged/ 中的图片是合成裁剪，不是 PSD 合并结果；应用内合并需另存重开。",
+    "mergeCandidates 只是可审核的规则建议；merged/ 中的图片是独立渲染或合成裁剪，不是 PSD 合并结果；应用内合并需另存重开。",
     "本资产包未经 Patchy 或 Photoshop 验证，不能作为兼容性证据。"
   ]
 }

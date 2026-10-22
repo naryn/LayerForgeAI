@@ -27,6 +27,37 @@ const revisions = computed<RevisionRecord[]>(() => {
 const warning = computed(() => project.value?.localInspection.warning);
 const diff = computed(() => session.lastDiff);
 const pixelDiff = computed(() => session.lastPixelDiff);
+const psdCompare = computed(() => session.lastPsdCompare);
+const psdComparePercent = computed(() =>
+  `${((psdCompare.value?.pixel.ratio ?? 0) * 100).toFixed(3)}%`,
+);
+const psdCompareBadge = computed(() => {
+  if (!psdCompare.value) return { label: "", className: "" };
+  if (psdCompare.value.identicalBinary) {
+    return { label: "字节一致", className: "badge--success" };
+  }
+  const { pixel, layerPixels } = psdCompare.value;
+  const compositeDirty = pixel.available && pixel.differingPixels > 0;
+  const layerDirty = layerPixels.available && layerPixels.differing > 0;
+  if (compositeDirty || layerDirty) {
+    return { label: "存在像素差异", className: "badge--warn" };
+  }
+  if (pixel.available && layerPixels.available) {
+    return { label: "合成与逐层一致", className: "badge--success" };
+  }
+  if (pixel.available) return { label: "合成像素一致", className: "badge--success" };
+  if (layerPixels.available) return { label: "逐层像素一致", className: "badge--success" };
+  return { label: "结构已解析", className: "badge--warn" };
+});
+const psdLayerEntries = computed(
+  () => psdCompare.value?.layerPixels.entries.slice(0, 4) ?? [],
+);
+const psdLayerEntryMore = computed(() =>
+  Math.max(
+    0,
+    (psdCompare.value?.layerPixels.entries.length ?? 0) - psdLayerEntries.value.length,
+  ),
+);
 const pixelPercent = computed(() =>
   `${((pixelDiff.value?.ratio ?? 0) * 100).toFixed(3)}%`,
 );
@@ -239,6 +270,176 @@ function diffEntryDetail(entry: LayerDiffEntry): string {
         </p>
       </section>
 
+      <section v-if="psdCompare" class="diff-card diff-card--psd" data-testid="psd-compare">
+        <div class="diff-card__head">
+          <span class="diff-card__icon"><AppIcon name="file" :size="15" /></span>
+          <div class="diff-card__title">
+            <strong>原 PSD 独立对比</strong>
+            <span>
+              导入源 ↔ 保存文件 · ag-psd 独立解析 ·
+              {{ formatDateTime(psdCompare.generatedAt) }}
+            </span>
+          </div>
+          <span class="badge" :class="psdCompareBadge.className">
+            {{ psdCompareBadge.label }}
+          </span>
+        </div>
+
+        <div class="diff-stats">
+          <span class="diff-stat">
+            <strong data-testid="psd-compare-layers">
+              {{ psdCompare.source.layerCount }} → {{ psdCompare.saved.layerCount }}
+            </strong>
+            图层节点
+          </span>
+          <span class="diff-stat" :class="{ 'is-dirty': psdCompare.structure.renamed > 0 }">
+            <strong>{{ psdCompare.structure.renamed }}</strong>
+            命名
+          </span>
+          <span class="diff-stat" :class="{ 'is-dirty': psdCompare.structure.geometryChanged > 0 }">
+            <strong>{{ psdCompare.structure.geometryChanged }}</strong>
+            几何 / 路径
+          </span>
+          <span class="diff-stat" :class="{ 'is-dirty': psdCompare.structure.added > 0 }">
+            <strong>{{ psdCompare.structure.added }}</strong>
+            新增
+          </span>
+          <span class="diff-stat" :class="{ 'is-dirty': psdCompare.structure.removed > 0 }">
+            <strong>{{ psdCompare.structure.removed }}</strong>
+            移除
+          </span>
+          <span class="diff-stat">
+            <strong>{{ psdCompare.structure.restyled }}</strong>
+            属性
+          </span>
+        </div>
+
+        <template v-if="psdCompare.pixel.available">
+          <div class="diff-stats diff-stats--pixels">
+            <span class="diff-stat" :class="{ 'is-dirty': psdCompare.pixel.differingPixels > 0 }">
+              <strong data-testid="psd-compare-pixel-differing">
+                {{ psdCompare.pixel.differingPixels }}
+              </strong>
+              差异像素 / {{ psdCompare.pixel.totalPixels }}
+            </span>
+            <span class="diff-stat">
+              <strong data-testid="psd-compare-pixel-ratio">{{ psdComparePercent }}</strong>
+              合成图占比
+            </span>
+            <span class="diff-stat" :class="{ 'is-dirty': psdCompare.pixel.maxDelta > 0 }">
+              <strong>{{ psdCompare.pixel.maxDelta }}</strong>
+              最大通道差
+            </span>
+          </div>
+          <p v-if="psdCompare.pixel.bounds" class="diff-card__note">
+            差异区域 x={{ psdCompare.pixel.bounds.x }} y={{ psdCompare.pixel.bounds.y }} ·
+            {{ psdCompare.pixel.bounds.width }}×{{ psdCompare.pixel.bounds.height }}
+          </p>
+          <p v-else-if="psdCompare.pixel.differingPixels === 0" class="diff-card__clean">
+            两份 PSD 的内嵌合成图逐像素一致（容差 {{ psdCompare.pixel.tolerance }}）。
+          </p>
+        </template>
+        <p v-else class="diff-card__warning" data-testid="psd-compare-pixel-unavailable">
+          <AppIcon name="warning" :size="12" />
+          合成图对比不可用：{{ psdCompare.pixel.reason }}
+        </p>
+
+        <template v-if="psdCompare.layerPixels.available">
+          <div class="diff-stats diff-stats--pixels">
+            <span class="diff-stat">
+              <strong data-testid="psd-compare-layer-identical">
+                {{ psdCompare.layerPixels.identical }}/{{ psdCompare.layerPixels.compared }}
+              </strong>
+              逐层一致
+            </span>
+            <span
+              class="diff-stat"
+              :class="{ 'is-dirty': psdCompare.layerPixels.differing > 0 }"
+            >
+              <strong data-testid="psd-compare-layer-differing">
+                {{ psdCompare.layerPixels.differing }}
+              </strong>
+              差异图层
+            </span>
+            <span class="diff-stat">
+              <strong data-testid="psd-compare-layer-total">
+                {{ psdCompare.layerPixels.totalPixels }}
+              </strong>
+              比较像素
+            </span>
+            <span
+              class="diff-stat"
+              :class="{ 'is-dirty': psdCompare.layerPixels.maxDelta > 0 }"
+            >
+              <strong>{{ psdCompare.layerPixels.maxDelta }}</strong>
+              逐层最大通道差
+            </span>
+          </div>
+          <ul v-if="psdLayerEntries.length" class="diff-entries">
+            <li
+              v-for="entry in psdLayerEntries"
+              :key="`${entry.layerId}:${entry.afterPath}`"
+              class="diff-entry"
+            >
+              <span
+                class="diff-entry__mark"
+                :class="entry.status === 'differing' ? 'is-changed' : 'is-removed'"
+              >
+                {{ entry.status === "differing" ? "~" : "?" }}
+              </span>
+              <span class="diff-entry__title" :title="entry.name">{{ entry.name }}</span>
+              <span class="diff-entry__detail" :title="entry.reason ?? ''">
+                {{
+                  entry.status === "differing"
+                    ? `${entry.differingPixels}/${entry.totalPixels} 差异`
+                    : entry.reason
+                }}
+              </span>
+            </li>
+          </ul>
+          <p v-if="psdLayerEntryMore > 0" class="diff-card__more">
+            还有 {{ psdLayerEntryMore }} 个逐层结果，导出 JSON 查看全部。
+          </p>
+          <p v-if="psdCompare.layerPixels.unpaired > 0" class="diff-card__note">
+            {{ psdCompare.layerPixels.unpaired }} 个叶层未配对（编组、合并、新增或移除），
+            不计入逐层差异。
+          </p>
+          <p v-if="psdCompare.layerPixels.truncated" class="diff-card__warning">
+            <AppIcon name="warning" :size="12" />
+            逐层比较达到 {{ psdCompare.layerPixels.maxPixels.toLocaleString() }} 像素上限，
+            其余匹配图层未比较。
+          </p>
+        </template>
+        <p v-else class="diff-card__warning" data-testid="psd-compare-layer-unavailable">
+          <AppIcon name="warning" :size="12" />
+          逐层像素对比不可用：{{ psdCompare.layerPixels.reason }}
+        </p>
+
+        <div class="psd-hash">
+          <span class="mono" :title="psdCompare.source.sha256">
+            源 {{ shortHash(psdCompare.source.sha256, 20) }} ·
+            {{ formatBytes(psdCompare.source.header.fileSize) }}
+          </span>
+          <span class="mono" :title="psdCompare.saved.sha256">
+            存 {{ shortHash(psdCompare.saved.sha256, 20) }} ·
+            {{ formatBytes(psdCompare.saved.header.fileSize) }}
+          </span>
+        </div>
+
+        <p class="diff-card__note">
+          对比双方均由 ag-psd 独立解析；合成图像素来自 PSD 内嵌预览，逐层像素来自图层缓存，
+          都不是 Photoshop 渲染。结构性新增/移除包含编组、合并造成的路径变化，需结合计划解读。
+        </p>
+        <button
+          class="btn btn--ghost btn--sm diff-card__export"
+          type="button"
+          @click="session.exportPsdCompare()"
+        >
+          <AppIcon name="download" :size="13" />
+          导出原 PSD 对比 JSON
+        </button>
+      </section>
+
       <div class="history__divider">
         <span>保存记录</span>
       </div>
@@ -291,6 +492,28 @@ function diffEntryDetail(entry: LayerDiffEntry): string {
             <span>{{ (revision.pixelDiff.ratio * 100).toFixed(3) }}%</span>
             <span class="revision__dot">·</span>
             <span>最大通道差 {{ revision.pixelDiff.maxDelta }}</span>
+          </div>
+          <div v-if="revision.psdCompare" class="revision__diff revision__psd">
+            <span>原 PSD 对比</span>
+            <span class="revision__dot">·</span>
+            <span>
+              {{ revision.psdCompare.sourceLayers }} →
+              {{ revision.psdCompare.savedLayers }} 图层
+            </span>
+            <span class="revision__dot">·</span>
+            <span v-if="revision.psdCompare.pixelAvailable">
+              {{ revision.psdCompare.pixelDiffering }}/{{ revision.psdCompare.pixelTotal }} 像素
+            </span>
+            <span v-else>合成图不可用</span>
+            <span v-if="revision.psdCompare.layerPixelAvailable" class="revision__dot">·</span>
+            <span v-if="revision.psdCompare.layerPixelAvailable">
+              逐层 {{ revision.psdCompare.layerPixelIdentical ?? 0 }}/{{
+                revision.psdCompare.layerPixelCompared ?? 0
+              }}
+              一致
+            </span>
+            <span v-if="revision.psdCompare.identicalBinary" class="revision__dot">·</span>
+            <span v-if="revision.psdCompare.identicalBinary">SHA-256 相同</span>
           </div>
           <p v-if="revision.engine === 'demo'" class="revision__note">
             演示版本：未生成真实 PSD，记录仅用于界面测试。
@@ -577,6 +800,20 @@ function diffEntryDetail(entry: LayerDiffEntry): string {
 
 .diff-card__export {
   align-self: flex-start;
+}
+
+.psd-hash {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-size: 9.5px;
+  color: var(--muted);
+}
+
+.psd-hash .mono {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .history__divider {

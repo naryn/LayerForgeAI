@@ -3,15 +3,21 @@
 #ifdef Q_OS_WASM
 
 #include "dialog_utils_wasm.hpp"
+#include "image_document_io.hpp"
 #include "main_window.hpp"
 #include "script_engine.hpp"
+
+#include "core/layer_render_utils.hpp"
+#include "core/rect_utils.hpp"
 
 #include <QJsonArray>
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QJsonValue>
 #include <QDir>
+#include <QFileInfo>
 #include <QImage>
+#include <QSaveFile>
 #include <QSet>
 
 #include <algorithm>
@@ -144,6 +150,57 @@ bool compareSavedPreviews(const QString& beforePath, const QString& afterPath,
   return true;
 }
 
+// Renders one layer the way the GIF/sprite exports do: a scratch document with
+// the layer forced visible, cropped to its render bounds. The live document is
+// never mutated, and ancestor group opacity/masks/clipping are intentionally
+// not applied because this layer is rendered alone.
+bool renderSavedLayer(const QString& documentId, const Document& document, const Layer& layer,
+                      const QString& path, QJsonObject* result, QString* errorCode,
+                      QString* errorMessage) {
+  const auto renderBounds =
+      intersect_rect(layer_render_bounds(layer), Rect::from_size(document.width(), document.height()));
+  if (renderBounds.width <= 0 || renderBounds.height <= 0) {
+    *errorCode = QStringLiteral("EMPTY_RENDER");
+    *errorMessage = QStringLiteral("Layer has no visible pixels inside the document canvas");
+    return false;
+  }
+  Document scratch(document.width(), document.height(), PixelFormat::rgba8());
+  Layer copy = layer;
+  copy.set_visible(true);
+  scratch.add_layer(std::move(copy));
+  const auto image = qimage_from_document_rect(
+      scratch, QRect(renderBounds.x, renderBounds.y, renderBounds.width, renderBounds.height), true);
+  if (image.isNull()) {
+    *errorCode = QStringLiteral("SCRIPT_ERROR");
+    *errorMessage = QStringLiteral("Isolated layer render produced no image");
+    return false;
+  }
+  QDir().mkpath(QStringLiteral("/saved"));
+  if (QFileInfo::exists(path)) {
+    *errorCode = QStringLiteral("INVALID_REQUEST");
+    *errorMessage = QStringLiteral("Refusing to overwrite an existing render");
+    return false;
+  }
+  QSaveFile file(path);
+  if (!file.open(QIODevice::WriteOnly) || !image.save(&file, "PNG") || !file.commit()) {
+    *errorCode = QStringLiteral("SCRIPT_ERROR");
+    *errorMessage = QStringLiteral("Could not save the isolated layer render: ") + path;
+    return false;
+  }
+  *result = QJsonObject{
+      {QStringLiteral("documentId"), documentId},
+      {QStringLiteral("layerId"), QString::number(layer.id())},
+      {QStringLiteral("path"), path},
+      {QStringLiteral("isolated"), true},
+      {QStringLiteral("width"), image.width()},
+      {QStringLiteral("height"), image.height()},
+      {QStringLiteral("bounds"), QJsonObject{{QStringLiteral("x"), renderBounds.x},
+                                             {QStringLiteral("y"), renderBounds.y},
+                                             {QStringLiteral("width"), renderBounds.width},
+                                             {QStringLiteral("height"), renderBounds.height}}}};
+  return true;
+}
+
 }  // namespace
 
 WebBridgeWasm::WebBridgeWasm(MainWindow& window)
@@ -214,6 +271,52 @@ void WebBridgeWasm::dispatch(const QJsonObject& request) {
       publish(id, clientId, true, result);
     } else {
       publish(id, clientId, false, {}, compareErrorCode, compareErrorMessage);
+    }
+    return;
+  }
+
+  if (operation == QStringLiteral("renderLayer")) {
+    const auto path = payload.value(QStringLiteral("path")).toString();
+    if (!savedPngPath(path)) {
+      publish(id, clientId, false, {}, QStringLiteral("INVALID_REQUEST"),
+              QStringLiteral("renderLayer requires a /saved/*.png path"));
+      return;
+    }
+    const auto documentId = payload.value(QStringLiteral("documentId")).toString();
+    bool documentOk = false;
+    const auto documentKey = documentId.toLongLong(&documentOk);
+    bool layerOk = false;
+    const auto layerKey = payload.value(QStringLiteral("layerId")).toString().toULongLong(&layerOk);
+    if (!documentOk || !layerOk) {
+      publish(id, clientId, false, {}, QStringLiteral("INVALID_REQUEST"),
+              QStringLiteral("renderLayer requires numeric documentId and layerId"));
+      return;
+    }
+    if (host_.run_active()) {
+      publish(id, clientId, false, {}, QStringLiteral("BUSY"),
+              QStringLiteral("Patchy script engine is busy"));
+      return;
+    }
+    const auto* document = host_.session_document_const(documentKey);
+    if (document == nullptr) {
+      publish(id, clientId, false, {}, QStringLiteral("DOCUMENT_NOT_FOUND"),
+              QStringLiteral("The target document is no longer open"));
+      return;
+    }
+    const auto* layer = document->find_layer(layerKey);
+    if (layer == nullptr) {
+      publish(id, clientId, false, {}, QStringLiteral("DOCUMENT_NOT_FOUND"),
+              QStringLiteral("The target layer does not exist in this document"));
+      return;
+    }
+    QJsonObject result;
+    QString renderErrorCode;
+    QString renderErrorMessage;
+    if (renderSavedLayer(documentId, *document, *layer, path, &result, &renderErrorCode,
+                         &renderErrorMessage)) {
+      publish(id, clientId, true, result);
+    } else {
+      publish(id, clientId, false, {}, renderErrorCode, renderErrorMessage);
     }
     return;
   }

@@ -1,0 +1,18 @@
+{
+  "ok": true,
+  "scope": "windows-wasm-browser",
+  "verifiedAt": "2026-10-22T11:22:37.266Z",
+  "patchyCommit": "d1ff95235e00af296868d4253e03391ca002ee9d",
+  "protocolVersion": 2,
+  "sourcePath": "B:\\src\\LayerForgeAI\\vendor\\Patchy\\test-fixtures\\psd\\photoshop-clip-base-effects.psd",
+  "sourceSha256": "ac492156547a772ba120f1d3a0d1b0164836d719100eb51e54c2a3c8f12ae66a",
+  "outputPsdSha256": "cf6cb55011599824370e159ab6c7e81f24666551155b2d963b1576215ea84f5a",
+  "rgbaSha256": "b22584a6cfae011f3875ebeb4c126126550f10c668bcc2aeb86995d450fd18c4",
+  "dimensions": {
+    "width": 360,
+    "height": 100
+  },
+  "photoshopVerified": true,
+  "m0Accepted": true,
+  "note": "Photoshop opened the normalized PSD without warnings."
+}

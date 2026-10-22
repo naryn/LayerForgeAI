@@ -54,6 +54,10 @@ pwsh -File scripts/wasm/setup-qt-wasm.ps1
 # as an E2E pass until the browser round trip below also succeeds.
 cmd /s /c scripts/release/build-wasm.bat
 
+# build-wasm.bat produces the plain Qt site; the ?m0=1 verification entry point
+# only exists after the bridge scripts are staged into it.
+node (Join-Path $StudioRoot "poc\patchy-bridge\scripts\stage-dev-site.mjs") (Join-Path $PatchyRoot "build\package\wasm-site")
+
 $env:PATCHY_ROOT = $PatchyRoot
 $env:PATCHY_WASM_SITE = Join-Path $PatchyRoot "build\package\wasm-site"
 $env:M0_PSD_FIXTURE = (Resolve-Path -LiteralPath $Fixture).Path

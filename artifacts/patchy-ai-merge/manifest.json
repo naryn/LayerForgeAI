@@ -1,0 +1,74 @@
+{
+  "engine": "patchy-wasm",
+  "feature": "ai-merge-review",
+  "fixture": {
+    "name": "patchy-group-merge.psd",
+    "sha256": "82b74a93c66bb4a19d52c48e2701560ee9efe9fd8464807a606e00fcce7525f3",
+    "width": 160,
+    "height": 100
+  },
+  "aiTask": {
+    "prompt": {
+      "path": "B:\\src\\LayerForgeAI\\artifacts\\patchy-ai-merge\\patchy-AI-合并复核-ai-naming-prompt.md",
+      "sha256": "22c97a69e39443780de4158a7aa16d4095b507bdfa3deb607e136a30f2e7d35a"
+    },
+    "candidate": {
+      "path": "5",
+      "kind": "component",
+      "bounds": {
+        "x": 120,
+        "y": 70,
+        "width": 14,
+        "height": 12
+      },
+      "memberCount": 2
+    }
+  },
+  "aiMerge": {
+    "responseSchemaVersion": "0.2.0",
+    "decision": "merge",
+    "appliedName": "badge-chip"
+  },
+  "output": {
+    "psd": {
+      "path": "B:\\src\\LayerForgeAI\\artifacts\\patchy-ai-merge\\patchy-AI-合并复核-20261022-190731-normalized.psd",
+      "sha256": "65d6dec1a7a16fb55087c8991a148dbfd804cd65708901999e097bb14666c8d5"
+    },
+    "before": {
+      "path": "B:\\src\\LayerForgeAI\\artifacts\\patchy-ai-merge\\patchy-ai-preview-20261022110725-d3ks.png",
+      "width": 160,
+      "height": 100,
+      "rgbaSha256": "ca3355942edcda4327eb426745a1494a2320807259cde36732982520649cac53"
+    },
+    "merged": {
+      "path": "B:\\src\\LayerForgeAI\\artifacts\\patchy-ai-merge\\patchy-ai-preview-20261022110729-26xj.png",
+      "width": 160,
+      "height": 100,
+      "rgbaSha256": "ca3355942edcda4327eb426745a1494a2320807259cde36732982520649cac53"
+    },
+    "reopened": {
+      "path": "B:\\src\\LayerForgeAI\\artifacts\\patchy-ai-merge\\patchy-ai-preview-20261022110734-l9iz.png",
+      "width": 160,
+      "height": 100,
+      "rgbaSha256": "ca3355942edcda4327eb426745a1494a2320807259cde36732982520649cac53"
+    },
+    "compare": {
+      "path": "B:\\src\\LayerForgeAI\\artifacts\\patchy-ai-merge\\patchy-AI-合并复核-psd-compare-20261022.json",
+      "sha256": "931415040815cabeba1d8311a70c19e6747d51973c0e7f34e89a4d30234e056c"
+    }
+  },
+  "pixelsMatch": true,
+  "psdCompare": {
+    "evidence": "ag-psd-independent",
+    "sourceLayers": 8,
+    "savedLayers": 6,
+    "compositeDifferingPixels": 0,
+    "layerPixelCompared": 5,
+    "layerPixelIdentical": 5,
+    "layerPixelDiffering": 0,
+    "layerPixelUnpaired": 3
+  },
+  "photoshopVerified": false,
+  "m0Accepted": false,
+  "note": "Real Patchy WASM evidence for an AI-reviewed merge on a synthetic PSD. Photoshop open check was not run for this artifact."
+}

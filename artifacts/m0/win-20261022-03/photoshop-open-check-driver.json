@@ -1,0 +1,11 @@
+﻿{
+    "input":  "B:\\src\\LayerForgeAI\\artifacts\\m0\\win-20261022-03\\m0-normalized.psd",
+    "checkedAt":  "2026-10-22T09:12:20.9875731+08:00",
+    "verdict":  "CLEAN B:\\src\\LayerForgeAI\\artifacts\\m0\\win-20261022-03\\m0-normalized.psd",
+    "pinnedCheckerAvailable":  false,
+    "dialogs":  "default (visible)",
+    "driver":  "legacy-action-automation",
+    "pinnedCheckerReason":  "ScriptingSupport commands unavailable; Photoshop.Application never registers in the ROT",
+    "photoshopVersion":  "27.11 (20260929.r.26 8c16e56)",
+    "class":  "Photoshop.Application.200.1"
+}

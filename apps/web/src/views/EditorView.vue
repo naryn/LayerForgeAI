@@ -5,6 +5,7 @@ import type { LayerNode, ProjectRecord, RevisionRecord } from "@/lib/domain";
 import { formatBytes, shortHash, truncateMiddle } from "@/lib/format";
 import {
   checkPatchySite,
+  patchyIframeUrl,
   PATCHY_SITE_URL,
   type PatchySiteStatus,
 } from "@/lib/engine/iframeTransport";
@@ -112,7 +113,7 @@ async function connectPatchy(): Promise<boolean> {
   const record = project.value;
   const file = sourceFile.value;
   if (!record || !file) return false;
-  iframeSrc.value = PATCHY_SITE_URL;
+  iframeSrc.value = patchyIframeUrl(PATCHY_SITE_URL);
   await nextTick();
   const frame = iframeEl.value;
   if (!frame) {

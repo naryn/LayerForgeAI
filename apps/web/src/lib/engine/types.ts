@@ -1,6 +1,7 @@
 import type {
   DocumentSnapshot,
   EngineMode,
+  IsolatedRenderResult,
   PixelDiffSummary,
   Precondition,
   PreviewResult,
@@ -23,6 +24,8 @@ export interface LayerMergeResult {
 export interface EngineTransport {
   readonly mode: EngineMode;
   readonly label: string;
+  /** True only when renderLayer() returns pixels from a real Patchy document. */
+  readonly supportsIsolatedRender: boolean;
   connect(): Promise<void>;
   openFile(file: File): Promise<DocumentSnapshot>;
   getDocument(): Promise<DocumentSnapshot>;
@@ -42,9 +45,12 @@ export interface EngineTransport {
     precondition: Precondition,
   ): Promise<LayerMergeResult>;
   renderPreview(path: string, download: boolean): Promise<PreviewResult>;
+  renderLayer(layerId: string, path: string): Promise<IsolatedRenderResult>;
   comparePreview(beforePath: string, afterPath: string): Promise<PixelDiffSummary>;
   undo(precondition: Precondition): Promise<DocumentSnapshot>;
   saveAsAndReopen(path: string, precondition: Precondition): Promise<DocumentSnapshot>;
+  /** Bytes of a PSD written by saveAsAndReopen, or null when the engine has none. */
+  readSavedFile(path: string): Promise<Uint8Array | null>;
   dispose(): void;
 }
 

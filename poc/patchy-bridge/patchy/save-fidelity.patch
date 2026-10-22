@@ -1,0 +1,167 @@
+--- a/src/psd/psd_layer_records.cpp
++++ b/src/psd/psd_layer_records.cpp
+@@ -335,27 +335,39 @@
+     throw std::runtime_error(PATCHY_TRANSLATE_NOOP("QObject", "Layered PSD export currently supports pixel and group layers only"));
+   }
+   if (layer_is_vector_shape(layer)) {
+-    // Photoshop's shape/fill layer convention (docs/vector-tools.md): empty
+-    // record bounds and 2-byte channels (just the compression marker) for
+-    // transparency + RGB; the fill regenerates from the vector blocks.
+-    EncodedLayer encoded;
+-    encoded.layer = &layer;
+-    encoded.kind = EncodedLayerKind::Pixel;
+-    encoded.bounds = Rect{};
+-    encoded.blending_ranges = &layer.raw_psd_blending_ranges();
+-    for (const auto channel_id :
+-         {kChannelTransparency, kChannelRed, kChannelGreen, kChannelBlue}) {
+-      encoded.channels.push_back(EncodedChannel{channel_id, 0, 0, kCompressionRaw, {}});
++    // Photoshop writes both shape forms: empty channels whose fill regenerates
++    // from the vector blocks, or a raster preview beside those blocks. Import
++    // keeps a preview it found; writing it back as empty made an untouched
++    // save/reopen re-rasterize differently (Payment1_D: 1.197% pixels, max
++    // channel delta 236). Patchy-rasterized shapes keep the empty convention.
++    const auto raster_status = layer.metadata().find(kLayerMetadataVectorRasterStatus);
++    const bool keep_photoshop_raster =
++        raster_status != layer.metadata().end() &&
++        raster_status->second == kVectorRasterStatusPhotoshop &&
++        !layer.pixels().empty() && has_visible_alpha(layer.pixels());
++    if (!keep_photoshop_raster) {
++      // Photoshop's shape/fill layer convention (docs/vector-tools.md): empty
++      // record bounds and 2-byte channels (just the compression marker) for
++      // transparency + RGB; the fill regenerates from the vector blocks.
++      EncodedLayer encoded;
++      encoded.layer = &layer;
++      encoded.kind = EncodedLayerKind::Pixel;
++      encoded.bounds = Rect{};
++      encoded.blending_ranges = &layer.raw_psd_blending_ranges();
++      for (const auto channel_id :
++           {kChannelTransparency, kChannelRed, kChannelGreen, kChannelBlue}) {
++        encoded.channels.push_back(EncodedChannel{channel_id, 0, 0, kCompressionRaw, {}});
++      }
++      if (depth != BitDepth::UInt8 && layer.mask().has_value()) {
++        encoded.channels.push_back(encode_mask_at_depth(layer.mask()->pixels, depth, large_document));
++      } else if (layer.mask().has_value() && layer.mask()->pixels.format() == PixelFormat::gray8()) {
++        const auto& mask_pixels = layer.mask()->pixels;
++        encoded.channels.push_back(encode_channel(kChannelUserMask, mask_pixels.width(),
++                                                  mask_pixels.height(), mask_pixels.data(),
++                                                  large_document));
++      }
++      return encoded;
+     }
+-    if (depth != BitDepth::UInt8 && layer.mask().has_value()) {
+-      encoded.channels.push_back(encode_mask_at_depth(layer.mask()->pixels, depth, large_document));
+-    } else if (layer.mask().has_value() && layer.mask()->pixels.format() == PixelFormat::gray8()) {
+-      const auto& mask_pixels = layer.mask()->pixels;
+-      encoded.channels.push_back(encode_channel(kChannelUserMask, mask_pixels.width(),
+-                                                mask_pixels.height(), mask_pixels.data(),
+-                                                large_document));
+-    }
+-    return encoded;
+   }
+   if (depth != BitDepth::UInt8) {
+     return encode_deep_layer(layer, large_document, bottom_record, canvas, depth);
+--- a/src/psd/psd_document_io.cpp
++++ b/src/psd/psd_document_io.cpp
+@@ -2195,8 +2195,24 @@
+   encoded.preserve_native_color_blocks = true;
+   if (encoded.kind != EncodedLayerKind::Pixel) return;
+   const auto& source = *encoded.layer->psd_native_colors();
+-  std::erase_if(encoded.channels, [](const EncodedChannel& channel) { return channel.id <= kChannelBlack; });
+   const bool vector = layer_is_vector_shape(*encoded.layer);
++  std::erase_if(encoded.channels, [](const EncodedChannel& channel) { return channel.id <= kChannelBlack; });
++  if (vector) {
++    // Native-mode shape records keep Photoshop's empty-channel convention: the
++    // record's color channels are empty and the fill regenerates from the
++    // vector blocks. The reader sizes each color channel from the record
++    // bounds, so bounds must stay zero while those channels are empty. (RGB
++    // saves may carry an imported raster preview; that form has no native
++    // restore.)
++    encoded.bounds = Rect{};
++    for (auto& channel : encoded.channels) {
++      if (channel.id == kChannelUserMask || channel.id == kChannelRealUserMask) continue;
++      channel.width = 0;
++      channel.height = 0;
++      channel.compression = kCompressionRaw;
++      channel.data.clear();
++    }
++  }
+   std::optional<PixelBuffer> regenerated;
+   if (layer_is_smart_object(*encoded.layer) && !native_smart_preview_unchanged(*encoded.layer, smart_objects)) {
+     const auto& pixels = encoded.layer->pixels();
+--- a/tests/core/psd_vector_fixtures_tests.cpp
++++ b/tests/core/psd_vector_fixtures_tests.cpp
+@@ -923,6 +923,66 @@
+   CHECK(metrics.max_channel_delta == 0);
+ }
+ 
++void psd_photoshop_raster_shape_pixels_survive_save() {
++  // Photoshop can store a raster preview beside a shape layer's vector blocks.
++  // Import keeps it; save must write it back instead of the empty-channel form,
++  // otherwise reopen re-rasterizes and loses the preview (Payment1_D no-op save).
++  patchy::Document document(64, 64, patchy::PixelFormat::rgb8());
++  document.add_pixel_layer("bg", patchy::test::solid_rgba(64, 64, 255, 255, 255, 255));
++  patchy::Layer shape(document.allocate_layer_id(), "Shape 1", patchy::PixelBuffer());
++  patchy::VectorShapeContent content;
++  patchy::LiveShapeParams params;
++  params.kind = patchy::LiveShapeKind::RoundedRectangle;
++  params.left = 8;
++  params.top = 10;
++  params.right = 40;
++  params.bottom = 30;
++  params.corner_radii = {2.0, 4.0, 6.0, 8.0};
++  patchy::populate_live_shape_box_corners(params);
++  content.path.subpaths = patchy::generate_live_shape_subpaths(params);
++  content.origination = {params};
++  content.fill.kind = patchy::VectorFillKind::Solid;
++  content.fill.color = patchy::RgbColor{20, 120, 220};
++  shape.set_vector_shape(content);
++  shape.metadata()[patchy::kLayerMetadataVectorShape] = "1";
++  patchy::update_vector_shape_raster(shape, patchy::Rect::from_size(64, 64), nullptr);
++  shape.metadata()[patchy::kLayerMetadataVectorRasterStatus] = patchy::kVectorRasterStatusPhotoshop;
++  // A preview pixel the vector fill would not produce: find a transparent
++  // pixel (a rounded corner), then paint it. If save drops the raster, reopen
++  // re-rasterizes and this pixel disappears.
++  const auto& raster_pixels = std::as_const(shape).pixels();
++  int transparent_x = -1;
++  int transparent_y = -1;
++  for (int y = 0; y < raster_pixels.height() && transparent_x < 0; ++y) {
++    for (int x = 0; x < raster_pixels.width(); ++x) {
++      if (raster_pixels.pixel(x, y)[3] == 0) {
++        transparent_x = x;
++        transparent_y = y;
++        break;
++      }
++    }
++  }
++  CHECK(transparent_x >= 0);
++  auto* preview_pixel = shape.pixels().pixel(transparent_x, transparent_y);
++  preview_pixel[0] = 255;
++  preview_pixel[1] = 0;
++  preview_pixel[2] = 255;
++  preview_pixel[3] = 255;
++  document.add_layer(std::move(shape));
++
++  const auto flat_original = patchy::Compositor{}.flatten_rgb8(document);
++  const auto written = patchy::psd::DocumentIo::write_layered_rgb8(document);
++  const auto reread = patchy::psd::DocumentIo::read(written, {});
++  const auto& roundtrip = reread.layers()[1];
++  CHECK(roundtrip.vector_shape() != nullptr);
++  CHECK(roundtrip.metadata().at(patchy::kLayerMetadataVectorRasterStatus) ==
++        patchy::kVectorRasterStatusPhotoshop);
++  CHECK(!roundtrip.pixels().empty());
++  const auto metrics = rgb_diff_metrics(flat_original, patchy::Compositor{}.flatten_rgb8(reread));
++  CHECK(metrics.differing_pixels == 0);
++  CHECK(metrics.max_channel_delta == 0);
++}
++
+ // Compound groups: several contours sharing one shape_group are ONE shape
+ // filled even-odd (a donut, Convert to Shape glyph outlines, custom-shape
+ // stamps). Photoshop's length-record encoding, pinned on 2026-09-26 by
+@@ -2580,6 +2640,7 @@
+       {"psd_saved_paths_reorder_round_trips", psd_saved_paths_reorder_round_trips},
+       {"psd_work_path_saved_as_named_round_trips", psd_work_path_saved_as_named_round_trips},
+       {"psd_authored_shape_layer_writes_native_blocks", psd_authored_shape_layer_writes_native_blocks},
++      {"psd_photoshop_raster_shape_pixels_survive_save", psd_photoshop_raster_shape_pixels_survive_save},
+       {"psd_compound_group_writes_continuation_records_and_round_trips",
+        psd_compound_group_writes_continuation_records_and_round_trips},
+       {"psd_compound_group_fixture_matches_photoshop_flatten", psd_compound_group_fixture_matches_photoshop_flatten},

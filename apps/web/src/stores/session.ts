@@ -10,11 +10,22 @@ import type {
   RevisionRecord,
 } from "@/lib/domain";
 import {
+  comparePsdFiles,
+  downloadPsdCompare,
+  psdCompareFileName,
+  summarizePsdComparison,
+  type PsdComparison,
+} from "@/lib/psdCompare";
+import {
   buildAiNamingPrompt,
   buildAiNamingTask,
   collectAiNamingCandidates,
+  toAiMergeCandidates,
+  type AiMergeCandidate,
+  type AiMergeReview,
   type AiNamingAcceptedRename,
   type AiNamingCandidate,
+  type AiNamingTask,
 } from "@/lib/aiNaming";
 import {
   buildLocalAssetPack,
@@ -104,6 +115,7 @@ export const useSessionStore = defineStore("session", () => {
   const lastRevision = ref<RevisionRecord | null>(null);
   const lastDiff = ref<PsdDiffReport | null>(null);
   const lastPixelDiff = ref<PixelDiffSummary | null>(null);
+  const lastPsdCompare = ref<PsdComparison | null>(null);
   const undoDepth = ref(0);
   const cleanupReport = ref<CleanupReport | null>(null);
 
@@ -125,6 +137,11 @@ export const useSessionStore = defineStore("session", () => {
   const aiNamingCandidates = computed<AiNamingCandidate[]>(() =>
     cleanupReport.value
       ? collectAiNamingCandidates({ layers: layers.value, report: cleanupReport.value })
+      : [],
+  );
+  const aiMergeCandidates = computed<AiMergeCandidate[]>(() =>
+    cleanupReport.value
+      ? toAiMergeCandidates(cleanupReport.value.mergeCandidates, layers.value)
       : [],
   );
   const selectedLayer = computed<LayerNode | null>(() => {
@@ -180,6 +197,7 @@ export const useSessionStore = defineStore("session", () => {
     lastRevision.value = null;
     lastDiff.value = null;
     lastPixelDiff.value = null;
+    lastPsdCompare.value = null;
     undoDepth.value = 0;
     cleanupReport.value = null;
     diffBaseline = null;
@@ -201,6 +219,7 @@ export const useSessionStore = defineStore("session", () => {
     lastRevision.value = null;
     lastDiff.value = null;
     lastPixelDiff.value = null;
+    lastPsdCompare.value = null;
     undoDepth.value = 0;
     cleanupReport.value = null;
     diffBaseline = null;
@@ -238,6 +257,7 @@ export const useSessionStore = defineStore("session", () => {
     error.value = null;
     fallbackReason.value = reason ?? null;
     lastPixelDiff.value = null;
+    lastPsdCompare.value = null;
     undoDepth.value = 0;
     cleanupReport.value = null;
     diffBaseline = null;
@@ -791,6 +811,7 @@ export const useSessionStore = defineStore("session", () => {
       const snapshot = document.value;
       if (!snapshot) return null;
       lastPixelDiff.value = null;
+      lastPsdCompare.value = null;
       let beforePreviewPath: string | null = null;
       if (mode.value === "patchy") {
         busy.value = "保存并重开：渲染保存前预览";
@@ -822,6 +843,40 @@ export const useSessionStore = defineStore("session", () => {
         }
         busy.value = "保存并重开";
       }
+      let psdCompare: PsdComparison | null = null;
+      if (mode.value === "patchy" && projectId.value) {
+        busy.value = "保存并重开：独立对比原 PSD";
+        try {
+          const [savedBytes, sourceFile] = await Promise.all([
+            transport.readSavedFile(path),
+            projects.getFile(projectId.value),
+          ]);
+          if (!sourceFile) {
+            pushLog("warn", "找不到导入源文件，跳过原 PSD 独立对比");
+          } else if (savedBytes) {
+            psdCompare = await comparePsdFiles(
+              { fileName: sourceFile.name, bytes: await sourceFile.arrayBuffer() },
+              { fileName: path, bytes: savedBytes },
+            );
+            lastPsdCompare.value = psdCompare;
+            const pixel = psdCompare.pixel;
+            pushLog(
+              pixel.available && pixel.differingPixels === 0 ? "success" : "warn",
+              "原 PSD 与保存 PSD 独立对比完成",
+              `${psdCompare.source.layerCount} → ${psdCompare.saved.layerCount} 图层；结构新增 ${psdCompare.structure.added}、移除 ${psdCompare.structure.removed}、命名 ${psdCompare.structure.renamed}、几何 ${psdCompare.structure.geometryChanged}；${
+                pixel.available
+                  ? `合成像素差异 ${pixel.differingPixels}/${pixel.totalPixels}（${(pixel.ratio * 100).toFixed(3)}%），最大通道差 ${pixel.maxDelta}`
+                  : `合成像素对比不可用：${pixel.reason}`
+              }；ag-psd 独立解析，不是 Photoshop 验证。`,
+            );
+          } else {
+            pushLog("warn", "Patchy 未返回保存的 PSD 字节，跳过独立对比");
+          }
+        } catch (reason) {
+          pushLog("warn", "原 PSD 独立对比失败（PSD 已保存）", describeError(reason));
+        }
+        busy.value = "保存并重开";
+      }
       undoDepth.value = 0;
       const diff = diffLayerTrees(diffBaseline ?? snapshot, reopened, {
         simulated: isSimulated.value,
@@ -833,6 +888,7 @@ export const useSessionStore = defineStore("session", () => {
       diffBaselineKind = "previous-save";
       const verification = verifyPlanAgainstLayers(plan.value, reopened.layers);
       await persistPlan(verification.plan);
+      analyzeCleanup(true);
       const revision: RevisionRecord = {
         id: createId("rev"),
         path,
@@ -845,6 +901,7 @@ export const useSessionStore = defineStore("session", () => {
         verified: verification.failed === 0,
         diff: diff.summary,
         ...(pixelDiff ? { pixelDiff } : {}),
+        ...(psdCompare ? { psdCompare: summarizePsdComparison(psdCompare) } : {}),
       };
       lastRevision.value = revision;
       try {
@@ -966,6 +1023,25 @@ export const useSessionStore = defineStore("session", () => {
     return report;
   }
 
+  function exportPsdCompare(): PsdComparison | null {
+    if (!lastPsdCompare.value || !project.value) {
+      error.value = "还没有可导出的原 PSD 对比";
+      return null;
+    }
+    const report = lastPsdCompare.value;
+    downloadPsdCompare(report, psdCompareFileName(project.value.name));
+    pushLog(
+      "success",
+      "原 PSD 独立对比已导出",
+      `${report.source.layerCount} → ${report.saved.layerCount} 图层；${
+        report.pixel.available
+          ? `合成像素差异 ${report.pixel.differingPixels}/${report.pixel.totalPixels}（${(report.pixel.ratio * 100).toFixed(3)}%）`
+          : `合成像素不可用：${report.pixel.reason}`
+      }。`,
+    );
+    return report;
+  }
+
   function analyzeCleanup(force = false): CleanupReport | null {
     if (cleanupReport.value && !force) return cleanupReport.value;
     const record = project.value;
@@ -1027,36 +1103,49 @@ export const useSessionStore = defineStore("session", () => {
     return { added: saved ? additions.length : 0, skipped };
   }
 
-  function exportAiNamingTask(): number {
+  function buildAiNamingRequestTask(): AiNamingTask | null {
     const record = project.value;
     const report = cleanupReport.value;
-    if (!record || !report) {
-      error.value = "请先执行一键整理分析";
-      return 0;
-    }
+    if (!record || !report) return null;
     const candidates = collectAiNamingCandidates({ layers: layers.value, report });
-    if (candidates.length === 0) {
-      error.value = "没有需要 AI 命名的通用图层";
-      return 0;
-    }
-    const task = buildAiNamingTask({
+    const mergeCandidates = toAiMergeCandidates(report.mergeCandidates, layers.value);
+    if (candidates.length === 0 && mergeCandidates.length === 0) return null;
+    return buildAiNamingTask({
       project: record,
       layers: layers.value,
       report,
       candidates,
+      mergeCandidates,
       width: document.value?.width ?? record.source.width,
       height: document.value?.height ?? record.source.height,
     });
+  }
+
+  function exportAiNamingTask(): number {
+    const record = project.value;
+    if (!record || !cleanupReport.value) {
+      error.value = "请先执行一键整理分析";
+      return 0;
+    }
+    const task = buildAiNamingRequestTask();
+    if (!task) {
+      error.value = "没有需要 AI 命名的通用图层";
+      return 0;
+    }
     downloadText(
       buildAiNamingPrompt(task),
       `${sanitizeFileName(record.name)}-ai-naming-prompt.md`,
     );
     pushLog(
       "info",
-      `已导出 AI 命名任务（${candidates.length} 个候选）`,
+      `已导出 AI 命名任务（${task.candidates.length} 个候选）`,
       "导入 AI 返回的 JSON 后人工审核，不会直接修改 PSD",
     );
-    return candidates.length;
+    return task.candidates.length;
+  }
+
+  function logAiNamingModelRun(detail: string): void {
+    pushLog("info", "AI 命名模型已返回", `${detail} · 不会直接修改 PSD`);
   }
 
   async function addAiNamingRenamesToPlan(
@@ -1072,6 +1161,40 @@ export const useSessionStore = defineStore("session", () => {
       })),
       { note: "AI 语义命名建议", includeReason: true },
     );
+  }
+
+  async function applyAiMergeReviews(
+    reviews: AiMergeReview[],
+  ): Promise<{ applied: number; failed: number; skipped: number }> {
+    const report = cleanupReport.value;
+    const byPath = new Map((report?.mergeCandidates ?? []).map((candidate) => [candidate.path, candidate]));
+    const selected: CleanupMergeCandidate[] = [];
+    let skipped = 0;
+    for (const review of reviews) {
+      if (review.decision !== "merge") continue;
+      const candidate = byPath.get(review.path);
+      if (!candidate) {
+        skipped += 1;
+        continue;
+      }
+      selected.push({
+        ...candidate,
+        suggestedName: review.name ?? candidate.suggestedName,
+      });
+    }
+    if (selected.length === 0) {
+      pushLog("info", "没有可执行的 AI 合并复核项", `${skipped} 项候选已过期`);
+      return { applied: 0, failed: 0, skipped };
+    }
+    const outcome = await applyMergeCandidates(selected);
+    if (outcome.applied > 0) {
+      pushLog(
+        "info",
+        "AI 合并复核已执行",
+        `${outcome.applied} 项经人工确认后合并 · 修改仅在引擎内存，需保存并重开`,
+      );
+    }
+    return { ...outcome, skipped };
   }
 
   async function exportAssetPack(): Promise<AssetPackResult | null> {
@@ -1097,6 +1220,21 @@ export const useSessionStore = defineStore("session", () => {
         layers: localLayers.value,
         capturedAt: new Date().toISOString(),
       };
+      const activeTransport = transport;
+      const isolatedRenderer =
+        mode.value === "patchy" && activeTransport?.supportsIsolatedRender
+          ? {
+              render: async (layerId: string, path: string) => {
+                const rendered = await activeTransport.renderLayer(layerId, path);
+                return {
+                  bytes: rendered.bytes,
+                  width: rendered.width,
+                  height: rendered.height,
+                  bounds: rendered.bounds,
+                };
+              },
+            }
+          : undefined;
       const result = await buildLocalAssetPack({
         project: record,
         snapshot,
@@ -1104,15 +1242,22 @@ export const useSessionStore = defineStore("session", () => {
         engine: mode.value,
         report,
         file,
+        isolatedRenderer,
         onProgress: (message) => {
           busy.value = message;
         },
       });
       downloadAssetPack(result);
+      const isolatedCount = result.manifest.status.isolatedLayerRenders;
+      const compositeCount = result.manifest.status.compositeCrops;
+      const pixels =
+        isolatedCount > 0
+          ? `逐层隔离渲染 ${isolatedCount} 个 · 合成图裁切 ${compositeCount} 个`
+          : "合成图裁切";
       pushLog(
         "success",
         "资产包已导出",
-        `${result.assets.length} 个切图 + ${result.mergedAssets.length} 个合并素材（合成图裁切）· 覆盖率 ${(
+        `${result.assets.length} 个切图 + ${result.mergedAssets.length} 个合并素材（${pixels}）· 覆盖率 ${(
           result.comparison.coverageRatio * 100
         ).toFixed(1)}% · PNG 解码校验：切图 ${result.comparison.verifiedAssets} 个、合并素材 ${result.comparison.verifiedMergedAssets} 个，不一致 ${result.comparison.mismatchedAssets + result.comparison.mismatchedMergedAssets} 个`,
       );
@@ -1190,10 +1335,12 @@ export const useSessionStore = defineStore("session", () => {
     lastRevision,
     lastDiff,
     lastPixelDiff,
+    lastPsdCompare,
     undoDepth,
     canUndo,
     cleanupReport,
     aiNamingCandidates,
+    aiMergeCandidates,
     project,
     plan,
     stats,
@@ -1220,11 +1367,15 @@ export const useSessionStore = defineStore("session", () => {
     saveAndReopen,
     renderPreview,
     exportDiff,
+    exportPsdCompare,
     exportIr,
     analyzeCleanup,
     addCleanupRenamesToPlan,
+    buildAiNamingRequestTask,
     exportAiNamingTask,
     addAiNamingRenamesToPlan,
+    applyAiMergeReviews,
+    logAiNamingModelRun,
     exportAssetManifest,
     exportAssetPack,
     suggestedSaveName,

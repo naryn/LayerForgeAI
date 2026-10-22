@@ -14,8 +14,14 @@ interface PackAsset {
   name: string;
   sourcePath: string;
   bounds: { x: number; y: number; width: number; height: number };
-  outputs: Array<{ fileName: string; scale: number; width: number; height: number }>;
-  verification: { checked: boolean; mismatched: boolean };
+  outputs: Array<{
+    fileName: string;
+    scale: number;
+    width: number;
+    height: number;
+    source: string;
+  }>;
+  verification: { checked: boolean; mismatched: boolean; mode?: string };
 }
 
 interface PackMergedAsset extends PackAsset {
@@ -143,11 +149,18 @@ test.describe("真实 PSD 资产包", () => {
     const manifest = JSON.parse(decoder.decode(entries["manifest.json"]));
 
     expect(manifest.schema).toBe("layerforge.asset-pack");
-    expect(manifest.schemaVersion).toBe("0.3.0");
+    expect(manifest.schemaVersion).toBe("0.4.0");
     expect(manifest.status).toMatchObject({
       validated: false,
       pixels: "generated-local-composite-crops",
+      isolatedLayerRenders: 0,
     });
+    expect(manifest.comparison.method).toBe("composite-crops-and-decode-verification");
+    expect(manifest.comparison.render).toMatchObject({
+      isolatedAssets: 0,
+      isolatedMergedAssets: 0,
+    });
+    expect(manifest.comparison.render.compositeAssets).toBeGreaterThan(0);
     expect(manifest.source).toMatchObject({
       fileName,
       width: psd.width,
@@ -198,8 +211,13 @@ test.describe("真实 PSD 资产包", () => {
     expect(manifest.comparison.coverageRatio).toBeLessThanOrEqual(1);
 
     for (const asset of assets) {
-      expect(asset.verification).toMatchObject({ checked: true, mismatched: false });
+      expect(asset.verification).toMatchObject({
+        checked: true,
+        mismatched: false,
+        mode: "composite-crop-match",
+      });
       expect(asset.outputs.length).toBeGreaterThan(0);
+      expect(asset.outputs.every((output) => output.source.startsWith("composite-"))).toBe(true);
       for (const output of asset.outputs) {
         const bytes = entries[`assets/${output.fileName}`];
         expect(bytes, `缺少 ${output.fileName}`).toBeTruthy();
@@ -238,6 +256,25 @@ test.describe("真实 PSD 资产包", () => {
     const preview = decoder.decode(entries["preview.html"]);
     expect(preview).toContain("页面对比");
     expect(preview).toContain("assets/");
+    const pageHtml = decoder.decode(entries["page.html"]);
+    expect(pageHtml).toContain("页面骨架");
+    expect(pageHtml).toContain(`data-canvas-width="${psd.width}"`);
+    expect(pageHtml).toContain(`data-canvas-height="${psd.height}"`);
+    expect(pageHtml).toContain('class="lf-page"');
+    expect(pageHtml).toContain('class="lf-slice"');
+    const renderedAsset = assets.find((asset) =>
+      pageHtml.includes(`data-layer-path="/${asset.sourcePath}"`),
+    );
+    expect(renderedAsset, "页面骨架应至少渲染一个切图节点").toBeTruthy();
+    const renderedOutput =
+      renderedAsset!.outputs.find((output) => output.scale === 1) ??
+      renderedAsset!.outputs[0];
+    expect(pageHtml).toContain(`assets/${renderedOutput.fileName}`);
+    expect(pageHtml).toContain("display:contents");
+    if (ir.logicalGroups.length > 0) {
+      expect(pageHtml).toContain("data-component-id=");
+      expect(pageHtml).toContain("data-layout-direction=");
+    }
     const agentContext = decoder.decode(entries["agent-context.md"]);
     expect(agentContext).toContain("合成图裁切");
     expect(agentContext).toContain(assets[0].name);
@@ -269,6 +306,7 @@ test.describe("真实 PSD 资产包", () => {
       entries["agent-context.md"],
     );
     await writeFile(path.join(outDir, "preview.html"), entries["preview.html"]);
+    await writeFile(path.join(outDir, "page.html"), entries["page.html"]);
     console.log(
       [
         `[asset-pack-real] ${fileName}`,

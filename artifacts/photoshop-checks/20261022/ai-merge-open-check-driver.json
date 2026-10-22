@@ -1,0 +1,57 @@
+{
+  "driver": "legacy-action-automation",
+  "class": "Photoshop.Application.200.1",
+  "photoshopVersion": "27.11 (20260929.r.26 8c16e56)",
+  "checkedAt": "2026-10-22T19:05:38+08:00",
+  "dialogs": "default (visible)",
+  "pinnedCheckerAvailable": false,
+  "pinnedCheckerReason": "ScriptingSupport commands unavailable; Photoshop.Application never registers in the ROT",
+  "log": "artifacts/photoshop-checks/20261022/ai-merge-open-checks.log",
+  "build": {
+    "wasmRelease": "2026-10-22 17:24 Asia/Shanghai",
+    "patchyJsSha256": "005611923f72a843af8f78dbf3bc754258d5506554905850b707a23720fa783c",
+    "patchyWasmSha256": "b0b67979540230f0c7099cc2ca3e620b6bb42cb32445d64909c5382d8a9480bb"
+  },
+  "serialized": true,
+  "freshPhotoshopInstance": true,
+  "sourceOriginalsOpened": false,
+  "caveat": "Warning-free open only. This is not a Photoshop pixel/visual equivalence check.",
+  "inputs": [
+    {
+      "fileName": "Payment1_D.psd",
+      "artifact": "artifacts/patchy-corpus/ai-merge-payment1-d/saved.psd",
+      "tempCopy": "C:\\Users\\naryn\\AppData\\Local\\Temp\\layerforge-ai-merge-open-20261022b\\Payment1_D.psd",
+      "size": 21595268,
+      "sha256": "E5C83C81A4A640F9997910975783DF2781E29B4A25E3DD2A7E2E109172A9C0EC",
+      "unchangedAfterOpen": true,
+      "verdict": "CLEAN"
+    },
+    {
+      "fileName": "Payment2_D.psd",
+      "artifact": "artifacts/patchy-corpus/ai-merge-payment2-d/saved.psd",
+      "tempCopy": "C:\\Users\\naryn\\AppData\\Local\\Temp\\layerforge-ai-merge-open-20261022b\\Payment2_D.psd",
+      "size": 21650922,
+      "sha256": "86007AA80FD491A83FC838377B0C40A5823ADF57A95EFB83A2CA1C8EADD82940",
+      "unchangedAfterOpen": true,
+      "verdict": "CLEAN"
+    },
+    {
+      "fileName": "Detial_D_0708.psd",
+      "artifact": "artifacts/patchy-corpus/ai-merge-detial-d-0708/saved.psd",
+      "tempCopy": "C:\\Users\\naryn\\AppData\\Local\\Temp\\layerforge-ai-merge-open-20261022b\\Detial_D_0708.psd",
+      "size": 29120092,
+      "sha256": "8C4EB3E053B0CDF01B6127308C64B9E40133993FCC943DC7342CA5A7882661C2",
+      "unchangedAfterOpen": true,
+      "verdict": "CLEAN"
+    },
+    {
+      "fileName": "Store_D.psd",
+      "artifact": "artifacts/patchy-corpus/ai-merge-store-d/saved.psd",
+      "tempCopy": "C:\\Users\\naryn\\AppData\\Local\\Temp\\layerforge-ai-merge-open-20261022b\\Store_D.psd",
+      "size": 50493692,
+      "sha256": "1CEC9423BC14BB943384D80A1300A8D62F7D58FE0F4B1E3B82E6659BCD37E403",
+      "unchangedAfterOpen": true,
+      "verdict": "CLEAN"
+    }
+  ]
+}

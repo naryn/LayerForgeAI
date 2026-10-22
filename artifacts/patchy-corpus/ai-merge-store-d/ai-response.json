@@ -1,0 +1,13 @@
+{
+  "schema": "layerforge.ai-naming.response",
+  "schemaVersion": "0.2.0",
+  "renames": [],
+  "merges": [
+    {
+      "path": "4",
+      "decision": "merge",
+      "name": "ai-merge-4",
+      "reason": "真实语料回归：合并候选经人工确认后栅格化为单层"
+    }
+  ]
+}

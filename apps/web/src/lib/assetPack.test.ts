@@ -173,7 +173,7 @@ const assets: AssetPackAsset[] = [
         source: "composite-upscale",
       },
     ],
-    verification: { checked: true, mismatched: false },
+    verification: { checked: true, mismatched: false, mode: "composite-crop-match" },
   },
   {
     id: "asset:1/1",
@@ -194,7 +194,7 @@ const assets: AssetPackAsset[] = [
         source: "composite-crop",
       },
     ],
-    verification: { checked: true, mismatched: false },
+    verification: { checked: true, mismatched: false, mode: "composite-crop-match" },
   },
 ];
 
@@ -228,7 +228,7 @@ const mergedAssets: AssetPackMergedAsset[] = [
         source: "composite-upscale",
       },
     ],
-    verification: { checked: true, mismatched: false },
+    verification: { checked: true, mismatched: false, mode: "composite-crop-match" },
   },
 ];
 
@@ -259,6 +259,13 @@ const comparison: AssetPackComparison = {
   mismatchedMergedAssets: 0,
   maxChannelDelta: 0,
   tolerance: 2,
+  render: {
+    isolatedAssets: 0,
+    compositeAssets: 2,
+    isolatedMergedAssets: 0,
+    compositeMergedAssets: 1,
+    isolatedFailures: 0,
+  },
   notes: ["覆盖率按切图边界并集面积计算；它不是像素级保真证明。"],
 };
 
@@ -287,7 +294,7 @@ describe("asset pack manifest", () => {
       now: new Date("2026-10-20T12:00:00.000Z"),
     });
     expect(manifest.schema).toBe("layerforge.asset-pack");
-    expect(manifest.schemaVersion).toBe("0.3.0");
+    expect(manifest.schemaVersion).toBe("0.4.0");
     expect(manifest.logicalGroups).toEqual([]);
     expect(manifest.generatedAt).toBe("2026-10-20T12:00:00.000Z");
     expect(manifest.status.validated).toBe(false);
@@ -305,7 +312,7 @@ describe("asset pack manifest", () => {
       sourcePath: "2",
       suggestedName: "component-merged",
       memberPaths: ["2/0", "2/1"],
-      verification: { checked: true, mismatched: false },
+      verification: { checked: true, mismatched: false, mode: "composite-crop-match" },
     });
     expect(manifest.mergedAssets[0].outputs.map((output) => output.fileName)).toEqual([
       "component-merged.png",
@@ -319,6 +326,122 @@ describe("asset pack manifest", () => {
     expect(manifest.notes.join(" ")).toContain("merged/");
     expect(manifest.notes.join(" ")).toContain("logicalGroups");
     expect(manifest.notes.join(" ")).toContain("layout");
+  });
+
+  it("隔离渲染资产声明 Patchy 像素来源", () => {
+    const isolatedAssets: AssetPackAsset[] = [
+      {
+        ...assets[0],
+        outputs: assets[0].outputs.map((output) => ({
+          ...output,
+          source: output.scale === 1 ? "isolated-layer" : "isolated-upscale",
+        })),
+        verification: {
+          checked: true,
+          mismatched: false,
+          mode: "isolated-render-decode",
+        },
+      },
+    ];
+    const isolatedComparison: AssetPackComparison = {
+      ...comparison,
+      method: "isolated-layer-renders-with-composite-fallback",
+      render: {
+        isolatedAssets: 1,
+        compositeAssets: 0,
+        isolatedMergedAssets: 0,
+        compositeMergedAssets: 0,
+        isolatedFailures: 0,
+      },
+      notes: ["主要切图来自 Patchy 逐层隔离渲染。"],
+    };
+    const manifest = buildAssetPackManifest({
+      project,
+      snapshot,
+      engine: "patchy",
+      report,
+      assets: isolatedAssets,
+      mergedAssets: [],
+      comparison: isolatedComparison,
+      limits,
+      files: ["manifest.json", "assets/hero-标题.png"],
+    });
+    expect(manifest.status.pixels).toBe("patchy-isolated-layer-renders");
+    expect(manifest.status.isolatedLayerRenders).toBe(1);
+    expect(manifest.status.compositeCrops).toBe(0);
+    expect(manifest.status.validated).toBe(false);
+    expect(manifest.notes.join(" ")).toContain("逐层隔离渲染");
+    expect(manifest.notes.join(" ")).toContain("不是原生 2x 渲染");
+
+    const html = buildAssetPackPreview({
+      projectName: project.name,
+      width: 100,
+      height: 50,
+      assets: isolatedAssets,
+      comparison: isolatedComparison,
+      engine: "patchy",
+    });
+    expect(html).toContain("逐层隔离渲染");
+    expect(html).not.toContain("合成图裁切</span>");
+
+    const context = buildAgentContext({
+      project,
+      snapshot,
+      plan,
+      engine: "patchy",
+      assets: isolatedAssets,
+      mergedAssets: [],
+      comparison: isolatedComparison,
+      mergeCandidates: [],
+      groupSuggestions: [],
+    });
+    expect(context).toContain("逐层隔离渲染");
+    expect(context).toContain("隔离渲染只含目标图层");
+  });
+
+  it("隔离渲染与合成回退混用时声明混合来源", () => {
+    const mixedAssets: AssetPackAsset[] = [
+      {
+        ...assets[0],
+        outputs: assets[0].outputs.map((output) => ({
+          ...output,
+          source: output.scale === 1 ? "isolated-layer" : "isolated-upscale",
+        })),
+        verification: { checked: true, mismatched: false, mode: "isolated-render-decode" },
+      },
+      {
+        ...assets[1],
+        verification: { checked: true, mismatched: false, mode: "composite-crop-match" },
+      },
+    ];
+    const mixedComparison: AssetPackComparison = {
+      ...comparison,
+      method: "isolated-layer-renders-with-composite-fallback",
+      render: {
+        isolatedAssets: 1,
+        compositeAssets: 1,
+        isolatedMergedAssets: 0,
+        compositeMergedAssets: 0,
+        isolatedFailures: 1,
+      },
+    };
+    const manifest = buildAssetPackManifest({
+      project,
+      snapshot,
+      engine: "patchy",
+      report,
+      assets: mixedAssets,
+      mergedAssets: [],
+      comparison: mixedComparison,
+      limits,
+      files: ["manifest.json"],
+    });
+    expect(manifest.status.pixels).toBe(
+      "patchy-isolated-layer-renders-with-composite-fallback",
+    );
+    expect(manifest.status.isolatedLayerRenders).toBe(1);
+    expect(manifest.status.compositeCrops).toBe(1);
+    expect(manifest.status.note).toContain("fell back");
   });
 
   it("清单携带逻辑编组建议并声明未写入 PSD", () => {
@@ -389,7 +512,7 @@ describe("asset pack manifest", () => {
     expect(context).toContain("hero / 按钮 → `hero-cta`");
     expect(context).toContain("| hero / 按钮 | hero-cta | hero-按钮.png |");
     expect(context).toContain("切图来自扁平合成图裁切");
-    expect(context).toContain("协议 v2");
+    expect(context).toContain("@2x 输出由 1x 最近邻放大");
     expect(context).toContain("## 文本层");
     expect(context).toContain(
       "| hero / 价格 | 25,000 IQD | PingFangSC-Semibold | 30px | #ffffff | center | 是 | 40×16 @ 10,32 | 2 |",

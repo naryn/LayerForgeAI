@@ -102,6 +102,34 @@ export interface PsdDiffSummary {
   unchanged: number;
 }
 
+export interface PsdCompareRecord {
+  sourceSha256: string;
+  savedSha256: string;
+  identicalBinary: boolean;
+  sourceLayers: number;
+  savedLayers: number;
+  width: number;
+  height: number;
+  added: number;
+  removed: number;
+  renamed: number;
+  geometryChanged: number;
+  restyled: number;
+  pixelAvailable: boolean;
+  pixelDiffering: number | null;
+  pixelTotal: number | null;
+  pixelRatio: number | null;
+  pixelMaxDelta: number | null;
+  layerPixelAvailable?: boolean;
+  layerPixelCompared?: number;
+  layerPixelIdentical?: number;
+  layerPixelDifferingLayers?: number;
+  layerPixelDiffering?: number;
+  layerPixelTotal?: number;
+  layerPixelMaxDelta?: number;
+  layerPixelTruncated?: boolean;
+}
+
 export interface RevisionRecord {
   id: string;
   path: string;
@@ -114,6 +142,7 @@ export interface RevisionRecord {
   verified: boolean;
   diff?: PsdDiffSummary;
   pixelDiff?: PixelDiffSummary;
+  psdCompare?: PsdCompareRecord;
 }
 
 export interface ProjectRecord {
@@ -159,4 +188,13 @@ export interface PreviewResult {
   downloaded: boolean;
   simulated?: boolean;
   note?: string;
+}
+
+export interface IsolatedRenderResult {
+  documentId: string;
+  layerId: string;
+  width: number;
+  height: number;
+  bounds: LayerBounds;
+  bytes: Uint8Array;
 }
